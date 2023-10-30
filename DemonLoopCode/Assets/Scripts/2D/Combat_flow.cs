@@ -23,7 +23,6 @@ public class CharacterMove
         this.movement = movement;
     }
 }
-
 public class Combat_flow : MonoBehaviour
 {
     List<CharacterMove> movements = new List<CharacterMove>();
@@ -54,7 +53,7 @@ public class Combat_flow : MonoBehaviour
 
         buttons.Sort((p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza la lista de botones por su nombre de esta forma prevenimos un fallo al asignar botones.
 
-        // Clasifica los botones dependiendo si estos van dirigidos para un jugador, una acci�n o un enemigo.
+        // Clasifica los botones dependiendo si estos van dirigidos para un jugador, una acción o un enemigo.
         foreach (GameObject bt in buttons)
         {
             if (bt.name.ToUpper().Contains("PLAYER"))
@@ -93,7 +92,7 @@ public class Combat_flow : MonoBehaviour
     }
 
 
-    // Selecci�n de jugador.
+    // Selección de jugador.
     public void PlayerButton(GameObject player)
     {
         if (!wait)
@@ -105,7 +104,7 @@ public class Combat_flow : MonoBehaviour
         }
     }
 
-    // Selecci�n de movimiento.
+    // Selección de movimiento.
     public void MovementButton(string movement)
     {
         this.movement = movement;
@@ -114,7 +113,7 @@ public class Combat_flow : MonoBehaviour
         enemyBT.ForEach(bt => { bt.SetActive(true); }); // Activa todos los botones enemigo.
     }
 
-    // Selecci�n de enemigo.
+    // Selección de enemigo.
     public void EnemyButton(GameObject enemy)
     {
         if (this.character != null && this.movement != null && !wait)
@@ -137,7 +136,7 @@ public class Combat_flow : MonoBehaviour
         }
     }
 
-    // A�ade a la lista de movimientos los movimientos.
+    // Añade a la lista de movimientos los movimientos.
     public void addMovement(GameObject character, GameObject target, string movement)
     {
         movements.Add(new CharacterMove(character, target, movement));
@@ -151,11 +150,12 @@ public class Combat_flow : MonoBehaviour
             if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == @object.name.Substring(1, character.name.Length - 1))
             {
                 Destroy(bt);
+
             }
         });
     }
 
-    // Ejecuta acci�n del jugador.
+    // Ejecuta acción del jugador.
     IEnumerator goPlayer(GameObject character, GameObject target, string movement)
     {
         wait = true;
@@ -213,7 +213,7 @@ public class Combat_flow : MonoBehaviour
         foreach (GameObject enemy in enemys)
         {
             int i = UnityEngine.Random.Range(0, players.Length);
-            addMovement(enemy, players[i], "punch");
+            addMovement(enemy, players[i], "Punch");
         }
 
         //Debug.Log("Enemys selected move");

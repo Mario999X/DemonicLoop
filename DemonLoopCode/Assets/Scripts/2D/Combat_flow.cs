@@ -23,6 +23,7 @@ public class CharacterMove
         this.movement = movement;
     }
 }
+
 public class Combat_flow : MonoBehaviour
 {
     List<CharacterMove> movements = new List<CharacterMove>();
@@ -53,7 +54,7 @@ public class Combat_flow : MonoBehaviour
 
         buttons.Sort((p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza la lista de botones por su nombre de esta forma prevenimos un fallo al asignar botones.
 
-        // Clasifica los botones dependiendo si estos van dirigidos para un jugador, una acción o un enemigo.
+        // Clasifica los botones dependiendo si estos van dirigidos para un jugador, una acciï¿½n o un enemigo.
         foreach (GameObject bt in buttons)
         {
             if (bt.name.ToUpper().Contains("PLAYER"))
@@ -92,7 +93,7 @@ public class Combat_flow : MonoBehaviour
     }
 
 
-    // Selección de jugador.
+    // Selecciï¿½n de jugador.
     public void PlayerButton(GameObject player)
     {
         if (!wait)
@@ -104,7 +105,7 @@ public class Combat_flow : MonoBehaviour
         }
     }
 
-    // Selección de movimiento.
+    // Selecciï¿½n de movimiento.
     public void MovementButton(string movement)
     {
         this.movement = movement;
@@ -113,7 +114,7 @@ public class Combat_flow : MonoBehaviour
         enemyBT.ForEach(bt => { bt.SetActive(true); }); // Activa todos los botones enemigo.
     }
 
-    // Selección de enemigo.
+    // Selecciï¿½n de enemigo.
     public void EnemyButton(GameObject enemy)
     {
         if (this.character != null && this.movement != null && !wait)
@@ -136,7 +137,7 @@ public class Combat_flow : MonoBehaviour
         }
     }
 
-    // Añade a la lista de movimientos los movimientos.
+    // Aï¿½ade a la lista de movimientos los movimientos.
     public void addMovement(GameObject character, GameObject target, string movement)
     {
         movements.Add(new CharacterMove(character, target, movement));
@@ -154,7 +155,7 @@ public class Combat_flow : MonoBehaviour
         });
     }
 
-    // Ejecuta acción del jugador.
+    // Ejecuta acciï¿½n del jugador.
     IEnumerator goPlayer(GameObject character, GameObject target, string movement)
     {
         wait = true;

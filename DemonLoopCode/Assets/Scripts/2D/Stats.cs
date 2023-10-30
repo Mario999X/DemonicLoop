@@ -5,11 +5,16 @@ using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
+    [SerializeField] Image barLifes;
     [SerializeField] float strength = 15f;
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float defense = 12f;
-    [SerializeField] Image barHP;
+    [SerializeField] float magicAtk = 0f;
+    [SerializeField] float magicDef = 0f;
+
+    public float MagicAtk { get { return magicAtk; } }
+    public float MagicDef { get { return magicDef; } }
 
     public float Strenght { get { return strength; } }
     public float Defense { get { return defense; } }
@@ -20,13 +25,20 @@ public class Stats : MonoBehaviour
         health = maxHealth;
     }
 
-private void Update()
+
+    private void Update()
     {
-        barHP.fillAmount = health / maxHealth;
+        barLifes.fillAmount = health / maxHealth;
         StateLife();
     }
 
-void StateLife()
+    void FixedUpdate()
+    {
+
+    }
+
+
+    void StateLife()
     {
         if (this.health <= 0)
         {

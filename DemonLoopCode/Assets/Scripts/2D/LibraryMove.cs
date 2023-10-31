@@ -31,7 +31,7 @@ public class LibraryMove : MonoBehaviour
             {
                 if ((i % 4) == 0)
                 {
-                    if (fila[i] == movement)
+                    if (fila[i].ToUpper() == movement.ToUpper())
                     {
                         int BASE_DAMAGE = Convert.ToInt32(fila[i + 1]);
                         int PHY_ATTACK = Convert.ToInt32(fila[i + 2]);

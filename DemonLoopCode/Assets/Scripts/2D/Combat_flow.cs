@@ -34,11 +34,12 @@ public class Combat_flow : MonoBehaviour
     GameObject[] players;
     GameObject character = null;
 
+    [Header("Characters speed")]
     [SerializeField] float speed = 50f;
 
     int moves = 0;
 
-    [SerializeField] bool wait = false;
+    bool wait = false;
 
     string movement = null;
 

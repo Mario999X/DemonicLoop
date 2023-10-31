@@ -15,7 +15,6 @@ public class Stats : MonoBehaviour
 
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
-
     public float Strenght { get { return strength; } }
     public float Defense { get { return defense; } }
     public float Health { get { return health; } set { this.health = value; } }
@@ -23,6 +22,7 @@ public class Stats : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+        barLifes = transform.GetChild(0).GetComponent<Image>();
     }
 
 
@@ -36,7 +36,6 @@ public class Stats : MonoBehaviour
     {
 
     }
-
 
     void StateLife()
     {

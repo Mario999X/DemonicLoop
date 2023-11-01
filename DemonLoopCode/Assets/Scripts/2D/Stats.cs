@@ -7,8 +7,7 @@ public class Stats : MonoBehaviour
 {
     [SerializeField] GameObject system;
     LibraryMove library;
-
-    [SerializeField] Image barLifes;
+    Image barLifes;
     [SerializeField] float strength = 15f;
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;

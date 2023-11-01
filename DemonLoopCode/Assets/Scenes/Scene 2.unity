@@ -861,7 +861,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   system: {fileID: 589541437}
-  barLifes: {fileID: 1363341023}
   strength: 15
   health: 0
   maxHealth: 100
@@ -955,7 +954,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   system: {fileID: 589541437}
-  barLifes: {fileID: 1999651253}
   strength: 15
   health: 0
   maxHealth: 100
@@ -1451,7 +1449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   system: {fileID: 589541437}
-  barLifes: {fileID: 637675758}
   strength: 15
   health: 0
   maxHealth: 100
@@ -2051,7 +2048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   system: {fileID: 589541437}
-  barLifes: {fileID: 710574240}
   strength: 15
   health: 0
   maxHealth: 100
@@ -2900,7 +2896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   system: {fileID: 589541437}
-  barLifes: {fileID: 20900048}
   strength: 15
   health: 0
   maxHealth: 100

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
+    [SerializeField] GameObject system;
+    LibraryMove library;
+
     [SerializeField] Image barLifes;
     [SerializeField] float strength = 15f;
     [SerializeField] float health;
@@ -23,13 +26,16 @@ public class Stats : MonoBehaviour
     {
         health = maxHealth;
         barLifes = transform.GetChild(0).GetComponent<Image>();
+
+        library = system.GetComponent<LibraryMove>();
+
+        library.OnAttackReceived += OnAttackReceived;
     }
 
 
     private void Update()
     {
-        barLifes.fillAmount = health / maxHealth;
-        StateLife();
+
     }
 
     void FixedUpdate()
@@ -37,14 +43,16 @@ public class Stats : MonoBehaviour
 
     }
 
-    void StateLife()
-    {
-        if (this.health <= 0)
-        {
+     private void OnAttackReceived(){
+        if (this.health <= 0){
             this.health = 0;
-
-            gameObject.SetActive(false);
-
         }
+
+        barLifes.fillAmount = health / maxHealth;
+
+        if (this.health == 0){
+           gameObject.SetActive(false);
+        }
+
     }
 }

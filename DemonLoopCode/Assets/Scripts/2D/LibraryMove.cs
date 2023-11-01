@@ -7,6 +7,10 @@ using UnityEngine.IO;
 
 public class LibraryMove : MonoBehaviour
 {
+    // En esta clase es la que realiza el ataque, por lo tanto, es la que avisa a Stats que regule la barra de vida del personaje especifico.
+    public delegate void HealthManager();
+    public event HealthManager OnAttackReceived;
+
     GameObject character;
     GameObject target;
 
@@ -15,7 +19,7 @@ public class LibraryMove : MonoBehaviour
         this.character = character;
         this.target = target;
 
-        string ubicacionArchivo = Path.Combine(Application.dataPath, "Moves.csv");
+        string ubicacionArchivo = Path.Combine(Application.dataPath, "Data", "Moves.csv");
         StreamReader archivo = new StreamReader(File.OpenRead(ubicacionArchivo));
 
         string separador = ",";
@@ -48,8 +52,8 @@ public class LibraryMove : MonoBehaviour
                         else
                             target_ST.Health -= damage;
 
+                        OnAttackReceived?.Invoke(); // Se avisan a los que estan suscritos a la funcion. Ver Start de la clase Stats.
                         character = null; target = null;
-
 
                         Console.WriteLine("Name {0} danno base {1} danno phy {2} danno magic {3} ", NAME, BASE_DAMAGE, PHY_ATTACK, MAGIC_ATTACK);
                     }

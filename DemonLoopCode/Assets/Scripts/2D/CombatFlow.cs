@@ -23,7 +23,7 @@ public class CharacterMove
         this.movement = movement;
     }
 }
-public class Combat_flow : MonoBehaviour
+public class CombatFlow : MonoBehaviour
 {
     List<CharacterMove> movements = new List<CharacterMove>();
     List<GameObject> enemys = new List<GameObject>();

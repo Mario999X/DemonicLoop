@@ -19,6 +19,8 @@ public class Enter_Battle : MonoBehaviour
         {
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
+
+            fight.enabled = false;
         }
         else if (player != null || fight != null) // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
         {

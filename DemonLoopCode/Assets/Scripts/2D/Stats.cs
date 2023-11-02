@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,12 +13,16 @@ public class Stats : MonoBehaviour
     [SerializeField] float defense = 12f;
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
+    [SerializeField] List<string> listAtk = new List<string>();
+
 
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
     public float Strenght { get { return strength; } }
     public float Defense { get { return defense; } }
     public float Health { get { return health; } set { this.health = value; } }
+
+    public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
 
     void Start()
     {
@@ -34,7 +37,7 @@ public class Stats : MonoBehaviour
 
     private void Update()
     {
-
+        CheckListAtk();
     }
 
     void FixedUpdate()
@@ -42,15 +45,28 @@ public class Stats : MonoBehaviour
 
     }
 
-     private void OnAttackReceived(){
-        if (this.health <= 0){
+    //Si en el caso de de que el jugador tenga mas ataques no podra usarlos
+    // Solo puede usar 4 ataques que son los espacios acordados
+    private void CheckListAtk()
+    {
+        if (listAtk.Count > 4)
+        {
+            listAtk.Remove(listAtk[listAtk.Count - 1]);
+        }
+    }
+
+    private void OnAttackReceived()
+    {
+        if (this.health <= 0)
+        {
             this.health = 0;
         }
 
         barLifes.fillAmount = health / maxHealth;
 
-        if (this.health == 0){
-           gameObject.SetActive(false);
+        if (this.health == 0)
+        {
+            gameObject.SetActive(false);
         }
 
     }

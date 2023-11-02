@@ -152,7 +152,6 @@ public class CombatFlow : MonoBehaviour
             if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == @object.name.Substring(1, character.name.Length - 1))
             {
                 Destroy(bt);
-
             }
         });
     }

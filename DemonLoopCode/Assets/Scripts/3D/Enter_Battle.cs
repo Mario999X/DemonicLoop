@@ -9,6 +9,7 @@ public class Enter_Battle : MonoBehaviour
     [SerializeField] Canvas fight;
 
     bool start;
+    bool one_time = false;
 
     public bool Start { set { this.start = value; } }
     
@@ -19,8 +20,6 @@ public class Enter_Battle : MonoBehaviour
         {
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
-
-            fight.enabled = false;
         }
         else if (player != null || fight != null) // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
         {
@@ -41,8 +40,11 @@ public class Enter_Battle : MonoBehaviour
     public void StartBattle(GameObject enemy/*, bool sneak*/)
     {
         this.enemy = enemy;
-
+        
+        if (!one_time)
+            StartCoroutine(GetComponent<CombatFlow>().CrearBotones()); one_time = true; 
         fight.enabled = true;
+        
     }
 
     // Función para finalizar batalla.

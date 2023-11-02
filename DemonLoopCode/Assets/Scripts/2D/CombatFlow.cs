@@ -64,7 +64,7 @@ public class CombatFlow : MonoBehaviour
             button.transform.SetParent(spanwPlayerBT.transform);
             button.name = "PlayerButton";
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
-            button.GetComponent<Button>().onClick.AddListener(() => PlayerButton(pl));
+            button.GetComponent<Button>().onClick.AddListener(delegate { PlayerButton(pl); });
             playerBT.Add(button);
         }
 
@@ -73,7 +73,7 @@ public class CombatFlow : MonoBehaviour
         bt.transform.SetParent(spanwMoveBT.transform);
         bt.name = "MovementButton";
         bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Punch";
-        bt.GetComponent<Button>().onClick.AddListener(() => MovementButton("punch"));
+        bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton("punch"); });
         moveBT.Add(bt);
 
         // Creamos un boton por todos los enemigos existentes.
@@ -83,7 +83,7 @@ public class CombatFlow : MonoBehaviour
             button.transform.SetParent(spanwEnemyBT.transform);
             button.name = "EnemyButton";
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name;
-            button.GetComponent<Button>().onClick.AddListener(() => EnemyButton(enemy));
+            button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(enemy); });
             enemyBT.Add(button);
         });
 

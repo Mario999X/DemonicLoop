@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class CharacterMove
 {
@@ -54,7 +55,7 @@ public class CombatFlow : MonoBehaviour
         library = GetComponent<LibraryMove>();
     }
 
-    public IEnumerator CrearBotones()
+    public IEnumerator CreateButtons()
     {
         yield return new WaitForSeconds(0.00000001f);
 
@@ -72,16 +73,9 @@ public class CombatFlow : MonoBehaviour
             button.name = "PlayerButton (" + pl.name + ")";
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
             button.GetComponent<Button>().onClick.AddListener(delegate { PlayerButton(pl); });
-            playerBT.Add(button);
-        }
+            playerBT.Add(button);//Listado de botones generados
 
-        // Creamos un boton de movimiento.
-        GameObject bt = Instantiate(buttonRef, spanwMoveBT.transform.position, Quaternion.identity);
-        bt.transform.SetParent(spanwMoveBT.transform);
-        bt.name = "MovementButton";
-        bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Punch";
-        bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton("punch"); });
-        moveBT.Add(bt);
+        }
 
         // Creamos un boton por todos los enemigos existentes.
         enemys.ForEach(enemy =>
@@ -108,7 +102,23 @@ public class CombatFlow : MonoBehaviour
             this.character = player;
             //Debug.Log("player save");
 
-            moveBT.ForEach(bt => { bt.SetActive(true); }); // Activa todos los botones de movimiento.
+            foreach (GameObject moveBT in moveBT)
+            {
+                Destroy(moveBT);
+
+            }
+            moveBT.Clear();
+            //moveBT.ForEach(bt => { bt.SetActive(true); }); // Activa todos los botones de movimiento.
+            foreach (string listAtk in player.GetComponent<Stats>().ListAtk)
+            {
+                // Creamos un boton de movimiento.
+                GameObject bt = Instantiate(buttonRef, spanwMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spanwMoveBT.transform);
+                bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
+                bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
+                moveBT.Add(bt);
+            }
         }
     }
 

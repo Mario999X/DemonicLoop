@@ -34,6 +34,9 @@ public class CombatFlow : MonoBehaviour
     GameObject[] players;
     GameObject character = null;
 
+    [Header("Components to spanw buttons")]
+    [SerializeField] GameObject spanwPlayerBT, spanwMoveBT, spanwEnemyBT, buttonRef;
+
     [Header("Characters speed")]
     [SerializeField] float speed = 50f;
 
@@ -50,41 +53,39 @@ public class CombatFlow : MonoBehaviour
     {
         enemys = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         players = GameObject.FindGameObjectsWithTag("Player").ToArray();
-        List<GameObject> buttons = GameObject.FindGameObjectsWithTag("Buttons").ToList();
-
-        buttons.Sort((p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza la lista de botones por su nombre de esta forma prevenimos un fallo al asignar botones.
-
-        // Clasifica los botones dependiendo si estos van dirigidos para un jugador, una acción o un enemigo.
-        foreach (GameObject bt in buttons)
-        {
-            if (bt.name.ToUpper().Contains("PLAYER"))
-            {
-                playerBT.Add(bt);
-            }
-            else if (bt.name.ToUpper().Contains("ACTION"))
-            {
-                moveBT.Add(bt);
-            }
-            else if (bt.name.ToUpper().Contains("ENEMY"))
-            {
-                enemyBT.Add(bt);
-            }
-        }
 
         Array.Sort(players, (p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza el array de jugadores por su nombre de esta forma prevenimos un fallo al asignar botones.
         enemys.Sort((p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza la lista de enemigos por su nombre de esta forma prevenimos un fallo al asignar botones.
 
-        // Coge el texto de los botones y les pone el nombre del objeto.
-        for (int i = 0; i < playerBT.Count; i++)
+        // Creamos un boton por todos los jugadores existentes.
+        foreach (GameObject pl in players)
         {
-            playerBT[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = players[i].name.Substring(1, players[i].name.Length - 1);
+            GameObject button = Instantiate(buttonRef, spanwPlayerBT.transform.position, Quaternion.identity);
+            button.transform.SetParent(spanwPlayerBT.transform);
+            button.name = "PlayerButton";
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
+            button.GetComponent<Button>().onClick.AddListener(() => PlayerButton(pl));
+            playerBT.Add(button);
         }
 
-        // Coge el texto de los botones y les pone el nombre del objeto.
-        for (int i = 0; i < enemyBT.Count; i++)
+        // Creamos un boton de movimiento.
+        GameObject bt = Instantiate(buttonRef, spanwMoveBT.transform.position, Quaternion.identity);
+        bt.transform.SetParent(spanwMoveBT.transform);
+        bt.name = "MovementButton";
+        bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Punch";
+        bt.GetComponent<Button>().onClick.AddListener(() => MovementButton("punch"));
+        moveBT.Add(bt);
+
+        // Creamos un boton por todos los enemigos existentes.
+        enemys.ForEach(enemy =>
         {
-            enemyBT[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemys[i].name;
-        }
+            GameObject button = Instantiate(buttonRef, spanwEnemyBT.transform.position, Quaternion.identity);
+            button.transform.SetParent(spanwEnemyBT.transform);
+            button.name = "EnemyButton";
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name;
+            button.GetComponent<Button>().onClick.AddListener(() => EnemyButton(enemy));
+            enemyBT.Add(button);
+        });
 
         moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
         enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo.
@@ -93,7 +94,7 @@ public class CombatFlow : MonoBehaviour
     }
 
 
-    // Selección de jugador.
+        // Selección de jugador.
     public void PlayerButton(GameObject player)
     {
         if (!wait)

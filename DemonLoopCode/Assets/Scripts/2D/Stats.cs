@@ -14,7 +14,6 @@ public class Stats : MonoBehaviour
     [SerializeField] float magicDef = 0f;
     [SerializeField] List<string> listAtk = new List<string>();
 
-
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
     public float Strenght { get { return strength; } }
@@ -44,7 +43,7 @@ public class Stats : MonoBehaviour
 
     }
 
-    //Si en el caso de de que el jugador tenga mas ataques no podra usarlos
+    // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
     // Solo puede usar 4 ataques que son los espacios acordados
     private void CheckListAtk()
     {

@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
-    [SerializeField] GameObject system;
     LibraryMove library;
     Image barLifes;
     [SerializeField] float strength = 15f;
@@ -29,7 +28,7 @@ public class Stats : MonoBehaviour
         health = maxHealth;
         barLifes = transform.GetChild(0).GetComponent<Image>();
 
-        library = system.GetComponent<LibraryMove>();
+        library = GameObject.Find("System").GetComponent<LibraryMove>();
 
         library.OnAttackReceived += OnAttackReceived;
     }
@@ -57,6 +56,11 @@ public class Stats : MonoBehaviour
 
     private void OnAttackReceived()
     {
+        if (health >= maxHealth)
+        {
+            health = maxHealth;
+        }
+
         if (this.health <= 0)
         {
             this.health = 0;

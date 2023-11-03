@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +20,8 @@ public class Stats : MonoBehaviour
     public float Defense { get { return defense; } }
     public float Health { get { return health; } set { this.health = value; } }
 
+    public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
+
     void Start()
     {
         health = maxHealth;
@@ -34,7 +35,7 @@ public class Stats : MonoBehaviour
 
     private void Update()
     {
-
+        CheckListAtk();
     }
 
     void FixedUpdate()
@@ -42,7 +43,7 @@ public class Stats : MonoBehaviour
 
     }
 
-    // Si en el caso de de que el jugador tenga mas ataques no podra usarlos
+    // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
     // Solo puede usar 4 ataques que son los espacios acordados
     private void CheckListAtk()
     {
@@ -66,8 +67,9 @@ public class Stats : MonoBehaviour
 
         barLifes.fillAmount = health / maxHealth;
 
-        if (this.health == 0){
-           gameObject.SetActive(false);
+        if (this.health == 0)
+        {
+            gameObject.SetActive(false);
         }
 
     }

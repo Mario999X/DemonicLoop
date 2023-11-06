@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
-    LibraryMove library;
+    LibraryMove move;
+
     Image barLifes;
+
     [SerializeField] float strength = 15f;
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
@@ -19,7 +21,6 @@ public class Stats : MonoBehaviour
     public float Strenght { get { return strength; } }
     public float Defense { get { return defense; } }
     public float Health { get { return health; } set { this.health = value; } }
-
     public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
 
     void Start()
@@ -27,11 +28,10 @@ public class Stats : MonoBehaviour
         health = maxHealth;
         barLifes = transform.GetChild(0).GetComponent<Image>();
 
-        library = GameObject.Find("System").GetComponent<LibraryMove>();
+        move = GameObject.Find("System").GetComponent<LibraryMove>();
 
-        library.OnAttackReceived += OnAttackReceived;
+        move.OnAttackReceived += OnAttackReceived;
     }
-
 
     private void Update()
     {
@@ -71,6 +71,5 @@ public class Stats : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
     }
 }

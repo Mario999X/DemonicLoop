@@ -18,7 +18,7 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Check ground")]
     [SerializeField] float altitude = 1f; 
-    [SerializeField] float radius = 0.5f;
+    [SerializeField] float radius = 0.05f;
     [SerializeField] LayerMask layer;
 
     private bool onFloor = false;
@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 spherePosition = new Vector3(transform.position.x, (transform.position.y - altitude), transform.position.z);
         RaycastHit hit;
 
-        if (Physics.SphereCast(spherePosition, radius, -Vector3.up, out hit, 0.1f,layer))
+        if (Physics.SphereCast(spherePosition, radius, -Vector3.up, out hit, 0.1f, layer))
         {
             this.onFloor = true;
         }

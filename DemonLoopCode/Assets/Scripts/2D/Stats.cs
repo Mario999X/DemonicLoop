@@ -14,7 +14,7 @@ public class Stats : MonoBehaviour
     [SerializeField] float defense = 12f;
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
-    [SerializeField] List<string> listAtk = new List<string>();
+    [SerializeField] List<string> listAtk = new();
 
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
@@ -30,7 +30,7 @@ public class Stats : MonoBehaviour
 
         move = GameObject.Find("System").GetComponent<LibraryMove>();
 
-        move.OnAttackReceived += OnAttackReceived;
+        move.OnHealthChanged += OnAttackReceived;
     }
 
     private void Update()

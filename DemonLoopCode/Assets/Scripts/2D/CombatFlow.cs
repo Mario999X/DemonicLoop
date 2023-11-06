@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class CharacterMove
 {
@@ -24,6 +23,7 @@ public class CharacterMove
         this.movement = movement;
     }
 }
+
 public class CombatFlow : MonoBehaviour
 {
     List<CharacterMove> movements = new List<CharacterMove>();
@@ -55,6 +55,52 @@ public class CombatFlow : MonoBehaviour
         library = GetComponent<LibraryMove>();
     }
 
+    private void GeneratePlayersButtons(){
+        // Creamos un boton por todos los jugadores existentes.
+        foreach (GameObject pl in players)
+        {
+            GameObject button = Instantiate(buttonRef, spanwPlayerBT.transform.position, Quaternion.identity);
+            button.transform.SetParent(spanwPlayerBT.transform);
+            button.name = "PlayerButton (" + pl.name + ")";
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
+            button.GetComponent<Button>().onClick.AddListener(delegate { PlayerButton(pl); });
+            playerBT.Add(button);//Listado de botones generados
+        }
+    }
+
+    private void GenerateTargetsButtons(bool targetPlayerOrEnemy){
+        // Despejamos la lista de la zona de botones enemigo. Asi evitamos que se coloquen uno encima de otro y que se mezclen.
+        if(enemyBT.Count > 0){
+            enemyBT.ForEach(bt => Destroy(bt));
+            enemyBT.Clear();
+        }
+
+        // Dependiendo del tipo de ataque, se cargan los botones de X targets.
+        if(!targetPlayerOrEnemy){
+            enemys.ForEach(enemy =>
+            {
+            GameObject button = Instantiate(buttonRef, spanwEnemyBT.transform.position, Quaternion.identity);
+            button.transform.SetParent(spanwEnemyBT.transform);
+            button.name = "EnemyButton (" + enemy.name + ")";
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name;
+            button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(enemy); });
+            enemyBT.Add(button);
+            });
+
+        } else {
+
+        foreach (GameObject pl in players)
+        {
+            GameObject button = Instantiate(buttonRef, spanwEnemyBT.transform.position, Quaternion.identity);
+            button.transform.SetParent(spanwEnemyBT.transform);
+            button.name = "PlayerButton (" + pl.name + ")";
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
+            button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(pl); });
+            enemyBT.Add(button);//Listado de botones generados
+        }
+        }
+    }
+
     public IEnumerator CreateButtons()
     {
         yield return new WaitForSeconds(0.00000001f);
@@ -65,34 +111,13 @@ public class CombatFlow : MonoBehaviour
         Array.Sort(players, (p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza el array de jugadores por su nombre de esta forma prevenimos un fallo al asignar botones.
         enemys.Sort((p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza la lista de enemigos por su nombre de esta forma prevenimos un fallo al asignar botones.
 
-        // Creamos un boton por todos los jugadores existentes.
-        foreach (GameObject pl in players)
-        {
-            GameObject button = Instantiate(buttonRef, spanwPlayerBT.transform.position, Quaternion.identity);
-            button.transform.SetParent(spanwPlayerBT.transform);
-            button.name = "PlayerButton (" + pl.name + ")";
-            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
-            button.GetComponent<Button>().onClick.AddListener(delegate { PlayerButton(pl); });
-            playerBT.Add(button);//Listado de botones generados
-
-        }
-
-        // Creamos un boton por todos los enemigos existentes.
-        enemys.ForEach(enemy =>
-        {
-            GameObject button = Instantiate(buttonRef, spanwEnemyBT.transform.position, Quaternion.identity);
-            button.transform.SetParent(spanwEnemyBT.transform);
-            button.name = "EnemyButton (" + enemy.name + ")";
-            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name;
-            button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(enemy); });
-            enemyBT.Add(button);
-        });
+        GeneratePlayersButtons();
 
         moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
-        enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo.    
 
         yield return null;
     }
+    
 
     // Selección de jugador.
     public void PlayerButton(GameObject player)
@@ -108,7 +133,7 @@ public class CombatFlow : MonoBehaviour
 
             }
             moveBT.Clear();
-            //moveBT.ForEach(bt => { bt.SetActive(true); }); // Activa todos los botones de movimiento.
+
             foreach (string listAtk in player.GetComponent<Stats>().ListAtk)
             {
                 // Creamos un boton de movimiento.
@@ -128,7 +153,9 @@ public class CombatFlow : MonoBehaviour
         this.movement = movement;
         //Debug.Log(movement);
 
-        enemyBT.ForEach(bt => { bt.SetActive(true); }); // Activa todos los botones enemigo.
+        var targetsToLoad = library.CheckAttackOrHeal(movement);
+
+        GenerateTargetsButtons(targetsToLoad);
     }
 
     // Selección de enemigo.
@@ -148,6 +175,9 @@ public class CombatFlow : MonoBehaviour
             });
 
             moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
+
+            enemyBT.ForEach(bt => Debug.Log("ENEMY BUTTON" + bt));
+
             enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo.
 
             StartCoroutine(goPlayer(character, enemy, movement));

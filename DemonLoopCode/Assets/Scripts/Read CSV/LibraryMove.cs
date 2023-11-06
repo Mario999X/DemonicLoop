@@ -11,16 +11,16 @@ public class AttackData{
 
     private int magicAttack;
 
-    public int BaseDamage { get { return baseDamage; } set { baseDamage = value; } }
-    public int PhyAttack { get { return phyAttack; } set { phyAttack = value; } }
-    public int MagicAttack { get { return magicAttack; } set { magicAttack = value; } }
+    public int baseDamageColumn { get { return baseDamage; } set { baseDamage = value; } }
+    public int phyAttackColumn { get { return phyAttack; } set { phyAttack = value; } }
+    public int magicAttackColumn { get { return magicAttack; } set { magicAttack = value; } }
 
     public AttackData(){}
 
-    public AttackData(int BaseDamage, int PhyAttack, int MagicAttack){
-        this.BaseDamage = BaseDamage;
-        this.PhyAttack = PhyAttack;
-        this.MagicAttack = MagicAttack;
+    public AttackData(int baseDamageColumn, int phyAttackColumn, int magicAttackColumn){
+        this.baseDamageColumn = baseDamageColumn;
+        this.phyAttackColumn = phyAttackColumn;
+        this.magicAttackColumn = magicAttackColumn;
     }
 }
 
@@ -51,7 +51,7 @@ public class LibraryMove : MonoBehaviour
         var healOrAttack = CheckAttackOrHeal(movement);
 
         if(!healOrAttack){
-            float damage = (attack.BaseDamage + (character_ST.Strenght * attack.PhyAttack) + (character_ST.MagicAtk * attack.MagicAttack) - (target_ST.MagicDef * attack.MagicAttack) - (target_ST.Defense * attack.PhyAttack));
+            float damage = (attack.baseDamageColumn + (character_ST.Strenght * attack.phyAttackColumn) + (character_ST.MagicAtk * attack.magicAttackColumn) - (target_ST.MagicDef * attack.magicAttackColumn) - (target_ST.Defense * attack.phyAttackColumn));
 
             if (damage <= 0)
                 target_ST.Health -= 1;
@@ -59,7 +59,7 @@ public class LibraryMove : MonoBehaviour
                 target_ST.Health -= damage;
         } else {
 
-            target_ST.Health += attack.BaseDamage;
+            target_ST.Health += attack.baseDamageColumn;
         }
 
         OnHealthChanged?.Invoke(); // Se avisan a los que estan suscritos a la funcion. Ver Start de la clase Stats.
@@ -77,7 +77,7 @@ private AttackData CheckAttack(string movement){
         attackData = attackCache[movement.ToUpper()];
         foundInCache = true;
 
-        Debug.Log("Ataque "+ movement + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
+        Debug.Log("Ataque "+ movement + " | danno base " + attackData.baseDamageColumn.ToString() + " | CACHE");
     }
 
     // Si no encontramos el ataque en la cache, lo buscamos en el fichero CSV. Una vez lo encontramos, lo almacenamos.
@@ -91,7 +91,6 @@ private AttackData CheckAttack(string movement){
     while ((lines = file.ReadLine()) != null)
     {
         string[] row = lines.Split(separator);
-        //string name = row[0];
 
         for (int i = 0; i < separator.Length; i++)
         {
@@ -99,16 +98,16 @@ private AttackData CheckAttack(string movement){
             {
                 if (row[i].ToUpper() == movement.ToUpper())
                 {
-                    string attackName = row[i].ToUpper();
-                    int BaseDamage = Convert.ToInt32(row[i + 1]);
-                    int PhyAttack = Convert.ToInt32(row[i + 2]);
-                    int MagicAttack = Convert.ToInt32(row[i + 3]);
+                    string attackNameColumn = row[i].ToUpper();
+                    int baseDamageColumn = Convert.ToInt32(row[i + 1]);
+                    int phyAttackColumn = Convert.ToInt32(row[i + 2]);
+                    int magicAttackColumn = Convert.ToInt32(row[i + 3]);
 
-                    attackData = new AttackData(BaseDamage, PhyAttack, MagicAttack);
+                    attackData = new AttackData(baseDamageColumn, phyAttackColumn, magicAttackColumn);
                     
-                    attackCache.Add(attackName, attackData);
+                    attackCache.Add(attackNameColumn, attackData);
 
-                    Debug.Log("Ataque "+ attackName + " | danno base " + BaseDamage.ToString() + " | CSV");
+                    Debug.Log("Ataque "+ attackNameColumn + " | danno base " + baseDamageColumn.ToString() + " | CSV");
                 }
             }
         }
@@ -123,10 +122,16 @@ public bool CheckAttackOrHeal(string movementName){
 
     var attackInfo = CheckAttack(movementName);
 
-    if(attackInfo.PhyAttack == 0 && attackInfo.MagicAttack == 0){
+    if(attackInfo.phyAttackColumn == 0 && attackInfo.magicAttackColumn == 0){
         healing = true;
     }
 
     return healing;
 }
+
+// Función para limpiar la cache.
+private void ResetCache(){
+    attackCache.Clear();
+}
+
 }

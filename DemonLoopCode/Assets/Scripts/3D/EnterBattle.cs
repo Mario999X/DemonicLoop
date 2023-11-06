@@ -9,8 +9,9 @@ public class EnterBattle : MonoBehaviour
     [SerializeField] Canvas fight;
 
     bool start;
-    bool one_time = false;
+    bool oneTime = false;
 
+    public bool OneTime { get { return oneTime; } }
     public bool Start { set { this.start = value; } }
     
     // Update is called once per frame
@@ -41,10 +42,9 @@ public class EnterBattle : MonoBehaviour
     {
         this.enemy = enemy;
         
-        if (!one_time)
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); one_time = true; 
+        if (!oneTime)
+            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); oneTime = true; 
         fight.enabled = true;
-        
     }
 
     // Función para finalizar batalla.

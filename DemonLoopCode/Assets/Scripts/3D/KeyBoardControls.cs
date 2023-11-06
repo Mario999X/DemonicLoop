@@ -22,7 +22,7 @@ public class KeyBoardControls : MonoBehaviour
         Vector3 speedV = player_move.SpeedV;
 
         // Cuando se pulsa el espacio el juagador salta.
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && player_move.OnFloor)
         {
             speedV.y = 0; speedV.y = Jspeed;
 

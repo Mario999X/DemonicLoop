@@ -11,12 +11,30 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float Jspeed = 10f;
     [SerializeField] private float gravity = 9.82f;
-
     private float X, Z;
+    [SerializeField] bool poison = false;
+
+    int oneTime = 0;
+
+    [Header("Check ground")]
+    [SerializeField] float altitude = 1f; 
+    [SerializeField] float radius = 0.5f;
+    [SerializeField] LayerMask layer;
+
+    private bool onFloor = false;
+
     private Vector3 speedV;
 
     public float JSpeed { get { return Jspeed; } }
+    public bool OnFloor { get { return onFloor; } }
     public Vector3 SpeedV { get { return speedV; } set { this.speedV = value; } }
+
+    StatesLibrary states;
+
+    void Start()
+    {
+        states = GameObject.Find("System").GetComponent<StatesLibrary>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -33,7 +51,32 @@ public class PlayerMove : MonoBehaviour
         speedV.y += gravity * Time.deltaTime;
         controller.Move(speedV * Time.deltaTime);
 
+        Vector3 spherePosition = new Vector3(transform.position.x, (transform.position.y - altitude), transform.position.z);
+        RaycastHit hit;
+
+        if (Physics.SphereCast(spherePosition, radius, -Vector3.up, out hit, 0.1f,layer))
+        {
+            this.onFloor = true;
+        }
+        else
+        {
+            this.onFloor = false;
+        }
+
+        if (poison && oneTime == 0)
+        {
+            StartCoroutine(states.StateEffect("poison"));
+            oneTime++;
+        }
+
         // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de título.
         if (Input.GetKeyDown(KeyCode.Escape)) { SceneManager.Instance.LoadScene(0); }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 spherePosition = new Vector3(transform.position.x, (transform.position.y - altitude), transform.position.z);
+        Gizmos.DrawSphere(spherePosition, radius);
     }
 }

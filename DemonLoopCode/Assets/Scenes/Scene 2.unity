@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -324,7 +324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  system: {fileID: 589541437}
   strength: 15
   health: 0
   maxHealth: 100
@@ -423,7 +422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  system: {fileID: 589541437}
   strength: 15
   health: 0
   maxHealth: 100
@@ -517,7 +515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  system: {fileID: 589541437}
   strength: 15
   health: 0
   maxHealth: 100
@@ -1117,7 +1114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  system: {fileID: 589541437}
   strength: 15
   health: 0
   maxHealth: 100
@@ -1176,7 +1172,8 @@ GameObject:
   - component: {fileID: 589541438}
   - component: {fileID: 589541442}
   - component: {fileID: 589541444}
-  - component: {fileID: 589541443}
+  - component: {fileID: 589541446}
+  - component: {fileID: 589541445}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -1256,18 +1253,6 @@ MonoBehaviour:
   mando: 0
   pc: 0
   log: {fileID: 0}
---- !u!114 &589541443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589541437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17578ca788e8c294784a56fe94db8a0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &589541444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,6 +1271,30 @@ MonoBehaviour:
   buttonRef: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}
   speed: 500
+--- !u!114 &589541445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589541437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb4610cdc97be4488e6a848ae55ba5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &589541446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589541437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1b345eb8c53624dba86f25ecc834b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &589640021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,7 +1775,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  system: {fileID: 589541437}
   strength: 15
   health: 0
   maxHealth: 100
@@ -2094,7 +2102,7 @@ GameObject:
   - component: {fileID: 1012132724}
   - component: {fileID: 1012132723}
   - component: {fileID: 1012132722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3169,6 +3177,12 @@ MonoBehaviour:
   speed: 10
   Jspeed: 10
   gravity: -13
+  poison: 0
+  altitude: 1
+  radius: 0.05
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!143 &1846690505
 CharacterController:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class LibraryMove : MonoBehaviour
                         Stats target_ST = target.GetComponent<Stats>();
                         Stats character_ST = character.GetComponent<Stats>();
 
-                        Debug.Log($"Ataque "+ fila[i] + " | danno base " + BASE_DAMAGE.ToString());
+                        Debug.Log($"Ataque " + fila[i] + " | danno base " + BASE_DAMAGE.ToString());
 
                         float damage = (BASE_DAMAGE + (character_ST.Strenght * PHY_ATTACK) + (character_ST.MagicAtk * MAGIC_ATTACK) - (target_ST.MagicDef * MAGIC_ATTACK) - (target_ST.Defense * PHY_ATTACK));
 

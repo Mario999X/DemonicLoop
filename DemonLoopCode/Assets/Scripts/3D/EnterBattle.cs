@@ -60,6 +60,8 @@ public class EnterBattle : MonoBehaviour
         if (player.GetComponent<ControllerControls>())
             player.GetComponent<ControllerControls>().enabled = true;
 
+        oneTime = false;
+
         fight.enabled = false;
     }
 }

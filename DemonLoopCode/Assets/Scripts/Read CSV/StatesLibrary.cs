@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class StatesData
@@ -24,74 +25,80 @@ public class StatesData
 }
 public class StatesLibrary : MonoBehaviour
 {
-    Dictionary<string, StatesData> states = new Dictionary<string, StatesData>();
+    int turns = 0;
 
-    string filePath = Path.Combine(Application.dataPath, "Data", "States.csv");
+    Dictionary<string, StateData> states = new Dictionary<string, StateData>();
 
+    public int Turns { set { this.turns = turns++; } }
+
+    PlayerMove player;
     EnterBattle enterBattle;
 
     // Start is called before the first frame update
     void Start()
     {
-        enterBattle = GetComponent<EnterBattle>();
+        string[] pru = AssetDatabase.FindAssets("STD_");
 
-        if (File.Exists(filePath))
+        foreach (string p in pru)
         {
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                reader.ReadLine();
-                while (!reader.EndOfStream)
-                {
-                    string line = reader.ReadLine();
-                    string[] values = line.Split(',');
+            string path = AssetDatabase.GUIDToAssetPath(p);
+            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<StateData>(path);
 
-                    states.Add(values[0].ToUpper(), new StatesData(float.Parse(values[1]), float.Parse(values[2]), float.Parse(values[3])));
-                }
-            }
+            states.Add(@object.name.Substring(4, @object.name.Length - 4).ToUpper(), @object as StateData);
         }
-        else
-            Debug.LogError("File not found");
 
-        //foreach (KeyValuePair<string, StatesData> item in states)
-        //{
-        //    Debug.Log("Name: " + item.Key + ", time: " + item.Value.TimeDuration + ", turns: " + item.Value.TurnsDuration);
-        //}
+        enterBattle = GetComponent<EnterBattle>();
+        player = GameObject.Find("Player").GetComponent<PlayerMove>();
     }
 
-    public IEnumerator StateEffectGroup(PlayerMove player, string group, string state)
+    public IEnumerator StateEffectGroup(string group, string state)
     {
         yield return null;
 
         if (states.ContainsKey(state.ToUpper()))
         {
             Stats[] stats = GameObject.Find(group).GetComponentsInChildren<Stats>();
-            StatesData data = states[state.ToUpper()];
+            StateData data = states[state.ToUpper()];
             float time = 0;
-            int turns = 0;
+            int lastTurn = -1;
 
             do
             {
-                Debug.Log(player.Movement);
-
-                if (player.Movement && !enterBattle.OneTime)
+                if (!enterBattle.OneTime)
                 {
-                    time += Time.deltaTime;
-                }
-
-                if (time >= data.TimeDuration)
-                {
-                    foreach (Stats character in stats)
+                    if (player.Movement)
                     {
-                        if (character.Health > 1)
-                            character.Health -= (data.BaseDamage);
+                        time += Time.deltaTime;
                     }
 
-                    turns++;
-                    time = 0;
+                    if (time >= data.TimeMoving)
+                    {
+                        foreach (Stats character in stats)
+                        {
+                            if (character.Health > 1)
+                                character.Health -= (data.BaseDamage);
+                        }
+
+                        turns++;
+                        time = 0;
+                    }
+                }
+                else
+                {
+                    if (lastTurn != turns)
+                    {
+                        foreach (Stats character in stats)
+                        {
+                            if (character.Health > 1)
+                                character.Health -= (data.BaseDamage);
+                        }
+
+                        lastTurn = turns;
+                    }
                 }
 
                 yield return new WaitForSeconds(0.000000001f);
-            } while (!enterBattle.OneTime && turns != data.TurnsDuration);
+            } while (turns != data.TurnsDuration);
         }
     }
 }

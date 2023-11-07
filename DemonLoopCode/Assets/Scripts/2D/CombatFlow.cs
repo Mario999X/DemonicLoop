@@ -26,11 +26,11 @@ public class CharacterMove
 
 public class CombatFlow : MonoBehaviour
 {
-    List<CharacterMove> movements = new List<CharacterMove>();
-    List<GameObject> enemys = new List<GameObject>();
-    List<GameObject> playerBT = new List<GameObject>();
-    List<GameObject> moveBT = new List<GameObject>();
-    List<GameObject> enemyBT = new List<GameObject>();
+    List<CharacterMove> movements = new();
+    List<GameObject> enemys = new();
+    List<GameObject> playerBT = new();
+    List<GameObject> moveBT = new();
+    List<GameObject> enemyBT = new();
 
     GameObject[] players;
     GameObject character = null;
@@ -151,11 +151,21 @@ public class CombatFlow : MonoBehaviour
     public void MovementButton(string movement)
     {
         this.movement = movement;
-        //Debug.Log(movement);
 
+        var isAOE = library.CheckAoeAttack(movement);
         var targetsToLoad = library.CheckAttackOrHeal(movement);
 
-        GenerateTargetsButtons(targetsToLoad);
+        if(isAOE){
+            // Ataca o cura AOE, segun la segunda comprobacion
+            if(!targetsToLoad){
+                goPlayerMultiTarget(character, enemys, movement);
+
+            } else goPlayerMultiTarget(character, players.ToList(), movement);
+            
+        } else {
+            // Genera los botones según la segunda comprobacion
+            GenerateTargetsButtons(targetsToLoad);
+        }
     }
 
     // Selección de enemigo.
@@ -180,7 +190,7 @@ public class CombatFlow : MonoBehaviour
 
             enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo.
 
-            StartCoroutine(goPlayer(character, enemy, movement));
+            StartCoroutine(goPlayerSingleTarget(character, enemy, movement));
         }
     }
 
@@ -202,8 +212,40 @@ public class CombatFlow : MonoBehaviour
         });
     }
 
+    private void goPlayerMultiTarget(GameObject character, List<GameObject> targets, string movement)
+    {
+        // Impide que vuelva a ser selecionado el mismo personaje.
+        playerBT.ForEach(bt =>
+        {
+            // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
+            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Substring(1, character.name.Length - 1))
+            {
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
+                bt.GetComponent<Button>().enabled = false;
+            }
+        });
+
+        moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
+
+        wait = true;
+
+        targets.ForEach(t => {library.Library(character, t, movement);});
+
+        moves++;
+
+        this.character = null; this.movement = null;
+
+        wait = false;
+
+        // Espera a que todos los jugadores hagan sus movimientos.
+        if (moves >= players.Length && !wait)
+        {
+            StartCoroutine(goEnemy());
+        }
+    }
+
     // Ejecuta acción del jugador.
-    IEnumerator goPlayer(GameObject character, GameObject target, string movement)
+    IEnumerator goPlayerSingleTarget(GameObject character, GameObject target, string movement)
     {
         wait = true;
 

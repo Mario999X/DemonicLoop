@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackData{
@@ -12,16 +11,20 @@ public class AttackData{
 
     private int magicAttack;
 
+    private int isAoeAttack;
+
     public int BaseDamage { get { return baseDamage; } set { baseDamage = value; } }
     public int PhyAttack { get { return phyAttack; } set { phyAttack = value; } }
     public int MagicAttack { get { return magicAttack; } set { magicAttack = value; } }
+    public int IsAoeAttack { get { return isAoeAttack; } set { isAoeAttack = value; } }
 
     public AttackData(){}
 
-    public AttackData(int baseDamage, int phyAttack, int magicAttack){
+    public AttackData(int baseDamage, int phyAttack, int magicAttack, int isAoeAttack){
         BaseDamage = baseDamage;
         PhyAttack = phyAttack;
         MagicAttack = magicAttack;
+        IsAoeAttack = isAoeAttack;
     }
 }
 
@@ -91,8 +94,9 @@ private void LoadAttacks(){
                 int baseDamageColumn = Convert.ToInt32(row[i + 1]);
                 int phyAttackColumn = Convert.ToInt32(row[i + 2]);
                 int magicAttackColumn = Convert.ToInt32(row[i + 3]);
+                int isAoeAttackColumn = Convert.ToInt32(row[i + 4]);
 
-                AttackData attackData = new (baseDamageColumn, phyAttackColumn, magicAttackColumn);
+                AttackData attackData = new (baseDamageColumn, phyAttackColumn, magicAttackColumn, isAoeAttackColumn);
                     
                 attackCache.Add(attackNameColumn, attackData);
 
@@ -127,9 +131,23 @@ public bool CheckAttackOrHeal(string movementName){
     return healing;
 }
 
+// Comprobamos si el ataque es AOE o single-target
+public bool CheckAoeAttack(string movementName){
+    bool isAOE = false;
+
+    var attackInfo = CheckAttack(movementName);
+
+    if(attackInfo.IsAoeAttack == 1){
+        isAOE = true;
+    }
+
+    return isAOE;
+}
+
 // Función para limpiar la cache.
 private void ResetCache(){
     attackCache.Clear();
 }
 
 }
+

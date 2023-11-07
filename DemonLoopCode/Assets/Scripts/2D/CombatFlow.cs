@@ -41,13 +41,13 @@ public class CombatFlow : MonoBehaviour
     [Header("Characters speed")]
     [SerializeField] float speed = 50f;
 
-    int moves = 0;
+    private int moves = 0;
 
-    bool wait = false;
+    private bool wait = false;
 
-    string movement = null;
+    private string movement = null;
 
-    LibraryMove library;
+    private LibraryMove library;
 
     // Start is called before the first frame update
     void Start()
@@ -158,9 +158,9 @@ public class CombatFlow : MonoBehaviour
         if(isAOE){
             // Ataca o cura AOE, segun la segunda comprobacion
             if(!targetsToLoad){
-                goPlayerMultiTarget(character, enemys, movement);
+                GoPlayerMultiTarget(character, enemys, movement);
 
-            } else goPlayerMultiTarget(character, players.ToList(), movement);
+            } else GoPlayerMultiTarget(character, players.ToList(), movement);
             
         } else {
             // Genera los botones según la segunda comprobacion
@@ -186,16 +186,16 @@ public class CombatFlow : MonoBehaviour
 
             moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
 
-            enemyBT.ForEach(bt => Debug.Log("ENEMY BUTTON" + bt));
+            //enemyBT.ForEach(bt => Debug.Log("ENEMY BUTTON" + bt));
 
             enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo.
 
-            StartCoroutine(goPlayerSingleTarget(character, enemy, movement));
+            StartCoroutine(GoPlayerSingleTarget(character, enemy, movement));
         }
     }
 
     // Añade a la lista de movimientos los movimientos.
-    public void addMovement(GameObject character, GameObject target, string movement)
+    public void AddMovement(GameObject character, GameObject target, string movement)
     {
         movements.Add(new CharacterMove(character, target, movement));
     }
@@ -212,7 +212,7 @@ public class CombatFlow : MonoBehaviour
         });
     }
 
-    private void goPlayerMultiTarget(GameObject character, List<GameObject> targets, string movement)
+    private void GoPlayerMultiTarget(GameObject character, List<GameObject> targets, string movement)
     {
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
@@ -227,6 +227,8 @@ public class CombatFlow : MonoBehaviour
 
         moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
 
+        enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo en caso de que esten activados.
+
         wait = true;
 
         targets.ForEach(t => {library.Library(character, t, movement);});
@@ -240,12 +242,12 @@ public class CombatFlow : MonoBehaviour
         // Espera a que todos los jugadores hagan sus movimientos.
         if (moves >= players.Length && !wait)
         {
-            StartCoroutine(goEnemy());
+            StartCoroutine(GoEnemy());
         }
     }
 
     // Ejecuta acción del jugador.
-    IEnumerator goPlayerSingleTarget(GameObject character, GameObject target, string movement)
+    IEnumerator GoPlayerSingleTarget(GameObject character, GameObject target, string movement)
     {
         wait = true;
 
@@ -288,21 +290,21 @@ public class CombatFlow : MonoBehaviour
         // Espera a que todos los jugadores hagan sus movimientos.
         if (moves >= players.Length && !wait)
         {
-            StartCoroutine(goEnemy());
+            StartCoroutine(GoEnemy());
         }
 
         yield return null;
     }
 
     // Ejecuta las acciones del enemigo.
-    IEnumerator goEnemy()
+    private IEnumerator GoEnemy()
     {
         wait = true;
 
         foreach (GameObject enemy in enemys)
         {
             int i = UnityEngine.Random.Range(0, players.Length);
-            addMovement(enemy, players[i], "Punch");
+            AddMovement(enemy, players[i], "Punch");
         }
 
         //Debug.Log("Enemys selected move");

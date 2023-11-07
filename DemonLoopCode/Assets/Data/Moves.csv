@@ -1,8 +1,0 @@
-NAME,BASE_DAMAGE,PHY_ATTACK,MAGIC_ATTACK,AOE
-Punch,10,1,0,0
-Strong Attack,70,1,0,0
-Fire Ball,50,0,1,0
-Ice Ray,40,0,1,0
-Heal,25,0,0,0
-Hells Feast,15,1,0,1
-Heal All,15,0,0,1

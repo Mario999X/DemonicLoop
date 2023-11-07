@@ -1,32 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
+using UnityEditor;
 using UnityEngine;
-
-public class AttackData{
-
-    private int baseDamage;
-
-    private int phyAttack;
-
-    private int magicAttack;
-
-    private int isAoeAttack;
-
-    public int BaseDamage { get { return baseDamage; } set { baseDamage = value; } }
-    public int PhyAttack { get { return phyAttack; } set { phyAttack = value; } }
-    public int MagicAttack { get { return magicAttack; } set { magicAttack = value; } }
-    public int IsAoeAttack { get { return isAoeAttack; } set { isAoeAttack = value; } }
-
-    public AttackData(){}
-
-    public AttackData(int baseDamage, int phyAttack, int magicAttack, int isAoeAttack){
-        BaseDamage = baseDamage;
-        PhyAttack = phyAttack;
-        MagicAttack = magicAttack;
-        IsAoeAttack = isAoeAttack;
-    }
-}
 
 public class LibraryMove : MonoBehaviour
 {
@@ -37,9 +11,7 @@ public class LibraryMove : MonoBehaviour
     private GameObject character;
     private GameObject target;
 
-    private string fileLocation = Path.Combine(Application.dataPath, "Data", "Moves.csv");
-
-    Dictionary<string, AttackData> attackCache = new();
+    private Dictionary<string, AttackData> attackCache = new();
 
     private void Start(){
         LoadAttacks();
@@ -63,8 +35,10 @@ public class LibraryMove : MonoBehaviour
 
             if (damage <= 0)
                 target_ST.Health -= 1;
+
             else
                 target_ST.Health -= damage;
+
         } else {
 
             target_ST.Health += attack.BaseDamage;
@@ -75,45 +49,39 @@ public class LibraryMove : MonoBehaviour
         character = null; target = null;
     }
 
+// Carga inicial de ataques a la "cache"
 private void LoadAttacks(){
-    StreamReader file = new (File.OpenRead(fileLocation));
+    string[] moves = AssetDatabase.FindAssets("ATK_");
 
-    string separator = ",";
-    string lines;
-
-    file.ReadLine();
-    while ((lines = file.ReadLine()) != null)
+    foreach(string m in moves)
     {
-        string[] row = lines.Split(separator);
+        string path = AssetDatabase.GUIDToAssetPath(m);
 
-        for (int i = 0; i < separator.Length; i++)
-        {
-            if ((i % 4) == 0)
-            {
-                string attackNameColumn = row[i].ToUpper();
-                int baseDamageColumn = Convert.ToInt32(row[i + 1]);
-                int phyAttackColumn = Convert.ToInt32(row[i + 2]);
-                int magicAttackColumn = Convert.ToInt32(row[i + 3]);
-                int isAoeAttackColumn = Convert.ToInt32(row[i + 4]);
+        ScriptableObject @object = AssetDatabase.LoadAssetAtPath<AttackData>(path);
 
-                AttackData attackData = new (baseDamageColumn, phyAttackColumn, magicAttackColumn, isAoeAttackColumn);
-                    
-                attackCache.Add(attackNameColumn, attackData);
+        var atkName = @object.name.Substring(4, @object.name.Length - 4).Replace("^", " ").ToUpper();
 
-                Debug.Log("Ataque "+ attackNameColumn + " | danno base " + baseDamageColumn.ToString() + " | LOADED TO CACHE");
-            }
-        }
+        attackCache.Add(atkName, @object as AttackData);
+
+        Debug.Log("Ataque "+ atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
     }
 }
 
+// Se llama para recibir la clase base de ataques. Se obtiene su informacion esencial.
 private AttackData CheckAttack(string movement){
-    AttackData attackData = new();
+    AttackData attackData = null;
 
     if(attackCache.ContainsKey(movement.ToUpper())){
         attackData = attackCache[movement.ToUpper()];
 
-        Debug.Log("Ataque "+ movement + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
-    }
+        Debug.Log("Ataque " + movement.ToUpper() + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
+
+    } else {
+
+        Debug.Log("ATAQUE NO ENCONTRADO, RECURRIENDO A PUNCH");
+
+        attackData = attackCache["PUNCH"];
+    } 
 
     return attackData;
 }
@@ -137,7 +105,7 @@ public bool CheckAoeAttack(string movementName){
 
     var attackInfo = CheckAttack(movementName);
 
-    if(attackInfo.IsAoeAttack == 1){
+    if(attackInfo.IsAoeAttack){
         isAOE = true;
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackData{
@@ -37,6 +38,10 @@ public class LibraryMove : MonoBehaviour
 
     Dictionary<string, AttackData> attackCache = new();
 
+    private void Start(){
+        LoadAttacks();
+    }
+
     // Función que realiza un movimiento a un solo objetivo.
     public void Library(GameObject character, GameObject target, string movement)
     {
@@ -67,21 +72,7 @@ public class LibraryMove : MonoBehaviour
         character = null; target = null;
     }
 
-private AttackData CheckAttack(string movement){
-    // Primero, comprobamos si se encuentra en el diccionario, que funciona a modo de cache durante una pelea.
-    var foundInCache = false;
-
-    AttackData attackData = new();
-
-    if(attackCache.ContainsKey(movement.ToUpper())){
-        attackData = attackCache[movement.ToUpper()];
-        foundInCache = true;
-
-        Debug.Log("Ataque "+ movement + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
-    }
-
-    // Si no encontramos el ataque en la cache, lo buscamos en el fichero CSV. Una vez lo encontramos, lo almacenamos.
-    if(!foundInCache){
+private void LoadAttacks(){
     StreamReader file = new (File.OpenRead(fileLocation));
 
     string separator = ",";
@@ -96,23 +87,30 @@ private AttackData CheckAttack(string movement){
         {
             if ((i % 4) == 0)
             {
-                if (row[i].ToUpper() == movement.ToUpper())
-                {
-                    string attackNameColumn = row[i].ToUpper();
-                    int baseDamageColumn = Convert.ToInt32(row[i + 1]);
-                    int phyAttackColumn = Convert.ToInt32(row[i + 2]);
-                    int magicAttackColumn = Convert.ToInt32(row[i + 3]);
+                string attackNameColumn = row[i].ToUpper();
+                int baseDamageColumn = Convert.ToInt32(row[i + 1]);
+                int phyAttackColumn = Convert.ToInt32(row[i + 2]);
+                int magicAttackColumn = Convert.ToInt32(row[i + 3]);
 
-                    attackData = new AttackData(baseDamageColumn, phyAttackColumn, magicAttackColumn);
+                AttackData attackData = new (baseDamageColumn, phyAttackColumn, magicAttackColumn);
                     
-                    attackCache.Add(attackNameColumn, attackData);
+                attackCache.Add(attackNameColumn, attackData);
 
-                    Debug.Log("Ataque "+ attackNameColumn + " | danno base " + baseDamageColumn.ToString() + " | CSV");
-                }
+                Debug.Log("Ataque "+ attackNameColumn + " | danno base " + baseDamageColumn.ToString() + " | LOADED TO CACHE");
             }
         }
     }
 }
+
+private AttackData CheckAttack(string movement){
+    AttackData attackData = new();
+
+    if(attackCache.ContainsKey(movement.ToUpper())){
+        attackData = attackCache[movement.ToUpper()];
+
+        Debug.Log("Ataque "+ movement + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
+    }
+
     return attackData;
 }
 

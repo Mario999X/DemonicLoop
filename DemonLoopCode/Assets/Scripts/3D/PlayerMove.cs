@@ -25,6 +25,15 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 speedV;
 
+    public bool Movement 
+    { get
+        {
+            if (X != 0 || Z != 0) 
+                return true;
+            else
+                return false;
+        } 
+    }
     public float JSpeed { get { return Jspeed; } }
     public bool OnFloor { get { return onFloor; } }
     public Vector3 SpeedV { get { return speedV; } set { this.speedV = value; } }
@@ -65,7 +74,7 @@ public class PlayerMove : MonoBehaviour
 
         if (poison && oneTime == 0)
         {
-            StartCoroutine(states.StateEffect("poison"));
+            StartCoroutine(states.StateEffectGroup(this, "Aliados", "poison"));
             oneTime++;
         }
 

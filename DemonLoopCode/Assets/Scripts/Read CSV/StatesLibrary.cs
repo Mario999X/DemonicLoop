@@ -58,25 +58,40 @@ public class StatesLibrary : MonoBehaviour
         //}
     }
 
-    public IEnumerator StateEffect(string state)
+    public IEnumerator StateEffectGroup(PlayerMove player, string group, string state)
     {
         yield return null;
 
-        Stats[] stats = GameObject.Find("Aliados").GetComponentsInChildren<Stats>();
-        StatesData data = states[state.ToUpper()];
-        float time = 0;
-
-        do
+        if (states.ContainsKey(state.ToUpper()))
         {
-            foreach (Stats character in stats)
+            Stats[] stats = GameObject.Find(group).GetComponentsInChildren<Stats>();
+            StatesData data = states[state.ToUpper()];
+            float time = 0;
+            int turns = 0;
+
+            do
             {
-                if (character.Health > 1)
-                    character.Health -= (data.BaseDamage / (10^15)) * Time.deltaTime;
-            }
+                Debug.Log(player.Movement);
 
-            time += Time.deltaTime;
+                if (player.Movement && !enterBattle.OneTime)
+                {
+                    time += Time.deltaTime;
+                }
 
-            yield return new WaitForSeconds(0.000000001f);
-        } while (!enterBattle.OneTime && time <= data.TimeDuration);
+                if (time >= data.TimeDuration)
+                {
+                    foreach (Stats character in stats)
+                    {
+                        if (character.Health > 1)
+                            character.Health -= (data.BaseDamage);
+                    }
+
+                    turns++;
+                    time = 0;
+                }
+
+                yield return new WaitForSeconds(0.000000001f);
+            } while (!enterBattle.OneTime && turns != data.TurnsDuration);
+        }
     }
 }

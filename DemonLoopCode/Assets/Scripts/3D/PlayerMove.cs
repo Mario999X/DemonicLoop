@@ -74,7 +74,7 @@ public class PlayerMove : MonoBehaviour
 
         if (poison && oneTime == 0)
         {
-            StartCoroutine(states.StateEffectGroup(this, "Aliados", "poison"));
+            StartCoroutine(states.StateEffectGroup("Aliados", "poison"));
             oneTime++;
         }
 

@@ -27,7 +27,7 @@ public class SceneManager : MonoBehaviour
 
     void Start()
     {
-            _loadingCanvas.enabled = false;
+        _loadingCanvas.enabled = false;
     }
 
     // Carga la escena por el número de posición.
@@ -91,12 +91,12 @@ public class SceneManager : MonoBehaviour
     void FixedUpdate()
     {
         // En el caso de no ser "Scene 1" activa el componente "Enter_Battle".
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")
         {
             GetComponent<EnterBattle>().Start = true;
             GetComponent<EnterBattle>().enabled = true;
-        }    
-        else 
+        }
+        else
         {
             GetComponent<EnterBattle>().Start = false;
             GetComponent<EnterBattle>().enabled = false;

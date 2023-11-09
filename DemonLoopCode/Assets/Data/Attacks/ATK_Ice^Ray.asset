@@ -16,3 +16,4 @@ MonoBehaviour:
   phyAttack: 0
   magicAttack: 1
   isAoeAttack: 0
+  type: Water

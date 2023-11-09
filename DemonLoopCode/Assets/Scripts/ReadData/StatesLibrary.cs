@@ -6,30 +6,26 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class StatesData
+public class ActualStateData
 {
-    private float baseDamage;
-    private float timeDuration;
-    private float turnsDuration;
+    string state;
+    int turn = 0;
 
-    public float BaseDamage { get { return baseDamage; } }
-    public float TimeDuration { get { return timeDuration; } }
-    public float TurnsDuration { get { return turnsDuration; } }
+    public string State {  get { return state; } }
+    public int Turn { get { return turn; } set { this.turn = value; } }
 
-    public StatesData(float baseDamage, float timeDuration, float turnsDuration) 
+    public ActualStateData(string state)
     {
-        this.baseDamage = baseDamage;
-        this.timeDuration = timeDuration;
-        this.turnsDuration = turnsDuration;
+        this.state = state;
     }
 }
 public class StatesLibrary : MonoBehaviour
 {
-    int turns = 0;
+    List<ActualStateData> state = new List<ActualStateData>();
 
     Dictionary<string, StateData> states = new Dictionary<string, StateData>();
 
-    public int Turns { set { this.turns = turns++; } }
+    public List<ActualStateData> State { get { return state;} }
 
     PlayerMove player;
     EnterBattle enterBattle;
@@ -53,10 +49,11 @@ public class StatesLibrary : MonoBehaviour
 
     public IEnumerator StateEffectGroup(string group, string state)
     {
-        yield return null;
-
         if (states.ContainsKey(state.ToUpper()))
         {
+            ActualStateData actualState = new ActualStateData(state.ToUpper());
+            this.state.Add(actualState);
+
             Stats[] stats = GameObject.Find(group).GetComponentsInChildren<Stats>();
             StateData data = states[state.ToUpper()];
             float time = 0;
@@ -79,13 +76,13 @@ public class StatesLibrary : MonoBehaviour
                                 character.Health -= (data.BaseDamage);
                         }
 
-                        turns++;
+                        actualState.Turn++;
                         time = 0;
                     }
                 }
                 else
                 {
-                    if (lastTurn != turns)
+                    if (lastTurn != actualState.Turn)
                     {
                         foreach (Stats character in stats)
                         {
@@ -93,12 +90,12 @@ public class StatesLibrary : MonoBehaviour
                                 character.Health -= (data.BaseDamage);
                         }
 
-                        lastTurn = turns;
+                        lastTurn = actualState.Turn;
                     }
                 }
 
                 yield return new WaitForSeconds(0.000000001f);
-            } while (turns != data.TurnsDuration);
+            } while (actualState.Turn != data.TurnsDuration);
         }
     }
 }

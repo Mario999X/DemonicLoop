@@ -60,7 +60,7 @@ public class EnemyMechanics : MonoBehaviour
             // Antes de activar la pelea el enemigo se acerca al jugador.
             if (Vector3.Distance(transform.position, hit.transform.position) < 1.5f) // Inicia el combate.
             {
-                _Battle.StartBattle(transform.parent.gameObject/*, false*/);
+                _Battle.StartBattle(transform.parent.gameObject, false);
             }
             else
             {
@@ -109,7 +109,7 @@ public class EnemyMechanics : MonoBehaviour
     {
         if (other.transform.name == "Player")
         {
-            _Battle.StartBattle(transform.parent.gameObject/*, true*/);
+            _Battle.StartBattle(transform.parent.gameObject, true);
         }
     }
 }

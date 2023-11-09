@@ -38,13 +38,26 @@ public class EnterBattle : MonoBehaviour
     }
 
     // Función para iniciar la batalla.
-    public void StartBattle(GameObject enemy/*, bool sneak*/)
+    public void StartBattle(GameObject enemy, bool sneak)
     {
         this.enemy = enemy;
         
         if (!oneTime)
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); oneTime = true; 
-        fight.enabled = true;
+        {
+            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); oneTime = true;
+
+            fight.enabled = true;
+
+            if (sneak) 
+            {
+                Stats[] stats = GameObject.Find("Enemigos").GetComponentsInChildren<Stats>();
+
+                foreach (Stats stat in stats)
+                {
+                    stat.Health -= (stat.Health * 0.05f);
+                }
+            }
+        }
     }
 
     // Función para finalizar batalla.

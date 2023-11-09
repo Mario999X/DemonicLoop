@@ -10,7 +10,7 @@ public class ShaderAjustment : MonoBehaviour
     private int SizeID = Shader.PropertyToID("_Size");
 
     private Material wallMatirial_Actual, wallMatirial_Last;
-    
+
     [SerializeField] private new Camera camera;
     [SerializeField] private LayerMask layer;
 
@@ -28,7 +28,7 @@ public class ShaderAjustment : MonoBehaviour
 
         Vector3 dir = camera.transform.position - transform.position;
         Ray ray = new Ray(transform.position, dir.normalized);
-        
+
         RaycastHit hit;
 
         // Traza una linea entre el jugador y la cámara, cual quier objeto que se encuentre en la capa asignada se guardara y se le modificada el marametro tamaño de su material.

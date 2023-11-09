@@ -15,6 +15,7 @@ public class Stats : MonoBehaviour
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
     [SerializeField] List<string> listAtk = new();
+    [SerializeField] string type; //Fire,Water, Plant, Light
 
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
@@ -22,6 +23,7 @@ public class Stats : MonoBehaviour
     public float Defense { get { return defense; } }
     public float Health { get { return health; } set { this.health = value; } }
     public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
+    public string Type { get { return type; } }
 
     void Start()
     {
@@ -38,11 +40,6 @@ public class Stats : MonoBehaviour
         CheckListAtk();
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
     // Solo puede usar 4 ataques que son los espacios acordados
     private void CheckListAtk()
@@ -51,7 +48,7 @@ public class Stats : MonoBehaviour
         {
             listAtk.Remove(listAtk[listAtk.Count - 1]);
         }
-    }
+    }//Fin de CheckListAtk
 
     private void OnAttackReceived()
     {
@@ -71,5 +68,5 @@ public class Stats : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-    }
+    }//Fin de OnAttackReceived
 }

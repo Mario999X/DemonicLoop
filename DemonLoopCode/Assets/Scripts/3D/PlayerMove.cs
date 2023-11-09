@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     int oneTime = 0;
 
     [Header("Check ground")]
-    [SerializeField] float altitude = 1f; 
+    [SerializeField] float altitude = 1f;
     [SerializeField] float radius = 0.05f;
     [SerializeField] LayerMask layer;
 
@@ -25,14 +25,15 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 speedV;
 
-    public bool Movement 
-    { get
+    public bool Movement
+    {
+        get
         {
-            if (X != 0 || Z != 0) 
+            if (X != 0 || Z != 0)
                 return true;
             else
                 return false;
-        } 
+        }
     }
     public float JSpeed { get { return Jspeed; } }
     public bool OnFloor { get { return onFloor; } }

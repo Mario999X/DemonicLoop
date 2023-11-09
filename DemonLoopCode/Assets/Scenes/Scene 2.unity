@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -334,8 +334,9 @@ MonoBehaviour:
   - Punch
   - Fire Ball
   - Strong Attack
-  - Ice Ray
+  - Prueba
   - dfdfdfdffdfdfddffdf
+  type: Fire
 --- !u!114 &141561751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +430,7 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   listAtk: []
+  type: Water
 --- !u!114 &150508781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +524,7 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   listAtk: []
+  type: Plant
 --- !u!114 &327283062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,6 +1127,7 @@ MonoBehaviour:
   - Ice Ray
   - Punch
   - Heal All
+  type: 
 --- !u!114 &489199732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,6 +2032,7 @@ MonoBehaviour:
   - Fire Ball
   - Heal
   - Hells Feast
+  type: 
 --- !u!114 &795006434
 MonoBehaviour:
   m_ObjectHideFlags: 0

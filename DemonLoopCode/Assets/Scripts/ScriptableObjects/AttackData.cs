@@ -1,5 +1,6 @@
 using UnityEngine;
 
+public enum Types { FIRE, WATER, PLANT, LIGHT}
 
 [CreateAssetMenu]
 public class AttackData : ScriptableObject
@@ -12,11 +13,11 @@ public class AttackData : ScriptableObject
 
     [SerializeField] private bool isAoeAttack;
 
-    [SerializeField] private string type; //Fire,Water, Plant, Light
+    [SerializeField] private Types type;
 
     public float BaseDamage { get { return baseDamage; } }
     public int PhyAttack { get { return phyAttack; } }
     public int MagicAttack { get { return magicAttack; } }
     public bool IsAoeAttack { get { return isAoeAttack; } }
-    public string Type { get { return type; } }
+    public Types Type { get { return type; } }
 }

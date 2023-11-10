@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class LibraryMove : MonoBehaviour
 {
+    // Tipos de daño por tipo posibles
+    private const float SuperEffective = 1.5F;
+
+    private const float NotVeryEffective = 0.5f;
+
+    private const float NormalEffective = 1f;  
+
+    // Daño al tener similitud de tipo respecto ataque y atacante
+    private const float SameTypeDamage = 2.5f;
+
     // En esta clase se realiza el ataque, por lo tanto, es la que avisa a Stats que regule la barra de vida del personaje especifico.
     public delegate void HealthManager();
     public event HealthManager OnHealthChanged;
@@ -127,7 +137,7 @@ public class LibraryMove : MonoBehaviour
         attackCache.Clear();
     }//Fin de ResetCache
 
-    public float DamageFull(Stats target_ST, Stats character_ST, AttackData attack)
+    private float DamageFull(Stats target_ST, Stats character_ST, AttackData attack)
     {
         float damage;
         float damagePhyAttack = (character_ST.Strenght * attack.PhyAttack);
@@ -145,54 +155,54 @@ public class LibraryMove : MonoBehaviour
         return damage;
     }//Fin de DamageFull
 
-    public float DamageType(Stats target_ST, AttackData attack)
+    private float DamageType(Stats target_ST, AttackData attack)
     {
-        //Fire,Water, Plant, Light
         float damageType = 0.0f;
+
         switch (attack.Type)
         {
-            case "Fire":
-                if (target_ST.Type == "Plant")
+            case Types.FIRE:
+                if (target_ST.Type == Types.PLANT)
                 {
-                    damageType = 1.5f;
+                    damageType = SuperEffective;
                 }
-                if (target_ST.Type == "Water")
+                if (target_ST.Type == Types.WATER)
                 {
-                    damageType = 0.5f;
+                    damageType = NotVeryEffective;
                 }
-                if (target_ST.Type == "Light" && target_ST.Type == "Fire")
+                if (target_ST.Type == Types.LIGHT && target_ST.Type == Types.FIRE)
                 {
-                    damageType = 1f;
-                }
-                break;
-
-            case "Plant":
-                if (target_ST.Type == "Water")
-                {
-                    damageType = 1.5f;
-                }
-                if (target_ST.Type == "Fire")
-                {
-                    damageType = 0.5f;
-                }
-                if (target_ST.Type == "Light" && target_ST.Type == "Plant")
-                {
-                    damageType = 1f;
+                    damageType = NormalEffective;
                 }
                 break;
 
-            case "Water":
-                if (target_ST.Type == "Fire")
+            case Types.PLANT:
+                if (target_ST.Type == Types.WATER)
                 {
-                    damageType = 1.5f;
+                    damageType = SuperEffective;
                 }
-                if (target_ST.Type == "Plant")
+                if (target_ST.Type == Types.FIRE)
                 {
-                    damageType = 0.5f;
+                    damageType = NotVeryEffective;
                 }
-                if (target_ST.Type == "Light" && target_ST.Type == "Water")
+                if (target_ST.Type == Types.LIGHT && target_ST.Type == Types.PLANT)
                 {
-                    damageType = 1f;
+                    damageType = NormalEffective;
+                }
+                break;
+
+            case Types.WATER:
+                if (target_ST.Type == Types.FIRE)
+                {
+                    damageType = SuperEffective;
+                }
+                if (target_ST.Type == Types.PLANT)
+                {
+                    damageType = NotVeryEffective;
+                }
+                if (target_ST.Type == Types.LIGHT && target_ST.Type == Types.WATER)
+                {
+                    damageType = NormalEffective;
                 }
                 break;
         }
@@ -201,26 +211,26 @@ public class LibraryMove : MonoBehaviour
         return damageType;
     }//Fin de DamageType
 
-    public float TypeEnhancer(Stats character_ST, AttackData attack)
+    private float TypeEnhancer(Stats character_ST, AttackData attack)
     {
         //Cambiar los datos de los potenciadores de los tipos
-        //Fire,Water, Plant, Light
-        float damage = 0f;
-        if (character_ST.Type == "Fire" && attack.Type == "Fire")
+        float damage = 0.0f;
+
+        if (character_ST.Type == Types.FIRE && attack.Type == Types.FIRE)
         {
-            damage = 2.5f;
+            damage = SameTypeDamage;
         }
-        if (character_ST.Type == "Water" && attack.Type == "Water")
+        if (character_ST.Type == Types.WATER && attack.Type == Types.WATER)
         {
-            damage = 2.5f;
+            damage = SameTypeDamage;
         }
-        if (character_ST.Type == "Plant" && attack.Type == "Plant")
+        if (character_ST.Type == Types.PLANT && attack.Type == Types.PLANT)
         {
-            damage = 2.5f;
+            damage = SameTypeDamage;
         }
-        if (character_ST.Type == "Light" && attack.Type == "Light")
+        if (character_ST.Type == Types.LIGHT && attack.Type == Types.LIGHT)
         {
-            damage = 2.5f;
+            damage = SameTypeDamage;
         }
 
         return damage;

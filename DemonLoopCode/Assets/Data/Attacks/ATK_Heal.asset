@@ -16,3 +16,4 @@ MonoBehaviour:
   phyAttack: 0
   magicAttack: 0
   isAoeAttack: 0
+  type: 3

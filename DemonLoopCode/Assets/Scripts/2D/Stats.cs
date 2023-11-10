@@ -15,7 +15,8 @@ public class Stats : MonoBehaviour
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
     [SerializeField] List<string> listAtk = new();
-    [SerializeField] string type; //Fire,Water, Plant, Light
+
+    [SerializeField] Types type;
 
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
@@ -23,7 +24,7 @@ public class Stats : MonoBehaviour
     public float Defense { get { return defense; } }
     public float Health { get { return health; } set { this.health = value; } }
     public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
-    public string Type { get { return type; } }
+    public Types Type { get { return type; } }
 
     void Start()
     {

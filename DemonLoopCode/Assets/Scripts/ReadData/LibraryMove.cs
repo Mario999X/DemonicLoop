@@ -216,22 +216,7 @@ public class LibraryMove : MonoBehaviour
         //Cambiar los datos de los potenciadores de los tipos
         float damage = 0.0f;
 
-        if (character_ST.Type == Types.FIRE && attack.Type == Types.FIRE)
-        {
-            damage = SameTypeDamage;
-        }
-        if (character_ST.Type == Types.WATER && attack.Type == Types.WATER)
-        {
-            damage = SameTypeDamage;
-        }
-        if (character_ST.Type == Types.PLANT && attack.Type == Types.PLANT)
-        {
-            damage = SameTypeDamage;
-        }
-        if (character_ST.Type == Types.LIGHT && attack.Type == Types.LIGHT)
-        {
-            damage = SameTypeDamage;
-        }
+        if(character_ST.Type == attack.Type) damage = SameTypeDamage;
 
         return damage;
     }//Fin de TypeEnhancer

@@ -89,8 +89,7 @@ public class LibraryMove : MonoBehaviour
         {
             attackData = attackCache[movement.ToUpper()];
 
-            Debug.Log("Ataque " + movement.ToUpper() + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
-
+            //Debug.Log("Ataque " + movement.ToUpper() + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
         }
         else
         {
@@ -143,7 +142,7 @@ public class LibraryMove : MonoBehaviour
         float damagePhyAttack = (character_ST.Strenght * attack.PhyAttack);
         float damageMagic = (character_ST.MagicAtk * attack.MagicAttack);
         float defenseMagic = (target_ST.MagicDef * attack.MagicAttack);
-        float defensePhy = (target_ST.Defense * attack.PhyAttack);
+        float defensePhy = (target_ST.PhysicalDefense * attack.PhyAttack);
 
         float damageType = DamageType(target_ST, attack);
 
@@ -152,6 +151,8 @@ public class LibraryMove : MonoBehaviour
         //Lo hemos hecho asi para que se vea mejor
         damage = (attack.BaseDamage + damagePhyAttack + damageMagic - defenseMagic - defensePhy);
         damage = (damageType * damage) + (damageTypeEnhancer * damage);
+
+        Debug.Log(character_ST.name + " ataca a " +  target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
         return damage;
     }//Fin de DamageFull
 
@@ -206,8 +207,7 @@ public class LibraryMove : MonoBehaviour
                 }
                 break;
         }
-
-
+        
         return damageType;
     }//Fin de DamageType
 

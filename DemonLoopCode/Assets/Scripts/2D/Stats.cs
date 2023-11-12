@@ -6,30 +6,30 @@ public class Stats : MonoBehaviour
 {
     LibraryMove move;
 
-    Image barLifes;
+    Image barHP;
 
-    [SerializeField] float strength = 15f;
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
-    [SerializeField] float defense = 12f;
+    [SerializeField] float strength = 15f;
+    [SerializeField] float physicalDef = 12f;
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
     [SerializeField] List<string> listAtk = new();
 
     [SerializeField] Types type;
 
+    public float Health { get { return health; } set { this.health = value; } }
+    public float Strenght { get { return strength; } }
+    public float PhysicalDefense { get { return physicalDef; } }
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
-    public float Strenght { get { return strength; } }
-    public float Defense { get { return defense; } }
-    public float Health { get { return health; } set { this.health = value; } }
     public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
     public Types Type { get { return type; } }
 
     void Start()
     {
         health = maxHealth;
-        barLifes = transform.GetChild(0).GetComponent<Image>();
+        barHP = transform.GetChild(0).Find("BarHPFill").GetComponent<Image>();
 
         move = GameObject.Find("System").GetComponent<LibraryMove>();
 
@@ -63,7 +63,7 @@ public class Stats : MonoBehaviour
             this.health = 0;
         }
 
-        barLifes.fillAmount = health / maxHealth;
+        barHP.fillAmount = health / maxHealth;
 
         if (this.health == 0)
         {

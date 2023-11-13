@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
   m_Name: TestObject
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 2800000, guid: 35bb0d91f78fbd74cbe6768a576021f0, type: 3}
+  description: '!!!
+
+    This is just a test object
+
+    !!!'

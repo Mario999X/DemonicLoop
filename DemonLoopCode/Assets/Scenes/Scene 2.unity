@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -249,10 +249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 15
   health: 0
   maxHealth: 100
-  defense: 12
+  strength: 15
+  physicalDef: 12
   magicAtk: 0
   magicDef: 0
   listAtk:
@@ -348,10 +348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 15
   health: 0
   maxHealth: 100
-  defense: 12
+  strength: 15
+  physicalDef: 12
   magicAtk: 0
   magicDef: 0
   listAtk: []
@@ -566,10 +566,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 15
   health: 0
   maxHealth: 100
-  defense: 12
+  strength: 15
+  physicalDef: 12
   magicAtk: 0
   magicDef: 0
   listAtk: []
@@ -1166,10 +1166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 15
   health: 0
   maxHealth: 100
-  defense: 12
+  strength: 15
+  physicalDef: 12
   magicAtk: 0
   magicDef: 0
   listAtk:
@@ -1228,6 +1228,7 @@ GameObject:
   - component: {fileID: 589541444}
   - component: {fileID: 589541446}
   - component: {fileID: 589541445}
+  - component: {fileID: 589541447}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -1349,6 +1350,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1b345eb8c53624dba86f25ecc834b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &589541447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589541437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b9ab4351d9a9e4e95ac9c196046239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ScriptableObject: {fileID: 11400000, guid: 83a33c6375454ed4da588515351dcc90, type: 2}
 --- !u!1 &589640021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,10 +1935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 15
   health: 0
   maxHealth: 100
-  defense: 12
+  strength: 15
+  physicalDef: 12
   magicAtk: 0
   magicDef: 0
   listAtk:

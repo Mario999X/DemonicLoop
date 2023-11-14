@@ -16,8 +16,9 @@ public class LibraryMove : MonoBehaviour
     private const float SameTypeDamage = 2.5f;
 
     // En esta clase se realiza el ataque, por lo tanto, es la que avisa a Stats que regule la barra de vida del personaje especifico.
-    public delegate void HealthManager();
-    public event HealthManager OnHealthChanged;
+    public delegate void HealthAndManaManager();
+    public event HealthAndManaManager OnHealthChanged;
+    public event HealthAndManaManager OnManaChanged;
 
     private GameObject character;
     private GameObject target;
@@ -57,6 +58,7 @@ public class LibraryMove : MonoBehaviour
             target_ST.Health += attack.BaseDamage;
         }
 
+        ManaManager(attack, character_ST);
         OnHealthChanged?.Invoke(); // Se avisan a los que estan suscritos a la funcion. Ver Start de la clase Stats.
 
         character = null; target = null;
@@ -130,6 +132,19 @@ public class LibraryMove : MonoBehaviour
 
         return isAOE;
     }//Fin de CheckAoeAttack
+
+    public bool CheckIfManaIsEnough(GameObject characterST, string movementName){
+        bool manaEnough = false;
+
+        var attackInfo = CheckAttack(movementName);
+        
+        if(characterST.GetComponent<Stats>().Mana >= attackInfo.ManaCost)
+        {
+            manaEnough = true;
+        }
+
+        return manaEnough;
+    }
 
     // Función para limpiar la cache.
     private void ResetCache()
@@ -234,6 +249,12 @@ public class LibraryMove : MonoBehaviour
         if(Random.Range(0, 100f) < CriticalStat) damage = 2f;
 
         return damage;
+    }
+
+    private void ManaManager(AttackData attack, Stats characterStats){
+        characterStats.Mana -= attack.ManaCost;
+
+        OnManaChanged?.Invoke();
     }
 }
 

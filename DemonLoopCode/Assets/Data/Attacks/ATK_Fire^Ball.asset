@@ -16,4 +16,5 @@ MonoBehaviour:
   phyAttack: 0
   magicAttack: 1
   isAoeAttack: 0
-  type: Fire
+  manaCost: 60
+  type: 0

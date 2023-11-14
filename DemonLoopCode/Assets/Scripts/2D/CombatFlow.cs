@@ -165,6 +165,12 @@ public class CombatFlow : MonoBehaviour
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
                 bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
                 moveBT.Add(bt);
+
+                // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
+                var isManaEnough = library.CheckIfManaIsEnough(player, listAtk.ToUpper());
+                if(!isManaEnough){
+                    bt.GetComponent<Button>().interactable = false;
+                }
             }
         }
     }//Fin de PlayerButton
@@ -391,20 +397,20 @@ public class CombatFlow : MonoBehaviour
         yield return null;
     }//Fin de GoEnemy
 
+    // Funcion para comprobar si un personaje esta muerto segun su vida.
     private IEnumerator CharacterDead(GameObject target, bool enemy)
     {
         Stats targetST = target.GetComponent<Stats>();
         
-
         if (targetST.Health == 0)
         {
-            Debug.Log(target.name + "Is dead" + " | enemigo: " + enemy);
+            Debug.Log(target.name + " is dead" + " | enemigo: " + enemy);
             if (enemy)
             {
                 // Se busca en los botones enemigos
                 enemyBT.ForEach(bt =>
                 {
-                    // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
+                    // Si el texto coincide con el nombre del enemigo, se deshabilita el boton.
                     if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == target.name.Substring(1, target.name.Length - 1))
                     {
                         bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
@@ -420,10 +426,8 @@ public class CombatFlow : MonoBehaviour
             }
             else
             {
-                // Se busca en los botones enemigos
                 playerBT.ForEach(bt =>
                 {
-                    // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
                     if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == target.name.Substring(1, target.name.Length - 1))
                     {
                         bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
@@ -435,13 +439,9 @@ public class CombatFlow : MonoBehaviour
 
                 actualPlayers.Remove(target);
 
-                actualPlayers.ForEach(x => Debug.Log(x.name));
-
                 players = actualPlayers.ToArray();
 
                 GeneratePlayersButtons();
-
-                players.ToList().ForEach(x => Debug.Log(x.name));
             }
         }
         yield return null;

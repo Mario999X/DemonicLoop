@@ -4,12 +4,16 @@ using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
-    LibraryMove move;
+    private LibraryMove move;
 
-    Image barHP;
+    private Image barHP;
+
+    private Image barMana;
 
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
+    [SerializeField] float mana;
+    [SerializeField] float maxMana = 100f;
     [SerializeField] float strength = 15f;
     [SerializeField] float physicalDef = 12f;
     [SerializeField] float magicAtk = 0f;
@@ -19,13 +23,14 @@ public class Stats : MonoBehaviour
 
     [SerializeField] Types type;
 
-    public float Health { get { return health; } set { this.health = value; } }
+    public float Health { get { return health; } set { health = value; } }
+    public float Mana { get { return mana; } set { mana = value; } }
     public float Strenght { get { return strength; } }
     public float PhysicalDefense { get { return physicalDef; } }
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
     public float CriticalChance { get { return criticalChance; } }
-    public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
+    public List<string> ListAtk { get { return listAtk; } set { listAtk = value; } }
     public Types Type { get { return type; } }
 
     void Start()
@@ -33,12 +38,17 @@ public class Stats : MonoBehaviour
         health = maxHealth;
         barHP = transform.GetChild(0).Find("BarHPFill").GetComponent<Image>();
 
+        mana = maxMana;
+        barMana = transform.GetChild(1).Find("BarManaFill").GetComponent<Image>();
+
         move = GameObject.Find("System").GetComponent<LibraryMove>();
 
         move.OnHealthChanged += OnAttackReceived;
+
+        move.OnManaChanged += OnManaChanged;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CheckListAtk();
     }
@@ -60,16 +70,31 @@ public class Stats : MonoBehaviour
             health = maxHealth;
         }
 
-        if (this.health <= 0)
+        if (health <= 0)
         {
-            this.health = 0;
+            health = 0;
         }
 
         barHP.fillAmount = health / maxHealth;
 
-        if (this.health == 0)
+        if (health == 0)
         {
             gameObject.SetActive(false);
         }
     }//Fin de OnAttackReceived
+
+    private void OnManaChanged()
+    {
+        if(mana >= maxMana)
+        {
+            mana = maxMana;
+        }
+
+        if(mana <= 0)
+        {
+            mana = 0;
+        }
+
+        barMana.fillAmount = mana / maxMana;
+    }
 }

@@ -16,4 +16,5 @@ MonoBehaviour:
   phyAttack: 0
   magicAttack: 0
   isAoeAttack: 1
+  manaCost: 15
   type: 3

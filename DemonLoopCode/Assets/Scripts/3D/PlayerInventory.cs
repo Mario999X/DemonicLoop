@@ -27,7 +27,7 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Referencia de boton")]
     [SerializeField] GameObject buttonRef3D;
-    [SerializeField] GameObject nuttonRef2D;
+    [SerializeField] GameObject buttonRef2D;
 
     [Header("UI grid de inventario")]
     [SerializeField] GameObject inventoryUI;

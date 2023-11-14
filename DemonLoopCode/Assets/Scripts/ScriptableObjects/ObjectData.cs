@@ -17,6 +17,6 @@ public class ObjectData : ScriptableObject
     { 
         Debug.Log(name + " was clicked");
 
-        
+        inventory.RemoveObjectFromInventory(name);
     }
 }

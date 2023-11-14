@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 public class CharacterMove
 {
@@ -57,14 +58,28 @@ public class CombatFlow : MonoBehaviour
 
     private void GeneratePlayersButtons()
     {
+
+        if (playerBT.Count > 0)
+        {
+            //En el casode que haya mas playeres/butones de lo permitido
+            //los borra y hace limpieza 
+            //En otras palabras como limpiar la cache
+            playerBT.ForEach(bt => Destroy(bt));
+            playerBT.Clear();
+        }
+
         // Creamos un boton por todos los jugadores existentes.
         foreach (GameObject pl in players)
         {
+            //Comprobamos si el player que tiene asignado el boton esta muerto o no
+            CharacterDead(pl, false);
+
             GameObject button = Instantiate(buttonRef, spanwPlayerBT.transform.position, Quaternion.identity);
             button.transform.SetParent(spanwPlayerBT.transform);
             button.name = "PlayerButton (" + pl.name + ")";
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
             button.GetComponent<Button>().onClick.AddListener(delegate { PlayerButton(pl); });
+
             playerBT.Add(button);//Listado de botones generados
         }
     }//Fin de GeneratePlayersButtons
@@ -129,7 +144,6 @@ public class CombatFlow : MonoBehaviour
         if (!wait)
         {
             this.character = player;
-            //Debug.Log("player save");
 
             foreach (GameObject moveBT in moveBT)
             {
@@ -168,7 +182,6 @@ public class CombatFlow : MonoBehaviour
 
             }
             else GoPlayerMultiTarget(character, players.ToList(), movement);
-
         }
         else
         {
@@ -195,7 +208,6 @@ public class CombatFlow : MonoBehaviour
 
             moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
 
-            //enemyBT.ForEach(bt => Debug.Log("ENEMY BUTTON" + bt));
 
             enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo.
 
@@ -290,6 +302,8 @@ public class CombatFlow : MonoBehaviour
             yield return new WaitForSeconds(0.00001f);
         } while (dontStop);
 
+        StartCoroutine(CharacterDead(target, true));
+
         moves++;
 
         this.character = null; this.movement = null;
@@ -310,15 +324,17 @@ public class CombatFlow : MonoBehaviour
     {
         wait = true;
 
+        //En el caso del que no este la posiciaon que ha salido de forma aleatoria
+        //volvera hacer un random nuevo
         foreach (GameObject enemy in enemys)
         {
             int i = UnityEngine.Random.Range(0, players.Length);
+            if (players[i].GetComponent<Stats>().Health == 0f)
+            {
+                i = UnityEngine.Random.Range(0, players.Length);
+            }
             AddMovement(enemy, players[i], "Punch");
         }
-
-        //Debug.Log("Enemys selected move");
-
-        //int count = 0;
 
         foreach (CharacterMove characterMove in movements)
         {
@@ -339,11 +355,10 @@ public class CombatFlow : MonoBehaviour
 
                 if (Vector2.Distance(characterMove.Character.transform.position, characterMove.Target.transform.position) < 100f && change)
                 {
-                    //count++;
-
-                    //Debug.Log(characterMove.Character.name + ": " + count);
 
                     library.Library(characterMove.Character, characterMove.Target, characterMove.Movement); // Realiza el ataque.
+
+                    StartCoroutine(CharacterDead(characterMove.Target, false));
 
                     change = false;
                 }
@@ -371,4 +386,55 @@ public class CombatFlow : MonoBehaviour
 
         yield return null;
     }//Fin de GoEnemy
+
+    private IEnumerator CharacterDead(GameObject target, bool enemy)
+    {
+        Stats targetST = target.GetComponent<Stats>();
+
+        if (targetST.Health == 0)
+        {
+            Debug.Log(target.name + "Is dead" + " | enemigo: " + enemy);
+            if (enemy)
+            {
+                // Se busca en los botones enemigos
+                enemyBT.ForEach(bt =>
+                {
+                    // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
+                    if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == target.name.Substring(1, target.name.Length - 1))
+                    {
+                        bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
+                        bt.GetComponent<Button>().enabled = false;
+                    }
+                });
+
+                enemys.Remove(target);
+            }
+            else
+            {
+                // Se busca en los botones enemigos
+                playerBT.ForEach(bt =>
+                {
+                    // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
+                    if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == target.name.Substring(1, target.name.Length - 1))
+                    {
+                        bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
+                        bt.GetComponent<Button>().enabled = false;
+                    }
+                });
+
+                var actualPlayers = players.ToList();
+
+                actualPlayers.Remove(target);
+
+                actualPlayers.ForEach(x => Debug.Log(x.name));
+
+                players = actualPlayers.ToArray();
+
+                GeneratePlayersButtons();
+
+                players.ToList().ForEach(x => Debug.Log(x.name));
+            }
+        }
+        yield return null;
+    }
 }

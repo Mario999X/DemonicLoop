@@ -49,10 +49,15 @@ public class CombatFlow : MonoBehaviour
 
     private LibraryMove library;
 
+    private MoneyPlayer moneyPlayer;
+
+    private float earnedMoney = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
         library = GetComponent<LibraryMove>();
+        moneyPlayer = GetComponent<MoneyPlayer>();
     }
 
     private void GeneratePlayersButtons()
@@ -389,6 +394,7 @@ public class CombatFlow : MonoBehaviour
     private IEnumerator CharacterDead(GameObject target, bool enemy)
     {
         Stats targetST = target.GetComponent<Stats>();
+        
 
         if (targetST.Health == 0)
         {
@@ -407,6 +413,10 @@ public class CombatFlow : MonoBehaviour
                 });
 
                 enemys.Remove(target);
+
+                //Cuando el enemigo muera nos dara una cantidad X de dinero
+                moneyPlayer.Money += earnedMoney;
+
             }
             else
             {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -148,9 +149,12 @@ public class LibraryMove : MonoBehaviour
 
         float damageTypeEnhancer = TypeEnhancer(character_ST, attack);
 
+        float criticalDamage = CriticalDamage(character_ST.CriticalChance);
+
         //Lo hemos hecho asi para que se vea mejor
         damage = (attack.BaseDamage + damagePhyAttack + damageMagic - defenseMagic - defensePhy);
         damage = (damageType * damage) + (damageTypeEnhancer * damage);
+        damage *= criticalDamage;
 
         Debug.Log(character_ST.name + " ataca a " +  target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
         return damage;
@@ -158,7 +162,7 @@ public class LibraryMove : MonoBehaviour
 
     private float DamageType(Stats target_ST, AttackData attack)
     {
-        float damageType = 0.0f;
+        float damageType = NormalEffective;
 
         switch (attack.Type)
         {
@@ -171,10 +175,6 @@ public class LibraryMove : MonoBehaviour
                 {
                     damageType = NotVeryEffective;
                 }
-                if (target_ST.Type == Types.LIGHT && target_ST.Type == Types.FIRE)
-                {
-                    damageType = NormalEffective;
-                }
                 break;
 
             case Types.PLANT:
@@ -185,10 +185,6 @@ public class LibraryMove : MonoBehaviour
                 if (target_ST.Type == Types.FIRE)
                 {
                     damageType = NotVeryEffective;
-                }
-                if (target_ST.Type == Types.LIGHT && target_ST.Type == Types.PLANT)
-                {
-                    damageType = NormalEffective;
                 }
                 break;
 
@@ -201,9 +197,18 @@ public class LibraryMove : MonoBehaviour
                 {
                     damageType = NotVeryEffective;
                 }
-                if (target_ST.Type == Types.LIGHT && target_ST.Type == Types.WATER)
+                break;
+
+            case Types.LIGHT:
+                if(target_ST.Type == Types.DARKNESS)
                 {
-                    damageType = NormalEffective;
+                    damageType = SuperEffective;
+                }
+                break;
+            
+            case Types.DARKNESS:
+                if(target_ST.Type == Types.LIGHT){
+                    damageType = SuperEffective;
                 }
                 break;
         }
@@ -220,5 +225,15 @@ public class LibraryMove : MonoBehaviour
 
         return damage;
     }//Fin de TypeEnhancer
+
+    // Se devuelve un x2 en el daño, si no, se mantiene en 1 y el daño no es modificado.
+    private float CriticalDamage(float CriticalStat)
+    {
+        float damage = NormalEffective;
+
+        if(Random.Range(0, 100f) < CriticalStat) damage = 2f;
+
+        return damage;
+    }
 }
 

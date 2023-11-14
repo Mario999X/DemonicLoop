@@ -14,6 +14,7 @@ public class Stats : MonoBehaviour
     [SerializeField] float physicalDef = 12f;
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
+    [SerializeField] float criticalChance;
     [SerializeField] List<string> listAtk = new();
 
     [SerializeField] Types type;
@@ -23,6 +24,7 @@ public class Stats : MonoBehaviour
     public float PhysicalDefense { get { return physicalDef; } }
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
+    public float CriticalChance { get { return criticalChance; } }
     public List<string> ListAtk { get { return listAtk; } set { this.listAtk = value; } }
     public Types Type { get { return type; } }
 

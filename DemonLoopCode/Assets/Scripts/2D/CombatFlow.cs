@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using System.Security.Cryptography.X509Certificates;
 
 public class CharacterMove
 {

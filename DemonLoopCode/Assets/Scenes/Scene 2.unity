@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -255,6 +255,7 @@ MonoBehaviour:
   physicalDef: 12
   magicAtk: 0
   magicDef: 0
+  criticalChance: 0
   listAtk:
   - Punch
   - Fire Ball
@@ -354,6 +355,7 @@ MonoBehaviour:
   physicalDef: 12
   magicAtk: 0
   magicDef: 0
+  criticalChance: 0
   listAtk: []
   type: 1
 --- !u!114 &150508781
@@ -572,6 +574,7 @@ MonoBehaviour:
   physicalDef: 12
   magicAtk: 0
   magicDef: 0
+  criticalChance: 0
   listAtk: []
   type: 2
 --- !u!114 &327283062
@@ -1172,6 +1175,7 @@ MonoBehaviour:
   physicalDef: 12
   magicAtk: 0
   magicDef: 0
+  criticalChance: 0
   listAtk:
   - Ice Ray
   - Punch
@@ -1325,7 +1329,7 @@ MonoBehaviour:
   spanwEnemyBT: {fileID: 900831686}
   buttonRef: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}
-  speed: 500
+  speed: 1500
 --- !u!114 &589541445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,7 +1367,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScriptableObject: {fileID: 11400000, guid: 83a33c6375454ed4da588515351dcc90, type: 2}
-  buttonRef: {fileID: 0}
+  buttonRef3D: {fileID: 0}
+  nuttonRef2D: {fileID: 0}
   inventoryUI: {fileID: 0}
 --- !u!1 &589640021
 GameObject:
@@ -1956,6 +1961,7 @@ MonoBehaviour:
   physicalDef: 12
   magicAtk: 0
   magicDef: 0
+  criticalChance: 0
   listAtk:
   - Fire Ball
   - Heal

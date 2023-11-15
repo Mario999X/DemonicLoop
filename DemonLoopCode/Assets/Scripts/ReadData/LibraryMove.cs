@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -146,6 +145,13 @@ public class LibraryMove : MonoBehaviour
         return manaEnough;
     }
 
+    // Funcion para ejecutar el ataque que sirve para pasar de turno.
+    public void PassTurn(GameObject characterST, string movementName){
+        var attackData = CheckAttack(movementName);
+
+        ManaManager(attackData, characterST.GetComponent<Stats>());
+    }
+
     // Función para limpiar la cache.
     private void ResetCache()
     {
@@ -256,5 +262,6 @@ public class LibraryMove : MonoBehaviour
 
         OnManaChanged?.Invoke();
     }
+
 }
 

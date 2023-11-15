@@ -29,14 +29,15 @@ public class CombatFlow : MonoBehaviour
     List<CharacterMove> movements = new();
     List<GameObject> enemys = new();
     List<GameObject> playerBT = new();
+    [SerializeField] List<GameObject> combatOptionsBT = new();
     List<GameObject> moveBT = new();
     List<GameObject> enemyBT = new();
 
     GameObject[] players;
     GameObject character = null;
 
-    [Header("Components to spanw buttons")]
-    [SerializeField] GameObject spanwPlayerBT, spanwMoveBT, spanwEnemyBT, buttonRef;
+    [Header("Components to spawn buttons")]
+    [SerializeField] GameObject spawnPlayerBT, spawnMoveBT, spawnEnemyBT, buttonRef;
 
     [Header("Characters speed")]
     [SerializeField] float speed = 50f;
@@ -53,8 +54,7 @@ public class CombatFlow : MonoBehaviour
 
     private float earnedMoney = 2f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         library = GetComponent<LibraryMove>();
         moneyPlayer = GetComponent<MoneyPlayer>();
@@ -65,9 +65,11 @@ public class CombatFlow : MonoBehaviour
 
         if (playerBT.Count > 0)
         {
-            //En el casode que haya mas playeres/butones de lo permitido
-            //los borra y hace limpieza 
-            //En otras palabras como limpiar la cache
+            /*
+            En el caso de que haya mas players/botones de lo permitido los borra y hace limpieza.
+
+            En otras palabras como limpiar la cache
+            */
             playerBT.ForEach(bt => Destroy(bt));
             playerBT.Clear();
         }
@@ -76,17 +78,18 @@ public class CombatFlow : MonoBehaviour
         foreach (GameObject pl in players)
         {
             //Comprobamos si el player que tiene asignado el boton esta muerto o no
-            CharacterDead(pl, false);
+            StartCoroutine(CharacterDead(pl, false));
 
-            GameObject button = Instantiate(buttonRef, spanwPlayerBT.transform.position, Quaternion.identity);
-            button.transform.SetParent(spanwPlayerBT.transform);
+            GameObject button = Instantiate(buttonRef, spawnPlayerBT.transform.position, Quaternion.identity);
+            button.transform.SetParent(spawnPlayerBT.transform);
             button.name = "PlayerButton (" + pl.name + ")";
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
-            button.GetComponent<Button>().onClick.AddListener(delegate { PlayerButton(pl); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(pl); });
 
             playerBT.Add(button);//Listado de botones generados
         }
     }//Fin de GeneratePlayersButtons
+
 
     private void GenerateTargetsButtons(bool targetPlayerOrEnemy)
     {
@@ -102,8 +105,8 @@ public class CombatFlow : MonoBehaviour
         {
             enemys.ForEach(enemy =>
             {
-                GameObject button = Instantiate(buttonRef, spanwEnemyBT.transform.position, Quaternion.identity);
-                button.transform.SetParent(spanwEnemyBT.transform);
+                GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
+                button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "EnemyButton (" + enemy.name + ")";
                 button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name;
                 button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(enemy); });
@@ -114,8 +117,8 @@ public class CombatFlow : MonoBehaviour
         {
             foreach (GameObject pl in players)
             {
-                GameObject button = Instantiate(buttonRef, spanwEnemyBT.transform.position, Quaternion.identity);
-                button.transform.SetParent(spanwEnemyBT.transform);
+                GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
+                button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "PlayerButton (" + pl.name + ")";
                 button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
                 button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(pl); });
@@ -142,13 +145,25 @@ public class CombatFlow : MonoBehaviour
     }//Fin de CreateButtons
 
 
+    // Funcion para generar las opciones del jugador en combate.
+    public void GenerateOptionsButtons(GameObject player){
+
+        DesactivateAllButtons();
+
+        if(!wait)
+        {
+            character = player;
+
+            combatOptionsBT.ForEach(bt => bt.SetActive(true));
+
+        }
+    }
+
     // Selección de jugador.
-    public void PlayerButton(GameObject player)
+    public void PlayerButtonAttacks()
     {
         if (!wait)
         {
-            this.character = player;
-
             foreach (GameObject moveBT in moveBT)
             {
                 Destroy(moveBT);
@@ -156,18 +171,18 @@ public class CombatFlow : MonoBehaviour
             }
             moveBT.Clear();
 
-            foreach (string listAtk in player.GetComponent<Stats>().ListAtk)
+            foreach (string listAtk in character.GetComponent<Stats>().ListAtk)
             {
                 // Creamos un boton de movimiento.
-                GameObject bt = Instantiate(buttonRef, spanwMoveBT.transform.position, Quaternion.identity);
-                bt.transform.SetParent(spanwMoveBT.transform);
+                GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spawnMoveBT.transform);
                 bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
                 bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
                 moveBT.Add(bt);
 
                 // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
-                var isManaEnough = library.CheckIfManaIsEnough(player, listAtk.ToUpper());
+                var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
                 if(!isManaEnough){
                     bt.GetComponent<Button>().interactable = false;
                 }
@@ -216,16 +231,13 @@ public class CombatFlow : MonoBehaviour
                 }
             });
 
-            moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
-
-
-            enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo.
+            DesactivateAllButtons();
 
             StartCoroutine(GoPlayerSingleTarget(character, enemy, movement));
         }
     }//Fin de EnemyButton
 
-    // Añade a la lista de movimientos los movimientos.
+    // Aniade a la lista de movimientos los movimientos.
     public void AddMovement(GameObject character, GameObject target, string movement)
     {
         movements.Add(new CharacterMove(character, target, movement));
@@ -256,9 +268,7 @@ public class CombatFlow : MonoBehaviour
             }
         });
 
-        moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
-
-        enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo en caso de que esten activados.
+        DesactivateAllButtons();
 
         wait = true;
 
@@ -270,15 +280,12 @@ public class CombatFlow : MonoBehaviour
 
         wait = false;
 
-        // Espera a que todos los jugadores hagan sus movimientos.
-        if (moves >= players.Length && !wait)
-        {
-            StartCoroutine(GoEnemy());
-        }
+        CheckIfIsEnemyTurn();
+
     }//Fin de GoPlayerMultiTarget
 
     // Ejecuta acción del jugador.
-    IEnumerator GoPlayerSingleTarget(GameObject character, GameObject target, string movement)
+    private IEnumerator GoPlayerSingleTarget(GameObject character, GameObject target, string movement)
     {
         wait = true;
 
@@ -320,11 +327,7 @@ public class CombatFlow : MonoBehaviour
 
         wait = false;
 
-        // Espera a que todos los jugadores hagan sus movimientos.
-        if (moves >= players.Length && !wait)
-        {
-            StartCoroutine(GoEnemy());
-        }
+        CheckIfIsEnemyTurn();
 
         yield return null;
     }//Fin de GoPlayerSingleTarget
@@ -405,8 +408,10 @@ public class CombatFlow : MonoBehaviour
         if (targetST.Health == 0)
         {
             Debug.Log(target.name + " is dead" + " | enemigo: " + enemy);
+
             if (enemy)
             {
+                /*
                 // Se busca en los botones enemigos
                 enemyBT.ForEach(bt =>
                 {
@@ -417,6 +422,7 @@ public class CombatFlow : MonoBehaviour
                         bt.GetComponent<Button>().enabled = false;
                     }
                 });
+                */
 
                 enemys.Remove(target);
 
@@ -426,14 +432,6 @@ public class CombatFlow : MonoBehaviour
             }
             else
             {
-                playerBT.ForEach(bt =>
-                {
-                    if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == target.name.Substring(1, target.name.Length - 1))
-                    {
-                        bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                        bt.GetComponent<Button>().enabled = false;
-                    }
-                });
 
                 var actualPlayers = players.ToList();
 
@@ -445,5 +443,54 @@ public class CombatFlow : MonoBehaviour
             }
         }
         yield return null;
+    }
+
+    // Funcion para que el personaje seleccionado recupere mana sin hacer ningun daño. 
+    public void PassTurn(string movement)
+    {
+        wait = true;
+
+        // Impide que vuelva a ser selecionado el mismo personaje.
+        playerBT.ForEach(bt =>
+        {
+            // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
+            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Substring(1, character.name.Length - 1))
+            {
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
+                bt.GetComponent<Button>().enabled = false;
+            }
+        });
+
+        DesactivateAllButtons();
+
+        library.PassTurn(character, movement.ToUpper());
+
+        moves++;
+
+        this.character = null; this.movement = null;
+
+        wait = false;
+
+        CheckIfIsEnemyTurn();
+    }
+
+    // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
+    private void DesactivateAllButtons(){
+
+        moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
+
+        combatOptionsBT.ForEach(bt => bt.SetActive(false)); // Desactiva todos los botones de opciones de combate.
+
+        enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo en caso de que esten activados.
+    }
+
+    // Funcion para determinar/empezar el turno enemigo.
+    private void CheckIfIsEnemyTurn(){
+
+        // Espera a que todos los jugadores hagan sus movimientos.
+        if (moves >= players.Length && !wait)
+        {
+            StartCoroutine(GoEnemy());
+        }
     }
 }

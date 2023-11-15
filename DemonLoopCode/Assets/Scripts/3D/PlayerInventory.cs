@@ -27,7 +27,7 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Referencia de boton")]
     [SerializeField] GameObject buttonRef3D;
-    [SerializeField] GameObject buttonRef2D;
+    //[SerializeField] GameObject buttonRef2D;
 
     [Header("UI grid de inventario")]
     [SerializeField] GameObject inventoryUI;
@@ -93,22 +93,20 @@ public class PlayerInventory : MonoBehaviour
 
     public GameObject CreateButtonINV3D(ObjectData data, int count)
     {
-        GameObject button = Instantiate(buttonRef3D, inventoryUI.transform.position, Quaternion.identity);
+        GameObject button = Instantiate(buttonRef3D, Vector3.zero, Quaternion.identity);
         button.transform.SetParent(inventoryUI.transform);
-
-        button.GetComponent<Image>().enabled = false;
 
         Button buttonCMP = button.GetComponent<Button>();
         buttonCMP.onClick.AddListener(() => { data.Click(this); });
 
-        button.transform.GetChild(0).GetComponent<Image>().sprite = data.Icon;
-        button.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = data.name + " x" +  count;
+        button.GetComponentInChildren<Image>().sprite = data.Icon;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = data.name + " x" +  count;
 
         return button;
     }
 
     public void EditButtonINV3DText(ObjectStock data)
     {
-        data.ButtonINV3D.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
+        data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
     }
 }

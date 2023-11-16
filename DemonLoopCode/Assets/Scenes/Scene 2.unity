@@ -5914,7 +5914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1846690505}
   speed: 10
-  Jspeed: 10
+  Jspeed: 13
   gravity: -25
   poison: 0
   altitude: 1

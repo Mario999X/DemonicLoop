@@ -53,7 +53,7 @@ public class PlayerMove : MonoBehaviour
         X = Input.GetAxis("Horizontal");
         Z = Input.GetAxis("Vertical");
 
-        // Capacidad de moverse atraves de los ejes X y Z
+        // Capacidad de moverse a través de los ejes X y Z
         Vector3 move = transform.right * X + transform.forward * Z;
         controller.Move(move * speed * Time.deltaTime);
 
@@ -65,13 +65,9 @@ public class PlayerMove : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.SphereCast(spherePosition, radius, -Vector3.up, out hit, 0.1f, layer))
-        {
             this.onFloor = true;
-        }
         else
-        {
             this.onFloor = false;
-        }
 
         if (poison && oneTime == 0)
         {
@@ -79,8 +75,8 @@ public class PlayerMove : MonoBehaviour
             oneTime++;
         }
 
-        // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de título.
-        if (Input.GetKeyDown(KeyCode.Escape)) { SceneManager.Instance.LoadScene(0); }
+        // Prueba para ver que no haya ningún error en el script 'Enter_Battle' al volver a la pantalla de título.
+        if (Input.GetKeyDown(KeyCode.Delete)) { SceneManager.Instance.LoadScene(0); }
     }
 
     private void OnDrawGizmos()

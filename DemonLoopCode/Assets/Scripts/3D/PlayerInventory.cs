@@ -7,18 +7,19 @@ using UnityEngine.UI;
 
 public class ObjectStock
 {
-    private ScriptableObject data;
+    private ObjectData data;
     private GameObject buttonINV3D;
+    private GameObject buttonINV2D;
     private int count = 1;
 
+    public ObjectData Data { get { return data; } }
     public int Count { get { return count; } set { this.count = value; } }
-    public ScriptableObject Data { get { return data; } }
-    public GameObject ButtonINV3D { get { return buttonINV3D; } }
+    public GameObject ButtonINV3D { get { return buttonINV3D; } set { this.buttonINV3D = value; } }
+    public GameObject ButtonINV2D { get { return buttonINV2D; } set { this.buttonINV2D = value; } }
 
-    public ObjectStock(ScriptableObject scriptableObject, GameObject buttonINV3D) 
+    public ObjectStock(ObjectData scriptableObject) 
     {
         this.data = scriptableObject;
-        this.buttonINV3D = buttonINV3D;
     }
 }
 public class PlayerInventory : MonoBehaviour
@@ -27,16 +28,23 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Referencia de boton")]
     [SerializeField] GameObject buttonRef3D;
-    //[SerializeField] GameObject buttonRef2D;
+    [SerializeField] GameObject buttonRef2D;
 
     [Header("UI grid de inventario")]
-    [SerializeField] GameObject inventoryUI;
+    [SerializeField] GameObject inventoryUI3D;
+    [SerializeField] GameObject inventoryUI2D;
+
+    bool inventoryState = false;
     
     Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
+
+    EnterBattle enterBattle;
 
     // Start is called before the first frame update
     void Start()
     {
+        enterBattle = GetComponent<EnterBattle>();
+
         AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject);
 
         foreach (var item in inventory)
@@ -56,57 +64,145 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    // Abre y cierra el inventario.
+    public void OpenCloseInventoyry()
+    {
+        if (!enterBattle.OneTime) // En el caso de no estar en batalla solo genera y destruye los botones del objeto en el inventario del mundo 3D.
+        {
+            if (!inventoryState) // En el caso de abrir inventario este crea los botones.
+            {
+                inventoryUI3D.GetComponentInParent<Canvas>().enabled = true;
+
+                foreach (ObjectStock item in inventory.Values)
+                {
+                    item.ButtonINV3D = CreateButtonINV3D(item);
+                }
+
+                inventoryState = true;
+            }
+            else // En el caso contrario los elimina.
+            {
+                foreach (ObjectStock item in inventory.Values)
+                {
+                    Destroy(item.ButtonINV3D);
+                }
+
+                inventoryUI3D.GetComponentInParent<Canvas>().enabled = false;
+
+                inventoryState = false;
+            }
+        }
+        else // En el caso contrario solo genera los botones en el inventario de la batalla 2D.
+        {
+            if (!inventoryState) // En el caso de abrir inventario este crea los botones.
+            {
+                foreach (ObjectStock item in inventory.Values)
+                {
+                    item.ButtonINV2D = CreateButtonINV2D(item);
+                }
+
+                inventoryState = true;
+            }
+            else // En el caso contrario los elimina.
+            {
+                EliminateINVButtons();
+
+                inventoryState = false;
+            }
+        }
+    }
+
+    // Elimina o disminuye la cantidad de objetos del inventario según la situación.
     public void RemoveObjectFromInventory(string name)
     {
-        if (inventory.ContainsKey(name.ToUpper()))
+        if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
         {
             if (inventory[name.ToUpper()].Count > 1) 
             {
                 Debug.Log("Counter of '" + name.ToUpper() + "' went down");
                 inventory[name.ToUpper()].Count--;
-                EditButtonINV3DText(inventory[name.ToUpper()]);
+
+                if (!enterBattle.OneTime) // En caso de no estar en batalla modifica el texto.
+                    EditButtonINVText(inventory[name.ToUpper()]);
+                else
+                {
+                    EliminateINVButtons();
+                    inventoryState = false;
+                }
             }
             else
             {
                 Debug.Log(name.ToUpper() + " was eliminated from dictionary");
-                Destroy(inventory[name.ToUpper()].ButtonINV3D);
+
+                if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un botón.
+                    Destroy(inventory[name.ToUpper()].ButtonINV3D);
+                else
+                {
+                    EliminateINVButtons();
+                    inventoryState = false;
+                }
+
                 inventory.Remove(name.ToUpper());
             }
         }
     }
 
+    // Añade un objeto al inventario.
     public void AddObjectToInventory(string name, ScriptableObject scriptableObject)
     {
         if (!inventory.ContainsKey(name.ToUpper()))
         {
             Debug.Log("Add object to inventory");
-
-            inventory.Add(name.ToUpper(), new ObjectStock(scriptableObject, CreateButtonINV3D(scriptableObject as ObjectData, 1)));
+            inventory.Add(name.ToUpper(), new ObjectStock(scriptableObject as ObjectData));
         }
         else
         {
             Debug.Log("Object exist. Incrementing count of that object");
             inventory[name.ToUpper()].Count++;
-            EditButtonINV3DText(inventory[name.ToUpper()]);
         }
     }
 
-    public GameObject CreateButtonINV3D(ObjectData data, int count)
+    // Crea y devuelve el botón 2D
+    private GameObject CreateButtonINV3D(ObjectStock stock)
     {
         GameObject button = Instantiate(buttonRef3D, Vector3.zero, Quaternion.identity);
-        button.transform.SetParent(inventoryUI.transform);
+        button.transform.SetParent(inventoryUI3D.transform);
 
         Button buttonCMP = button.GetComponent<Button>();
-        buttonCMP.onClick.AddListener(() => { data.Click(this); });
+        buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
 
-        button.GetComponentInChildren<Image>().sprite = data.Icon;
-        button.GetComponentInChildren<TextMeshProUGUI>().text = data.name + " x" +  count;
+        button.GetComponentInChildren<Image>().sprite = stock.Data.Icon;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
 
         return button;
     }
 
-    public void EditButtonINV3DText(ObjectStock data)
+    // Crea y devuelve el botón 2D.
+    private GameObject CreateButtonINV2D(ObjectStock stock)
     {
-        data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
+        GameObject button = Instantiate(buttonRef2D, Vector3.zero, Quaternion.identity);
+        button.transform.SetParent(inventoryUI2D.transform);
+
+        Button buttonCMP = button.GetComponent<Button>();
+        buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
+
+        button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
+
+        return button;
+    }
+
+    // Edita el texto de los botones del inventario del mundo 3D.
+    private void EditButtonINVText(ObjectStock data)
+    {
+            data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
+    }
+
+    // Elimina los botones del inventario en la batalla 2D.
+    public void EliminateINVButtons()
+    {
+        foreach (ObjectStock stock in inventory.Values)
+        {
+            Destroy(stock.ButtonINV2D);
+        }
     }
 }

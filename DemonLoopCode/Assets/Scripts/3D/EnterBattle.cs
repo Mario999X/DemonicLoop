@@ -44,7 +44,8 @@ public class EnterBattle : MonoBehaviour
         
         if (!oneTime)
         {
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); oneTime = true;
+            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); 
+            oneTime = true;
 
             fight.enabled = true;
 

@@ -14,11 +14,6 @@ public class LibraryMove : MonoBehaviour
     // Daño al tener similitud de tipo respecto ataque y atacante
     private const float SameTypeDamage = 2.5f;
 
-    // En esta clase se realiza el ataque, por lo tanto, es la que avisa a Stats que regule la barra de vida del personaje especifico.
-    public delegate void HealthAndManaManager();
-    public event HealthAndManaManager OnHealthChanged;
-    public event HealthAndManaManager OnManaChanged;
-
     private GameObject character;
     private GameObject target;
 
@@ -58,7 +53,6 @@ public class LibraryMove : MonoBehaviour
         }
 
         ManaManager(attack, character_ST);
-        OnHealthChanged?.Invoke(); // Se avisan a los que estan suscritos a la funcion. Ver Start de la clase Stats.
 
         character = null; target = null;
     }//Fin de Library
@@ -259,8 +253,6 @@ public class LibraryMove : MonoBehaviour
 
     private void ManaManager(AttackData attack, Stats characterStats){
         characterStats.Mana -= attack.ManaCost;
-
-        OnManaChanged?.Invoke();
     }
 
 }

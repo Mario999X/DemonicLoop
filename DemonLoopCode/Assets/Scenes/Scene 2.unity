@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2010,13 +2010,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf325ed29ed6074d8cde863526bda95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatOptionsBT:
-  - {fileID: 1270632324}
-  - {fileID: 1399713008}
-  - {fileID: 1641217105}
   spawnPlayerBT: {fileID: 794086017}
   spawnMoveBT: {fileID: 1749773891}
   spawnEnemyBT: {fileID: 900831686}
+  spawnCombatOptionsBT: {fileID: 7054770}
   buttonRef: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}
   speed: 1500

@@ -29,7 +29,7 @@ public class CombatFlow : MonoBehaviour
     List<CharacterMove> movements = new();
     List<GameObject> enemys = new();
     List<GameObject> playerBT = new();
-    [SerializeField] List<GameObject> combatOptionsBT = new();
+    List<GameObject> combatOptionsBT = new();
     List<GameObject> moveBT = new();
     List<GameObject> enemyBT = new();
 
@@ -37,7 +37,7 @@ public class CombatFlow : MonoBehaviour
     GameObject character = null;
 
     [Header("Components to spawn buttons")]
-    [SerializeField] GameObject spawnPlayerBT, spawnMoveBT, spawnEnemyBT, buttonRef;
+    [SerializeField] GameObject spawnPlayerBT, spawnMoveBT, spawnEnemyBT, spawnCombatOptionsBT, buttonRef;
 
     [Header("Characters speed")]
     [SerializeField] float speed = 50f;
@@ -56,8 +56,17 @@ public class CombatFlow : MonoBehaviour
 
     private void Start()
     {
+        LoadComnbatOptionsButtons();
+        
         library = GetComponent<LibraryMove>();
         moneyPlayer = GetComponent<MoneyPlayer>();
+    }
+
+    private void LoadComnbatOptionsButtons(){
+        foreach(Transform bt in spawnCombatOptionsBT.transform)
+        {
+            combatOptionsBT.Add(bt.gameObject);
+        }
     }
 
     private void GeneratePlayersButtons()

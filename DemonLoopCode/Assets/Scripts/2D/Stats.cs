@@ -23,8 +23,8 @@ public class Stats : MonoBehaviour
 
     [SerializeField] Types type;
 
-    public float Health { get { return health; } set { health = value; } }
-    public float Mana { get { return mana; } set { mana = value; } }
+    public float Health { get { return health; } set { health = value; OnAttackReceived(); } }
+    public float Mana { get { return mana; } set { mana = value; OnManaChanged(); } }
     public float Strenght { get { return strength; } }
     public float PhysicalDefense { get { return physicalDef; } }
     public float MagicAtk { get { return magicAtk; } }
@@ -42,10 +42,6 @@ public class Stats : MonoBehaviour
         barMana = transform.GetChild(1).Find("BarManaFill").GetComponent<Image>();
 
         move = GameObject.Find("System").GetComponent<LibraryMove>();
-
-        move.OnHealthChanged += OnAttackReceived;
-
-        move.OnManaChanged += OnManaChanged;
     }
 
     private void FixedUpdate()

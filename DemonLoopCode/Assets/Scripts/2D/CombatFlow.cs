@@ -57,13 +57,14 @@ public class CombatFlow : MonoBehaviour
     private void Start()
     {
         LoadComnbatOptionsButtons();
-        
+
         library = GetComponent<LibraryMove>();
         moneyPlayer = GetComponent<MoneyPlayer>();
     }
 
-    private void LoadComnbatOptionsButtons(){
-        foreach(Transform bt in spawnCombatOptionsBT.transform)
+    private void LoadComnbatOptionsButtons()
+    {
+        foreach (Transform bt in spawnCombatOptionsBT.transform)
         {
             combatOptionsBT.Add(bt.gameObject);
         }
@@ -155,11 +156,12 @@ public class CombatFlow : MonoBehaviour
 
 
     // Funcion para generar las opciones del jugador en combate.
-    public void GenerateOptionsButtons(GameObject player){
+    public void GenerateOptionsButtons(GameObject player)
+    {
 
         DesactivateAllButtons();
 
-        if(!wait)
+        if (!wait)
         {
             character = player;
 
@@ -192,7 +194,8 @@ public class CombatFlow : MonoBehaviour
 
                 // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
                 var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
-                if(!isManaEnough){
+                if (!isManaEnough)
+                {
                     bt.GetComponent<Button>().interactable = false;
                 }
             }
@@ -212,10 +215,9 @@ public class CombatFlow : MonoBehaviour
             // Ataca o cura AOE, segun la segunda comprobacion
             if (!targetsToLoad)
             {
-                GoPlayerMultiTarget(character, enemys, movement);
-
+                GoPlayerMultiTarget(character, enemys, movement, targetsToLoad);
             }
-            else GoPlayerMultiTarget(character, players.ToList(), movement);
+            else GoPlayerMultiTarget(character, players.ToList(), movement, targetsToLoad);
         }
         else
         {
@@ -264,7 +266,7 @@ public class CombatFlow : MonoBehaviour
         });
     }//Fin de DestroyButton
 
-    private void GoPlayerMultiTarget(GameObject character, List<GameObject> targets, string movement)
+    private void GoPlayerMultiTarget(GameObject character, List<GameObject> targets, string movement, bool targetsAliesOrEnemies)
     {
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
@@ -282,6 +284,11 @@ public class CombatFlow : MonoBehaviour
         wait = true;
 
         targets.ForEach(t => { library.Library(character, t, movement); });
+
+        foreach (GameObject t in targets.ToArray())
+        {
+            StartCoroutine(CharacterDead(t, !targetsAliesOrEnemies));
+        }
 
         moves++;
 
@@ -413,7 +420,7 @@ public class CombatFlow : MonoBehaviour
     private IEnumerator CharacterDead(GameObject target, bool enemy)
     {
         Stats targetST = target.GetComponent<Stats>();
-        
+
         if (targetST.Health == 0)
         {
             Debug.Log(target.name + " is dead" + " | enemigo: " + enemy);
@@ -484,7 +491,8 @@ public class CombatFlow : MonoBehaviour
     }
 
     // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
-    private void DesactivateAllButtons(){
+    private void DesactivateAllButtons()
+    {
 
         moveBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones movimiento.
 
@@ -494,7 +502,8 @@ public class CombatFlow : MonoBehaviour
     }
 
     // Funcion para determinar/empezar el turno enemigo.
-    private void CheckIfIsEnemyTurn(){
+    private void CheckIfIsEnemyTurn()
+    {
 
         // Espera a que todos los jugadores hagan sus movimientos.
         if (moves >= players.Length && !wait)

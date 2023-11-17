@@ -14,6 +14,8 @@ public class LibraryMove : MonoBehaviour
     // Daño al tener similitud de tipo respecto ataque y atacante
     private const float SameTypeDamage = 2.5f;
 
+    private const float MultiplicativeCritical = 2f;
+
     private GameObject character;
     private GameObject target;
 
@@ -246,7 +248,7 @@ public class LibraryMove : MonoBehaviour
     {
         float damage = NormalEffective;
 
-        if(Random.Range(0, 100f) < CriticalStat) damage = 2f;
+        if(Random.Range(0, 100f) < CriticalStat) damage = MultiplicativeCritical;
 
         return damage;
     }

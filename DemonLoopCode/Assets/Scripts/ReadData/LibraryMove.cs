@@ -72,7 +72,7 @@ public class LibraryMove : MonoBehaviour
 
             attackCache.Add(atkName, @object as AttackData);
 
-            Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
+            //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
         }
     }//Fin de LoadAttacks
 

@@ -26,6 +26,10 @@ public class CharacterMove
 
 public class CombatFlow : MonoBehaviour
 {
+
+    private int actualTurn = 1;
+    public int ActualTurn { get { return actualTurn; } set { actualTurn = value; } }
+
     List<CharacterMove> movements = new();
     List<GameObject> enemys = new();
     List<GameObject> playerBT = new();
@@ -56,13 +60,13 @@ public class CombatFlow : MonoBehaviour
 
     private void Start()
     {
-        LoadComnbatOptionsButtons();
+        LoadCombatOptionsButtons();
 
         library = GetComponent<LibraryMove>();
         moneyPlayer = GetComponent<MoneyPlayer>();
     }
 
-    private void LoadComnbatOptionsButtons()
+    private void LoadCombatOptionsButtons()
     {
         foreach (Transform bt in spawnCombatOptionsBT.transform)
         {
@@ -72,6 +76,7 @@ public class CombatFlow : MonoBehaviour
 
     private void GeneratePlayersButtons()
     {
+        Debug.Log("Turno Actual: " + ActualTurn);
 
         if (playerBT.Count > 0)
         {
@@ -412,6 +417,9 @@ public class CombatFlow : MonoBehaviour
         moves = 0;
 
         wait = false;
+
+        ActualTurn++;
+        Debug.Log("Turno Actual: " + ActualTurn);
 
         yield return null;
     }//Fin de GoEnemy

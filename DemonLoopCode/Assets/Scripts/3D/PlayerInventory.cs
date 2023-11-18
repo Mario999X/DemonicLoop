@@ -1,9 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ObjectStock
 {
@@ -17,14 +23,14 @@ public class ObjectStock
     public GameObject ButtonINV3D { get { return buttonINV3D; } set { this.buttonINV3D = value; } }
     public GameObject ButtonINV2D { get { return buttonINV2D; } set { this.buttonINV2D = value; } }
 
-    public ObjectStock(ObjectData scriptableObject) 
+    public ObjectStock(ObjectData scriptableObject)
     {
         this.data = scriptableObject;
     }
 }
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] ScriptableObject m_ScriptableObject;
+    //[SerializeField] ScriptableObject m_ScriptableObject;
 
     [Header("Referencia de boton")]
     [SerializeField] GameObject buttonRef3D;
@@ -33,35 +39,38 @@ public class PlayerInventory : MonoBehaviour
     [Header("UI grid de inventario")]
     [SerializeField] GameObject inventoryUI3D;
     [SerializeField] GameObject inventoryUI2D;
+    [SerializeField] List<ScriptableObject> listScriptableObject= new();
+
 
     bool inventoryState = false;
-    
+
     Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
 
     EnterBattle enterBattle;
 
+    GameObject character;
+    bool inventarioUsado = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        //LoadObject();
+
         enterBattle = GetComponent<EnterBattle>();
 
-        AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject);
+        foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
+        {
+            //Se van añadir todos los Objectos que esten en nuestra lista
+            AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject);
+        }
 
         foreach (var item in inventory)
         {
             Debug.Log(item.Key);
             Debug.Log(item.Value.Data);
-            Debug.Log(item.Value.Count);
+            Debug.Log("item.Value.Count " + item.Value.Count);
         }
 
-        AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject);
-
-        foreach (var item in inventory)
-        {
-            Debug.Log(item.Key);
-            Debug.Log(item.Value.Data);
-            Debug.Log(item.Value.Count);
-        }
     }
 
     // Abre y cierra el inventario.
@@ -102,6 +111,7 @@ public class PlayerInventory : MonoBehaviour
                 }
 
                 inventoryState = true;
+
             }
             else // En el caso contrario los elimina.
             {
@@ -117,8 +127,10 @@ public class PlayerInventory : MonoBehaviour
     {
         if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
         {
-            if (inventory[name.ToUpper()].Count > 1) 
+            UserObject(CheckObject(name), character);
+            if (inventory[name.ToUpper()].Count > 1)
             {
+                
                 Debug.Log("Counter of '" + name.ToUpper() + "' went down");
                 inventory[name.ToUpper()].Count--;
 
@@ -187,14 +199,16 @@ public class PlayerInventory : MonoBehaviour
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
 
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
-
+        
         return button;
     }
 
     // Edita el texto de los botones del inventario del mundo 3D.
     private void EditButtonINVText(ObjectStock data)
     {
-            data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
+        data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
+
+        
     }
 
     // Elimina los botones del inventario en la batalla 2D.
@@ -205,4 +219,87 @@ public class PlayerInventory : MonoBehaviour
             Destroy(stock.ButtonINV2D);
         }
     }
+
+
+    // Carga inicial de objectos a la "cache"
+    private void LoadObject()
+    {
+        string[] objects = AssetDatabase.FindAssets("OBJ_");
+
+        foreach (string obj in objects)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(obj);
+
+            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<ObjectData>(path);
+
+            var objName = @object.name.Substring(4, @object.name.Length - 4).Replace("^", " ").ToUpper();
+            Debug.Log("objName " + @object.name);
+            inventory.Add(objName, new ObjectStock(@object as ObjectData));
+           
+        }
+    }//Fin de LoadObject
+
+
+
+    //Se llama al objecto que queremos usar, tenemos que pasar su nombre
+    public ObjectData CheckObject(string objects)
+    {
+        ObjectData objectData = null;
+
+        if (inventory.ContainsKey(objects.ToUpper()))
+        {
+            objectData = inventory[objects.ToUpper()].Data;
+            Debug.Log("objectData "+ objectData.name);
+        }
+        else
+        {
+            Debug.Log("OBJETO NO ENCONTRADO");
+
+        }
+        return objectData;
+    }//Fin de CheckObject
+
+    //Obtenemos el GameObject del personaje que uso inventario
+    public void CharacterPlayer(GameObject characterST)
+    {
+        this.character = characterST;
+
+    }
+
+    public bool InventaryUsing()
+    {
+
+        return this.inventarioUsado;
+    }
+    public ObjectData UserObject(ObjectData CheckObject, GameObject @character)
+    {
+        
+        Debug.Log("@character "+ @character);
+        Debug.Log("objectType " + CheckObject.ObjectType);
+        Debug.Log("objectType " + CheckObject.name);
+
+        Stats player = @character.GetComponent<Stats>();
+        Debug.Log("player "+ player.name);
+        switch (CheckObject.ObjectType)
+        {
+            case ObjectTypes.Health:
+                Debug.Log("Pocion de Cura");
+                Debug.Log("player.Health "+ player.Health);
+                Debug.Log("CheckObject.BaseNum " + CheckObject.BaseNum);
+                player.Health += CheckObject.BaseNum;
+                break;
+
+            case ObjectTypes.Mana:
+                Debug.Log("Pocion de Mana");
+                Debug.Log("player.Health " + player.Health);
+                Debug.Log("CheckObject.BaseNum " + CheckObject.BaseNum);
+                player.Mana += CheckObject.BaseNum;
+                break;
+        }
+
+        this.inventarioUsado = true;
+        return CheckObject;
+    }
+
+    
 }

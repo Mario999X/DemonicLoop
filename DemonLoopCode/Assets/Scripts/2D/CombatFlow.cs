@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using static UnityEngine.GraphicsBuffer;
 
 public class CharacterMove
 {
@@ -56,7 +57,11 @@ public class CombatFlow : MonoBehaviour
 
     private MoneyPlayer moneyPlayer;
 
+    private PlayerInventory playerInventory;
+
     private float earnedMoney = 2f;
+
+    bool inventarioUsado = false;
 
     private void Start()
     {
@@ -64,6 +69,8 @@ public class CombatFlow : MonoBehaviour
 
         library = GetComponent<LibraryMove>();
         moneyPlayer = GetComponent<MoneyPlayer>();
+
+        playerInventory = GetComponent<PlayerInventory>();
     }
 
     private void LoadCombatOptionsButtons()
@@ -172,7 +179,12 @@ public class CombatFlow : MonoBehaviour
 
             combatOptionsBT.ForEach(bt => bt.SetActive(true));
 
+
+            Debug.Log("Generador de botones character actual "+character);
+            playerInventory.CharacterPlayer(character);
+
         }
+        
     }
 
     // Selección de jugador.
@@ -252,6 +264,7 @@ public class CombatFlow : MonoBehaviour
             StartCoroutine(GoPlayerSingleTarget(character, enemy, movement));
         }
     }//Fin de EnemyButton
+
 
     // Aniade a la lista de movimientos los movimientos.
     public void AddMovement(GameObject character, GameObject target, string movement)
@@ -498,6 +511,41 @@ public class CombatFlow : MonoBehaviour
         CheckIfIsEnemyTurn();
     }
 
+
+    // Funcion para el inventario
+    //*/*******Recordatorio probar a meterlo en el PlayerInventory 
+    public void InventoryTurn(string nameObject)
+    {
+
+        Debug.Log("Entro en InventoryTurn");
+        wait = true;
+
+        // Impide que vuelva a ser selecionado el mismo personaje.
+        playerBT.ForEach(bt =>
+        {
+            // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
+            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Substring(1, character.name.Length - 1))
+            {
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
+                bt.GetComponent<Button>().enabled = false;
+            }
+        });
+        
+        DesactivateAllButtons();
+
+        //library.PassTurn(character, movement.ToUpper());
+        playerInventory.CheckObject(nameObject);
+
+
+        moves++;
+
+        this.character = null; this.movement = null;
+
+        wait = false;
+
+        CheckIfIsEnemyTurn();
+    }
+
     // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
     private void DesactivateAllButtons()
     {
@@ -519,4 +567,6 @@ public class CombatFlow : MonoBehaviour
             StartCoroutine(GoEnemy());
         }
     }
+
+ 
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2053,13 +2053,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b9ab4351d9a9e4e95ac9c196046239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ScriptableObject: {fileID: 11400000, guid: 83a33c6375454ed4da588515351dcc90, type: 2}
   buttonRef3D: {fileID: 4822034146755059164, guid: 90fb60894c264874ba34384bd1e2f751,
     type: 3}
   buttonRef2D: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}
   inventoryUI3D: {fileID: 509042443}
   inventoryUI2D: {fileID: 1749773891}
+  listScriptableObject:
+  - {fileID: 11400000, guid: 2d815b0c4af9e68478776e0573aa7b40, type: 2}
+  - {fileID: 11400000, guid: 4908eeb3ff4c516459fd82d778cdb8ea, type: 2}
+  - {fileID: 11400000, guid: f0471b22ae29d5e45a88619f62681891, type: 2}
+  - {fileID: 11400000, guid: 4908eeb3ff4c516459fd82d778cdb8ea, type: 2}
 --- !u!114 &589541448
 MonoBehaviour:
   m_ObjectHideFlags: 0

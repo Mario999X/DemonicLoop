@@ -14,16 +14,20 @@ public class LibraryMove : MonoBehaviour
     // Daño al tener similitud de tipo respecto ataque y atacante
     private const float SameTypeDamage = 2.5f;
 
-    private const float MultiplicativeCritical = 2f;
+    private const float CriticalDamageMultiplier = 2f;
 
     private GameObject character;
     private GameObject target;
 
     private Dictionary<string, AttackData> attackCache = new();
 
+    private FloatingTextCombat floatingText;
+
     private void Start()
     {
         LoadAttacks();
+
+        floatingText = GetComponent<FloatingTextCombat>();
     }
 
     // Función que realiza un movimiento a un solo objetivo.
@@ -42,16 +46,14 @@ public class LibraryMove : MonoBehaviour
         if (!healOrAttack)
         {
             float damage = DamageFull(target_ST, character_ST, attack);
-
-            if (damage <= 0)
-                target_ST.Health -= 1;
-
-            else
-                target_ST.Health -= damage;
+            
+            target_ST.Health -= damage;
         }
         else
         {
             target_ST.Health += attack.BaseDamage;
+
+            floatingText.ShowFloatingText(target, attack.BaseDamage, Color.green);
         }
 
         ManaManager(attack, character_ST);
@@ -173,6 +175,14 @@ public class LibraryMove : MonoBehaviour
         damage = (damageType * damage) + (damageTypeEnhancer * damage);
         damage *= criticalDamage;
 
+        if(damage <= 0) damage = 1;
+
+        if(criticalDamage == CriticalDamageMultiplier)
+        {
+            floatingText.ShowFloatingText(target, damage, Color.red);
+
+        } else floatingText.ShowFloatingText(target, damage, Color.white);
+
         Debug.Log(character_ST.name + " ataca a " +  target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
         return damage;
     }//Fin de DamageFull
@@ -248,13 +258,16 @@ public class LibraryMove : MonoBehaviour
     {
         float damage = NormalEffective;
 
-        if(Random.Range(0, 100f) < CriticalStat) damage = MultiplicativeCritical;
+        if(Random.Range(0, 100f) < CriticalStat) damage = CriticalDamageMultiplier;
 
         return damage;
     }
 
     private void ManaManager(AttackData attack, Stats characterStats){
         characterStats.Mana -= attack.ManaCost;
+
+        // Para hacerlo más facil de ver visualmente, los ataques fisicos cuentan con un -, asi esos se vuelven positivos y los "positivos reales" se muestran negativos.
+        floatingText.ShowFloatingText(characterStats.gameObject, -attack.ManaCost, Color.blue);
     }
 
 }

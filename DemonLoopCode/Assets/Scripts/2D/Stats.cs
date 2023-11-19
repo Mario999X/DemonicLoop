@@ -10,6 +10,8 @@ public class Stats : MonoBehaviour
 
     private Image barMana;
 
+    private GameObject charFloatingTextSpace;
+
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float mana;
@@ -31,6 +33,8 @@ public class Stats : MonoBehaviour
     public float MagicDef { get { return magicDef; } }
     public float CriticalChance { get { return criticalChance; } }
     public List<string> ListAtk { get { return listAtk; } set { listAtk = value; } }
+    public GameObject CharFloatingTextSpace { get { return charFloatingTextSpace; } }
+
     public Types Type { get { return type; } }
 
     void Start()
@@ -42,6 +46,8 @@ public class Stats : MonoBehaviour
         barMana = transform.GetChild(1).Find("BarManaFill").GetComponent<Image>();
 
         move = GameObject.Find("System").GetComponent<LibraryMove>();
+
+        charFloatingTextSpace = transform.GetChild(2).gameObject;
     }
 
     private void FixedUpdate()

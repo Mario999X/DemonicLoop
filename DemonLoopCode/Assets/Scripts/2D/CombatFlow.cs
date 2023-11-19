@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using static UnityEngine.GraphicsBuffer;
 
 public class CharacterMove
 {
@@ -61,7 +60,8 @@ public class CombatFlow : MonoBehaviour
 
     private float earnedMoney = 2f;
 
-    bool inventarioUsado = false;
+    // TODO: Variable sin usar del inventario
+    //bool inventarioUsado = false;
 
     private void Start()
     {
@@ -560,7 +560,6 @@ public class CombatFlow : MonoBehaviour
     // Funcion para determinar/empezar el turno enemigo.
     private void CheckIfIsEnemyTurn()
     {
-
         // Espera a que todos los jugadores hagan sus movimientos.
         if (moves >= players.Length && !wait)
         {

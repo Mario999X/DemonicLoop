@@ -13,7 +13,6 @@ public class EnemyMechanics : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] GameObject puntoA;
     [SerializeField] GameObject puntoB;
-    
 
     bool change = false;
     bool attack = false;

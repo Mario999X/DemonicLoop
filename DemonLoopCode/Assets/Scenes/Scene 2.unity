@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4783,6 +4783,7 @@ GameObject:
   - component: {fileID: 1356051426}
   - component: {fileID: 1356051429}
   - component: {fileID: 1356051428}
+  - component: {fileID: 1356051430}
   m_Layer: 3
   m_Name: Eyes
   m_TagString: Untagged
@@ -4855,6 +4856,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356051425}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1356051430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356051425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe032fc2a9cd66c47997072ed074908d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 10
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1385089685
 GameObject:
   m_ObjectHideFlags: 0

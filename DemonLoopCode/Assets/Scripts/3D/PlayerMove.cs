@@ -11,9 +11,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float Jspeed = 10f;
     [SerializeField] private float gravity = 9.82f;
-    private float X, Z;
     [SerializeField] bool poison = false;
-
+    private float X, Z;
     int oneTime = 0;
 
     [Header("Check ground")]
@@ -73,6 +72,18 @@ public class PlayerMove : MonoBehaviour
         {
             StartCoroutine(states.StateEffectGroup("Aliados", "poison"));
             oneTime++;
+        }
+
+        if (X > 0 && Z > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, -45, 0); }
+        else if (X < 0 && Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 135, 0); }
+        else if (X < 0 && Z > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, -135, 0); }
+        else if (X > 0 && Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 45, 0); }
+        else
+        {
+            if (X > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0); }
+            if (X < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 180, 0); }
+            if (Z > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, -90, 0); }
+            if (Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 90, 0); }
         }
 
         // Prueba para ver que no haya ningún error en el script 'Enter_Battle' al volver a la pantalla de título.

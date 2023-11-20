@@ -259,14 +259,4 @@ public class PlayerInventory : MonoBehaviour
         return objectData;
     }//Fin de CheckObject
 
-    //Obtenemos el GameObject del personaje que uso inventario
-    public void CharacterPlayer(GameObject characterST)
-    {
-        this.character = characterST;
-
-    }
-
-
-
-
 }

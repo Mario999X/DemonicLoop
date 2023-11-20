@@ -15,7 +15,6 @@ public class ObjectData : ScriptableObject
     [SerializeField] private float baseNum;
 
     CombatFlow combatFlow;
-    GameObject character;
     EnterBattle enterBattle;
     public Sprite Icon { get { return icon; } }
     public string Description { get { return description; } }
@@ -28,14 +27,10 @@ public class ObjectData : ScriptableObject
     {
         enterBattle = GameObject.Find("System").GetComponent<EnterBattle>();
         combatFlow = GameObject.Find("System").GetComponent<CombatFlow>();
-        Debug.Log(name + " was clicked");
-        /*
-            Inserte la función que debe realizar el objeto aquí.
-        */
 
         if (enterBattle.OneTime)
         {
-            UserObject(this, combatFlow.Character);
+            UserObject(combatFlow.Character);
         }
 
         GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
@@ -44,31 +39,19 @@ public class ObjectData : ScriptableObject
 
     }
 
-    public ObjectData UserObject(ObjectData CheckObject, GameObject @character)
+    public void UserObject(GameObject @character)
     {
-
-        Debug.Log("@character " + @character);
-        Debug.Log("objectType " + CheckObject.ObjectType);
-        Debug.Log("objectType " + CheckObject.name);
-
         Stats player = @character.GetComponent<Stats>();
-        Debug.Log("player " + player.name);
-        switch (CheckObject.ObjectType)
+        switch (ObjectType)
         {
             case ObjectTypes.Health:
-                Debug.Log("Pocion de Cura");
-                Debug.Log("player.Health " + player.Health);
-                Debug.Log("CheckObject.BaseNum " + CheckObject.BaseNum);
-                player.Health += CheckObject.BaseNum;
+                //Debug.Log("Pocion de Cura");
+                player.Health += BaseNum;
                 break;
             case ObjectTypes.Mana:
-                Debug.Log("Pocion de Mana");
-                Debug.Log("player.Health " + player.Health);
-                Debug.Log("CheckObject.BaseNum " + CheckObject.BaseNum);
-                player.Mana += CheckObject.BaseNum;
+                //Debug.Log("Pocion de Mana");
+                player.Mana += BaseNum;
                 break;
         }
-
-        return CheckObject;
-    }
+    }//Fin de UserObject
 }

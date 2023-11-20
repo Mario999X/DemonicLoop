@@ -39,7 +39,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("UI grid de inventario")]
     [SerializeField] GameObject inventoryUI3D;
     [SerializeField] GameObject inventoryUI2D;
-    [SerializeField] List<ScriptableObject> listScriptableObject= new();
+    [SerializeField] List<ScriptableObject> listScriptableObject = new();
 
 
     bool inventoryState = false;
@@ -127,10 +127,10 @@ public class PlayerInventory : MonoBehaviour
     {
         if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
         {
-            UserObject(CheckObject(name), character);
+
             if (inventory[name.ToUpper()].Count > 1)
             {
-                
+
                 Debug.Log("Counter of '" + name.ToUpper() + "' went down");
                 inventory[name.ToUpper()].Count--;
 
@@ -199,7 +199,7 @@ public class PlayerInventory : MonoBehaviour
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
 
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
-        
+
         return button;
     }
 
@@ -208,7 +208,7 @@ public class PlayerInventory : MonoBehaviour
     {
         data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
 
-        
+
     }
 
     // Elimina los botones del inventario en la batalla 2D.
@@ -235,7 +235,7 @@ public class PlayerInventory : MonoBehaviour
             var objName = @object.name.Substring(4, @object.name.Length - 4).Replace("^", " ").ToUpper();
             Debug.Log("objName " + @object.name);
             inventory.Add(objName, new ObjectStock(@object as ObjectData));
-           
+
         }
     }//Fin de LoadObject
 
@@ -249,7 +249,7 @@ public class PlayerInventory : MonoBehaviour
         if (inventory.ContainsKey(objects.ToUpper()))
         {
             objectData = inventory[objects.ToUpper()].Data;
-            Debug.Log("objectData "+ objectData.name);
+            Debug.Log("objectData " + objectData.name);
         }
         else
         {
@@ -266,40 +266,7 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    public bool InventaryUsing()
-    {
 
-        return this.inventarioUsado;
-    }
-    public ObjectData UserObject(ObjectData CheckObject, GameObject @character)
-    {
-        
-        Debug.Log("@character "+ @character);
-        Debug.Log("objectType " + CheckObject.ObjectType);
-        Debug.Log("objectType " + CheckObject.name);
 
-        Stats player = @character.GetComponent<Stats>();
-        Debug.Log("player "+ player.name);
-        switch (CheckObject.ObjectType)
-        {
-            case ObjectTypes.Health:
-                Debug.Log("Pocion de Cura");
-                Debug.Log("player.Health "+ player.Health);
-                Debug.Log("CheckObject.BaseNum " + CheckObject.BaseNum);
-                player.Health += CheckObject.BaseNum;
-                break;
 
-            case ObjectTypes.Mana:
-                Debug.Log("Pocion de Mana");
-                Debug.Log("player.Health " + player.Health);
-                Debug.Log("CheckObject.BaseNum " + CheckObject.BaseNum);
-                player.Mana += CheckObject.BaseNum;
-                break;
-        }
-
-        this.inventarioUsado = true;
-        return CheckObject;
-    }
-
-    
 }

@@ -39,6 +39,7 @@ public class CombatFlow : MonoBehaviour
 
     GameObject[] players;
     GameObject character = null;
+    public GameObject Character { get { return character; } }
 
     [Header("Components to spawn buttons")]
     [SerializeField] GameObject spawnPlayerBT, spawnMoveBT, spawnEnemyBT, spawnCombatOptionsBT, buttonRef;
@@ -180,11 +181,13 @@ public class CombatFlow : MonoBehaviour
             combatOptionsBT.ForEach(bt => bt.SetActive(true));
 
 
-            Debug.Log("Generador de botones character actual "+character);
+            Debug.Log("Generador de botones character actual " + character);
             playerInventory.CharacterPlayer(character);
 
+            //Hacer una funcion que si devuelve un true es que ya ha usado el inventario
+
         }
-        
+
     }
 
     // Selección de jugador.
@@ -514,11 +517,14 @@ public class CombatFlow : MonoBehaviour
 
     // Funcion para el inventario
     //*/*******Recordatorio probar a meterlo en el PlayerInventory 
-    public void InventoryTurn(string nameObject)
+    public void InventoryTurn()
     {
 
         Debug.Log("Entro en InventoryTurn");
+
         wait = true;
+
+
 
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
@@ -530,11 +536,8 @@ public class CombatFlow : MonoBehaviour
                 bt.GetComponent<Button>().enabled = false;
             }
         });
-        
-        DesactivateAllButtons();
 
-        //library.PassTurn(character, movement.ToUpper());
-        playerInventory.CheckObject(nameObject);
+        DesactivateAllButtons();
 
 
         moves++;
@@ -567,5 +570,5 @@ public class CombatFlow : MonoBehaviour
         }
     }
 
- 
+
 }

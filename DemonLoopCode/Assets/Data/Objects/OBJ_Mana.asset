@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OBJ_Mana
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  description: Pocion de Mana
+  description: Pocion de Mana 25
   objectType: 1
-  baseNum: 1
+  baseNum: 25

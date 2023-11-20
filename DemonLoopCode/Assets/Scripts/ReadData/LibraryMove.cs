@@ -55,8 +55,7 @@ public class LibraryMove : MonoBehaviour
 
             floatingText.ShowFloatingText(target, attack.BaseDamage, Color.green);
         }
-
-        ManaManager(attack, character_ST);
+        if (attack.ManaCost!=0) ManaManager(attack, character_ST);
 
         character = null; target = null;
     }//Fin de Library

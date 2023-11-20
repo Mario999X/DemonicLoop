@@ -171,7 +171,6 @@ public class CombatFlow : MonoBehaviour
     // Funcion para generar las opciones del jugador en combate.
     public void GenerateOptionsButtons(GameObject player)
     {
-
         DesactivateAllButtons();
 
         if (!wait)
@@ -179,13 +178,6 @@ public class CombatFlow : MonoBehaviour
             character = player;
 
             combatOptionsBT.ForEach(bt => bt.SetActive(true));
-
-
-            Debug.Log("Generador de botones character actual " + character);
-            playerInventory.CharacterPlayer(character);
-
-            //Hacer una funcion que si devuelve un true es que ya ha usado el inventario
-
         }
 
     }
@@ -515,16 +507,10 @@ public class CombatFlow : MonoBehaviour
     }
 
 
-    // Funcion para el inventario
-    //*/*******Recordatorio probar a meterlo en el PlayerInventory 
+    // Funcion para el inventario en el combate 2D
     public void InventoryTurn()
     {
-
-        Debug.Log("Entro en InventoryTurn");
-
         wait = true;
-
-
 
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
@@ -538,7 +524,6 @@ public class CombatFlow : MonoBehaviour
         });
 
         DesactivateAllButtons();
-
 
         moves++;
 

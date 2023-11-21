@@ -629,6 +629,7 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   criticalChance: 25
+  moneyDrop: 1.1
   listAtk:
   - Punch
   - Fire Ball
@@ -705,6 +706,7 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   criticalChance: 10
+  moneyDrop: 2
   listAtk: []
   type: 1
 --- !u!222 &150508782
@@ -931,6 +933,7 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   criticalChance: 10
+  moneyDrop: 50
   listAtk: []
   type: 2
 --- !u!222 &327283063
@@ -1941,6 +1944,7 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   criticalChance: 35
+  moneyDrop: 1.1
   listAtk:
   - Ice Ray
   - Punch
@@ -3221,6 +3225,7 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   criticalChance: 30
+  moneyDrop: 1.1
   listAtk:
   - Fire Ball
   - Heal

@@ -459,7 +459,7 @@ public class CombatFlow : MonoBehaviour
                 enemys.Remove(target);
 
                 //Cuando el enemigo muera nos dara una cantidad X de dinero
-                moneyPlayer.Money += earnedMoney;
+                moneyPlayer.Money += targetST.MoneyDrop;
 
             }
             else

@@ -17,4 +17,7 @@ MonoBehaviour:
   magicAttack: 0
   isAoeAttack: 0
   manaCost: -20
+  generateAState: 2
+  stateAsociated: {fileID: 11400000, guid: ac1f8b668c0d0264e8029f8d9fde2681, type: 2}
+  probabilityOfState: 10
   type: 2

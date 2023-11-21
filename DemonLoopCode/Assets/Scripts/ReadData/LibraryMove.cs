@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class LibraryMove : MonoBehaviour
 
     private FloatingTextCombat floatingText;
 
+
     private void Start()
     {
         LoadAttacks();
@@ -30,8 +32,9 @@ public class LibraryMove : MonoBehaviour
         floatingText = GetComponent<FloatingTextCombat>();
     }
 
+
     // Función que realiza un movimiento a un solo objetivo.
-    public void Library(GameObject character, GameObject target, string movement)
+    public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary)
     {
         this.character = character;
         this.target = target;
@@ -48,6 +51,8 @@ public class LibraryMove : MonoBehaviour
             float damage = DamageFull(target_ST, character_ST, attack);
             
             target_ST.Health -= damage;
+
+            StartCoroutine(StateActions(attack, target, statesLibrary));
         }
         else
         {
@@ -55,10 +60,12 @@ public class LibraryMove : MonoBehaviour
 
             floatingText.ShowFloatingText(target, attack.BaseDamage, Color.green);
         }
-        if (attack.ManaCost!=0) ManaManager(attack, character_ST);
+
+        ManaManager(attack, character_ST);
 
         character = null; target = null;
     }//Fin de Library
+
 
     // Carga inicial de ataques a la "cache"
     private void LoadAttacks()
@@ -78,6 +85,7 @@ public class LibraryMove : MonoBehaviour
             //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
         }
     }//Fin de LoadAttacks
+
 
     // Se llama para recibir la clase base de ataques. Se obtiene su informacion esencial.
     private AttackData CheckAttack(string movement)
@@ -262,12 +270,27 @@ public class LibraryMove : MonoBehaviour
         return damage;
     }
 
+    // Funcion para ejecutar las diferentes acciones respecto a los estados.
+    private IEnumerator StateActions(AttackData attack, GameObject targetToApplyState, LibraryStates statesLibrary)
+    {
+        switch(attack.GenerateAState)
+        {
+            case ActionStates.INFLICT:
+                if(Random.Range(0,100) < attack.ProbabilityOfState) StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
+
+            break;
+        }
+
+        yield return new WaitForSeconds(0.001f);
+        
+    }
+
     private void ManaManager(AttackData attack, Stats characterStats){
         characterStats.Mana -= attack.ManaCost;
 
         // Para hacerlo más facil de ver visualmente, los ataques fisicos cuentan con un -, asi esos se vuelven positivos y los "positivos reales" se muestran negativos.
         floatingText.ShowFloatingText(characterStats.gameObject, -attack.ManaCost, Color.blue);
     }
+    
 
 }
-

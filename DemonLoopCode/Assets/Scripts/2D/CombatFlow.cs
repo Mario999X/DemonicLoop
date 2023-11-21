@@ -185,8 +185,10 @@ public class CombatFlow : MonoBehaviour
     // Selección de jugador.
     public void PlayerButtonAttacks()
     {
+
         if (!wait)
         {
+            playerInventory.EliminateINVButtons();
             foreach (GameObject moveBT in moveBT)
             {
                 Destroy(moveBT);
@@ -510,8 +512,15 @@ public class CombatFlow : MonoBehaviour
     // Funcion para el inventario en el combate 2D
     public void InventoryTurn()
     {
-        wait = true;
+        if (moveBT.Count > 0)
+        {
+            moveBT.ForEach(bt => Destroy(bt));
+            moveBT.Clear();
 
+        }
+
+        wait = true;
+        
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
         {

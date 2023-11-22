@@ -7,6 +7,10 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] float distance = 10f;
     [SerializeField] LayerMask layer;
 
+    bool click = false;
+
+    public bool Click { set { this.click = value; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +22,18 @@ public class PlayerInteract : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.right, out hit, distance, layer))
+        if (Physics.Raycast(transform.position, transform.right, out hit, distance, layer) && click)
         {
             Debug.DrawLine(transform.position, hit.point, Color.green);
+            PlayerInventory inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
+
+            switch (hit.transform.name)
+            {
+                case "Chest":
+                    Content content = hit.transform.GetComponent<ChestContent>().chest();
+                    inventory.AddObjectToInventory(content.Data.name, content.Data, content.Count);
+                    break;
+            }
         }
         else
         {

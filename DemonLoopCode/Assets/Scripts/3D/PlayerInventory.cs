@@ -105,8 +105,9 @@ public class PlayerInventory : MonoBehaviour
                 foreach (ObjectStock item in inventory.Values)
                 {
                     item.ButtonINV2D = CreateButtonINV2D(item);
+                    
                 }
-
+                
                 inventoryState = true;
 
             }
@@ -194,9 +195,11 @@ public class PlayerInventory : MonoBehaviour
 
         Button buttonCMP = button.GetComponent<Button>();
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
-
+        Debug.Log("buttonCMP "+ buttonCMP.name);
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
 
+       
+        
         return button;
     }
 

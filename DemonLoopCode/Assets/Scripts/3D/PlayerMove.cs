@@ -38,11 +38,11 @@ public class PlayerMove : MonoBehaviour
     public bool OnFloor { get { return onFloor; } }
     public Vector3 SpeedV { get { return speedV; } set { this.speedV = value; } }
 
-    StatesLibrary states;
+    LibraryStates states;
 
     void Start()
     {
-        states = GameObject.Find("System").GetComponent<StatesLibrary>();
+        states = GameObject.Find("System").GetComponent<LibraryStates>();
     }
 
     // Update is called once per frame
@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
         X = Input.GetAxis("Horizontal");
         Z = Input.GetAxis("Vertical");
 
-        // Capacidad de moverse a través de los ejes X y Z
+        // Capacidad de moverse a travï¿½s de los ejes X y Z
         Vector3 move = transform.right * X + transform.forward * Z;
         controller.Move(move * speed * Time.deltaTime);
 
@@ -86,7 +86,7 @@ public class PlayerMove : MonoBehaviour
             if (Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 90, 0); }
         }
 
-        // Prueba para ver que no haya ningún error en el script 'Enter_Battle' al volver a la pantalla de título.
+        // Prueba para ver que no haya ningï¿½n error en el script 'Enter_Battle' al volver a la pantalla de tï¿½tulo.
         if (Input.GetKeyDown(KeyCode.Delete)) { SceneManager.Instance.LoadScene(0); }
     }
 

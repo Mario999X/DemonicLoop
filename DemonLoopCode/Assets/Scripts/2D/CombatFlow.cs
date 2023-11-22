@@ -59,10 +59,7 @@ public class CombatFlow : MonoBehaviour
 
     private PlayerInventory playerInventory;
 
-    private float earnedMoney = 2f;
-
-    // TODO: Variable sin usar del inventario
-    //bool inventarioUsado = false;
+    private LibraryStates statesLibrary;
 
     private void Start()
     {
@@ -72,6 +69,8 @@ public class CombatFlow : MonoBehaviour
         moneyPlayer = GetComponent<MoneyPlayer>();
 
         playerInventory = GetComponent<PlayerInventory>();
+
+        statesLibrary = GetComponent<LibraryStates>();
     }
 
     private void LoadCombatOptionsButtons()
@@ -185,8 +184,10 @@ public class CombatFlow : MonoBehaviour
     // Selección de jugador.
     public void PlayerButtonAttacks()
     {
+
         if (!wait)
         {
+            playerInventory.EliminateINVButtons();
             foreach (GameObject moveBT in moveBT)
             {
                 Destroy(moveBT);
@@ -296,7 +297,7 @@ public class CombatFlow : MonoBehaviour
 
         wait = true;
 
-        targets.ForEach(t => { library.Library(character, t, movement); });
+        targets.ForEach(t => { library.Library(character, t, movement, statesLibrary); });
 
         foreach (GameObject t in targets.ToArray())
         {
@@ -335,7 +336,7 @@ public class CombatFlow : MonoBehaviour
 
             if (Vector2.Distance(character.transform.position, target.transform.position) < 100f && change)
             {
-                library.Library(character, target, movement); // Realiza el ataque.
+                library.Library(character, target, movement, statesLibrary); // Realiza el ataque.
 
                 change = false;
             }
@@ -398,7 +399,7 @@ public class CombatFlow : MonoBehaviour
                 if (Vector2.Distance(characterMove.Character.transform.position, characterMove.Target.transform.position) < 100f && change)
                 {
 
-                    library.Library(characterMove.Character, characterMove.Target, characterMove.Movement); // Realiza el ataque.
+                    library.Library(characterMove.Character, characterMove.Target, characterMove.Movement, statesLibrary); // Realiza el ataque.
 
                     StartCoroutine(CharacterDead(characterMove.Target, false));
 
@@ -427,7 +428,8 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         ActualTurn++;
-        Debug.Log("Turno Actual: " + ActualTurn);
+        
+        //Debug.Log("Turno Actual: " + ActualTurn);
 
         yield return null;
     }//Fin de GoEnemy
@@ -459,7 +461,7 @@ public class CombatFlow : MonoBehaviour
                 enemys.Remove(target);
 
                 //Cuando el enemigo muera nos dara una cantidad X de dinero
-                moneyPlayer.Money += earnedMoney;
+                moneyPlayer.Money += targetST.MoneyDrop;
 
             }
             else
@@ -510,8 +512,15 @@ public class CombatFlow : MonoBehaviour
     // Funcion para el inventario en el combate 2D
     public void InventoryTurn()
     {
-        wait = true;
+        if (moveBT.Count > 0)
+        {
+            moveBT.ForEach(bt => Destroy(bt));
+            moveBT.Clear();
 
+        }
+
+        wait = true;
+        
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
         {

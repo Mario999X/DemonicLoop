@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
+   
     private LibraryMove move;
 
     private Image barHP;
@@ -21,6 +22,7 @@ public class Stats : MonoBehaviour
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
     [SerializeField] float criticalChance;
+    [SerializeField] float moneyDrop = 1.1f;
     [SerializeField] List<string> listAtk = new();
 
     [SerializeField] Types type;
@@ -32,6 +34,7 @@ public class Stats : MonoBehaviour
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
     public float CriticalChance { get { return criticalChance; } }
+    public float MoneyDrop { get { return moneyDrop; } }
     public List<string> ListAtk { get { return listAtk; } set { listAtk = value; } }
     public GameObject CharFloatingTextSpace { get { return charFloatingTextSpace; } }
 

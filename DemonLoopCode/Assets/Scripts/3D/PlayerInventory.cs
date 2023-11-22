@@ -23,9 +23,10 @@ public class ObjectStock
     public GameObject ButtonINV3D { get { return buttonINV3D; } set { this.buttonINV3D = value; } }
     public GameObject ButtonINV2D { get { return buttonINV2D; } set { this.buttonINV2D = value; } }
 
-    public ObjectStock(ObjectData scriptableObject)
+    public ObjectStock(ObjectData scriptableObject, int count)
     {
         this.data = scriptableObject;
+        this.count = count;
     }
 }
 public class PlayerInventory : MonoBehaviour
@@ -41,15 +42,11 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] GameObject inventoryUI2D;
     [SerializeField] List<ScriptableObject> listScriptableObject = new();
 
-
     bool inventoryState = false;
 
     Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
 
     EnterBattle enterBattle;
-
-    GameObject character;
-    bool inventarioUsado = false;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +58,7 @@ public class PlayerInventory : MonoBehaviour
         foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
         {
             //Se van añadir todos los Objectos que esten en nuestra lista
-            AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject);
+            AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject, 1);
         }
 
         foreach (var item in inventory)
@@ -160,17 +157,17 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // Añade un objeto al inventario.
-    public void AddObjectToInventory(string name, ScriptableObject scriptableObject)
+    public void AddObjectToInventory(string name, ScriptableObject scriptableObject, int count)
     {
         if (!inventory.ContainsKey(name.ToUpper()))
         {
             Debug.Log("Add object to inventory");
-            inventory.Add(name.ToUpper(), new ObjectStock(scriptableObject as ObjectData));
+            inventory.Add(name.ToUpper(), new ObjectStock(scriptableObject as ObjectData, count));
         }
         else
         {
             Debug.Log("Object exist. Incrementing count of that object");
-            inventory[name.ToUpper()].Count++;
+            inventory[name.ToUpper()].Count += count;
         }
     }
 
@@ -207,8 +204,6 @@ public class PlayerInventory : MonoBehaviour
     private void EditButtonINVText(ObjectStock data)
     {
         data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
-
-
     }
 
     // Elimina los botones del inventario en la batalla 2D.
@@ -219,44 +214,4 @@ public class PlayerInventory : MonoBehaviour
             Destroy(stock.ButtonINV2D);
         }
     }
-
-
-    // Carga inicial de objectos a la "cache"
-    private void LoadObject()
-    {
-        string[] objects = AssetDatabase.FindAssets("OBJ_");
-
-        foreach (string obj in objects)
-        {
-            string path = AssetDatabase.GUIDToAssetPath(obj);
-
-            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<ObjectData>(path);
-
-            var objName = @object.name.Substring(4, @object.name.Length - 4).Replace("^", " ").ToUpper();
-            Debug.Log("objName " + @object.name);
-            inventory.Add(objName, new ObjectStock(@object as ObjectData));
-
-        }
-    }//Fin de LoadObject
-
-
-
-    //Se llama al objecto que queremos usar, tenemos que pasar su nombre
-    public ObjectData CheckObject(string objects)
-    {
-        ObjectData objectData = null;
-
-        if (inventory.ContainsKey(objects.ToUpper()))
-        {
-            objectData = inventory[objects.ToUpper()].Data;
-            Debug.Log("objectData " + objectData.name);
-        }
-        else
-        {
-            Debug.Log("OBJETO NO ENCONTRADO");
-
-        }
-        return objectData;
-    }//Fin de CheckObject
-
 }

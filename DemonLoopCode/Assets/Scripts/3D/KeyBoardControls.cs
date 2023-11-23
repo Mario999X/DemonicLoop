@@ -39,8 +39,8 @@ public class KeyBoardControls : MonoBehaviour
             player_inventory.OpenCloseInventoyry();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            transform.GetComponentInChildren<PlayerInteract>().Click = true;
-        else
-            transform.GetComponentInChildren<PlayerInteract>().Click = false;
+        {
+            transform.GetComponentInChildren<PlayerInteract>().Click = true; 
+        }
     }
 }

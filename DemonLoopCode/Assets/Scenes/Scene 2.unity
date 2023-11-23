@@ -4706,9 +4706,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMoney: 0
-  minMoney: 0
+  minMoney: 100
   maxCount: 0
-  minCount: 0
+  minCount: 5
 --- !u!1 &1191903473
 GameObject:
   m_ObjectHideFlags: 0
@@ -5393,6 +5393,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
+  click: 0
 --- !u!1 &1385089685
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class ActualStateData
 {
+    private GameObject character;
     private string state;
     private int turn = 0;
 
     public string State {  get { return state; } }
     public int Turn { get { return turn; } set { this.turn = value; } }
+    public GameObject Character {  get { return character; } }
+
+    public ActualStateData(string state, GameObject character)
+    {
+        this.state = state;
+        this.character = character;
+    }
 
     public ActualStateData(string state)
     {
@@ -55,7 +63,7 @@ public class LibraryStates : MonoBehaviour
 
         if(states.ContainsKey(state.ToUpper()))
         {
-            ActualStateData actualState = new(state.ToUpper());
+            ActualStateData actualState = new(state.ToUpper(), target);
             characterStates.Add(actualState);
 
             var targetST = target.GetComponent<Stats>();
@@ -158,5 +166,20 @@ public class LibraryStates : MonoBehaviour
 
             characterStates.Remove(actualState);
         }
+    }
+
+    public void RemoveCharacterWithState(GameObject character, string state){
+        if(states.ContainsKey(state.ToUpper()))
+        {
+            var stateCharacter = characterStates.Find(x => x.Character == character && x.State == state);
+
+            if(stateCharacter != null)
+            {
+                Debug.Log("Character found with that State, removing...");
+                characterStates.Remove(stateCharacter);
+
+            } else Debug.Log("Character not found with that State");
+        }
+        
     }
 }

@@ -52,16 +52,21 @@ public class LibraryMove : MonoBehaviour
             
             target_ST.Health -= damage;
 
-            StartCoroutine(StateActions(attack, target, statesLibrary));
         }
+
         else
         {
-            target_ST.Health += attack.BaseDamage;
+            if(attack.BaseDamage != 0){
+                target_ST.Health += attack.BaseDamage;
 
-            floatingText.ShowFloatingText(target, attack.BaseDamage, Color.green);
+                floatingText.ShowFloatingText(target, attack.BaseDamage, Color.green);
+            }
+
         }
 
-        ManaManager(attack, character_ST);
+        if(attack.GenerateAState != ActionStates.NONE) StartCoroutine(StateActions(attack, target, statesLibrary));
+
+        if(attack.ManaCost == 0) ManaManager(attack, character_ST);
 
         character = null; target = null;
     }//Fin de Library
@@ -278,6 +283,11 @@ public class LibraryMove : MonoBehaviour
             case ActionStates.INFLICT:
                 if(Random.Range(0,100) < attack.ProbabilityOfState) StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
 
+            break;
+
+            case ActionStates.HEAL:
+                 statesLibrary.RemoveCharacterWithState(targetToApplyState, attack.StateGenerated);
+                 
             break;
         }
 

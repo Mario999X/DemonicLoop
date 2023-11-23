@@ -81,6 +81,17 @@ public class CombatFlow : MonoBehaviour
         }
     }
 
+    public void LoadInventoryButtons()
+    {
+        foreach (GameObject moveBT in moveBT)
+        {
+            Destroy(moveBT);
+        }
+        moveBT.Clear();
+
+        playerInventory.OpenCloseInventoyry();
+    }
+
     private void GeneratePlayersButtons()
     {
         Debug.Log("Turno Actual: " + ActualTurn);
@@ -187,11 +198,10 @@ public class CombatFlow : MonoBehaviour
 
         if (!wait)
         {
-            playerInventory.EliminateINVButtons();
+            playerInventory.OpenCloseInventoyry();
             foreach (GameObject moveBT in moveBT)
             {
                 Destroy(moveBT);
-
             }
             moveBT.Clear();
 

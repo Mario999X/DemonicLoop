@@ -198,7 +198,9 @@ public class CombatFlow : MonoBehaviour
 
         if (!wait)
         {
-            playerInventory.OpenCloseInventoyry();
+            if (playerInventory.InventoryState)
+                playerInventory.OpenCloseInventoyry();
+
             foreach (GameObject moveBT in moveBT)
             {
                 Destroy(moveBT);
@@ -525,9 +527,8 @@ public class CombatFlow : MonoBehaviour
         if (moveBT.Count > 0)
         {
             moveBT.ForEach(bt => Destroy(bt));
-            moveBT.Clear();
-
         }
+        moveBT.Clear();
 
         wait = true;
         

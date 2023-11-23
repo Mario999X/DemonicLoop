@@ -44,6 +44,8 @@ public class PlayerInventory : MonoBehaviour
 
     bool inventoryState = false;
 
+    public bool InventoryState { get {  return inventoryState; } }
+
     Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
 
     EnterBattle enterBattle;
@@ -109,7 +111,6 @@ public class PlayerInventory : MonoBehaviour
                 }
                 
                 inventoryState = true;
-
             }
             else // En el caso contrario los elimina.
             {
@@ -197,8 +198,6 @@ public class PlayerInventory : MonoBehaviour
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
         Debug.Log("buttonCMP "+ buttonCMP.name);
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
-
-       
         
         return button;
     }

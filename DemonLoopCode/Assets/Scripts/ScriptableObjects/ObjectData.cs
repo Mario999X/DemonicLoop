@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-public enum ObjectTypes { Health, Mana }
+
+public enum ObjectTypes { Health, Mana, HealState }
+
 [CreateAssetMenu]
 public class ObjectData : ScriptableObject
 {
@@ -13,6 +11,7 @@ public class ObjectData : ScriptableObject
     [SerializeField] private string description;
     [SerializeField] private ObjectTypes objectType;
     [SerializeField] private float baseNum;
+    [SerializeField] private StateData stateAsociated;
 
     CombatFlow combatFlow;
     EnterBattle enterBattle;
@@ -48,10 +47,21 @@ public class ObjectData : ScriptableObject
                 //Debug.Log("Pocion de Cura");
                 player.Health += BaseNum;
                 break;
+
             case ObjectTypes.Mana:
                 //Debug.Log("Pocion de Mana");
                 player.Mana += BaseNum;
                 break;
+
+            case ObjectTypes.HealState:
+                GameObject.Find("System").GetComponent<LibraryStates>().RemoveCharacterWithState(@character, ObtainStateName());
+                break;
+
         }
     }//Fin de UserObject
+
+    private string ObtainStateName()
+    {
+        return stateAsociated.name.Substring(4, stateAsociated.name.Length - 4).ToUpper();
+    }
 }

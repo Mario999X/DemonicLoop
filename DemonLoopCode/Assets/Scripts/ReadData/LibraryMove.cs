@@ -64,7 +64,7 @@ public class LibraryMove : MonoBehaviour
 
         }
 
-        if(attack.GenerateAState != ActionStates.NONE) StartCoroutine(StateActions(attack, target, statesLibrary));
+        if(attack.GenerateAState != ActionStates.None) StartCoroutine(StateActions(attack, target, statesLibrary));
 
         if(attack.ManaCost == 0) ManaManager(attack, character_ST);
 
@@ -205,48 +205,48 @@ public class LibraryMove : MonoBehaviour
 
         switch (attack.Type)
         {
-            case Types.FIRE:
-                if (target_ST.Type == Types.PLANT)
+            case Types.Fire:
+                if (target_ST.Type == Types.Plant)
                 {
                     damageType = SuperEffective;
                 }
-                if (target_ST.Type == Types.WATER)
+                if (target_ST.Type == Types.Water)
                 {
                     damageType = NotVeryEffective;
                 }
                 break;
 
-            case Types.PLANT:
-                if (target_ST.Type == Types.WATER)
+            case Types.Plant:
+                if (target_ST.Type == Types.Water)
                 {
                     damageType = SuperEffective;
                 }
-                if (target_ST.Type == Types.FIRE)
+                if (target_ST.Type == Types.Fire)
                 {
                     damageType = NotVeryEffective;
                 }
                 break;
 
-            case Types.WATER:
-                if (target_ST.Type == Types.FIRE)
+            case Types.Water:
+                if (target_ST.Type == Types.Fire)
                 {
                     damageType = SuperEffective;
                 }
-                if (target_ST.Type == Types.PLANT)
+                if (target_ST.Type == Types.Plant)
                 {
                     damageType = NotVeryEffective;
                 }
                 break;
 
-            case Types.LIGHT:
-                if(target_ST.Type == Types.DARKNESS)
+            case Types.Light:
+                if(target_ST.Type == Types.Darkness)
                 {
                     damageType = SuperEffective;
                 }
                 break;
             
-            case Types.DARKNESS:
-                if(target_ST.Type == Types.LIGHT){
+            case Types.Darkness:
+                if(target_ST.Type == Types.Light){
                     damageType = SuperEffective;
                 }
                 break;
@@ -280,12 +280,12 @@ public class LibraryMove : MonoBehaviour
     {
         switch(attack.GenerateAState)
         {
-            case ActionStates.INFLICT:
+            case ActionStates.Inflict:
                 if(Random.Range(0,100) < attack.ProbabilityOfState) StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
 
             break;
 
-            case ActionStates.HEAL:
+            case ActionStates.Heal:
                  statesLibrary.RemoveCharacterWithState(targetToApplyState, attack.StateGenerated);
                  
             break;

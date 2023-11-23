@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public enum Types { FIRE, WATER, PLANT, LIGHT, DARKNESS }
+public enum Types { Fire, Water, Plant, Light, Darkness }
 
-public enum ActionStates { NONE, HEAL, INFLICT }
+public enum ActionStates { None, Heal, Inflict }
 
 [CreateAssetMenu]
 public class AttackData : ScriptableObject

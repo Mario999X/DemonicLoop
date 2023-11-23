@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: TestObject
+  m_Name: OBJ_PoisonHeal
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 35bb0d91f78fbd74cbe6768a576021f0, type: 3}
-  description: '!!!
-
-    This is just a test object
-
-    !!!'
+  icon: {fileID: 0}
+  description: Item to heal a Poison Status.
+  objectType: 2
+  baseNum: 0
+  stateAsociated: {fileID: 11400000, guid: ac1f8b668c0d0264e8029f8d9fde2681, type: 2}

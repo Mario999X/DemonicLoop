@@ -52,7 +52,7 @@ public class PlayerInventory : MonoBehaviour
         foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
         {
             //Se van a�adir todos los Objectos que esten en nuestra lista
-            AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject, 1);
+            AddObjectToInventory(m_ScriptableObject.name.Substring(4, m_ScriptableObject.name.Length - 4), m_ScriptableObject, 1);
         }
 
         foreach (var item in inventory)

@@ -178,7 +178,7 @@ public class LibraryStates : MonoBehaviour
             if(stateCharacter != null)
             {
                 Debug.Log("Character found with that State, removing...");
-                stateCharacter.Turn = 100; // 
+                stateCharacter.Turn = 100; // Finaliza el bucle de los hilos.
 
             } else Debug.Log("Character not found with that State");
         }

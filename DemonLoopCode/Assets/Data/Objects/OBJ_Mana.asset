@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
   m_Name: OBJ_Mana
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e0fad9ee9273bfa43a069a5c294e6660, type: 3}
   description: Pocion de Mana 25
   objectType: 1
   baseNum: 25

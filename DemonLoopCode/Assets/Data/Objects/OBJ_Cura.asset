@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
   m_Name: OBJ_Cura
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: be80945a996576b43b7bd35b4ab39d00, type: 3}
   description: Cura 5 de vida
   objectType: 0
   baseNum: 2.2

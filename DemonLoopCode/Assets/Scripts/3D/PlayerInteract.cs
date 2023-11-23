@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,10 +37,16 @@ public class PlayerInteract : MonoBehaviour
                 case "Chest":
                     Content content = hit.transform.GetComponent<ChestContent>().chest();
 
-                    if (content.Count > 0)
-                        inventory.AddObjectToInventory(content.Data.name, content.Data, content.Count);
+                    Debug.Log(content.Money);
 
                     playerMoney.Money += content.Money;
+
+                    if (content.Count > 0)
+                    {
+                        Debug.Log(content.Data);
+                        inventory.AddObjectToInventory(content.Data.name.Substring(4, content.Data.name.Length - 4), content.Data, content.Count);
+                    }
+
                     break;
             }
 

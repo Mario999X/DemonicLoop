@@ -38,9 +38,7 @@ public class KeyBoardControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime)
             player_inventory.OpenCloseInventoyry();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState)
             transform.GetComponentInChildren<PlayerInteract>().Click = true; 
-        }
     }
 }

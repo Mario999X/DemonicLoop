@@ -34,24 +34,28 @@ public class ChestContent : MonoBehaviour
 
     public Content chest()
     {
-        Content content = null;
         List<ScriptableObject> objects = new List<ScriptableObject>();
 
-        string[] pru = AssetDatabase.FindAssets("STD_");
+        string[] pru = AssetDatabase.FindAssets("OBJ_");
 
         foreach (string p in pru)
         {
             string path = AssetDatabase.GUIDToAssetPath(p);
-            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<StateData>(path);
+            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<ObjectData>(path);
 
             objects.Add(@object);
+        }
+
+        foreach (ScriptableObject @object in objects)
+        {
+            Debug.Log(@object);
         }
 
         int obj = Random.Range(0, objects.Count);
         int count = Random.Range(minCount, maxCount + 1);
         float money = Random.Range(minMoney, maxMoney + 1);
 
-        content = new Content(money, count, objects[obj]);
+        Content content = new Content(money, count, objects[obj]);
 
         return content;
     }

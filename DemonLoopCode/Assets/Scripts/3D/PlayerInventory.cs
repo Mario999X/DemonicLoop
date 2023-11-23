@@ -1,15 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Xml.Linq;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class ObjectStock
 {
@@ -59,7 +51,7 @@ public class PlayerInventory : MonoBehaviour
 
         foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
         {
-            //Se van añadir todos los Objectos que esten en nuestra lista
+            //Se van aï¿½adir todos los Objectos que esten en nuestra lista
             AddObjectToInventory(m_ScriptableObject.name, m_ScriptableObject, 1);
         }
 
@@ -121,7 +113,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // Elimina o disminuye la cantidad de objetos del inventario según la situación.
+    // Elimina o disminuye la cantidad de objetos del inventario segï¿½n la situaciï¿½n.
     public void RemoveObjectFromInventory(string name)
     {
         if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
@@ -145,7 +137,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 Debug.Log(name.ToUpper() + " was eliminated from dictionary");
 
-                if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un botón.
+                if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un botï¿½n.
                     Destroy(inventory[name.ToUpper()].ButtonINV3D);
                 else
                 {
@@ -158,7 +150,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // Añade un objeto al inventario.
+    // Aï¿½ade un objeto al inventario.
     public void AddObjectToInventory(string name, ScriptableObject scriptableObject, int count)
     {
         if (!inventory.ContainsKey(name.ToUpper()))
@@ -173,7 +165,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // Crea y devuelve el botón 2D
+    // Crea y devuelve el botï¿½n 2D
     private GameObject CreateButtonINV3D(ObjectStock stock)
     {
         GameObject button = Instantiate(buttonRef3D, Vector3.zero, Quaternion.identity);
@@ -188,7 +180,7 @@ public class PlayerInventory : MonoBehaviour
         return button;
     }
 
-    // Crea y devuelve el botón 2D.
+    // Crea y devuelve el botï¿½n 2D.
     private GameObject CreateButtonINV2D(ObjectStock stock)
     {
         GameObject button = Instantiate(buttonRef2D, Vector3.zero, Quaternion.identity);

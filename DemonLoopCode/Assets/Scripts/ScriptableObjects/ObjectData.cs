@@ -30,9 +30,9 @@ public class ObjectData : ScriptableObject
         if (enterBattle.OneTime)
         {
             UserObject(combatFlow.Character);
-        }
 
-        GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
+            GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
+        }
 
         inventory.RemoveObjectFromInventory(name);
 

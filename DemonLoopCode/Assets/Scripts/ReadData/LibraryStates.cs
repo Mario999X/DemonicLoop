@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ActualStateData
 {
-    private GameObject character;
+    private GameObject character = null;
     private string state;
     private int turn = 0;
 
@@ -75,7 +75,6 @@ public class LibraryStates : MonoBehaviour
 
             do
             {
-
                 if (!enterBattle.OneTime)
                 {
                     if (player.Movement)
@@ -94,18 +93,20 @@ public class LibraryStates : MonoBehaviour
 
                 else
                 {
+
                     if (lastTurn != actualState.Turn)
                     {
+
                         if (targetST.Health > 1) targetST.Health -= stateData.BaseDamage;
                         
                         Debug.Log("2D ---- Character: " + target.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
-
+                        
                         lastTurn = actualState.Turn;
                     }
                 }
 
                 yield return new WaitForSeconds(0.000000001f);
-            } while (actualState.Turn != stateData.TurnsDuration);
+            } while (actualState.Turn <= stateData.TurnsDuration);
 
             characterStates.Remove(actualState);
         }
@@ -148,6 +149,7 @@ public class LibraryStates : MonoBehaviour
                 }
                 else
                 {
+
                     if (lastTurn != actualState.Turn)
                     {
                         foreach (Stats character in stats)
@@ -162,7 +164,7 @@ public class LibraryStates : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(0.000000001f);
-            } while (actualState.Turn != data.TurnsDuration);
+            } while (actualState.Turn <= data.TurnsDuration);
 
             characterStates.Remove(actualState);
         }
@@ -176,10 +178,10 @@ public class LibraryStates : MonoBehaviour
             if(stateCharacter != null)
             {
                 Debug.Log("Character found with that State, removing...");
-                characterStates.Remove(stateCharacter);
+                stateCharacter.Turn = 100; // 
 
             } else Debug.Log("Character not found with that State");
         }
-        
     }
+    
 }

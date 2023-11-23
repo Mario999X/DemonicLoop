@@ -440,9 +440,11 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         ActualTurn++;
-        
-        //Debug.Log("Turno Actual: " + ActualTurn);
 
+        statesLibrary.CharacterStates.ForEach(x => x.Turn++);
+
+        //Debug.Log("Turno Actual: " + ActualTurn);
+        
         yield return null;
     }//Fin de GoEnemy
 

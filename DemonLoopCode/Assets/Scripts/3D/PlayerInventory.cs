@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -45,8 +46,6 @@ public class PlayerInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //LoadObject();
-
         enterBattle = GetComponent<EnterBattle>();
 
         foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
@@ -99,7 +98,6 @@ public class PlayerInventory : MonoBehaviour
                 foreach (ObjectStock item in inventory.Values)
                 {
                     item.ButtonINV2D = CreateButtonINV2D(item);
-                    
                 }
                 
                 inventoryState = true;
@@ -118,8 +116,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
         {
-
-            if (inventory[name.ToUpper()].Count > 1)
+            if (inventory[name.ToUpper()].Count > 1) // Si objeto es mayor a uno disminuye su cantidad
             {
 
                 Debug.Log("Counter of '" + name.ToUpper() + "' went down");
@@ -133,7 +130,7 @@ public class PlayerInventory : MonoBehaviour
                     inventoryState = false;
                 }
             }
-            else
+            else // En el caso contrario se remueve del diccionario.
             {
                 Debug.Log(name.ToUpper() + " was eliminated from dictionary");
 
@@ -153,19 +150,19 @@ public class PlayerInventory : MonoBehaviour
     // A�ade un objeto al inventario.
     public void AddObjectToInventory(string name, ScriptableObject scriptableObject, int count)
     {
-        if (!inventory.ContainsKey(name.ToUpper()))
+        if (!inventory.ContainsKey(name.ToUpper())) // Cuando es un objeto nuevo se incluye al diccionario
         {
             Debug.Log("Add object to inventory");
             inventory.Add(name.ToUpper(), new ObjectStock(scriptableObject as ObjectData, count));
         }
-        else
+        else // Cuando el objeto ya existe aumenta su cantidad
         {
             Debug.Log("Object exist. Incrementing count of that object");
             inventory[name.ToUpper()].Count += count;
         }
     }
 
-    // Crea y devuelve el bot�n 2D
+    // Crea y devuelve el bot�n 3D
     private GameObject CreateButtonINV3D(ObjectStock stock)
     {
         GameObject button = Instantiate(buttonRef3D, Vector3.zero, Quaternion.identity);
@@ -175,7 +172,7 @@ public class PlayerInventory : MonoBehaviour
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
 
         button.GetComponentInChildren<Image>().sprite = stock.Data.Icon;
-        button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name.Substring(4, stock.Data.name.Length - 4) + " x" + stock.Count;
 
         return button;
     }
@@ -189,7 +186,7 @@ public class PlayerInventory : MonoBehaviour
         Button buttonCMP = button.GetComponent<Button>();
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
         Debug.Log("buttonCMP "+ buttonCMP.name);
-        button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name + " x" + stock.Count;
+        button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name.Substring(4, stock.Data.name.Length - 4) + " x" + stock.Count;
         
         return button;
     }
@@ -197,7 +194,7 @@ public class PlayerInventory : MonoBehaviour
     // Edita el texto de los botones del inventario del mundo 3D.
     private void EditButtonINVText(ObjectStock data)
     {
-        data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name + " x" + data.Count;
+        data.ButtonINV3D.GetComponentInChildren<TextMeshProUGUI>().text = data.Data.name.Substring(4, data.Data.name.Length - 4) + " x" + data.Count;
     }
 
     // Elimina los botones del inventario en la batalla 2D.

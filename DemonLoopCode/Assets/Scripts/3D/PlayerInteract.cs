@@ -25,29 +25,33 @@ public class PlayerInteract : MonoBehaviour
     {
         RaycastHit hit;
 
+        // Solo hace de intermediario
+        // Cuando el jugador mire un objeto interactuable pueda interactuar con el.
         if (Physics.Raycast(transform.position, transform.right, out hit, distance, layer) && click)
         {
-            Debug.Log("Click");
-
             Debug.DrawLine(transform.position, hit.point, Color.green);
-            PlayerInventory inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
+            Debug.Log(hit.transform.tag);
 
-            switch (hit.transform.name)
+            // Identificamos el objeto para realizar el intercambio de datos correcto.
+            switch (hit.transform.tag)
             {
-                case "Chest":
-                    Content content = hit.transform.GetComponent<ChestContent>().chest();
+                case "Chest": // En caso de ser un cofre.
+                    PlayerInventory inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
 
-                    Debug.Log(content.Money);
-
-                    playerMoney.Money += content.Money;
-
-                    if (content.Count > 0)
+                    // Si el objeto contiene el componente ChestContent lo ejecuta
+                    if (hit.transform.GetComponent<ChestContent>())
                     {
-                        Debug.Log(content.Data);
-                        inventory.AddObjectToInventory(content.Data.name.Substring(4, content.Data.name.Length - 4), content.Data, content.Count);
-                    }
+                        Content content = hit.transform.GetComponent<ChestContent>().chest();
 
-                    Destroy(hit.transform.GetComponent<ChestContent>());
+                        playerMoney.Money += content.Money; // Modifica el dinero.
+
+                        if (content.Count > 0) // Si no sedan 0 objetos se incluyen al inventario.
+                        {
+                            inventory.AddObjectToInventory(content.Data.name.Substring(4, content.Data.name.Length - 4), content.Data, content.Count); // Incluye el objeto al invetario.
+                        }
+
+                        Destroy(hit.transform.GetComponent<ChestContent>()); // Destruye el scrip en el objeto.
+                    }
 
                     break;
             }

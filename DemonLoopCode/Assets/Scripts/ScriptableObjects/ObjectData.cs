@@ -34,7 +34,7 @@ public class ObjectData : ScriptableObject
             GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
         }
 
-        inventory.RemoveObjectFromInventory(name);
+        inventory.RemoveObjectFromInventory(name.Substring(4, name.Length - 4));
 
     }
 

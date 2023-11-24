@@ -16,3 +16,5 @@ MonoBehaviour:
   description: Pocion de cura de 18
   objectType: 0
   baseNum: 18
+  stateAsociated: {fileID: 0}
+  targetsToLoad: 1

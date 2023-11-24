@@ -17,3 +17,4 @@ MonoBehaviour:
   objectType: 2
   baseNum: 0
   stateAsociated: {fileID: 11400000, guid: ac1f8b668c0d0264e8029f8d9fde2681, type: 2}
+  targetsToLoad: 1

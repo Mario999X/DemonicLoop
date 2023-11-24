@@ -71,7 +71,7 @@ public class LibraryStates : MonoBehaviour
             var stateData = states[state.ToUpper()];
 
             float time = 0;
-            int lastTurn = -1;
+            int lastTurn = 0;
 
             do
             {

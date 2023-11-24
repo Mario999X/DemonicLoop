@@ -66,7 +66,7 @@ public class LibraryMove : MonoBehaviour
 
         if(attack.GenerateAState != ActionStates.None) StartCoroutine(StateActions(attack, target, statesLibrary));
 
-        if(attack.ManaCost == 0) ManaManager(attack, character_ST);
+        if(attack.ManaCost != 0) ManaManager(attack, character_ST);
 
         character = null; target = null;
     }//Fin de Library
@@ -281,7 +281,11 @@ public class LibraryMove : MonoBehaviour
         switch(attack.GenerateAState)
         {
             case ActionStates.Inflict:
-                if(Random.Range(0,100) < attack.ProbabilityOfState) StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
+                if(Random.Range(0,100) < attack.ProbabilityOfState)
+                {
+                    Debug.Log("Target to apply status: " + targetToApplyState.name);
+                    StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
+                } 
 
             break;
 

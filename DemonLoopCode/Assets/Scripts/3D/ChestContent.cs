@@ -34,10 +34,11 @@ public class ChestContent : MonoBehaviour
 
     public Content chest()
     {
-        List<ScriptableObject> objects = new List<ScriptableObject>();
+        List<ScriptableObject> objects = new List<ScriptableObject>(); // Lista  de objetos existentes.
 
-        string[] pru = AssetDatabase.FindAssets("OBJ_");
+        string[] pru = AssetDatabase.FindAssets("OBJ_"); // Busca todos loas assets que empiezan con "OBJ_".
 
+        // Guarda todos los ScripableObject en la lista los objetos.
         foreach (string p in pru)
         {
             string path = AssetDatabase.GUIDToAssetPath(p);
@@ -46,17 +47,12 @@ public class ChestContent : MonoBehaviour
             objects.Add(@object);
         }
 
-        foreach (ScriptableObject @object in objects)
-        {
-            Debug.Log(@object);
-        }
+        int obj = Random.Range(0, objects.Count); // El objeto que se selecciona de la lista.
+        int count = Random.Range(minCount, maxCount + 1); // La cantidad que se le da de dicho objeto.
+        float money = (float) System.Math.Round(Random.Range(minMoney, maxMoney + 1), 2); // La cantidad de dinero que se dara.
 
-        int obj = Random.Range(0, objects.Count);
-        int count = Random.Range(minCount, maxCount + 1);
-        float money = Random.Range(minMoney, maxMoney + 1);
+        Content content = new Content(money, count, objects[obj]); // Se guarda en la clase Content
 
-        Content content = new Content(money, count, objects[obj]);
-
-        return content;
+        return content; // Se devuelve la clase dicha.
     }
 }

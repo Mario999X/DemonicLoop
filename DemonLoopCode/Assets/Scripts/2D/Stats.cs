@@ -1,17 +1,15 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
-   
-    private LibraryMove move;
-
     private Image barHP;
 
     private Image barMana;
 
-    private GameObject charFloatingTextSpace;
+    private GameObject charFloatingTextSpaceNumbers;
 
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
@@ -23,7 +21,7 @@ public class Stats : MonoBehaviour
     [SerializeField] float magicDef = 0f;
     [SerializeField] float criticalChance;
     [SerializeField] float moneyDrop = 1.1f;
-    [SerializeField] List<string> listAtk = new();
+    [SerializeField] List<AttackData> listAtk = new();
 
     [SerializeField] Types type;
 
@@ -35,8 +33,8 @@ public class Stats : MonoBehaviour
     public float MagicDef { get { return magicDef; } }
     public float CriticalChance { get { return criticalChance; } }
     public float MoneyDrop { get { return moneyDrop; } }
-    public List<string> ListAtk { get { return listAtk; } set { listAtk = value; } }
-    public GameObject CharFloatingTextSpace { get { return charFloatingTextSpace; } }
+    public List<string> ListAtk { get { return ObtainNameAttacks(); }}
+    public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }
 
     public Types Type { get { return type; } }
 
@@ -48,23 +46,16 @@ public class Stats : MonoBehaviour
         mana = maxMana;
         barMana = transform.GetChild(1).Find("BarManaFill").GetComponent<Image>();
 
-        move = GameObject.Find("System").GetComponent<LibraryMove>();
-
-        charFloatingTextSpace = transform.GetChild(2).gameObject;
-    }
-
-    private void FixedUpdate()
-    {
-        CheckListAtk();
+        charFloatingTextSpaceNumbers = transform.GetChild(2).gameObject;
     }
 
     // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
     // Solo puede usar 4 ataques que son los espacios acordados
-    private void CheckListAtk()
+    private void CheckListAtkMax()
     {
         if (listAtk.Count > 4)
         {
-            listAtk.Remove(listAtk[listAtk.Count - 1]);
+            listAtk.Remove(listAtk[^1]); // == listAtk.Count - 1
         }
     }//Fin de CheckListAtk
 
@@ -101,5 +92,29 @@ public class Stats : MonoBehaviour
         }
 
         barMana.fillAmount = mana / maxMana;
+    }
+
+    private List<string> ObtainNameAttacks()
+    {
+        List<string> nameList = new();
+
+        listAtk.ForEach(x => {
+            if(x != null) 
+                nameList.Add(x.name.Substring(4, x.name.Length - 4).Replace("^", " ")); 
+            });
+
+        return nameList;
+    }
+
+    // TODO: Funcion para agregar un ataque a la lista pasandole un nombre, hace falta revisarlo.
+    public void SetAttack(string attack)
+    {   
+        string path = AssetDatabase.GUIDToAssetPath(attack);
+
+        ScriptableObject @object = AssetDatabase.LoadAssetAtPath<AttackData>(path);
+
+        CheckListAtkMax(); // Aqui se realizará la comprobacion del max de ataques por personaje.
+
+        listAtk.Add(@object as AttackData);
     }
 }

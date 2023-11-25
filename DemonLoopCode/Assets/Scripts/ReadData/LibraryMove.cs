@@ -59,7 +59,7 @@ public class LibraryMove : MonoBehaviour
             if(attack.BaseDamage != 0){
                 target_ST.Health += attack.BaseDamage;
 
-                floatingText.ShowFloatingText(target, attack.BaseDamage, Color.green);
+                floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
             }
 
         }
@@ -162,12 +162,6 @@ public class LibraryMove : MonoBehaviour
         ManaManager(attackData, characterST.GetComponent<Stats>());
     }
 
-    // Función para limpiar la cache.
-    private void ResetCache()
-    {
-        attackCache.Clear();
-    }//Fin de ResetCache
-
     private float DamageFull(Stats target_ST, Stats character_ST, AttackData attack)
     {
         float damage;
@@ -191,9 +185,9 @@ public class LibraryMove : MonoBehaviour
 
         if(criticalDamage == CriticalDamageMultiplier)
         {
-            floatingText.ShowFloatingText(target, damage, Color.red);
+            floatingText.ShowFloatingTextNumbers(target, -damage, Color.red);
 
-        } else floatingText.ShowFloatingText(target, damage, Color.white);
+        } else floatingText.ShowFloatingTextNumbers(target, -damage, Color.white);
 
         Debug.Log(character_ST.name + " ataca a " +  target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
         return damage;
@@ -303,7 +297,7 @@ public class LibraryMove : MonoBehaviour
         characterStats.Mana -= attack.ManaCost;
 
         // Para hacerlo más facil de ver visualmente, los ataques fisicos cuentan con un -, asi esos se vuelven positivos y los "positivos reales" se muestran negativos.
-        floatingText.ShowFloatingText(characterStats.gameObject, -attack.ManaCost, Color.blue);
+        floatingText.ShowFloatingTextNumbers(characterStats.gameObject, -attack.ManaCost, Color.blue);
     }
     
 

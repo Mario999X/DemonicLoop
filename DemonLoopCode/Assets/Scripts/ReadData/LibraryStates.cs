@@ -33,9 +33,10 @@ public class LibraryStates : MonoBehaviour
 
     public List<ActualStateData> CharacterStates { get { return characterStates;} }
 
+    private FloatingTextCombat floatingText;
 
-    PlayerMove player;
-    EnterBattle enterBattle;
+    private PlayerMove player;
+    private EnterBattle enterBattle;
 
     // Start is called before the first frame update
     private void Start()
@@ -44,6 +45,8 @@ public class LibraryStates : MonoBehaviour
 
         enterBattle = GetComponent<EnterBattle>();
         player = GameObject.Find("Player").GetComponent<PlayerMove>();
+
+        floatingText = GetComponent<FloatingTextCombat>();
     }
 
     private void LoadStates()
@@ -96,10 +99,14 @@ public class LibraryStates : MonoBehaviour
 
                     if (lastTurn != actualState.Turn)
                     {
+                        //Debug.Log("2D ---- Character: " + target.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
 
-                        if (targetST.Health > 1) targetST.Health -= stateData.BaseDamage;
-                        
-                        Debug.Log("2D ---- Character: " + target.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
+                        if (targetST.Health > 1)
+                        {
+                            targetST.Health -= stateData.BaseDamage;
+
+                            floatingText.ShowFloatingTextNumbers(target, -stateData.BaseDamage, UnityEngine.Color.magenta);
+                        }
                         
                         lastTurn = actualState.Turn;
                     }
@@ -120,13 +127,13 @@ public class LibraryStates : MonoBehaviour
             characterStates.Add(actualState);
 
             Stats[] stats = GameObject.Find(group).GetComponentsInChildren<Stats>();
-            StateData data = states[state.ToUpper()];
+            StateData stateData = states[state.ToUpper()];
             float time = 0;
             int lastTurn = -1;
 
             do
             {
-                Debug.Log("Turno Actual en estados 3D: " + actualState.Turn);
+                //Debug.Log("Turno Actual en estados 3D: " + actualState.Turn);
 
                 if (!enterBattle.OneTime)
                 {
@@ -135,12 +142,11 @@ public class LibraryStates : MonoBehaviour
                         time += Time.deltaTime;
                     }
 
-                    if (time >= data.TimeMoving)
+                    if (time >= stateData.TimeMoving)
                     {
                         foreach (Stats character in stats)
                         {
-                            if (character.Health > 1)
-                                character.Health -= data.BaseDamage;
+                            if (character.Health > 1) character.Health -= stateData.BaseDamage;
                         }
 
                         actualState.Turn++;
@@ -154,9 +160,14 @@ public class LibraryStates : MonoBehaviour
                     {
                         foreach (Stats character in stats)
                         {
-                            Debug.Log("3D ---- Character: " + character.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
+                            //Debug.Log("3D ---- Character: " + character.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
 
-                            if (character.Health > 1) character.Health -= data.BaseDamage;
+                            if (character.Health > 1)
+                            {
+                                character.Health -= stateData.BaseDamage;
+
+                                floatingText.ShowFloatingTextNumbers(character.gameObject, -stateData.BaseDamage, UnityEngine.Color.magenta);
+                            } 
                         }
 
                         lastTurn = actualState.Turn;
@@ -164,7 +175,7 @@ public class LibraryStates : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(0.000000001f);
-            } while (actualState.Turn <= data.TurnsDuration);
+            } while (actualState.Turn <= stateData.TurnsDuration);
 
             characterStates.Remove(actualState);
         }

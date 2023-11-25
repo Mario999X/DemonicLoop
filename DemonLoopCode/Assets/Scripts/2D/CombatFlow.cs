@@ -5,7 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using static UnityEngine.EventSystems.EventTrigger;
+
 public class CharacterMove
 {
     private GameObject character;
@@ -460,11 +460,7 @@ public class CombatFlow : MonoBehaviour
 
         wait = false;
 
-        ActualTurn++;
-
-        statesLibrary.CharacterStates.ForEach(x => x.Turn++);
-
-        //Debug.Log("Turno Actual: " + ActualTurn);
+        NextTurn();
 
         yield return null;
     }//Fin de GoEnemy
@@ -596,6 +592,15 @@ public class CombatFlow : MonoBehaviour
         {
             StartCoroutine(GoEnemy());
         }
+    }
+
+    private void NextTurn()
+    {
+        ActualTurn++;
+
+        statesLibrary.CharacterStates.ForEach(x => x.Turn++);
+
+        //Debug.Log("Turno Actual: " + ActualTurn);
     }
 
 

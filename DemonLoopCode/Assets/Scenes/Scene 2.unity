@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -631,10 +631,10 @@ MonoBehaviour:
   criticalChance: 25
   moneyDrop: 1.1
   listAtk:
-  - Punch
-  - Fire Ball
-  - Strong Attack
-  - Prueba
+  - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
+  - {fileID: 11400000, guid: f7785423cd0c3481090ae0791f22f183, type: 2}
+  - {fileID: 11400000, guid: cf7a8b30912f44407b11be432aeff6d9, type: 2}
+  - {fileID: 0}
   type: 0
 --- !u!222 &141561752
 CanvasRenderer:
@@ -1946,10 +1946,10 @@ MonoBehaviour:
   criticalChance: 35
   moneyDrop: 1.1
   listAtk:
-  - Ice Ray
-  - Punch
-  - Heal All
-  - Heal Poison
+  - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
+  - {fileID: 11400000, guid: c26bd1d267de74ced872e9c175cca721, type: 2}
+  - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}
+  - {fileID: 11400000, guid: 2f572df684e1146588ed4165007694e9, type: 2}
   type: 1
 --- !u!222 &489199733
 CanvasRenderer:
@@ -3230,9 +3230,9 @@ MonoBehaviour:
   criticalChance: 30
   moneyDrop: 1.1
   listAtk:
-  - Fire Ball
-  - Heal
-  - Hells Feast
+  - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
+  - {fileID: 11400000, guid: 3dff1e93ce22c49a298d175c999b5e6d, type: 2}
+  - {fileID: 11400000, guid: e26fac2fdf4af4d0c917716c1ff98b50, type: 2}
   type: 2
 --- !u!222 &795006435
 CanvasRenderer:

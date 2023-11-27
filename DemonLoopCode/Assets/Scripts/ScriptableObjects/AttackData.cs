@@ -25,6 +25,9 @@ public class AttackData : ScriptableObject
 
     [SerializeField] private Types type;
 
+    [SerializeField] private bool lifeTheft;
+    [SerializeField] private bool manaTheft;
+
     public float BaseDamage { get { return baseDamage; } }
     public int PhyAttack { get { return phyAttack; } }
     public int MagicAttack { get { return magicAttack; } }
@@ -32,7 +35,10 @@ public class AttackData : ScriptableObject
     public float ManaCost { get { return manaCost; } }
     public ActionStates GenerateAState { get { return generateAState; } }
     public string StateGenerated { get { return ObtainStateName(); } } // De esta forma se obtiene su nombre y se aplica en StatesLibrary sin tener que escribirlo a mano.
-    public float ProbabilityOfState { get { return probabilityOfState; }}
+    public float ProbabilityOfState { get { return probabilityOfState; } }
+    public bool LifeTheft { get { return lifeTheft; } }
+
+    public bool ManaTheft { get { return manaTheft; } }
 
     public Types Type { get { return type; } }
 

@@ -46,6 +46,7 @@ public class CombatFlow : MonoBehaviour
 
     [Header("Characters speed")]
     [SerializeField] float speed = 50f;
+    [SerializeField] Text WINLOSE;
 
     private int moves = 0;
 
@@ -61,6 +62,9 @@ public class CombatFlow : MonoBehaviour
 
     private LibraryStates statesLibrary;
 
+    private EnterBattle enterBattle;
+
+
     private void Start()
     {
         LoadCombatOptionsButtons();
@@ -71,6 +75,9 @@ public class CombatFlow : MonoBehaviour
         playerInventory = GetComponent<PlayerInventory>();
 
         statesLibrary = GetComponent<LibraryStates>();
+
+        enterBattle = GetComponent<EnterBattle>();
+
     }
 
     private void LoadCombatOptionsButtons()
@@ -121,6 +128,8 @@ public class CombatFlow : MonoBehaviour
 
             playerBT.Add(button);//Listado de botones generados
         }
+        //Debug.Log("1- playerBT "+playerBT.Count);
+
     }//Fin de GeneratePlayersButtons
 
 
@@ -177,7 +186,7 @@ public class CombatFlow : MonoBehaviour
             }
         }
 
-
+        //Debug.Log("1- enemyBT " + enemyBT.Count);
 
     }//Fin de GenerateTargetsButtons
 
@@ -344,6 +353,7 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
+        BattleStatus();
 
     }//Fin de GoPlayerMultiTarget
 
@@ -391,6 +401,7 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
+        BattleStatus();
 
         yield return null;
     }//Fin de GoPlayerSingleTarget
@@ -460,6 +471,7 @@ public class CombatFlow : MonoBehaviour
 
         wait = false;
 
+        BattleStatus();
         NextTurn();
 
         yield return null;
@@ -537,6 +549,7 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
+        BattleStatus();
     }
 
 
@@ -571,6 +584,7 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
+        BattleStatus();
     }
 
     // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
@@ -592,7 +606,7 @@ public class CombatFlow : MonoBehaviour
         {
             StartCoroutine(GoEnemy());
         }
-    }
+    }//fin de CheckIfIsEnemyTurn
 
     private void NextTurn()
     {
@@ -601,7 +615,34 @@ public class CombatFlow : MonoBehaviour
         statesLibrary.CharacterStates.ForEach(x => x.Turn++);
 
         //Debug.Log("Turno Actual: " + ActualTurn);
-    }
+        //Debug.Log("1-enemys.Count " + enemys.Count);
+        
 
+        
+    }//fin de NextTurn
+
+
+    private void BattleStatus()
+    {
+        
+        if (enemys.Count == 0)
+        {
+            //Se debe mostrar una pantalla de WIN
+            Text.print("WIN");
+            WINLOSE.enabled = true;
+            WINLOSE.text = "WIN";
+            Time.timeScale = 100f;
+            enterBattle.FinishBattle();
+        }
+        if (playerBT.Count == 0)
+        {
+            Text.print("LOSE");
+            WINLOSE.enabled = true;
+            WINLOSE.text = "LOSE";
+            Time.timeScale = 100f;
+            enterBattle.FinishBattle();
+        }
+
+    }
 
 }

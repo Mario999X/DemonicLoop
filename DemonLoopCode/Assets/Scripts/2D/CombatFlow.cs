@@ -124,8 +124,10 @@ public class CombatFlow : MonoBehaviour
     }//Fin de GeneratePlayersButtons
 
 
-    private void GenerateTargetsButtons(bool targetPlayerOrEnemy)
+    public void GenerateTargetsButtons(bool targetPlayerOrEnemy, ObjectData itemOrAtk)
     {
+        //itemOrAtk null es que no es un item
+
         // Despejamos la lista de la zona de botones enemigo. Asi evitamos que se coloquen uno encima de otro y que se mezclen.
         if (enemyBT.Count > 0)
         {
@@ -138,11 +140,19 @@ public class CombatFlow : MonoBehaviour
         {
             enemys.ForEach(enemy =>
             {
+                Debug.Log("targetEnemy " + targetPlayerOrEnemy.ToString());
                 GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
                 button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "EnemyButton (" + enemy.name + ")";
                 button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name;
-                button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(enemy); });
+                if (itemOrAtk == null)
+                {
+                    button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(enemy); });
+                }
+                else
+                {
+                    button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObject(enemy); });
+                }
                 enemyBT.Add(button);
             });
         }
@@ -150,14 +160,25 @@ public class CombatFlow : MonoBehaviour
         {
             foreach (GameObject pl in players)
             {
+                Debug.Log("targetPlayer " + targetPlayerOrEnemy.ToString());
                 GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
                 button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "PlayerButton (" + pl.name + ")";
                 button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
-                button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(pl); });
+                if (itemOrAtk == null)
+                {
+                    button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(pl); });
+                }
+                else
+                {
+                    button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObject(pl); });
+                }
                 enemyBT.Add(button);//Listado de botones generados
             }
         }
+
+
+
     }//Fin de GenerateTargetsButtons
 
     public IEnumerator CreateButtons()
@@ -247,7 +268,7 @@ public class CombatFlow : MonoBehaviour
         else
         {
             // Genera los botones según la segunda comprobacion
-            GenerateTargetsButtons(targetsToLoad);
+            GenerateTargetsButtons(targetsToLoad, null);
         }
     }//Fin de MovementButton
 
@@ -439,12 +460,8 @@ public class CombatFlow : MonoBehaviour
 
         wait = false;
 
-        ActualTurn++;
+        NextTurn();
 
-        statesLibrary.CharacterStates.ForEach(x => x.Turn++);
-
-        //Debug.Log("Turno Actual: " + ActualTurn);
-        
         yield return null;
     }//Fin de GoEnemy
 
@@ -533,7 +550,7 @@ public class CombatFlow : MonoBehaviour
         moveBT.Clear();
 
         wait = true;
-        
+
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
         {
@@ -575,6 +592,15 @@ public class CombatFlow : MonoBehaviour
         {
             StartCoroutine(GoEnemy());
         }
+    }
+
+    private void NextTurn()
+    {
+        ActualTurn++;
+
+        statesLibrary.CharacterStates.ForEach(x => x.Turn++);
+
+        //Debug.Log("Turno Actual: " + ActualTurn);
     }
 
 

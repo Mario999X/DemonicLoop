@@ -6,9 +6,9 @@ public class FloatingTextCombat : MonoBehaviour
     [SerializeField] GameObject floatingTextPF;
     [SerializeField] float destroyTime;
 
-    public void ShowFloatingText(GameObject character, float number, Color color)
+    public void ShowFloatingTextNumbers(GameObject character, float number, Color color)
     {
-        var go = Instantiate(floatingTextPF, character.transform.position, Quaternion.identity, character.GetComponent<Stats>().CharFloatingTextSpace.transform);
+        var go = Instantiate(floatingTextPF, character.transform.position, Quaternion.identity, character.GetComponent<Stats>().CharFloatingTextSpaceNumbers.transform);
 
         var textComponent = go.GetComponent<TextMeshProUGUI>();
 

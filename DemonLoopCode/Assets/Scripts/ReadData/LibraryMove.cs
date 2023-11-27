@@ -10,7 +10,7 @@ public class LibraryMove : MonoBehaviour
 
     private const float NotVeryEffective = 0.5f;
 
-    private const float NormalEffective = 1f;  
+    private const float NormalEffective = 1f;
 
     // Daño al tener similitud de tipo respecto ataque y atacante
     private const float SameTypeDamage = 2.5f;
@@ -49,14 +49,15 @@ public class LibraryMove : MonoBehaviour
         if (!healOrAttack)
         {
             float damage = DamageFull(target_ST, character_ST, attack);
-            
+
             target_ST.Health -= damage;
 
         }
 
         else
         {
-            if(attack.BaseDamage != 0){
+            if (attack.BaseDamage != 0)
+            {
                 target_ST.Health += attack.BaseDamage;
 
                 floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
@@ -64,9 +65,9 @@ public class LibraryMove : MonoBehaviour
 
         }
 
-        if(attack.GenerateAState != ActionStates.None) StartCoroutine(StateActions(attack, target, statesLibrary));
+        if (attack.GenerateAState != ActionStates.None) StartCoroutine(StateActions(attack, target, statesLibrary));
 
-        if(attack.ManaCost != 0) ManaManager(attack, character_ST);
+        if (attack.ManaCost != 0) ManaManager(attack, character_ST);
 
         character = null; target = null;
     }//Fin de Library
@@ -142,12 +143,13 @@ public class LibraryMove : MonoBehaviour
         return isAOE;
     }//Fin de CheckAoeAttack
 
-    public bool CheckIfManaIsEnough(GameObject characterST, string movementName){
+    public bool CheckIfManaIsEnough(GameObject characterST, string movementName)
+    {
         bool manaEnough = false;
 
         var attackInfo = CheckAttack(movementName);
-        
-        if(characterST.GetComponent<Stats>().Mana >= attackInfo.ManaCost)
+
+        if (characterST.GetComponent<Stats>().Mana >= attackInfo.ManaCost)
         {
             manaEnough = true;
         }
@@ -156,11 +158,18 @@ public class LibraryMove : MonoBehaviour
     }
 
     // Funcion para ejecutar el ataque que sirve para pasar de turno.
-    public void PassTurn(GameObject characterST, string movementName){
+    public void PassTurn(GameObject characterST, string movementName)
+    {
         var attackData = CheckAttack(movementName);
 
         ManaManager(attackData, characterST.GetComponent<Stats>());
     }
+
+    // Función para limpiar la cache.
+    private void ResetCache()
+    {
+        attackCache.Clear();
+    }//Fin de ResetCache
 
     private float DamageFull(Stats target_ST, Stats character_ST, AttackData attack)
     {
@@ -181,15 +190,31 @@ public class LibraryMove : MonoBehaviour
         damage = (damageType * damage) + (damageTypeEnhancer * damage);
         damage *= criticalDamage;
 
-        if(damage <= 0) damage = 1;
+        if (damage <= 0) damage = 1;
 
-        if(criticalDamage == CriticalDamageMultiplier)
+
+
+        if (criticalDamage == CriticalDamageMultiplier)
         {
-            floatingText.ShowFloatingTextNumbers(target, -damage, Color.red);
+            floatingText.ShowFloatingTextNumbers(target, damage, Color.red);
 
-        } else floatingText.ShowFloatingTextNumbers(target, -damage, Color.white);
+        }
+        else floatingText.ShowFloatingTextNumbers(target, damage, Color.white);
 
-        Debug.Log(character_ST.name + " ataca a " +  target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
+        Debug.Log(character_ST.name + " ataca a " + target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
+
+        if (attack.LifeTheft)
+        {
+            character_ST.Health += damage;
+            floatingText.ShowFloatingTextNumbers(character, damage, Color.red);
+        }
+        else if (attack.ManaTheft)
+        {
+            character_ST.Mana += damage;
+            target_ST.Mana -= damage;
+            floatingText.ShowFloatingTextNumbers(character, damage, Color.blue);
+            floatingText.ShowFloatingTextNumbers(target, damage, Color.blue);
+        }
         return damage;
     }//Fin de DamageFull
 
@@ -233,19 +258,20 @@ public class LibraryMove : MonoBehaviour
                 break;
 
             case Types.Light:
-                if(target_ST.Type == Types.Darkness)
+                if (target_ST.Type == Types.Darkness)
                 {
                     damageType = SuperEffective;
                 }
                 break;
-            
+
             case Types.Darkness:
-                if(target_ST.Type == Types.Light){
+                if (target_ST.Type == Types.Light)
+                {
                     damageType = SuperEffective;
                 }
                 break;
         }
-        
+
         return damageType;
     }//Fin de DamageType
 
@@ -254,7 +280,7 @@ public class LibraryMove : MonoBehaviour
         //Cambiar los datos de los potenciadores de los tipos
         float damage = 0.0f;
 
-        if(character_ST.Type == attack.Type) damage = SameTypeDamage;
+        if (character_ST.Type == attack.Type) damage = SameTypeDamage;
 
         return damage;
     }//Fin de TypeEnhancer
@@ -264,7 +290,7 @@ public class LibraryMove : MonoBehaviour
     {
         float damage = NormalEffective;
 
-        if(Random.Range(0, 100f) < CriticalStat) damage = CriticalDamageMultiplier;
+        if (Random.Range(0, 100f) < CriticalStat) damage = CriticalDamageMultiplier;
 
         return damage;
     }
@@ -272,33 +298,30 @@ public class LibraryMove : MonoBehaviour
     // Funcion para ejecutar las diferentes acciones respecto a los estados.
     private IEnumerator StateActions(AttackData attack, GameObject targetToApplyState, LibraryStates statesLibrary)
     {
-        switch(attack.GenerateAState)
+        switch (attack.GenerateAState)
         {
             case ActionStates.Inflict:
-                if(Random.Range(0,100) < attack.ProbabilityOfState)
-                {
-                    Debug.Log("Target to apply status: " + targetToApplyState.name);
-                    StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
-                } 
+                if (Random.Range(0, 100) < attack.ProbabilityOfState) StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
 
-            break;
+                break;
 
             case ActionStates.Heal:
-                 statesLibrary.RemoveCharacterWithState(targetToApplyState, attack.StateGenerated);
-                 
-            break;
+                statesLibrary.RemoveCharacterWithState(targetToApplyState, attack.StateGenerated);
+
+                break;
         }
 
         yield return new WaitForSeconds(0.001f);
-        
+
     }
 
-    private void ManaManager(AttackData attack, Stats characterStats){
+    private void ManaManager(AttackData attack, Stats characterStats)
+    {
         characterStats.Mana -= attack.ManaCost;
 
         // Para hacerlo más facil de ver visualmente, los ataques fisicos cuentan con un -, asi esos se vuelven positivos y los "positivos reales" se muestran negativos.
         floatingText.ShowFloatingTextNumbers(characterStats.gameObject, -attack.ManaCost, Color.blue);
     }
-    
+
 
 }

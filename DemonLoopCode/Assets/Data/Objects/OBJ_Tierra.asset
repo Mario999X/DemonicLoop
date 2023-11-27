@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_Piedra
+  m_Name: OBJ_Tierra
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   description: 
   objectType: 3
-  baseNum: 5
+  baseNum: 20
   stateAsociated: {fileID: 0}
   targetsToLoad: 0
-  type: 3
+  type: 2

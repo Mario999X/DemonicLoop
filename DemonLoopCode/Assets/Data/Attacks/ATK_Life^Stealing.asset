@@ -9,13 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_Piedra
+  m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
+  m_Name: ATK_Life^Stealing
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: 
-  objectType: 3
-  baseNum: 5
+  baseDamage: 50
+  phyAttack: 1
+  magicAttack: 0
+  isAoeAttack: 0
+  manaCost: 0
+  generateAState: 0
   stateAsociated: {fileID: 0}
-  targetsToLoad: 0
+  probabilityOfState: 0
   type: 3
+  lifeTheft: 1
+  manaTheft: 0

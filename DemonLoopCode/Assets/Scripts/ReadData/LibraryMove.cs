@@ -215,6 +215,15 @@ public class LibraryMove : MonoBehaviour
             floatingText.ShowFloatingTextNumbers(character, damage, Color.blue);
             floatingText.ShowFloatingTextNumbers(target, damage, Color.blue);
         }
+        //En el caso de que sea attack.Special (El Special nombre provisional) 
+        //Es que el ataque es tan fuerte que te quita hasta vida
+        if (attack.Special)
+        {
+            character_ST.Health -= attack.BaseDamage;
+            floatingText.ShowFloatingTextNumbers(character, damage, Color.red);
+            floatingText.ShowFloatingTextNumbers(character, damage, Color.blue);
+        }
+
         return damage;
     }//Fin de DamageFull
 

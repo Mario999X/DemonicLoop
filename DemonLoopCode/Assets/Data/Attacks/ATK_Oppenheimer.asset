@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
   m_Name: ATK_Oppenheimer
   m_EditorClassIdentifier: 
-  baseDamage: 100
-  phyAttack: 100
-  magicAttack: 100
+  baseDamage: 80
+  phyAttack: 1
+  magicAttack: 0
   isAoeAttack: 0
   manaCost: 100
+  special: 1
   generateAState: 0
   stateAsociated: {fileID: 0}
   probabilityOfState: 0

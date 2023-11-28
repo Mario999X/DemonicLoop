@@ -17,7 +17,7 @@ public class AttackData : ScriptableObject
 
     [SerializeField] private float manaCost;
 
-    [SerializeField] private bool special; //Nombre provisional
+    [SerializeField] private bool berserker; //Nombre provisional ATKPotencial
 
     [SerializeField] private ActionStates generateAState;
 
@@ -38,7 +38,7 @@ public class AttackData : ScriptableObject
     public int MagicAttack { get { return magicAttack; } }
     public bool IsAoeAttack { get { return isAoeAttack; } }
     public float ManaCost { get { return manaCost; } }
-    public bool Special { get { return special; } }
+    public bool Berserker { get { return berserker; } }
     public ActionStates GenerateAState { get { return generateAState; } }
     public string StateGenerated { get { return ObtainStateName(); } } // De esta forma se obtiene su nombre y se aplica en StatesLibrary sin tener que escribirlo a mano.
     public float ProbabilityOfState { get { return probabilityOfState; } }

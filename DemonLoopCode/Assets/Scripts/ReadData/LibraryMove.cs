@@ -206,9 +206,9 @@ public class LibraryMove : MonoBehaviour
         if (attack.LifeTheft)
         {
             character_ST.Health += damage;
-            floatingText.ShowFloatingTextNumbers(character, damage, Color.red);
+            floatingText.ShowFloatingTextNumbers(character, damage, Color.green);
         }
-        else if (attack.ManaTheft)
+        if (attack.ManaTheft)
         {
             character_ST.Mana += damage;
             target_ST.Mana -= damage;
@@ -217,7 +217,7 @@ public class LibraryMove : MonoBehaviour
         }
         //En el caso de que sea attack.Special (El Special nombre provisional) 
         //Es que el ataque es tan fuerte que te quita hasta vida
-        if (attack.Special)
+        if (attack.Berserker)
         {
             character_ST.Health -= attack.BaseDamage;
             floatingText.ShowFloatingTextNumbers(character, damage, Color.red);

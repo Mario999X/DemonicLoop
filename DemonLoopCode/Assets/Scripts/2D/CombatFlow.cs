@@ -353,7 +353,7 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-        BattleStatus();
+       
 
     }//Fin de GoPlayerMultiTarget
 
@@ -401,7 +401,6 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-        BattleStatus();
 
         yield return null;
     }//Fin de GoPlayerSingleTarget
@@ -471,7 +470,6 @@ public class CombatFlow : MonoBehaviour
 
         wait = false;
 
-        BattleStatus();
         NextTurn();
 
         yield return null;
@@ -549,7 +547,6 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-        BattleStatus();
     }
 
 
@@ -584,7 +581,7 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-        BattleStatus();
+        
     }
 
     // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
@@ -601,6 +598,7 @@ public class CombatFlow : MonoBehaviour
     // Funcion para determinar/empezar el turno enemigo.
     private void CheckIfIsEnemyTurn()
     {
+        BattleStatus();
         // Espera a que todos los jugadores hagan sus movimientos.
         if (moves >= players.Length && !wait)
         {
@@ -614,6 +612,7 @@ public class CombatFlow : MonoBehaviour
 
         statesLibrary.CharacterStates.ForEach(x => x.Turn++);
 
+        BattleStatus();
         //Debug.Log("Turno Actual: " + ActualTurn);
         //Debug.Log("1-enemys.Count " + enemys.Count);
         
@@ -622,7 +621,7 @@ public class CombatFlow : MonoBehaviour
     }//fin de NextTurn
 
 
-    private void BattleStatus()
+    private async void BattleStatus()
     {
         
         if (enemys.Count == 0)
@@ -631,7 +630,7 @@ public class CombatFlow : MonoBehaviour
             Text.print("WIN");
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
-            Time.timeScale = 100f;
+            await System.Threading.Tasks.Task.Delay(2000);
             enterBattle.FinishBattle();
         }
         if (playerBT.Count == 0)
@@ -639,10 +638,10 @@ public class CombatFlow : MonoBehaviour
             Text.print("LOSE");
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
-            Time.timeScale = 100f;
+            await System.Threading.Tasks.Task.Delay(2000);
             enterBattle.FinishBattle();
         }
 
-    }
+    }//Fin de BattleStatus
 
 }

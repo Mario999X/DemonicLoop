@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
-  m_Name: ATK_Mana^Theft
+  m_Name: ATK_Mana^Stealing
   m_EditorClassIdentifier: 
   baseDamage: 25
   phyAttack: 1

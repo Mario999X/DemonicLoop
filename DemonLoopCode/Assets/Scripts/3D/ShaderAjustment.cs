@@ -51,6 +51,11 @@ public class ShaderAjustment : MonoBehaviour
             }
             else if (@object != null)
             {
+                if (wallMatirial_Last != null && wallMatirial_Last != wallMatirial_Actual)
+                {
+                    wallMatirial_Last.SetFloat(SizeID, 0);
+                }
+
                 wallMatirial_Last = @object.GetComponent<Renderer>().material;
                 @object = null;
             }

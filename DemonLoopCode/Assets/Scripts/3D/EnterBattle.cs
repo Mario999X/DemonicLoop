@@ -37,13 +37,15 @@ public class EnterBattle : MonoBehaviour
         }
     }
 
-    // Función para iniciar la batalla.
+    // Funcion para iniciar la batalla.
     public void StartBattle(GameObject enemy, bool sneak)
     {
         this.enemy = enemy;
-        
+
         if (!oneTime)
         {
+            this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x => Instantiate(x, GameObject.Find("EnemyBattleZone").transform));
+
             StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); 
             oneTime = true;
 
@@ -51,7 +53,7 @@ public class EnterBattle : MonoBehaviour
 
             if (sneak) 
             {
-                Stats[] stats = GameObject.Find("Enemigos").GetComponentsInChildren<Stats>();
+                Stats[] stats = GameObject.Find("EnemyBattleZone").GetComponentsInChildren<Stats>();
 
                 foreach (Stats stat in stats)
                 {
@@ -61,7 +63,7 @@ public class EnterBattle : MonoBehaviour
         }
     }
 
-    // Función para finalizar batalla.
+    // Funcion para finalizar batalla.
     public void FinishBattle()
     {
         Destroy(enemy);

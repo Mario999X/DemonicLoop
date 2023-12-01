@@ -4804,9 +4804,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maps:
   - {fileID: 8788623212404409470, guid: ef9d10eba5de95542828a10937c5a592, type: 3}
-  - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
   - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
-  rarety: 4c0000003200000000000000
+  - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
+  rarety: 4b0000003200000000000000
 --- !u!4 &1525719001
 Transform:
   m_ObjectHideFlags: 0

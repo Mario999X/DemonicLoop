@@ -11,10 +11,12 @@ public class CharacterMove
     private GameObject character;
     private GameObject target;
     private string movement;
+    private bool execute = true;
 
     public GameObject Character { get { return character; } }
-    public GameObject Target { get { return target; } }
+    public GameObject Target { get { return target; } set { Target = value; } }
     public string Movement { get { return movement; } }
+    public bool Execute { get { return execute; } set { execute = value; } }
 
     public CharacterMove(GameObject character, GameObject target, string movement)
     {
@@ -38,6 +40,7 @@ public class CombatFlow : MonoBehaviour
     List<GameObject> enemyBT = new();
 
     GameObject[] players;
+    List<GameObject> alliesEnemyAttackList;
     GameObject character = null;
     public GameObject Character { get { return character; } }
 
@@ -196,6 +199,8 @@ public class CombatFlow : MonoBehaviour
 
         enemys = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         players = GameObject.FindGameObjectsWithTag("Player").ToArray();
+
+        alliesEnemyAttackList = players.ToList();
 
         Array.Sort(players, (p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza el array de jugadores por su nombre de esta forma prevenimos un fallo al asignar botones.
         enemys.Sort((p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza la lista de enemigos por su nombre de esta forma prevenimos un fallo al asignar botones.
@@ -407,23 +412,38 @@ public class CombatFlow : MonoBehaviour
 
     // Ejecuta las acciones del enemigo.
     private IEnumerator GoEnemy()
-    {
+    {   
         wait = true;
 
-        //En el caso del que no este la posiciaon que ha salido de forma aleatoria
-        //volvera hacer un random nuevo
         foreach (GameObject enemy in enemys)
         {
             int i = UnityEngine.Random.Range(0, players.Length);
-            if (players[i].GetComponent<Stats>().Health == 0f)
-            {
-                i = UnityEngine.Random.Range(0, players.Length);
-            }
+
             AddMovement(enemy, players[i], "Punch");
         }
 
         foreach (CharacterMove characterMove in movements)
         {
+            var characterTarget = characterMove.Target.GetComponent<Stats>();
+
+            // Deteccion si el target aliado esta muerto o no.
+            if(characterTarget.Health == 0)
+            {
+                alliesEnemyAttackList.Remove(characterTarget.gameObject);
+
+                if(alliesEnemyAttackList.Count != 0)
+                {
+                    characterMove.Target = alliesEnemyAttackList[UnityEngine.Random.Range(0, alliesEnemyAttackList.Count)];
+
+                } else 
+                {
+                    characterMove.Execute = false;
+
+                }
+            }
+
+            if(characterMove.Execute)
+            {
             bool dontStop = true, change = true;
 
             Vector2 v = characterMove.Character.transform.position;
@@ -465,10 +485,13 @@ public class CombatFlow : MonoBehaviour
             bt.GetComponent<Button>().enabled = true;
         });
 
+        }
+
         movements.Clear();
         moves = 0;
 
         wait = false;
+        
 
         NextTurn();
 

@@ -17,7 +17,7 @@ MonoBehaviour:
   magicAttack: 0
   isAoeAttack: 0
   manaCost: 100
-  special: 1
+  berserker: 1
   generateAState: 0
   stateAsociated: {fileID: 0}
   probabilityOfState: 0

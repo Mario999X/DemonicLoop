@@ -12,12 +12,14 @@ public class RandomMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bool finish = false;
+
         for (int i = 0; i < maps.Length; i++)
         {
-            if (Random.value >= (float) rarety[i] / 100)
+            if (Random.value >= (float) rarety[i] / 100 && !finish)
             {
                 Instantiate(maps[i], transform.position, Quaternion.Euler(new Vector3(0, 90, 0))); 
-                break;
+                finish = true;
             }
         }
 

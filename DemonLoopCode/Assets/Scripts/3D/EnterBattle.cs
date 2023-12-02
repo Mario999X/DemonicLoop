@@ -7,6 +7,7 @@ public class EnterBattle : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject player;
     [SerializeField] Canvas fight;
+    Animator crossfadeTransition;
 
     bool start;
     bool oneTime = false;
@@ -19,6 +20,8 @@ public class EnterBattle : MonoBehaviour
     {
         if (start) // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
         {
+            crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
+
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
         }
@@ -44,6 +47,8 @@ public class EnterBattle : MonoBehaviour
 
         if (!oneTime)
         {
+            StartCoroutine(CrossfadeAnimation());
+            
             this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x => Instantiate(x, GameObject.Find("EnemyBattleZone").transform));
 
             StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); 
@@ -66,6 +71,8 @@ public class EnterBattle : MonoBehaviour
     // Funcion para finalizar batalla.
     public void FinishBattle()
     {
+        StartCoroutine(CrossfadeAnimation());
+
         Destroy(enemy);
 
         player.GetComponent<PlayerMove>().enabled = true; // Activa el movimiento del jugador.
@@ -79,5 +86,15 @@ public class EnterBattle : MonoBehaviour
         oneTime = false;
 
         fight.enabled = false;
+    }
+
+    private IEnumerator CrossfadeAnimation()
+    {
+        Debug.Log("Ejecutando primera transicion");
+        crossfadeTransition.SetBool("StartBattle", true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        crossfadeTransition.SetBool("StartBattle", false);
     }
 }

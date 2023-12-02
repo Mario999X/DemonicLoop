@@ -650,7 +650,6 @@ public class CombatFlow : MonoBehaviour
         if (enemys.Count == 0)
         {
             //Se debe mostrar una pantalla de WIN
-            Text.print("WIN");
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
             await System.Threading.Tasks.Task.Delay(2000);
@@ -658,12 +657,13 @@ public class CombatFlow : MonoBehaviour
         }
         if (playerBT.Count == 0)
         {
-            Text.print("LOSE");
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
             await System.Threading.Tasks.Task.Delay(2000);
             enterBattle.FinishBattle();
         }
+
+        WINLOSE.enabled = false;
 
     }//Fin de BattleStatus
 

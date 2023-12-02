@@ -22,7 +22,7 @@ public class Stats : MonoBehaviour
     [SerializeField] float criticalChance;
     [SerializeField] float moneyDrop = 1.1f;
     [SerializeField] List<AttackData> listAtk = new();
-
+    [SerializeField] bool absorbsDamageOfSameType = false;
     [SerializeField] Types type;
 
     public float Health { get { return health; } set { health = value; OnAttackReceived(); } }
@@ -33,9 +33,10 @@ public class Stats : MonoBehaviour
     public float MagicDef { get { return magicDef; } }
     public float CriticalChance { get { return criticalChance; } }
     public float MoneyDrop { get { return moneyDrop; } }
-    public List<string> ListAtk { get { return ObtainNameAttacks(); }}
+    public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; }}
+    public List<string> ListNameAtk { get { return ObtainNameAttacks(); }}
     public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }
-
+    public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; }}
     public Types Type { get { return type; } }
 
     void Start()
@@ -107,14 +108,10 @@ public class Stats : MonoBehaviour
     }
 
     // TODO: Funcion para agregar un ataque a la lista pasandole un nombre, hace falta revisarlo.
-    public void SetAttack(string attack)
+    public void SetAttack(AttackData attack)
     {   
-        string path = AssetDatabase.GUIDToAssetPath(attack);
-
-        ScriptableObject @object = AssetDatabase.LoadAssetAtPath<AttackData>(path);
-
         CheckListAtkMax(); // Aqui se realizará la comprobacion del max de ataques por personaje.
 
-        listAtk.Add(@object as AttackData);
+        listAtk.Add(attack);
     }
 }

@@ -48,9 +48,17 @@ public class LibraryMove : MonoBehaviour
 
         if (!healOrAttack)
         {
-            float damage = DamageFull(target_ST, character_ST, attack);
+            if(target_ST.Type == attack.Type && target_ST.AbsorbsDamageOfSameType)
+            {
+                target_ST.Health += attack.BaseDamage;
+                
+                floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
+            } else 
+            {
+                float damage = DamageFull(target_ST, character_ST, attack);
 
-            target_ST.Health -= damage;
+                target_ST.Health -= damage;
+            }
 
         }
 

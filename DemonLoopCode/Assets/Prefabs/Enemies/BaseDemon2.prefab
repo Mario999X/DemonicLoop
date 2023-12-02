@@ -44,7 +44,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5370663814330642630}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &7743634065954777646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.17029142, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -114,7 +114,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 233.2936, y: 300}
+  m_SizeDelta: {x: 230, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4208159725156441736
 CanvasRenderer:
@@ -146,8 +146,11 @@ MonoBehaviour:
   magicDef: 0
   criticalChance: 10
   moneyDrop: 2
-  listAtk: []
-  type: 1
+  listAtk:
+  - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
+  - {fileID: 11400000, guid: ed663631fa833d748bf50815bb69da39, type: 2}
+  absorbsDamageOfSameType: 1
+  type: 2
 --- !u!1001 &282081289821599181
 PrefabInstance:
   m_ObjectHideFlags: 0

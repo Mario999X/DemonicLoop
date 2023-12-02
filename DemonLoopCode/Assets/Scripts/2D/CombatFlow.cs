@@ -242,7 +242,7 @@ public class CombatFlow : MonoBehaviour
             }
             moveBT.Clear();
 
-            foreach (string listAtk in character.GetComponent<Stats>().ListAtk)
+            foreach (string listAtk in character.GetComponent<Stats>().ListNameAtk)
             {
                 // Creamos un boton de movimiento.
                 GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);

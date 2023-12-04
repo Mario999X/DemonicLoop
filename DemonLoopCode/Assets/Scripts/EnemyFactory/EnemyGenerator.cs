@@ -35,6 +35,4 @@ public class EnemyGenerator : MonoBehaviour
             listEnemies.Add(enemyManagerGenerator.GenerateDemon(disasterLevel));
         }
     }
-
-
 }

@@ -32,16 +32,18 @@ public class CombatFlow : MonoBehaviour
     private int actualTurn = 1;
     public int ActualTurn { get { return actualTurn; } set { actualTurn = value; } }
 
-    List<CharacterMove> movements = new();
-    List<GameObject> enemys = new();
-    List<GameObject> playerBT = new();
-    List<GameObject> combatOptionsBT = new();
-    List<GameObject> moveBT = new();
-    List<GameObject> enemyBT = new();
+    private List<CharacterMove> movements = new();
+    private List<GameObject> enemys = new();
+    private List<GameObject> playerBT = new();
+    private List<GameObject> combatOptionsBT = new();
+    private List<GameObject> moveBT = new();
+    private List<GameObject> enemyBT = new();
 
     GameObject[] players;
-    List<GameObject> alliesEnemyAttackList;
-    GameObject character = null;
+
+    // Lista que usara el enemigo para elegir al aliado a atacar. Si el aliado esta muerto, es retirado de esta lista.
+    private List<GameObject> alliesEnemyAttackList;
+    private GameObject character = null;
     public GameObject Character { get { return character; } }
 
     [Header("Components to spawn buttons")]
@@ -203,7 +205,6 @@ public class CombatFlow : MonoBehaviour
         alliesEnemyAttackList = players.ToList();
 
         Array.Sort(players, (p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza el array de jugadores por su nombre de esta forma prevenimos un fallo al asignar botones.
-        enemys.Sort((p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza la lista de enemigos por su nombre de esta forma prevenimos un fallo al asignar botones.
 
         GeneratePlayersButtons();
 

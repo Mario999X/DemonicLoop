@@ -53,7 +53,8 @@ public class LibraryMove : MonoBehaviour
                 target_ST.Health += attack.BaseDamage;
                 
                 floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
-            } else 
+            } 
+            else 
             {
                 float damage = DamageFull(target_ST, character_ST, attack);
 
@@ -92,7 +93,7 @@ public class LibraryMove : MonoBehaviour
 
             ScriptableObject @object = AssetDatabase.LoadAssetAtPath<AttackData>(path);
 
-            var atkName = @object.name.Substring(4, @object.name.Length - 4).Replace("^", " ").ToUpper();
+            string atkName = @object.name.Substring(4, @object.name.Length - 4).Replace("^", " ").ToUpper();
 
             attackCache.Add(atkName, @object as AttackData);
 
@@ -105,7 +106,7 @@ public class LibraryMove : MonoBehaviour
     private AttackData CheckAttack(string movement)
     {
         AttackData attackData = null;
-
+        
         if (attackCache.ContainsKey(movement.ToUpper()))
         {
             attackData = attackCache[movement.ToUpper()];

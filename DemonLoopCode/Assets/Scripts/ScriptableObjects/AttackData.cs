@@ -9,9 +9,9 @@ public class AttackData : ScriptableObject
 {
     [SerializeField] private float baseDamage;
 
-    [SerializeField] private int phyAttack;
+    [SerializeField] [Range(0,1)] private int phyAttack;
 
-    [SerializeField] private int magicAttack;
+    [SerializeField] [Range(0,1)] private int magicAttack;
 
     [SerializeField] private bool isAoeAttack;
 
@@ -23,7 +23,7 @@ public class AttackData : ScriptableObject
 
     [SerializeField] private StateData stateAsociated;
 
-    [SerializeField] private float probabilityOfState = 0;
+    [SerializeField] [Range(0,100)] private float probabilityOfState = 0;
 
     [SerializeField] private Types type;
 

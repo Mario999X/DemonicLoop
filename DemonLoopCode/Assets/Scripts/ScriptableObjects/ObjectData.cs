@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable }
-//public enum Types { None,Fire, Water, Plant, Light, Darkness }
 
 [CreateAssetMenu]
 public class ObjectData : ScriptableObject

@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
 
 public class CharacterMove
 {
@@ -416,12 +417,9 @@ public class CombatFlow : MonoBehaviour
     {   
         wait = true;
 
-        foreach (GameObject enemy in enemys)
-        {
-            int i = UnityEngine.Random.Range(0, players.Length);
+        //Chequea que ataque tiene el enemigo y puede usar
+        CheckAtkEnemy();
 
-            AddMovement(enemy, players[i], "Punch");
-        }
 
         foreach (CharacterMove characterMove in movements)
         {
@@ -435,11 +433,10 @@ public class CombatFlow : MonoBehaviour
                 if(alliesEnemyAttackList.Count != 0)
                 {
                     characterMove.Target = alliesEnemyAttackList[UnityEngine.Random.Range(0, alliesEnemyAttackList.Count)];
-
-                } else 
+                } 
+                else 
                 {
                     characterMove.Execute = false;
-
                 }
             }
 
@@ -637,10 +634,6 @@ public class CombatFlow : MonoBehaviour
         statesLibrary.CharacterStates.ForEach(x => x.Turn++);
 
         BattleStatus();
-        //Debug.Log("Turno Actual: " + ActualTurn);
-        //Debug.Log("1-enemys.Count " + enemys.Count);
-        
-
         
     }//fin de NextTurn
 
@@ -667,5 +660,52 @@ public class CombatFlow : MonoBehaviour
         WINLOSE.enabled = false;
 
     }//Fin de BattleStatus
+
+
+    public void CheckAtkEnemy()
+    {
+        foreach (GameObject enemy in enemys)
+        {
+            List<string> listAtkEnemy = enemy.GetComponent<Stats>().ListNameAtk;
+            string nameAtkEnemy="";
+
+            bool isManaEnough = false;
+            // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
+            while (!isManaEnough && listAtkEnemy.Count>0)
+            {
+                //Int 1 lista de ataques del enemigo
+                int i = UnityEngine.Random.Range(0, listAtkEnemy.Count);
+
+                //Chequeamos si tiene mana o no
+                isManaEnough = library.CheckIfManaIsEnough(enemy, listAtkEnemy[i]);
+
+                if (isManaEnough)
+                {
+                    nameAtkEnemy=listAtkEnemy[i];
+                }
+                else
+                {
+                    listAtkEnemy.Remove(listAtkEnemy[i]);
+                }
+                   
+            }
+
+            if (listAtkEnemy.Count <= 0)
+            {
+                library.PassTurn(enemy, "PASS TURN");
+            }
+            else
+            {
+                //Int 2 lista de jugadores
+                int z = UnityEngine.Random.Range(0, players.Length);
+
+                AddMovement(enemy, players[z], nameAtkEnemy);
+
+            }
+
+        }
+
+
+    }//Fin de CheckAtkEnemy
 
 }

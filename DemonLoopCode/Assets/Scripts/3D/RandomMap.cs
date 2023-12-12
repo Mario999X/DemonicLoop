@@ -61,6 +61,8 @@ public class RandomMap : MonoBehaviour
 
                     saveRoom++;
                 }
+
+                room++;
             }
 
             Data.Instance.Room = room;

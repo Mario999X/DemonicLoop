@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
+  currentXP: 0
   health: 0
   maxHealth: 100
   mana: 0
@@ -145,13 +147,14 @@ MonoBehaviour:
   magicAtk: 0
   magicDef: 0
   criticalChance: 10
-  moneyDrop: 2
   listAtk:
   - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}
   - {fileID: 11400000, guid: cf7a8b30912f44407b11be432aeff6d9, type: 2}
   - {fileID: 11400000, guid: e26fac2fdf4af4d0c917716c1ff98b50, type: 2}
   absorbsDamageOfSameType: 0
   type: 3
+  moneyDrop: 2
+  dropXP: 100
 --- !u!1001 &282081289821599181
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class DirectTouchAction : MonoBehaviour
 {
+    [Header("Referenced state")]
     [SerializeField] private StateData state;
+    [Header("Individual Damage to all team members")]
     [SerializeField] float damage;
     [SerializeField] int timeSleep = 10;
     private bool wait = false;

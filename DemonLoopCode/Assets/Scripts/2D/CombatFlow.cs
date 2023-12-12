@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using Unity.VisualScripting;
 
 public class CharacterMove
 {
@@ -33,6 +32,10 @@ public class CombatFlow : MonoBehaviour
     private int actualTurn = 1;
     public int ActualTurn { get { return actualTurn; } set { actualTurn = value; } }
 
+    [Header("Experience total to distributed. Comes from EnemyGenerator")]
+    [SerializeField] private float totalEXP;
+    public float TotalEXP { set { totalEXP = value; }}
+
     private List<CharacterMove> movements = new();
     private List<GameObject> enemys = new();
     private List<GameObject> playerBT = new();
@@ -50,7 +53,7 @@ public class CombatFlow : MonoBehaviour
     [Header("Components to spawn buttons")]
     [SerializeField] GameObject spawnPlayerBT, spawnMoveBT, spawnEnemyBT, spawnCombatOptionsBT, buttonRef;
 
-    [Header("Characters speed")]
+    [Header("Characters speed of movement")]
     [SerializeField] float speed = 50f;
     [SerializeField] Text WINLOSE;
 
@@ -660,6 +663,12 @@ public class CombatFlow : MonoBehaviour
         
         if (enemys.Count == 0)
         {
+            var experience = totalEXP / players.LongLength;
+
+            Debug.Log("Experiencia: " + experience);
+
+            players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
+            
             //Se debe mostrar una pantalla de WIN
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";

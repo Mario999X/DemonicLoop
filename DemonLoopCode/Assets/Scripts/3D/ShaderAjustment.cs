@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ShaderAjustment : MonoBehaviour
 {
@@ -31,15 +27,15 @@ public class ShaderAjustment : MonoBehaviour
 
         RaycastHit hit;
 
-        // Traza una linea entre el jugador y la cámara, cual quier objeto que se encuentre en la capa asignada se guardara y se le modificada el marametro tamaño de su material.
+        // Traza una linea entre el jugador y la cï¿½mara, cual quier objeto que se encuentre en la capa asignada se guardara y se le modificada el marametro tamaï¿½o de su material.
         // Guarda hasta dos materiales de objetos distintos.
-        // Si en la line no se encuantra en colision con ningún objeto pero estuvo con en contacto con alguno este modificara el tamaño del circulo a 0.
+        // Si en la line no se encuantra en colision con ningï¿½n objeto pero estuvo con en contacto con alguno este modificara el tamaï¿½o del circulo a 0.
         if (Physics.Raycast(ray, out hit, distance, layer))
         {
             Debug.DrawRay(transform.position, dir.normalized * distance, Color.green);
 
-            // Si el objeto que esta en colisión sigue siendo el mismo este seguira guardando su material como el actual y modificando sus valores.
-            // En el caso contrario este se guadara como el material que había antes.
+            // Si el objeto que esta en colisiï¿½n sigue siendo el mismo este seguira guardando su material como el actual y modificando sus valores.
+            // En el caso contrario este se guadara como el material que habï¿½a antes.
             if (@object == hit.transform.gameObject)
             {
                 wallMatirial_Actual = hit.transform.GetComponent<Renderer>().material;
@@ -66,7 +62,7 @@ public class ShaderAjustment : MonoBehaviour
         {
             Debug.DrawRay(transform.position, dir.normalized * distance, Color.red);
 
-            // En caso de que los materiales no esten vacios y no haya algun objeto en colision esto modifican el tamaño del circulo a 0 y los vuelve null.
+            // En caso de que los materiales no esten vacios y no haya algun objeto en colision esto modifican el tamaï¿½o del circulo a 0 y los vuelve null.
             if (wallMatirial_Actual != null)
             {
                 wallMatirial_Actual.SetFloat(SizeID, 0);

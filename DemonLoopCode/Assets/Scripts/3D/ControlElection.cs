@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.XR;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -51,17 +49,17 @@ public class ControlElection : MonoBehaviour
         {
             GameObject player = GameObject.Find("Player");
 
-            // Si el jugador no tiene el componente "KeyBoard_Controls" se lo añade.
+            // Si el jugador no tiene el componente "KeyBoard_Controls" se lo aï¿½ade.
             if (!player.GetComponent<KeyBoardControls>())
                 player.AddComponent<KeyBoardControls>();
 
             List<string> controllers = Input.GetJoystickNames().ToList(); // Lista de mandos conectados.
 
-            controllers.RemoveAll(controller => !Regex.IsMatch(controller, @"^[a-zA-Z]") || controller == null); // Elimina las variables vacías generadas por un error de unity.
+            controllers.RemoveAll(controller => !Regex.IsMatch(controller, @"^[a-zA-Z]") || controller == null); // Elimina las variables vacï¿½as generadas por un error de unity.
 
             //Debug.Log(controllers.Count);
 
-            // Si hay un mando conectado le añade al jugador el componente "Controller_Controls", si no se había añadido con anterioridad.
+            // Si hay un mando conectado le aï¿½ade al jugador el componente "Controller_Controls", si no se habï¿½a aï¿½adido con anterioridad.
             if (!mando && controllers.Count > 0)
             {
                 mando = true;
@@ -79,12 +77,12 @@ public class ControlElection : MonoBehaviour
                 Destroy(player.GetComponent<ControllerControls>());
             }
         }
-        // En el caso de no iniciarse en un ordenador y encontrar el objeto jugador, se le añade el componente "Controller_Controls".
+        // En el caso de no iniciarse en un ordenador y encontrar el objeto jugador, se le aï¿½ade el componente "Controller_Controls".
         else if (!pc && GameObject.Find("Player")) 
         {
             GameObject player = GameObject.Find("Player");
 
-            // En el caso de que jugador no contenga el componente "Controller_Controls" se le añade.
+            // En el caso de que jugador no contenga el componente "Controller_Controls" se le aï¿½ade.
             if (!player.GetComponent<ControllerControls>())
                 player.AddComponent<ControllerControls>();
         }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneManager : MonoBehaviour
@@ -32,7 +29,7 @@ public class SceneManager : MonoBehaviour
         _loadingCanvas.enabled = false;
     }
 
-    // Carga la escena por el número de posición.
+    // Carga la escena por el nï¿½mero de posiciï¿½n.
     public async void LoadScene(int scene)
     {
         AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);

@@ -10,6 +10,11 @@ public class Stats : MonoBehaviour
 
     private GameObject charFloatingTextSpaceNumbers;
 
+    [Header("Level Components")]
+    [SerializeField] int level = 1;
+    [SerializeField] float currentXP;
+
+    [Header("Stats Components")]
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float mana;
@@ -19,24 +24,33 @@ public class Stats : MonoBehaviour
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
     [SerializeField] float criticalChance;
-    [SerializeField] float moneyDrop = 1.1f;
     [SerializeField] List<AttackData> listAtk = new();
     [SerializeField] bool absorbsDamageOfSameType = false;
     [SerializeField] Types type;
 
+    [Header("Drops Components")]
+    [SerializeField] float moneyDrop = 1.1f;
+    [SerializeField] private float dropXP = 0;
+
+    public int Level { get { return level; } set { level = value; }}
+    public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
+
     public float Health { get { return health; } set { health = value; OnAttackReceived(); } }
+    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
     public float Mana { get { return mana; } set { mana = value; OnManaChanged(); } }
     public float Strenght { get { return strength; } }
     public float PhysicalDefense { get { return physicalDef; } }
     public float MagicAtk { get { return magicAtk; } }
     public float MagicDef { get { return magicDef; } }
     public float CriticalChance { get { return criticalChance; } }
-    public float MoneyDrop { get { return moneyDrop; } }
     public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; }}
     public List<string> ListNameAtk { get { return ObtainNameAttacks(); }}
     public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }
     public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; }}
     public Types Type { get { return type; } }
+
+    public float MoneyDrop { get { return moneyDrop; } }
+    public float DropXP { get { return dropXP; } set { dropXP = value; }}
 
     void Start()
     {

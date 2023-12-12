@@ -13,34 +13,63 @@ public class RandomMap : MonoBehaviour
     [Header("El ultimo de la lista tiene que ser 100")]
     [SerializeField] int[] rarety;
 
-    static int room = 0, floor = 0;
-
     [SerializeField] int actualroom;
+    [SerializeField] int boosRoom;
+
+    bool done = false;
+
+    int room = 0;
+    int saveRoom = 0;
+    int floor = 0;
+
+
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        actualroom = room;
-
-        if (room == 5)
+        if (!done)
         {
-            Instantiate(oblMaps[0], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
-            room = 0;
-        }
-        else
-        {
-            bool finish = false;
+            room = Data.Instance.Room;
+            saveRoom = Data.Instance.SaveRoom;
+            floor = Data.Instance.Floor;
 
-            for (int i = 0; i < maps.Length; i++)
+            if (room == boosRoom)
             {
-                if (Random.value <= ((float)rarety[i] / 100) && !finish)
+                // Instantiate(oblMaps[1], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
+
+                floor++;
+                saveRoom = 0;
+                room = 0;
+            }
+            else
+            {
+                if (saveRoom == 5)
                 {
-                    Instantiate(maps[i], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
-                    finish = true;
+                    Instantiate(oblMaps[0], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
+                    saveRoom = 0;
+                }
+                else
+                {
+                    bool finish = false;
+
+                    for (int i = 0; i < maps.Length; i++)
+                    {
+                        if (Random.value <= ((float)rarety[i] / 100) && !finish)
+                        {
+                            Instantiate(maps[i], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
+                            finish = true;
+                        }
+                    }
+
+                    saveRoom++;
                 }
             }
 
-            room++;
+            Data.Instance.Room = room;
+            Data.Instance.SaveRoom = saveRoom;
+            Data.Instance.Floor = floor;
+
+            done = true;
         }
     }
 }

@@ -13,30 +13,40 @@ public class ControlElection : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI log;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        #if UNITY_EDITOR // Si unity es iniciado en el editor.
-            if (log != null) log.text = "Running in editor";
-            pc = true;
-        #elif UNITY_STANDALONE_OSX // Si unity es iniciado en el un MacOS.
-            if (log != null) log.text = "Running in MacOS";
-            pc = true;
-        #elif UNITY_STANDALONE_WIN // Si unity es iniciado en Windows.
-            if (log != null) log.text = "Running in Windows";
-            pc = true;
-        #elif UNITY_STANDALONE_LINUX // Si unity es iniciado en Linux.
-            if (log != null) log.text = "Running in Linux";
-            pc = true;
-        #else // Esta opcion se puede ver como: en el caso de que unity no se inicie en un ordenador. 
-            if (log != null) log.text = "Running on console";
-            pc = flase;
-        #endif
-    }
+    bool done = false;
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 1" && !done)
+        {
+            log = GameObject.Find("Running").GetComponent<TextMeshProUGUI>();
+
+
+            #if UNITY_EDITOR // Si unity es iniciado en el editor.
+                        if (log != null) log.text = "Running in editor";
+                        pc = true;
+            #elif UNITY_STANDALONE_OSX // Si unity es iniciado en el un MacOS.
+                        if (log != null) log.text = "Running in MacOS";
+                        pc = true;
+            #elif UNITY_STANDALONE_WIN // Si unity es iniciado en Windows.
+                        if (log != null) log.text = "Running in Windows";
+                        pc = true;
+            #elif UNITY_STANDALONE_LINUX // Si unity es iniciado en Linux.
+                        if (log != null) log.text = "Running in Linux";
+                        pc = true;
+            #else // Esta opcion se puede ver como: en el caso de que unity no se inicie en un ordenador. 
+                        if (log != null) log.text = "Running on console";
+                        pc = flase;
+            #endif
+
+            done = true;
+        }
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")
+        {
+            done = false;
+        }
+
         if (pc && GameObject.Find("Player")) // Si esta corriendo en un ordenador y encuentra el objeto jugador.
         {
             GameObject player = GameObject.Find("Player");

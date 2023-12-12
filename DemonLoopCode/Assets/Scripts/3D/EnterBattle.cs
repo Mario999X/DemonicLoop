@@ -9,26 +9,26 @@ public class EnterBattle : MonoBehaviour
     [SerializeField] Canvas fight;
     Animator crossfadeTransition;
 
-    bool start;
+    bool done;
     bool oneTime = false;
 
     public bool OneTime { get { return oneTime; } }
-    public bool Start { set { this.start = value; } }
     
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (start) // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2") // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
 
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
         }
-        else if (player != null || fight != null) // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
         {
             player = null; 
             fight = null;
+            crossfadeTransition = null;
         }
     }
 

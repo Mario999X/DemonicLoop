@@ -43,6 +43,8 @@ public class PlayerInventory : MonoBehaviour
 
     EnterBattle enterBattle;
 
+    bool done = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +62,21 @@ public class PlayerInventory : MonoBehaviour
             Debug.Log(item.Value.Data);
             Debug.Log("item.Value.Count " + item.Value.Count);
         }
+    }
 
+    void Update()
+    {
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        {
+            inventoryUI3D = GameObject.Find("Area");
+            inventoryUI2D = GameObject.Find("MoveButtons");
+
+            done = true;
+        }
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+        {
+            done = false;
+        }
     }
 
     // Abre y cierra el inventario.

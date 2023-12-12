@@ -12,6 +12,8 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Canvas _loadingCanvas;
 
+    bool done = false;
+
     void Awake()
     {
         if (Instance == null)
@@ -90,16 +92,14 @@ public class SceneManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        // En el caso de no ser "Scene 1" activa el componente "Enter_Battle".
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 1" && !done)
         {
-            GetComponent<EnterBattle>().Start = true;
-            GetComponent<EnterBattle>().enabled = true;
+            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(1); });
+            done = true;
         }
-        else
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")
         {
-            GetComponent<EnterBattle>().Start = false;
-            GetComponent<EnterBattle>().enabled = false;
+            done = false;
         }
     }
 }

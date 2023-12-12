@@ -10,16 +10,21 @@ public class MoneyPlayer : MonoBehaviour
 
     public float Money { get { return money; } set { this.money = value; SetMoneyInText(); } }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetMoneyInText();
-    }
+    bool done = false;
 
-    // Update is called once per frame
+    // Start is called before the first frame update
     void Update()
     {
-
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2" && !done)
+        {
+            textMoney = GameObject.Find("TextMoney").GetComponent<Text>();
+            SetMoneyInText();
+            done = true;
+        }
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+        {
+            done = false;
+        }
     }
 
     private void SetMoneyInText()

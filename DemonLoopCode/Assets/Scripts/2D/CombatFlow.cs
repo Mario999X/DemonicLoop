@@ -70,20 +70,38 @@ public class CombatFlow : MonoBehaviour
 
     private EnterBattle enterBattle;
 
+    bool done = false;
 
-    private void Start()
+    private void Update()
     {
-        LoadCombatOptionsButtons();
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        {
+            library = GetComponent<LibraryMove>();
+            moneyPlayer = GetComponent<MoneyPlayer>();
+            playerInventory = GetComponent<PlayerInventory>();
+            statesLibrary = GetComponent<LibraryStates>();
+            enterBattle = GetComponent<EnterBattle>();
+            spawnCombatOptionsBT = GameObject.Find("CombatOptionsButtons");
+            spawnEnemyBT = GameObject.Find("EnemyButtons");
+            spawnPlayerBT = GameObject.Find("PlayerButtons");
+            spawnMoveBT = GameObject.Find("MoveButtons");
+            WINLOSE = GameObject.Find("WINLOSE").GetComponent<Text>();
 
-        library = GetComponent<LibraryMove>();
-        moneyPlayer = GetComponent<MoneyPlayer>();
+            GameObject.Find("PassTurnButton").GetComponent<Button>().onClick.AddListener(() => { PassTurn("Pass Turn"); });
+            GameObject.Find("AttackButton").GetComponent<Button>().onClick.AddListener(() => { PlayerButtonAttacks(); });
+            GameObject.Find("InventoryButton").GetComponent<Button>().onClick.AddListener(() => { LoadInventoryButtons(); });
 
-        playerInventory = GetComponent<PlayerInventory>();
+            GameObject.Find("PassTurnButton").SetActive(false);
+            GameObject.Find("AttackButton").SetActive(false);
+            GameObject.Find("InventoryButton").SetActive(false);
 
-        statesLibrary = GetComponent<LibraryStates>();
-
-        enterBattle = GetComponent<EnterBattle>();
-
+            LoadCombatOptionsButtons();
+            done = true;
+        }
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+        {
+            done = false;
+        }
     }
 
     private void LoadCombatOptionsButtons()

@@ -27,7 +27,7 @@ public class DirectTouchAction : MonoBehaviour
 
         LibraryStates states = GameObject.Find("System").GetComponent<LibraryStates>();
 
-        Stats[] aliados = GameObject.Find("Aliados").GetComponentsInChildren<Stats>();
+        Stats[] aliados = GameObject.Find("AlliesBattleZone").GetComponentsInChildren<Stats>();
 
         // Por cada aliado se le hace un da�o establecido.
         foreach (Stats stats in aliados)
@@ -56,7 +56,7 @@ public class DirectTouchAction : MonoBehaviour
 
             // En caso de no haber se le inicia un nuevo estado.
             if (!notFound)
-                StartCoroutine(states.StateEffectGroup("Aliados", ObtainStateName()));
+                StartCoroutine(states.StateEffectGroup("AlliesBattleZone", ObtainStateName()));
         }
 
         yield return new WaitForSeconds(timeSleep);

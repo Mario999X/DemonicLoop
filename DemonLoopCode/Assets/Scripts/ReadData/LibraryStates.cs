@@ -38,15 +38,25 @@ public class LibraryStates : MonoBehaviour
     private PlayerMove player;
     private EnterBattle enterBattle;
 
+    bool done = false;
+
     // Start is called before the first frame update
-    private void Start()
+    private void Update()
     {
-        LoadStates();
+       if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+       {
+            LoadStates();
 
-        enterBattle = GetComponent<EnterBattle>();
-        player = GameObject.Find("Player").GetComponent<PlayerMove>();
+            enterBattle = GetComponent<EnterBattle>();
+            player = GameObject.Find("Player").GetComponent<PlayerMove>();
 
-        floatingText = GetComponent<FloatingTextCombat>();
+            floatingText = GetComponent<FloatingTextCombat>();
+            done = true;
+       }
+       else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+       {
+            done = false;
+       }
     }
 
     private void LoadStates()

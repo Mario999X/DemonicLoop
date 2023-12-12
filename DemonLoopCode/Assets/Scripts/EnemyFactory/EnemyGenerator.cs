@@ -16,12 +16,22 @@ public class EnemyGenerator : MonoBehaviour
     private const int MinNumEnemies = 1;
     private const int MaxNumEnemies = 4;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        enemyManagerGenerator = GameObject.Find("System").GetComponent<EnemyManagerGenerator>();
+    bool done = false;
 
-        SpawnEnemies();
+    // Start is called before the first frame update
+    void Update()
+    {
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        {
+            enemyManagerGenerator = GameObject.Find("System").GetComponent<EnemyManagerGenerator>();
+
+            SpawnEnemies();
+            done = true;
+        }
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+        {
+            done = false;
+        }
     }
 
     // Funcion para generar enemigos y agregarlos al listado.

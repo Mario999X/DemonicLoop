@@ -88,6 +88,7 @@ public class PlayerMove : MonoBehaviour
 
         // Prueba para ver que no haya ning�n error en el script 'Enter_Battle' al volver a la pantalla de t�tulo.
         if (Input.GetKeyDown(KeyCode.Delete)) { SceneManager.Instance.LoadScene(0); }
+        if (Input.GetKeyDown(KeyCode.R)) { SceneManager.Instance.LoadScene(1); }
     }
 
     private void OnDrawGizmos()

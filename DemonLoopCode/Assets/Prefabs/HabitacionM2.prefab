@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4689694661054520597}
   m_Layer: 0
-  m_Name: "Habitaci\xF3nM2"
+  m_Name: HabitacionM2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

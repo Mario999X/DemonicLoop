@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomMap : MonoBehaviour
 {
-    [Header("Mapas de selección random")]
+    [Header("Map Collection")]
     [SerializeField] GameObject[] maps;
 
-    [Header("Mapas obligatorios")]
+    [Header("Required maps")]
     [SerializeField] GameObject[] oblMaps;
 
-    [Header("El ultimo de la lista tiene que ser 100")]
+    [Header("The last map of the list must be 100")]
     [SerializeField] int[] rarety;
 
     [SerializeField] int actualroom;

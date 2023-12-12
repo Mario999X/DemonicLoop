@@ -5498,6 +5498,7 @@ MonoBehaviour:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
   rarety: 1e0000003200000064000000
   actualroom: 0
+  boosRoom: 10
 --- !u!4 &1525719001
 Transform:
   m_ObjectHideFlags: 0

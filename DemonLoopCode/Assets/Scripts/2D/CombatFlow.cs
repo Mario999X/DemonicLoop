@@ -151,6 +151,8 @@ public class CombatFlow : MonoBehaviour
             button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(pl); });
 
             playerBT.Add(button);//Listado de botones generados
+
+            
         }
         //Debug.Log("1- playerBT "+playerBT.Count);
 
@@ -240,7 +242,7 @@ public class CombatFlow : MonoBehaviour
 
         if (!wait)
         {
-            character = player;
+            this.character = player;
 
             combatOptionsBT.ForEach(bt => bt.SetActive(true));
         }
@@ -441,16 +443,16 @@ public class CombatFlow : MonoBehaviour
 
         foreach (CharacterMove characterMove in movements)
         {
-            var characterTarget = characterMove.Target.GetComponent<Stats>();
+            GameObject characterTarget = characterMove.Target;
 
             // Deteccion si el target aliado esta muerto o no.
-            if(characterTarget.Health == 0)
+            if(characterTarget.GetComponent<Stats>().Health == 0)
             {
                 alliesEnemyAttackList.Remove(characterTarget.gameObject);
 
                 if(alliesEnemyAttackList.Count != 0)
                 {
-                    characterMove.Target = alliesEnemyAttackList[UnityEngine.Random.Range(0, alliesEnemyAttackList.Count)];
+                    characterTarget = alliesEnemyAttackList[UnityEngine.Random.Range(0, alliesEnemyAttackList.Count)];
                 } 
                 else 
                 {
@@ -468,19 +470,19 @@ public class CombatFlow : MonoBehaviour
             {
                 if (change)
                 {
-                    characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, characterMove.Target.transform.position, speed * Time.deltaTime);
+                    characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, characterTarget.transform.position, speed * Time.deltaTime);
                 }
                 else
                 {
                     characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, v, speed * Time.deltaTime);
                 }
 
-                if (Vector2.Distance(characterMove.Character.transform.position, characterMove.Target.transform.position) < 100f && change)
+                if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
                 {
 
-                    library.Library(characterMove.Character, characterMove.Target, characterMove.Movement, statesLibrary); // Realiza el ataque.
+                    library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary); // Realiza el ataque.
 
-                    StartCoroutine(CharacterDead(characterMove.Target, false));
+                    StartCoroutine(CharacterDead(characterTarget, false));
 
                     change = false;
                 }
@@ -563,7 +565,6 @@ public class CombatFlow : MonoBehaviour
     public void PassTurn(string movement)
     {
         wait = true;
-
         // Impide que vuelva a ser selecionado el mismo personaje.
         playerBT.ForEach(bt =>
         {
@@ -574,7 +575,6 @@ public class CombatFlow : MonoBehaviour
                 bt.GetComponent<Button>().enabled = false;
             }
         });
-
         DesactivateAllButtons();
 
         library.PassTurn(character, movement.ToUpper());
@@ -584,7 +584,6 @@ public class CombatFlow : MonoBehaviour
         this.character = null; this.movement = null;
 
         wait = false;
-
         CheckIfIsEnemyTurn();
     }
 

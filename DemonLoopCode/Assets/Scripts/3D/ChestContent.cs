@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.VersionControl.Asset;
-
 public class Content
 {
     float money;
@@ -34,24 +28,13 @@ public class ChestContent : MonoBehaviour
 
     public Content chest()
     {
-        List<ScriptableObject> objects = new List<ScriptableObject>(); // Lista  de objetos existentes.
+        ObjectData[] objectDatas = Resources.LoadAll<ObjectData>("Data/Objects"); // Busca todos loas assets que empiezan con "OBJ_".
 
-        string[] pru = AssetDatabase.FindAssets("OBJ_"); // Busca todos loas assets que empiezan con "OBJ_".
-
-        // Guarda todos los ScripableObject en la lista los objetos.
-        foreach (string p in pru)
-        {
-            string path = AssetDatabase.GUIDToAssetPath(p);
-            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<ObjectData>(path);
-
-            objects.Add(@object);
-        }
-
-        int obj = Random.Range(0, objects.Count); // El objeto que se selecciona de la lista.
+        int obj = Random.Range(0, objectDatas.Length); // El objeto que se selecciona de la lista.
         int count = Random.Range(minCount, maxCount + 1); // La cantidad que se le da de dicho objeto.
         float money = (float) System.Math.Round(Random.Range(minMoney, maxMoney + 1), 2); // La cantidad de dinero que se dara.
 
-        Content content = new Content(money, count, objects[obj]); // Se guarda en la clase Content
+        Content content = new Content(money, count, objectDatas[obj]); // Se guarda en la clase Content
 
         return content; // Se devuelve la clase dicha.
     }

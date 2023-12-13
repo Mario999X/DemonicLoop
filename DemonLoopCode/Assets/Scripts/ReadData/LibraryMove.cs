@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class LibraryMove : MonoBehaviour
@@ -86,17 +85,13 @@ public class LibraryMove : MonoBehaviour
     // Carga inicial de ataques a la "cache"
     private void LoadAttacks()
     {
-        string[] moves = AssetDatabase.FindAssets("ATK_");
+        AttackData[] attackDatas = Resources.LoadAll<AttackData>("Data/Attacks");
 
-        foreach (string m in moves)
+        foreach (AttackData attackData in attackDatas)
         {
-            string path = AssetDatabase.GUIDToAssetPath(m);
+            string atkName = attackData.name.Substring(4, attackData.name.Length - 4).Replace("^", " ").ToUpper();
 
-            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<AttackData>(path);
-
-            string atkName = @object.name.Substring(4, @object.name.Length - 4).Replace("^", " ").ToUpper();
-
-            attackCache.Add(atkName, @object as AttackData);
+            attackCache.Add(atkName, attackData);
 
             //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
         }

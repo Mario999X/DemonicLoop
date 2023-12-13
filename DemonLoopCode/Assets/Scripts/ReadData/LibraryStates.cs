@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class ActualStateData
@@ -61,14 +60,11 @@ public class LibraryStates : MonoBehaviour
 
     private void LoadStates()
     {
-        string[] pru = AssetDatabase.FindAssets("STD_");
+        StateData[] stateDatas = Resources.LoadAll<StateData>("Data/States");
 
-        foreach (string p in pru)
+        foreach (StateData stateData in stateDatas)
         {
-            string path = AssetDatabase.GUIDToAssetPath(p);
-            ScriptableObject @object = AssetDatabase.LoadAssetAtPath<StateData>(path);
-
-            states.Add(@object.name.Substring(4, @object.name.Length - 4).ToUpper(), @object as StateData);
+            states.Add(stateData.name.Substring(4, stateData.name.Length - 4).ToUpper(), stateData);
         }
     }
 

@@ -18,4 +18,17 @@ public class FloatingTextCombat : MonoBehaviour
 
         Destroy(go, destroyTime);
     }
+
+    public void ShowFloatingText(GameObject character, string text, Color color)
+    {
+         var go = Instantiate(floatingTextPF, character.transform.position, Quaternion.identity, character.GetComponent<Stats>().CharFloatingTextSpaceNumbers.transform);
+
+        var textComponent = go.GetComponent<TextMeshProUGUI>();
+
+        textComponent.text = text;
+
+        textComponent.color = color;
+
+        Destroy(go, destroyTime);
+    }
 }

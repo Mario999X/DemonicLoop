@@ -50,9 +50,10 @@ public class LibraryMove : MonoBehaviour
         {
             if(target_ST.Type == attack.Type && target_ST.AbsorbsDamageOfSameType)
             {
-                target_ST.Health += attack.BaseDamage;
+                target_ST.Health += attack.BaseDamage/2;
                 
                 floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
+                floatingText.ShowFloatingText(target, "ABSORBED", Color.yellow);
             } 
             else 
             {

@@ -8,6 +8,7 @@ public class Data : MonoBehaviour
     int saveRoom;
     int room;
     int floor;
+    float money;
 
     public int SaveRoom { get { return saveRoom; } set { saveRoom = value; } }
     public int Room { get { return room; } set { room = value; } }

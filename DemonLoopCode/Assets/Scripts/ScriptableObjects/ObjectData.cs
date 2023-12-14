@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable }
 
@@ -46,6 +47,18 @@ public class ObjectData : ScriptableObject
         }
         else
         {
+            GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(true);
+
+            GameObject[] buttons = GameObject.FindGameObjectsWithTag("Buttons");
+
+            if (buttons.Length > 0)
+            {
+                foreach (GameObject bt in buttons)
+                {
+                    Destroy(bt);
+                }
+            }
+
             CreateButtons(GameObject.Find("PartyButtons"));
         }
     }
@@ -62,7 +75,7 @@ public class ObjectData : ScriptableObject
             bt.transform.SetParent(spawnMoveBT.transform);
             bt.name = "Allay " + pl.name;//Nombre de los botones que se van a generar
             bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1);
-            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObject(pl); });
+            bt.GetComponent<Button>().onClick.AddListener(delegate { this.UserObject(pl); });
         }
     }
 
@@ -70,7 +83,11 @@ public class ObjectData : ScriptableObject
     {
         if (enterBattle.OneTime)
             GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
-        
+        else
+        {
+            GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+        }
+
         Stats target = @character.GetComponent<Stats>();
 
         switch (ObjectType)

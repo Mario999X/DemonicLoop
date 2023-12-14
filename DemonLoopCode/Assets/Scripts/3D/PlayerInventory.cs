@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ObjectStock
 {
@@ -36,6 +37,8 @@ public class PlayerInventory : MonoBehaviour
 
     bool inventoryState = false;
 
+    Scene scene;
+
     public bool InventoryState { get {  return inventoryState; } }
 
     Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
@@ -46,6 +49,12 @@ public class PlayerInventory : MonoBehaviour
 
     void Update()
     {
+        if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
+        {
+            done = false;
+            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        }
+
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             inventoryUI3D = GameObject.Find("Area");
@@ -98,6 +107,8 @@ public class PlayerInventory : MonoBehaviour
                 }
 
                 inventoryUI3D.GetComponentInParent<Canvas>().enabled = false;
+
+                GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
 
                 inventoryState = false;
             }

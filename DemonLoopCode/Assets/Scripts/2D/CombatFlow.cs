@@ -451,7 +451,7 @@ public class CombatFlow : MonoBehaviour
             // Deteccion si el target aliado esta muerto o no.
             if(characterTarget.GetComponent<Stats>().Health == 0)
             {
-                alliesEnemyAttackList.Remove(characterTarget.gameObject);
+                //alliesEnemyAttackList.Remove(characterTarget);
 
                 if(alliesEnemyAttackList.Count != 0)
                 {
@@ -555,6 +555,8 @@ public class CombatFlow : MonoBehaviour
                 List<GameObject> actualPlayers = players.ToList();
 
                 actualPlayers.Remove(target);
+
+                alliesEnemyAttackList.Remove(target);
 
                 players = actualPlayers.ToArray();
 

@@ -552,7 +552,7 @@ public class CombatFlow : MonoBehaviour
             else
             {
 
-                var actualPlayers = players.ToList();
+                List<GameObject> actualPlayers = players.ToList();
 
                 actualPlayers.Remove(target);
 

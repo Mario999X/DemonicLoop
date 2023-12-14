@@ -44,31 +44,27 @@ public class PlayerInventory : MonoBehaviour
 
     bool done = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        enterBattle = GetComponent<EnterBattle>();
-
-        foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
-        {
-            //Se van a�adir todos los Objectos que esten en nuestra lista
-            AddObjectToInventory(m_ScriptableObject.name.Substring(4, m_ScriptableObject.name.Length - 4), m_ScriptableObject, 1);
-        }
-
-        foreach (var item in inventory)
-        {
-            Debug.Log(item.Key);
-            Debug.Log(item.Value.Data);
-            Debug.Log("item.Value.Count " + item.Value.Count);
-        }
-    }
-
     void Update()
     {
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             inventoryUI3D = GameObject.Find("Area");
             inventoryUI2D = GameObject.Find("MoveButtons");
+
+            enterBattle = GetComponent<EnterBattle>();
+
+            foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
+            {
+                //Se van a�adir todos los Objectos que esten en nuestra lista
+                AddObjectToInventory(m_ScriptableObject.name.Substring(4, m_ScriptableObject.name.Length - 4), m_ScriptableObject, 1);
+            }
+
+            foreach (var item in inventory)
+            {
+                Debug.Log(item.Key);
+                Debug.Log(item.Value.Data);
+                Debug.Log("item.Value.Count " + item.Value.Count);
+            }
 
             done = true;
         }

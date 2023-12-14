@@ -1,4 +1,8 @@
+using System.Linq;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable }
 
@@ -14,9 +18,10 @@ public class ObjectData : ScriptableObject
     [SerializeField] private StateData stateAsociated;
     [SerializeField] bool targetsToLoad = false;
     [SerializeField] Types type;
+    [SerializeField] GameObject buttonPrefab;
 
     float baseDamage = 1.5f;
-    
+
     CombatFlow combatFlow;
     EnterBattle enterBattle;
     PlayerInventory inventory;
@@ -33,19 +38,41 @@ public class ObjectData : ScriptableObject
     // Cuando se hace click en este objeto.
     public void Click(PlayerInventory inventory)
     {
-        enterBattle = GameObject.Find("System").GetComponent<EnterBattle>();
-        combatFlow = GameObject.Find("System").GetComponent<CombatFlow>();
         this.inventory = inventory;
+        enterBattle = GameObject.Find("System").GetComponent<EnterBattle>();
         if (enterBattle.OneTime)
         {
-            combatFlow.GenerateTargetsButtons(targetsToLoad, this);
+            GameObject.Find("System").GetComponent<CombatFlow>().GenerateTargetsButtons(targetsToLoad, this);
+        }
+        else
+        {
+            CreateButtons(GameObject.Find("PartyButtons"));
+        }
+    }
+
+    void CreateButtons(GameObject spawnMoveBT)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player").ToArray();
+
+        foreach (GameObject pl in players)
+        {
+            Debug.Log(spawnMoveBT);
+
+            GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
+            bt.transform.SetParent(spawnMoveBT.transform);
+            bt.name = "Allay " + pl.name;//Nombre de los botones que se van a generar
+            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1);
+            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObject(pl); });
         }
     }
 
     public void UserObject(GameObject @character)
     {
-        GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
+        if (enterBattle.OneTime)
+            GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
+        
         Stats target = @character.GetComponent<Stats>();
+
         switch (ObjectType)
         {
             case ObjectTypes.Health:

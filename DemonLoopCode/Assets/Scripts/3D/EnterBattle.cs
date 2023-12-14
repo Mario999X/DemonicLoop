@@ -48,11 +48,12 @@ public class EnterBattle : MonoBehaviour
         {
             StartCoroutine(CrossfadeAnimation());
             
+            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); 
+            
             this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x => Instantiate(x, GameObject.Find("EnemyBattleZone").transform));
 
             GetComponent<CombatFlow>().TotalEXP = this.enemy.GetComponent<EnemyGenerator>().TotalEXP;
 
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); 
             oneTime = true;
 
             fight.enabled = true;

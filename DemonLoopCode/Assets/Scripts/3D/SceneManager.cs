@@ -42,20 +42,22 @@ public class SceneManager : MonoBehaviour
         // Muestra por pantalla el progreso de carga de escena.
         do
         {
-            await System.Threading.Tasks.Task.Delay(100);
-
             progressValue = Mathf.Clamp01(operation.progress / 0.9f);
 
-            slider.value = Mathf.MoveTowards(slider.value, progressValue, 3 * Time.deltaTime);
-        } while (operation.progress < 0.9f);
-
-        slider.value = 1;
+            while (slider.value != progressValue) 
+            { 
+                await System.Threading.Tasks.Task.Delay(1); 
+                slider.value = Mathf.MoveTowards(slider.value, progressValue, 0.5f * Time.deltaTime); 
+            }
+        } while (progressValue < 0.9f);
 
         operation.allowSceneActivation = true; // Permite que se active la escena.
 
         await System.Threading.Tasks.Task.Delay(1000);
 
         _loadingCanvas.enabled = false;
+
+        slider.value = 0;
     }
 
     // Carga la escena por su nombre.
@@ -71,20 +73,22 @@ public class SceneManager : MonoBehaviour
         // Muestra por pantalla el progreso de carga de escena.
         do
         {
-            await System.Threading.Tasks.Task.Delay(100);
-
             progressValue = Mathf.Clamp01(operation.progress / 0.9f);
 
-            slider.value = Mathf.MoveTowards(slider.value, progressValue, 3 * Time.deltaTime);
-        } while (operation.progress < 0.9f);
-
-        slider.value = 1;
+            while (slider.value != progressValue)
+            {
+                await System.Threading.Tasks.Task.Delay(5);
+                slider.value = Mathf.MoveTowards(slider.value, progressValue, 0.5f * Time.deltaTime);
+            }
+        } while (progressValue < 0.9f);
 
         operation.allowSceneActivation = true; // Permite que se active la escena.
 
         await System.Threading.Tasks.Task.Delay(1000);
 
         _loadingCanvas.enabled = false;
+
+        slider.value = 0;
     }
 
     void FixedUpdate()

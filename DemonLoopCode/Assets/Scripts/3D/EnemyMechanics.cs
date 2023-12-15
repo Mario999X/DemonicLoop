@@ -38,6 +38,7 @@ public class EnemyMechanics : MonoBehaviour
         }
 
         RaycastHit hit;
+        direction = transform.right;
 
         // Crea una linea invisible de una determinada distancia el cual actua como un trigger y solo detecta los objetos que se encuentran en las capas selecionadas.
         if (Physics.Raycast(transform.position, direction, out hit, distance, layer))
@@ -86,15 +87,15 @@ public class EnemyMechanics : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, puntoA.transform.position) < 0.0001f)
                 {
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
-                    direction = -Vector3.forward;
+                    transform.rotation = Quaternion.Euler(0, Mathf.Atan2(puntoB.transform.position.z - puntoA.transform.position.z, puntoB.transform.position.x - puntoA.transform.position.x) * 180 / Mathf.PI, 0);
+                    
                     change = true;
                 }
 
                 if (Vector3.Distance(transform.position, puntoB.transform.position) < 0.0001f)
                 {
-                    transform.rotation = Quaternion.Euler(0, -90, 0);
-                    direction = Vector3.forward;
+                    transform.rotation = Quaternion.Euler(0, Mathf.Atan2(puntoA.transform.position.z - puntoB.transform.position.z, puntoA.transform.position.x - puntoB.transform.position.x) * 180 / Mathf.PI, 0);
+                    
                     change = false;
                 }
             }

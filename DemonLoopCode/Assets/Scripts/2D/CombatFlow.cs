@@ -45,8 +45,9 @@ public class CombatFlow : MonoBehaviour
 
     GameObject[] players;
 
-    // Lista que usara el enemigo para elegir al aliado a atacar. Si el aliado esta muerto, es retirado de esta lista.
-    private List<GameObject> alliesEnemyAttackList;
+    List<GameObject> playersDefeated = new();
+    public List<GameObject> PlayersDefeated { get { return playersDefeated; }}
+
     private GameObject character = null;
     public GameObject Character { get { return character; } }
 
@@ -225,8 +226,6 @@ public class CombatFlow : MonoBehaviour
 
         enemys = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         players = GameObject.FindGameObjectsWithTag("Player").ToArray();
-
-        alliesEnemyAttackList = players.ToList();
 
         Array.Sort(players, (p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza el array de jugadores por su nombre de esta forma prevenimos un fallo al asignar botones.
 
@@ -453,9 +452,9 @@ public class CombatFlow : MonoBehaviour
             {
                 //alliesEnemyAttackList.Remove(characterTarget);
 
-                if(alliesEnemyAttackList.Count != 0)
+                if(players.Length != 0)
                 {
-                    characterTarget = alliesEnemyAttackList[UnityEngine.Random.Range(0, alliesEnemyAttackList.Count)];
+                    characterTarget = players[UnityEngine.Random.Range(0, players.Length)];
                 } 
                 else 
                 {
@@ -556,7 +555,7 @@ public class CombatFlow : MonoBehaviour
 
                 actualPlayers.Remove(target);
 
-                alliesEnemyAttackList.Remove(target);
+                playersDefeated.Add(target);
 
                 players = actualPlayers.ToArray();
 
@@ -653,7 +652,11 @@ public class CombatFlow : MonoBehaviour
     {
         ActualTurn++;
 
-        statesLibrary.CharacterStates.ForEach(x => x.Turn++);
+        statesLibrary.CharacterStates.ForEach(x => {
+            x.Turn++;
+            if(x.Character.CompareTag("Enemy")) StartCoroutine(CharacterDead(x.Character, true));
+            else StartCoroutine(CharacterDead(x.Character, false));
+        });
 
         BattleStatus();
         

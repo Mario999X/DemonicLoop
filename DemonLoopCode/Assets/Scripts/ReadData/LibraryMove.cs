@@ -320,6 +320,8 @@ public class LibraryMove : MonoBehaviour
                 break;
 
             case ActionStates.Heal:
+                Debug.Log("targetToApplyState "+ targetToApplyState);
+                Debug.Log("attack " + attack.StateGenerated);
                 statesLibrary.RemoveCharacterWithState(targetToApplyState, attack.StateGenerated);
 
                 break;

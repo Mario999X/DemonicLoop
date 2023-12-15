@@ -9,9 +9,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float Jspeed = 10f;
     [SerializeField] private float gravity = 9.82f;
-    [SerializeField] bool poison = false;
     private float X, Z;
-    int oneTime = 0;
 
     [Header("Check ground")]
     [SerializeField] float altitude = 1f;

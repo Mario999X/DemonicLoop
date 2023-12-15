@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CharacterMove
 {
@@ -60,6 +61,7 @@ public class CombatFlow : MonoBehaviour
     private int moves = 0;
 
     private bool wait = false;
+    bool done = false;
 
     private string movement = null;
 
@@ -73,10 +75,16 @@ public class CombatFlow : MonoBehaviour
 
     private EnterBattle enterBattle;
 
-    bool done = false;
+    Scene scene;
 
     private void Update()
     {
+        if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
+        {
+            done = false;
+            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        }
+
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             library = GetComponent<LibraryMove>();

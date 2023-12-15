@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActualStateData
 {
@@ -39,23 +40,35 @@ public class LibraryStates : MonoBehaviour
 
     bool done = false;
 
+    Scene scene;
+
+    void Start()
+    {
+        enterBattle = GetComponent<EnterBattle>();
+        floatingText = GetComponent<FloatingTextCombat>();
+            
+        LoadStates();
+    }
+
     // Start is called before the first frame update
     private void Update()
     {
-       if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
-       {
-            LoadStates();
+        if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
+        {
+            done = false;
+            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        }
 
-            enterBattle = GetComponent<EnterBattle>();
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        {
             player = GameObject.Find("Player").GetComponent<PlayerMove>();
 
-            floatingText = GetComponent<FloatingTextCombat>();
             done = true;
-       }
-       else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
-       {
+        }
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+        {
             done = false;
-       }
+        }
     }
 
     private void LoadStates()

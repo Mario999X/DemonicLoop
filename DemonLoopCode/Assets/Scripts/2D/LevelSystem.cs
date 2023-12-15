@@ -42,8 +42,11 @@ public class LevelSystem : MonoBehaviour
 
     private void IncrementStatsGeneric()
     {
-        characterST.MaxHealth += 20;
+        characterST.MaxHealth += 50;
         characterST.Health = characterST.MaxHealth;
+
+        characterST.MaxMana += 50;
+        characterST.Mana = characterST.MaxMana;
     }
 
     private int CalculateRequireXp()

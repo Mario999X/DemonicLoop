@@ -660,11 +660,16 @@ public class CombatFlow : MonoBehaviour
     {
         ActualTurn++;
 
+        // Paso de turno para los estados
         statesLibrary.CharacterStates.ForEach(x => {
             x.Turn++;
-            if(x.Character.CompareTag("Enemy")) StartCoroutine(CharacterDead(x.Character, true));
-            else StartCoroutine(CharacterDead(x.Character, false));
+            if(x.Character != null)
+            {
+                if(x.Character.CompareTag("Enemy")) StartCoroutine(CharacterDead(x.Character, true)); // Comprobacion de enemigo fallecido
+            }
         });
+
+        players.ToList().ForEach(x => StartCoroutine(CharacterDead(x, false))); // Comprobacion de aliado fallecido
 
         BattleStatus();
         
@@ -687,6 +692,10 @@ public class CombatFlow : MonoBehaviour
             WINLOSE.text = "WIN";
             await System.Threading.Tasks.Task.Delay(2000);
             enterBattle.FinishBattle();
+
+            // Se resetea la información del combate para el proximo encuentro
+            actualTurn = 0;
+            moves = 0; 
         }
         if (playerBT.Count == 0)
         {

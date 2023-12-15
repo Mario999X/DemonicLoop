@@ -35,9 +35,10 @@ public class Stats : MonoBehaviour
     public int Level { get { return level; } set { level = value; }}
     public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
 
-    public float Health { get { return health; } set { health = value; OnAttackReceived(); } }
+    public float Health { get { return health; } set { health = value; if(barHP != null) OnAttackReceived(); } } // @TODO: Mecanica de ataque sorpresa no funcional, la barra de vida es nula
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
     public float Mana { get { return mana; } set { mana = value; OnManaChanged(); } }
+    public float MaxMana { get { return maxMana; } set { maxMana = value; } }
     public float Strenght { get { return strength; } }
     public float PhysicalDefense { get { return physicalDef; } }
     public float MagicAtk { get { return magicAtk; } }

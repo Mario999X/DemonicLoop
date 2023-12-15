@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem;
 
 public class ActualStateData
 {
@@ -27,6 +30,8 @@ public class ActualStateData
 
 public class LibraryStates : MonoBehaviour
 {
+    [SerializeField] GameObject Burnt;
+    [SerializeField] GameObject Poison;
     private Dictionary<string, StateData> states = new();
 
     private List<ActualStateData> characterStates = new();
@@ -119,6 +124,23 @@ public class LibraryStates : MonoBehaviour
                     if (lastTurn != actualState.Turn)
                     {
                         //Debug.Log("2D ---- Character: " + target.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
+                        //state.ToUpper() POISON / BURNT
+                        if (state.ToUpper() == "BURNT")
+                        {
+                            Debug.Log("BURNT " + state.ToUpper());
+
+
+                            GameObject icon = Instantiate(Burnt, target.transform.position, Quaternion.identity);
+                            icon.transform.SetParent(target.transform);
+
+
+                        }
+                        else
+                        {
+                            Debug.Log("POISON " + state.ToUpper());
+                            GameObject icon = Instantiate(Poison, target.transform.position, Quaternion.identity);
+                            icon.transform.SetParent(target.transform);
+                        }
 
                         if (targetST.Health > 1)
                         {
@@ -181,6 +203,8 @@ public class LibraryStates : MonoBehaviour
                         {
                             //Debug.Log("3D ---- Character: " + character.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
 
+                            Debug.Log("holaaaaaa");
+
                             if (character.Health > 1)
                             {
                                 character.Health -= stateData.BaseDamage;
@@ -207,11 +231,35 @@ public class LibraryStates : MonoBehaviour
 
             if(stateCharacter != null)
             {
+  
                 Debug.Log("Character found with that State, removing...");
                 stateCharacter.Turn = 100; // Finaliza el bucle de los hilos.
-
+                characterStates.Remove(stateCharacter);
             } else Debug.Log("Character not found with that State");
         }
     }
-    
+
+    public bool checkStatus(GameObject target, string state)
+    {
+
+        //Recorrer toda la lista de los estados guardados
+        foreach (ActualStateData character in characterStates)
+        {
+
+            Debug.Log("character.State.ToUpper() "+ character.State.ToUpper());
+            Debug.Log("state.ToUpper() " + state.ToUpper());
+            Debug.Log("character.Characte " + character.Character);
+            Debug.Log("target " + target);
+            string stateLimp = state.Replace("(Clone)", "").Trim();
+            Debug.Log("stateLimp " + stateLimp);
+            if (character.State.ToUpper() == stateLimp.ToUpper() && character.Character == target)
+            {
+                Debug.Log("Sigue con el estado");
+                return true;
+            }
+        }
+        Debug.Log("NOOOOO SIGUE con el estado");
+        return false;
+    }
+
 }

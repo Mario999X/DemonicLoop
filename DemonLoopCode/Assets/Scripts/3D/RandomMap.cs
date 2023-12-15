@@ -54,7 +54,7 @@ public class RandomMap : MonoBehaviour
                     {
                         if (Random.value <= ((float)rarety[i] / 100) && !finish)
                         {
-                            Instantiate(maps[i], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
+                            Instantiate(maps[i], transform.position, Quaternion.identity);
                             finish = true;
                         }
                     }

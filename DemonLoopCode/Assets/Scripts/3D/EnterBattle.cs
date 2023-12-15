@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnterBattle : MonoBehaviour
 {
@@ -8,14 +9,22 @@ public class EnterBattle : MonoBehaviour
     [SerializeField] Canvas fight;
     Animator crossfadeTransition;
 
-    bool done;
+    bool done = false;
     bool oneTime = false;
+
+    Scene scene;
 
     public bool OneTime { get { return oneTime; } }
     
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
+        {
+            done = false;
+            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        }
+
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2") // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();

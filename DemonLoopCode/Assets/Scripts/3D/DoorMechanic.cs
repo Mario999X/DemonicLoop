@@ -8,10 +8,13 @@ public class DoorMechanic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player" && !done)
+        if (GameObject.FindGameObjectsWithTag("Enemy3D").Length <= 0)
         {
-            SceneManager.Instance.LoadScene(1);
-            done = true;
+            if (other.name == "Player" && !done)
+            {
+                SceneManager.Instance.LoadScene(1);
+                done = true;
+            }
         }
     }
 }

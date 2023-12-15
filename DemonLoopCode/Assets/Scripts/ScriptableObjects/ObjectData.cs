@@ -84,10 +84,8 @@ public class ObjectData : ScriptableObject
         if (enterBattle.OneTime)
             GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
         else
-        {
             GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
-        }
-
+        
         Stats target = @character.GetComponent<Stats>();
 
         switch (ObjectType)

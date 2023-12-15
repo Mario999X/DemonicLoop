@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        states = GameObject.Find("System").GetComponent<LibraryStates>();
+
     }
 
     // Update is called once per frame
@@ -65,12 +65,6 @@ public class PlayerMove : MonoBehaviour
             this.onFloor = true;
         else
             this.onFloor = false;
-
-        if (poison && oneTime == 0)
-        {
-            StartCoroutine(states.StateEffectGroup("Aliados", "poison"));
-            oneTime++;
-        }
 
         if (X > 0 && Z > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, -45, 0); }
         else if (X < 0 && Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 135, 0); }

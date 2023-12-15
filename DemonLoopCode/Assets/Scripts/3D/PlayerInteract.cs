@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] float distance = 10f;
@@ -11,15 +11,12 @@ public class PlayerInteract : MonoBehaviour
 
     public bool Click { set { this.click = value; } }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerMoney = GameObject.Find("System").GetComponent<MoneyPlayer>();
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (playerMoney == null)
+            playerMoney = GameObject.Find("System").GetComponent<MoneyPlayer>();
+
         RaycastHit hit;
 
         // Solo hace de intermediario

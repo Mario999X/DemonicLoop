@@ -203,8 +203,6 @@ public class LibraryStates : MonoBehaviour
                         {
                             //Debug.Log("3D ---- Character: " + character.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
 
-                            Debug.Log("holaaaaaa");
-
                             if (character.Health > 1)
                             {
                                 character.Health -= stateData.BaseDamage;
@@ -239,9 +237,8 @@ public class LibraryStates : MonoBehaviour
         }
     }
 
-    public bool checkStatus(GameObject target, string state)
+    public bool CheckStatus(GameObject target, string state)
     {
-
         //Recorrer toda la lista de los estados guardados
         foreach (ActualStateData character in characterStates)
         {
@@ -258,7 +255,7 @@ public class LibraryStates : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("NOOOOO SIGUE con el estado");
+
         return false;
     }
 

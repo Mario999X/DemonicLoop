@@ -101,7 +101,6 @@ public class EnterBattle : MonoBehaviour
 
     private IEnumerator CrossfadeAnimation()
     {
-        Debug.Log("Ejecutando primera transicion");
         crossfadeTransition.SetBool("StartBattle", true);
 
         yield return new WaitForSeconds(0.5f);

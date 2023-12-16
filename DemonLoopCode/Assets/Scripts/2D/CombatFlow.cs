@@ -44,6 +44,8 @@ public class CombatFlow : MonoBehaviour
     private List<GameObject> moveBT = new();
     private List<GameObject> enemyBT = new();
 
+    public List<GameObject> EnemyBT { get { return enemyBT; } set { enemyBT = value; }}
+
     GameObject[] players;
 
     List<GameObject> playersDefeated = new();
@@ -132,7 +134,7 @@ public class CombatFlow : MonoBehaviour
         }
         moveBT.Clear();
 
-        playerInventory.OpenCloseInventoyry();
+        playerInventory.OpenCloseInventory();
     }
 
     private void GeneratePlayersButtons()
@@ -162,9 +164,9 @@ public class CombatFlow : MonoBehaviour
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
             button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(pl); });
 
-            playerBT.Add(button);//Listado de botones generados
 
-            
+            button.transform.localScale = new Vector3(1f, 1f, 1f); // Al cambiar de resolucion, el boton aparecia con una escala distinta (?) asi que asi nos aseguramos que se mantenga.
+            playerBT.Add(button);//Listado de botones generados
         }
         //Debug.Log("1- playerBT "+playerBT.Count);
 
@@ -200,6 +202,8 @@ public class CombatFlow : MonoBehaviour
                 {
                     button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObject(enemy); });
                 }
+
+                button.transform.localScale = new Vector3(1f, 1f, 1f);
                 enemyBT.Add(button);
             });
         }
@@ -220,6 +224,8 @@ public class CombatFlow : MonoBehaviour
                 {
                     button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObject(pl); });
                 }
+
+                button.transform.localScale = new Vector3(1f, 1f, 1f);
                 enemyBT.Add(button);//Listado de botones generados
             }
         }
@@ -265,8 +271,14 @@ public class CombatFlow : MonoBehaviour
 
         if (!wait)
         {
+            if (enemyBT.Count > 0)
+            {
+                enemyBT.ForEach(bt => Destroy(bt));
+                enemyBT.Clear();
+            }
+
             if (playerInventory.InventoryState)
-                playerInventory.OpenCloseInventoyry();
+                playerInventory.OpenCloseInventory();
 
             foreach (GameObject moveBT in moveBT)
             {
@@ -282,6 +294,8 @@ public class CombatFlow : MonoBehaviour
                 bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
                 bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
+
+                bt.transform.localScale = new Vector3(1f, 1f, 1f);
                 moveBT.Add(bt);
 
                 // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
@@ -642,7 +656,7 @@ public class CombatFlow : MonoBehaviour
 
         combatOptionsBT.ForEach(bt => bt.SetActive(false)); // Desactiva todos los botones de opciones de combate.
 
-        enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones enemigo en caso de que esten activados.
+        enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones de targets en caso de que esten activados.
     }
 
     // Funcion para determinar/empezar el turno enemigo.

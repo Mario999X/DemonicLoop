@@ -84,7 +84,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // Abre y cierra el inventario.
-    public void OpenCloseInventoyry()
+    public void OpenCloseInventory()
     {
         if (!enterBattle.OneTime) // En el caso de no estar en batalla solo genera y destruye los botones del objeto en el inventario del mundo 3D.
         {
@@ -117,9 +117,21 @@ public class PlayerInventory : MonoBehaviour
         {
             if (!inventoryState) // En el caso de abrir inventario este crea los botones.
             {
+                // Localizamos combatflow
+                var combatFlowRef = GameObject.Find("System").GetComponent<CombatFlow>();
+
+                // Hacemos desaparecer a los botones targets de la batalla
+                if (combatFlowRef.EnemyBT.Count > 0)
+                {
+                    combatFlowRef.EnemyBT.ForEach(bt => Destroy(bt));
+                    combatFlowRef.EnemyBT.Clear();
+                }
+
                 foreach (ObjectStock item in inventory.Values)
                 {
                     item.ButtonINV2D = CreateButtonINV2D(item);
+
+                    item.ButtonINV2D.transform.localScale = new Vector3(1f, 1f, 1f);
                 }
                 
                 inventoryState = true;
@@ -184,7 +196,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // Crea y devuelve el bot�n 3D
+    // Crea y devuelve el boton 3D
     private GameObject CreateButtonINV3D(ObjectStock stock)
     {
         GameObject button = Instantiate(buttonRef3D, Vector3.zero, Quaternion.identity);
@@ -199,7 +211,7 @@ public class PlayerInventory : MonoBehaviour
         return button;
     }
 
-    // Crea y devuelve el bot�n 2D.
+    // Crea y devuelve el boton 2D.
     private GameObject CreateButtonINV2D(ObjectStock stock)
     {
         GameObject button = Instantiate(buttonRef2D, Vector3.zero, Quaternion.identity);

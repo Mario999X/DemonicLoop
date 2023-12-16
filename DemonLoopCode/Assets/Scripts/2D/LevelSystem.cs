@@ -6,6 +6,8 @@ public class LevelSystem : MonoBehaviour
     [SerializeField] private float requiredXP;
     public float RequiredXP { get { return requiredXP; } set { requiredXP = value; }}
 
+    private FloatingTextCombat floatingText;
+
     [SerializeField] [Range(1f,300f)] private float adittionMultiplier = 300;
     [SerializeField] [Range(2f,4f)] private float powerMultiplier = 2;
     [SerializeField] [Range(7f,14f)] private float divisionMultiplier = 7;
@@ -14,6 +16,8 @@ public class LevelSystem : MonoBehaviour
     {
         characterST = GetComponent<Stats>();
         requiredXP = CalculateRequireXp();
+
+        floatingText = GameObject.Find("System").GetComponent<FloatingTextCombat>();
     }
 
     public void GainExperienceFlatRate(float xpGained)
@@ -24,6 +28,7 @@ public class LevelSystem : MonoBehaviour
         
         if(characterST.CurrentXP > requiredXP)
         {
+            floatingText.ShowFloatingText(characterST.gameObject, "Level Up!", Color.black);
             LevelUp();
         }
     }

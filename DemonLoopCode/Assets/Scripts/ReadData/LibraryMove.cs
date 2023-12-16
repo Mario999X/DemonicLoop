@@ -101,8 +101,8 @@ public class LibraryMove : MonoBehaviour
     // Se llama para recibir la clase base de ataques. Se obtiene su informacion esencial.
     private AttackData CheckAttack(string movement)
     {
-        AttackData attackData = null;
-        
+        AttackData attackData;
+
         if (attackCache.ContainsKey(movement.ToUpper()))
         {
             attackData = attackCache[movement.ToUpper()];
@@ -218,7 +218,7 @@ public class LibraryMove : MonoBehaviour
             character_ST.Mana += damage;
             target_ST.Mana -= damage;
             floatingText.ShowFloatingTextNumbers(character, damage, Color.blue);
-            floatingText.ShowFloatingTextNumbers(target, damage, Color.blue);
+            floatingText.ShowFloatingTextNumbers(target, -damage, Color.blue);
         }
         //En el caso de que sea attack.Special (El Special nombre provisional) 
         //Es que el ataque es tan fuerte que te quita hasta vida

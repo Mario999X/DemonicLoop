@@ -33,7 +33,7 @@ public class KeyBoardControls : MonoBehaviour
 
         // Abrir y cerrar el inventario solo cuando el jugador no se encuentre en batalla.
         if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime)
-            player_inventory.OpenCloseInventoyry();
+            player_inventory.OpenCloseInventory();
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState)
             transform.GetComponentInChildren<PlayerInteract>().Click = true; 

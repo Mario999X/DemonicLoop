@@ -15,7 +15,7 @@ public class IconStated : MonoBehaviour
 
     private void Update()
     {
-        if (!states.checkStatus(gameObject.transform.parent.gameObject, name)) Destroy(gameObject);
+        if (!states.CheckStatus(gameObject.transform.parent.gameObject, name)) Destroy(gameObject);
     }
 
 

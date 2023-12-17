@@ -11,7 +11,7 @@ public class ExistoNoExisto : MonoBehaviour
     {
         float precent = (float) rarety / 100;
 
-        if (Random.value <= precent)
+        if (Random.value >= precent)
             Destroy(gameObject);
     }
 }

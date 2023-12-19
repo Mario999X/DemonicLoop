@@ -96,6 +96,7 @@ public class SceneManager : MonoBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 1" && !done)
         {
             GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(1); });
+            GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { GameObject.Find("System").GetComponent<ButtonsOptions>().exitGame(); });
             done = true;
         }
         else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")

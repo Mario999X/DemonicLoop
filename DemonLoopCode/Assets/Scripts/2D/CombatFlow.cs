@@ -127,6 +127,13 @@ public class CombatFlow : MonoBehaviour
         if (combatOptionsBT.Count > 0)
             combatOptionsBT.Clear();
 
+        
+        if (moveBT.Count > 0)
+        {
+            moveBT.ForEach(bt => Destroy(bt));
+            moveBT.Clear();
+        }
+
         foreach (Transform bt in spawnCombatOptionsBT.transform)
         {
             combatOptionsBT.Add(bt.gameObject);
@@ -412,7 +419,6 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-       
 
     }//Fin de GoPlayerMultiTarget
 
@@ -685,11 +691,9 @@ public class CombatFlow : MonoBehaviour
         // Paso de turno para los estados
         statesLibrary.CharacterStates.ForEach(x => {
             x.Turn++;
-            if(x.Character != null)
-            {
-                if(x.Character.CompareTag("Enemy")) StartCoroutine(CharacterDead(x.Character, true)); // Comprobacion de enemigo fallecido
-            }
         });
+
+        enemys.ToList().ForEach(x => StartCoroutine(CharacterDead(x, true))); // Comprobacion de enemigo fallecido
 
         players.ToList().ForEach(x => StartCoroutine(CharacterDead(x, false))); // Comprobacion de aliado fallecido
 

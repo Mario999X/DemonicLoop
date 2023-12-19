@@ -90,6 +90,10 @@ public class CombatFlow : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
+            Debug.Log("Vuelta a cargar los componentes.");
+
+            wait = false;
+
             library = GetComponent<LibraryMove>();
             moneyPlayer = GetComponent<MoneyPlayer>();
             playerInventory = GetComponent<PlayerInventory>();
@@ -120,10 +124,14 @@ public class CombatFlow : MonoBehaviour
 
     private void LoadCombatOptionsButtons()
     {
+        if (combatOptionsBT.Count > 0)
+            combatOptionsBT.Clear();
+
         foreach (Transform bt in spawnCombatOptionsBT.transform)
         {
             combatOptionsBT.Add(bt.gameObject);
         }
+        Debug.Log(spawnCombatOptionsBT.name + ": " + combatOptionsBT.Count);
     }
 
     public void LoadInventoryButtons()

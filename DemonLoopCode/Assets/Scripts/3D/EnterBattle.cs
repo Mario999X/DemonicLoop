@@ -31,12 +31,16 @@ public class EnterBattle : MonoBehaviour
 
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
+
+            done = true;
         }
         else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
         {
             player = null; 
             fight = null;
             crossfadeTransition = null;
+
+            done = false;
         }
     }
 

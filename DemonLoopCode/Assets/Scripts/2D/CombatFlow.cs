@@ -134,6 +134,12 @@ public class CombatFlow : MonoBehaviour
             moveBT.Clear();
         }
 
+        if (enemyBT.Count > 0)
+        {
+            enemyBT.ForEach(bt => Destroy(bt));
+            enemyBT.Clear();
+        }
+
         foreach (Transform bt in spawnCombatOptionsBT.transform)
         {
             combatOptionsBT.Add(bt.gameObject);
@@ -283,7 +289,6 @@ public class CombatFlow : MonoBehaviour
     // Selección de jugador.
     public void PlayerButtonAttacks()
     {
-
         if (!wait)
         {
             if (enemyBT.Count > 0)
@@ -368,7 +373,6 @@ public class CombatFlow : MonoBehaviour
             StartCoroutine(GoPlayerSingleTarget(character, enemy, movement));
         }
     }//Fin de EnemyButton
-
 
     // Aniade a la lista de movimientos los movimientos.
     public void AddMovement(GameObject character, GameObject target, string movement)
@@ -486,8 +490,6 @@ public class CombatFlow : MonoBehaviour
             // Deteccion si el target aliado esta muerto o no.
             if(characterTarget.GetComponent<Stats>().Health == 0)
             {
-                //alliesEnemyAttackList.Remove(characterTarget);
-
                 if(players.Length != 0)
                 {
                     characterTarget = players[UnityEngine.Random.Range(0, players.Length)];
@@ -565,37 +567,12 @@ public class CombatFlow : MonoBehaviour
 
             if (enemy)
             {
-                /*
-                // Se busca en los botones enemigos
-                enemyBT.ForEach(bt =>
-                {
-                    // Si el texto coincide con el nombre del enemigo, se deshabilita el boton.
-                    if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == target.name.Substring(1, target.name.Length - 1))
-                    {
-                        bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                        bt.GetComponent<Button>().enabled = false;
-                    }
-                });
-                */
-
-                enemys.Remove(target);
-
-                //Cuando el enemigo muera nos dara una cantidad X de dinero
-                moneyPlayer.Money += targetST.MoneyDrop;
+                DeleteEnemyFromList(target);
 
             }
             else
             {
-
-                List<GameObject> actualPlayers = players.ToList();
-
-                actualPlayers.Remove(target);
-
-                playersDefeated.Add(target);
-
-                players = actualPlayers.ToArray();
-
-                GeneratePlayersButtons();
+                DeleteAllieFromArray(target);
             }
         }
         yield return null;
@@ -615,6 +592,7 @@ public class CombatFlow : MonoBehaviour
                 bt.GetComponent<Button>().enabled = false;
             }
         });
+
         DesactivateAllButtons();
 
         library.PassTurn(character, movement.ToUpper());
@@ -671,6 +649,9 @@ public class CombatFlow : MonoBehaviour
         combatOptionsBT.ForEach(bt => bt.SetActive(false)); // Desactiva todos los botones de opciones de combate.
 
         enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones de targets en caso de que esten activados.
+
+        if (playerInventory.InventoryState) 
+            playerInventory.OpenCloseInventory(); // Cierra el inventario en caso de estar activado
     }
 
     // Funcion para determinar/empezar el turno enemigo.
@@ -704,10 +685,9 @@ public class CombatFlow : MonoBehaviour
 
     private async void BattleStatus()
     {
-        
         if (enemys.Count == 0)
         {
-            var experience = totalEXP / players.LongLength;
+            var experience = totalEXP / players.LongLength; // Reparto de experiencia
 
             Debug.Log("Experiencia: " + experience);
 
@@ -781,5 +761,24 @@ public class CombatFlow : MonoBehaviour
 
 
     }//Fin de CheckAtkEnemy
+
+    public void DeleteEnemyFromList(GameObject enemy)
+    {
+        enemys.Remove(enemy);
+        moneyPlayer.Money += enemy.GetComponent<Stats>().MoneyDrop;
+    }
+
+    public void DeleteAllieFromArray(GameObject allie)
+    {
+        List<GameObject> actualPlayers = players.ToList();
+
+        actualPlayers.Remove(allie);
+
+        playersDefeated.Add(allie);
+
+        players = actualPlayers.ToArray();
+
+        GeneratePlayersButtons();
+    }
 
 }

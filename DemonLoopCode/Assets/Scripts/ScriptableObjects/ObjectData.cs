@@ -3,7 +3,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-using System.Collections.Generic;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable }
 
@@ -143,7 +142,13 @@ public class ObjectData : ScriptableObject
                         }
                         break;
                 }
-                // target.Health -= BaseNum;
+
+                if(target.Health <= 0)
+                {
+                    if(target.gameObject.CompareTag("Enemy")) GameObject.Find("System").GetComponent<CombatFlow>().DeleteEnemyFromList(target.gameObject);
+                    else GameObject.Find("System").GetComponent<CombatFlow>().DeleteAllieFromArray(target.gameObject);
+                }
+                
                 break;
 
         }

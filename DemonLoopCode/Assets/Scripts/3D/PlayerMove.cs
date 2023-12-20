@@ -76,8 +76,8 @@ public class PlayerMove : MonoBehaviour
             if (Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 90, 0); }
         }
 
-        // Prueba para ver que no haya ning�n error en el script 'Enter_Battle' al volver a la pantalla de t�tulo.
-        if (Input.GetKeyDown(KeyCode.Delete)) { SceneManager.Instance.LoadScene(0); }
+        // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de t�tulo.
+        if (Input.GetKeyDown(KeyCode.M)) { SceneManager.Instance.LoadScene(0); }
         if (Input.GetKeyDown(KeyCode.R)) { SceneManager.Instance.LoadScene(1); }
     }
 

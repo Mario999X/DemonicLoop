@@ -32,7 +32,6 @@ public class AttackData : ScriptableObject
     [SerializeField] private bool manaTheft;
 
    
-
     public float BaseDamage { get { return baseDamage; } }
     public int PhyAttack { get { return phyAttack; } }
     public int MagicAttack { get { return magicAttack; } }

@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum CharacterRol {
+    Tank, Priest, Wizard, Knight
+}
+
 public class Stats : MonoBehaviour
 {
     private Image barHP;
@@ -9,6 +13,11 @@ public class Stats : MonoBehaviour
     private Image barMana;
 
     private GameObject charFloatingTextSpaceNumbers;
+
+    [Header("Character Rol Components")]
+    [SerializeField] CharacterRol rol = CharacterRol.Tank;
+
+    // IMAGEN ASOCIADA AL ROL
 
     [Header("Level Components")]
     [SerializeField] int level = 1;
@@ -23,7 +32,7 @@ public class Stats : MonoBehaviour
     [SerializeField] float physicalDef = 12f;
     [SerializeField] float magicAtk = 0f;
     [SerializeField] float magicDef = 0f;
-    [SerializeField] float criticalChance;
+    [SerializeField] float criticalChance = 0f;
     [SerializeField] List<AttackData> listAtk = new();
     [SerializeField] bool absorbsDamageOfSameType = false;
     [SerializeField] Types type;
@@ -32,6 +41,8 @@ public class Stats : MonoBehaviour
     [SerializeField] float moneyDrop = 1.1f;
     [SerializeField] private float dropXP = 0;
 
+    public CharacterRol Rol { get { return rol; } }
+
     public int Level { get { return level; } set { level = value; }}
     public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
 
@@ -39,11 +50,11 @@ public class Stats : MonoBehaviour
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
     public float Mana { get { return mana; } set { mana = value; OnManaChanged(); } }
     public float MaxMana { get { return maxMana; } set { maxMana = value; } }
-    public float Strenght { get { return strength; } }
-    public float PhysicalDefense { get { return physicalDef; } }
-    public float MagicAtk { get { return magicAtk; } }
-    public float MagicDef { get { return magicDef; } }
-    public float CriticalChance { get { return criticalChance; } }
+    public float Strenght { get { return strength; } set { strength = value; } }
+    public float PhysicalDefense { get { return physicalDef; } set { physicalDef = value; } }
+    public float MagicAtk { get { return magicAtk; } set { magicAtk = value; } }
+    public float MagicDef { get { return magicDef; } set { magicDef = value; } }
+    public float CriticalChance { get { return criticalChance; } set { criticalChance = value; } }
     public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; }}
     public List<string> ListNameAtk { get { return ObtainNameAttacks(); }}
     public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }

@@ -12,6 +12,12 @@ public class LevelSystem : MonoBehaviour
     [SerializeField] [Range(2f,4f)] private float powerMultiplier = 2;
     [SerializeField] [Range(7f,14f)] private float divisionMultiplier = 7;
 
+    private const float NormalStatUpgrade = 20;
+
+    private const float EffectiveStatUpgrade = 70;
+
+    private const float CriticalStatUpgrade = 3;
+
     private void Start()
     {
         characterST = GetComponent<Stats>();
@@ -28,7 +34,7 @@ public class LevelSystem : MonoBehaviour
         
         if(characterST.CurrentXP > requiredXP)
         {
-            floatingText.ShowFloatingText(characterST.gameObject, "Level Up!", Color.black);
+            floatingText.ShowFloatingText(characterST.gameObject, "Lvl Up!", Color.black);
             LevelUp();
         }
     }
@@ -39,18 +45,58 @@ public class LevelSystem : MonoBehaviour
         characterST.Level++;
         characterST.CurrentXP = Mathf.RoundToInt(characterST.CurrentXP - requiredXP); 
 
-        // DEPENDE EL ROL, por ahora GENERICO
-        IncrementStatsGeneric();
+        IncrementStats();
 
         requiredXP = CalculateRequireXp();
     } 
 
-    private void IncrementStatsGeneric()
+    private void IncrementStats()
     {
-        characterST.MaxHealth += 50;
-        characterST.Health = characterST.MaxHealth;
+        switch(characterST.Rol)
+        {
+            case CharacterRol.Tank:
+                characterST.MaxHealth += EffectiveStatUpgrade;
+                characterST.MaxMana += NormalStatUpgrade;
+                characterST.Strenght += NormalStatUpgrade;
+                characterST.PhysicalDefense += EffectiveStatUpgrade;
+                characterST.MagicAtk += NormalStatUpgrade;
+                characterST.MagicDef += EffectiveStatUpgrade;
+                characterST.CriticalChance += CriticalStatUpgrade;
+            break;
 
-        characterST.MaxMana += 50;
+            case CharacterRol.Priest:
+                characterST.MaxHealth += EffectiveStatUpgrade;
+                characterST.MaxMana += EffectiveStatUpgrade;
+                characterST.Strenght += NormalStatUpgrade;
+                characterST.PhysicalDefense += NormalStatUpgrade;
+                characterST.MagicAtk += NormalStatUpgrade;
+                characterST.MagicDef += EffectiveStatUpgrade;
+                characterST.CriticalChance += CriticalStatUpgrade;
+            break;
+
+            case CharacterRol.Wizard:
+                characterST.MaxHealth += NormalStatUpgrade;
+                characterST.MaxMana += EffectiveStatUpgrade;
+                characterST.Strenght += NormalStatUpgrade;
+                characterST.PhysicalDefense += NormalStatUpgrade;
+                characterST.MagicAtk += EffectiveStatUpgrade;
+                characterST.MagicDef += EffectiveStatUpgrade;
+                characterST.CriticalChance += CriticalStatUpgrade;
+            break;
+
+            case CharacterRol.Knight:
+                characterST.MaxHealth += EffectiveStatUpgrade;
+                characterST.MaxMana += NormalStatUpgrade;
+                characterST.Strenght += EffectiveStatUpgrade;
+                characterST.PhysicalDefense += EffectiveStatUpgrade;
+                characterST.MagicAtk += NormalStatUpgrade;
+                characterST.MagicDef += NormalStatUpgrade;
+                characterST.CriticalChance += CriticalStatUpgrade;
+            break;
+
+        }
+
+        characterST.Health = characterST.MaxHealth;
         characterST.Mana = characterST.MaxMana;
     }
 

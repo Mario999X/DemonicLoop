@@ -144,7 +144,6 @@ public class CombatFlow : MonoBehaviour
         {
             combatOptionsBT.Add(bt.gameObject);
         }
-        Debug.Log(spawnCombatOptionsBT.name + ": " + combatOptionsBT.Count);
     }
 
     public void LoadInventoryButtons()
@@ -674,10 +673,6 @@ public class CombatFlow : MonoBehaviour
             x.Turn++;
         });
 
-        enemys.ToList().ForEach(x => StartCoroutine(CharacterDead(x, true))); // Comprobacion de enemigo fallecido
-
-        players.ToList().ForEach(x => StartCoroutine(CharacterDead(x, false))); // Comprobacion de aliado fallecido
-
         BattleStatus();
         
     }//fin de NextTurn
@@ -685,6 +680,8 @@ public class CombatFlow : MonoBehaviour
 
     private async void BattleStatus()
     {
+        await System.Threading.Tasks.Task.Delay(600); // Entre tanta corrutina, esto es necesario para que al programa le de tiempo a actualizar bien las listas del combate.
+
         if (enemys.Count == 0)
         {
             var experience = totalEXP / players.LongLength; // Reparto de experiencia

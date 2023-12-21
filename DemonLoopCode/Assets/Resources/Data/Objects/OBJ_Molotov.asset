@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: 
   objectType: 3
-  baseNum: 7
+  baseNum: 45
   stateAsociated: {fileID: 0}
   targetsToLoad: 0
   type: 0

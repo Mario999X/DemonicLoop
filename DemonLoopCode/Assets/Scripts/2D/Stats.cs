@@ -128,4 +128,9 @@ public class Stats : MonoBehaviour
 
         listAtk.Add(attack);
     }
+
+    public void Revive()
+    {
+        gameObject.SetActive(true);
+    }
 }

@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.ParticleSystem;
 
 public class ActualStateData
 {
@@ -55,7 +52,6 @@ public class LibraryStates : MonoBehaviour
         LoadStates();
     }
 
-    // Start is called before the first frame update
     private void Update()
     {
         if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
@@ -102,7 +98,7 @@ public class LibraryStates : MonoBehaviour
 
             do
             {
-                if (!enterBattle.OneTime)
+                if (!enterBattle.OneTime) // 3D individual
                 {
                     if (player.Movement)
                     {
@@ -111,20 +107,27 @@ public class LibraryStates : MonoBehaviour
 
                     if (time >= stateData.TimeMoving)
                     {
-                        if (targetST.Health > 1) targetST.Health -= stateData.BaseDamage;
+                        if (targetST.Health > 1)
+                            {
+                                var targetHealthAfterDamage = targetST.Health - stateData.BaseDamage;
+
+                                if (targetHealthAfterDamage < 1)
+                                {
+                                    targetST.Health = 1;
+                                } else targetST.Health = targetHealthAfterDamage;
+                            }
 
                         actualState.Turn++;
                         time = 0;
                     }
                 }
 
-                else
+                else // 2D individual
                 {
 
                     if (lastTurn != actualState.Turn)
                     {
-                        //Debug.Log("2D ---- Character: " + target.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
-                        //state.ToUpper() POISON / BURNT
+
                         if (state.ToUpper() == "BURNT")
                         {
                             Debug.Log("BURNT " + state.ToUpper());
@@ -146,7 +149,15 @@ public class LibraryStates : MonoBehaviour
                         {
                             targetST.Health -= stateData.BaseDamage;
 
-                            floatingText.ShowFloatingTextNumbers(target, -stateData.BaseDamage, UnityEngine.Color.magenta);
+                            floatingText.ShowFloatingTextNumbers(target, -stateData.BaseDamage, Color.magenta);
+
+                            if(targetST.Health <= 0)
+                                {
+                                    if(targetST.gameObject.CompareTag("Enemy")) GameObject.Find("System").GetComponent<CombatFlow>().DeleteEnemyFromList(targetST.gameObject);
+                                    else GameObject.Find("System").GetComponent<CombatFlow>().DeleteAllieFromArray(targetST.gameObject);
+
+                                    actualState.Turn = 100; // Finaliza el bucle de los hilos.
+                                }
                         }
                         
                         lastTurn = actualState.Turn;
@@ -174,9 +185,8 @@ public class LibraryStates : MonoBehaviour
 
             do
             {
-                //Debug.Log("Turno Actual en estados 3D: " + actualState.Turn);
 
-                if (!enterBattle.OneTime)
+                if (!enterBattle.OneTime) // 3D grupo
                 {
                     if (player.Movement)
                     {
@@ -187,28 +197,43 @@ public class LibraryStates : MonoBehaviour
                     {
                         foreach (Stats character in stats)
                         {
-                            if (character.Health > 1) character.Health -= stateData.BaseDamage;
+                            if (character.Health > 1)
+                            {
+                                var targetHealthAfterDamage = character.Health - stateData.BaseDamage;
+
+                                if (targetHealthAfterDamage < 1)
+                                {
+                                    character.Health = 1;
+                                } else character.Health = targetHealthAfterDamage;
+                            }
                         }
 
                         actualState.Turn++;
                         time = 0;
                     }
                 }
-                else
+                else // 2D grupo
                 {
 
                     if (lastTurn != actualState.Turn)
                     {
                         foreach (Stats character in stats)
                         {
-                            //Debug.Log("3D ---- Character: " + character.name + " | State: " + state + " | Turno Actual: " + actualState.Turn);
 
                             if (character.Health > 1)
                             {
                                 character.Health -= stateData.BaseDamage;
 
-                                floatingText.ShowFloatingTextNumbers(character.gameObject, -stateData.BaseDamage, UnityEngine.Color.magenta);
-                            } 
+                                floatingText.ShowFloatingTextNumbers(character.gameObject, -stateData.BaseDamage, Color.magenta);
+
+                                if(character.Health < 1)
+                                {
+                                    if(character.gameObject.CompareTag("Enemy")) GameObject.Find("System").GetComponent<CombatFlow>().DeleteEnemyFromList(character.gameObject);
+                                    else GameObject.Find("System").GetComponent<CombatFlow>().DeleteAllieFromArray(character.gameObject);
+
+                                    actualState.Turn = 100; // Finaliza el bucle de los hilos.
+                                }
+                            }
                         }
 
                         lastTurn = actualState.Turn;

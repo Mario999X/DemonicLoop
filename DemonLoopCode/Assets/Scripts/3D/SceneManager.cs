@@ -32,6 +32,9 @@ public class SceneManager : MonoBehaviour
     // Carga la escena por el n�mero de posici�n.
     public async void LoadScene(int scene)
     {
+        if (slider.value != 0)
+            slider.value = 0;
+
         AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
         operation.allowSceneActivation = false; // Impide que se active la escena.
 
@@ -57,12 +60,14 @@ public class SceneManager : MonoBehaviour
 
         _loadingCanvas.enabled = false;
 
-        slider.value = 0;
     }
 
     // Carga la escena por su nombre.
     public async void LoadSceneName(string scene)
     {
+        if (slider.value != 0)
+            slider.value = 0;
+
         AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
         operation.allowSceneActivation = false; // Impide que se active la escena.
 
@@ -87,19 +92,26 @@ public class SceneManager : MonoBehaviour
         await System.Threading.Tasks.Task.Delay(1000);
 
         _loadingCanvas.enabled = false;
+    }
 
-        slider.value = 0;
+    // Cierra la aplicación.
+    public void exitGame()
+    {
+        Application.Quit();
     }
 
     void FixedUpdate()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 1" && !done)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
         {
-            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(1); });
-            GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { GameObject.Find("System").GetComponent<ButtonsOptions>().exitGame(); });
+            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(2); });
+            GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { exitGame(); });
+
+            Debug.Log("Done");
+
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
             done = false;
         }

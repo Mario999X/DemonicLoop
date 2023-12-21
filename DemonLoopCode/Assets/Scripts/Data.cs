@@ -13,6 +13,7 @@ public class Data : MonoBehaviour
     public int SaveRoom { get { return saveRoom; } set { saveRoom = value; } }
     public int Room { get { return room; } set { room = value; } }
     public int Floor { get { return floor; } set { floor = value; } }
+    public float Money { get { return money; } set {  money = value; } }
 
     // Start is called before the first frame update
     void Awake()

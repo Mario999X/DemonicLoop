@@ -139,13 +139,13 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 100
+  maxHealth: 270
   mana: 0
   maxMana: 100
   strength: 15
-  physicalDef: 12
-  magicAtk: 0
-  magicDef: 0
+  physicalDef: 21
+  magicAtk: 10
+  magicDef: 12
   criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}

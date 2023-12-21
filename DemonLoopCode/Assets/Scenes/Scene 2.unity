@@ -510,13 +510,13 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 500
+  maxHealth: 300
   mana: 0
   maxMana: 100
   strength: 15
   physicalDef: 12
-  magicAtk: 0
-  magicDef: 0
+  magicAtk: 15
+  magicDef: 15
   criticalChance: 25
   listAtk:
   - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
@@ -1177,13 +1177,13 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 500
+  maxHealth: 300
   mana: 0
   maxMana: 100
   strength: 15
   physicalDef: 12
-  magicAtk: 0
-  magicDef: 0
+  magicAtk: 15
+  magicDef: 15
   criticalChance: 35
   listAtk:
   - {fileID: 11400000, guid: 2715b7a2e352cf54fb7c543e6553931d, type: 2}
@@ -1713,7 +1713,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1952768996}
   m_HandleRect: {fileID: 1952768995}
   m_Direction: 3
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1876,13 +1876,13 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 500
+  maxHealth: 300
   mana: 0
   maxMana: 100
   strength: 15
   physicalDef: 12
-  magicAtk: 0
-  magicDef: 0
+  magicAtk: 15
+  magicDef: 15
   criticalChance: 30
   listAtk:
   - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}

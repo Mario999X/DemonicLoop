@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_Tierra
+  m_Name: OBJ_BurntHeal
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   description: 
-  objectType: 3
-  baseNum: 20
-  stateAsociated: {fileID: 0}
-  targetsToLoad: 0
-  type: 2
+  objectType: 2
+  baseNum: 12
+  stateAsociated: {fileID: 11400000, guid: 37c0e8e9573b2ce4f950a0296d6b9f74, type: 2}
+  targetsToLoad: 1
+  type: 3
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

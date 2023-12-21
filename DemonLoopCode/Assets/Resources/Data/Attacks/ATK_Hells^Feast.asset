@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
   m_Name: ATK_Hells^Feast
   m_EditorClassIdentifier: 
-  baseDamage: 15
+  baseDamage: 35
   phyAttack: 1
   magicAttack: 0
   isAoeAttack: 1
   manaCost: -5
+  berserker: 0
   generateAState: 2
   stateAsociated: {fileID: 11400000, guid: 37c0e8e9573b2ce4f950a0296d6b9f74, type: 2}
   probabilityOfState: 50
   type: 4
+  lifeTheft: 0
+  manaTheft: 0

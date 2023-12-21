@@ -225,8 +225,7 @@ public class LibraryMove : MonoBehaviour
         if (attack.Berserker)
         {
             character_ST.Health -= attack.BaseDamage;
-            floatingText.ShowFloatingTextNumbers(character, damage, Color.red);
-            floatingText.ShowFloatingTextNumbers(character, damage, Color.blue);
+            floatingText.ShowFloatingTextNumbers(character, attack.BaseDamage, Color.red);
         }
 
         return damage;

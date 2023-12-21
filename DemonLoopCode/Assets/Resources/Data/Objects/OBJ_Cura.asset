@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: OBJ_Cura
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: be80945a996576b43b7bd35b4ab39d00, type: 3}
-  description: Cura 5 de vida
+  description: Cura 25 de vida
   objectType: 0
-  baseNum: 2.2
+  baseNum: 25
   stateAsociated: {fileID: 0}
   targetsToLoad: 1
-  type: 0
+  type: 3
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

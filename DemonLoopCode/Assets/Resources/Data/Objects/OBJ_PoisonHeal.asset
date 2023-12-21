@@ -18,6 +18,6 @@ MonoBehaviour:
   baseNum: 0
   stateAsociated: {fileID: 11400000, guid: ac1f8b668c0d0264e8029f8d9fde2681, type: 2}
   targetsToLoad: 1
-  type: 0
+  type: 3
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

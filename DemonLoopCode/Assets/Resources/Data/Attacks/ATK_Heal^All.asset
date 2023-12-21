@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
   m_Name: ATK_Heal^All
   m_EditorClassIdentifier: 
-  baseDamage: 15
+  baseDamage: 25
   phyAttack: 0
   magicAttack: 0
   isAoeAttack: 1
   manaCost: 15
+  berserker: 0
+  generateAState: 0
+  stateAsociated: {fileID: 0}
+  probabilityOfState: 0
   type: 3
+  lifeTheft: 0
+  manaTheft: 0

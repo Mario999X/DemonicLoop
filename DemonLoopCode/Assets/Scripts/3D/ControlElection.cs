@@ -16,7 +16,7 @@ public class ControlElection : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 1" && !done)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
         {
             log = GameObject.Find("Running").GetComponent<TextMeshProUGUI>();
 
@@ -40,7 +40,7 @@ public class ControlElection : MonoBehaviour
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 1")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
             done = false;
         }

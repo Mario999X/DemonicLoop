@@ -160,7 +160,6 @@ GameObject:
   - component: {fileID: 2934746389238411290}
   - component: {fileID: 1880139189553476170}
   - component: {fileID: 6044427959234678770}
-  - component: {fileID: 7091767882785315125}
   - component: {fileID: 660310474188380904}
   - component: {fileID: 940136127991697590}
   - component: {fileID: 809560638376708105}
@@ -222,18 +221,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 8509979973015655030}
   _loadingCanvas: {fileID: 3018350226461469532}
---- !u!114 &7091767882785315125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4178491517262405012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf9d816d29ecf78469213bb8934bb5e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &660310474188380904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb4610cdc97be4488e6a848ae55ba5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Burnt: {fileID: 0}
+  Poison: {fileID: 0}
 --- !u!114 &7991278420515955191
 MonoBehaviour:
   m_ObjectHideFlags: 0

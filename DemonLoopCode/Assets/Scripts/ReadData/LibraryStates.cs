@@ -145,7 +145,7 @@ public class LibraryStates : MonoBehaviour
                             icon.transform.SetParent(target.transform);
                         }
 
-                        if (targetST.Health > 1)
+                        if (targetST.Health > 0)
                         {
                             targetST.Health -= stateData.BaseDamage;
 
@@ -220,13 +220,13 @@ public class LibraryStates : MonoBehaviour
                         foreach (Stats character in stats)
                         {
 
-                            if (character.Health > 1)
+                            if (character.Health > 0)
                             {
                                 character.Health -= stateData.BaseDamage;
 
                                 floatingText.ShowFloatingTextNumbers(character.gameObject, -stateData.BaseDamage, Color.magenta);
 
-                                if(character.Health < 1)
+                                if(character.Health <= 0)
                                 {
                                     if(character.gameObject.CompareTag("Enemy")) GameObject.Find("System").GetComponent<CombatFlow>().DeleteEnemyFromList(character.gameObject);
                                     else GameObject.Find("System").GetComponent<CombatFlow>().DeleteAllieFromArray(character.gameObject);
@@ -268,15 +268,15 @@ public class LibraryStates : MonoBehaviour
         foreach (ActualStateData character in characterStates)
         {
 
-            Debug.Log("character.State.ToUpper() "+ character.State.ToUpper());
-            Debug.Log("state.ToUpper() " + state.ToUpper());
-            Debug.Log("character.Characte " + character.Character);
-            Debug.Log("target " + target);
+            //Debug.Log("character.State.ToUpper() "+ character.State.ToUpper());
+            //Debug.Log("state.ToUpper() " + state.ToUpper());
+            //Debug.Log("character.Characte " + character.Character);
+            //Debug.Log("target " + target);
             string stateLimp = state.Replace("(Clone)", "").Trim();
-            Debug.Log("stateLimp " + stateLimp);
+            //Debug.Log("stateLimp " + stateLimp);
             if (character.State.ToUpper() == stateLimp.ToUpper() && character.Character == target)
             {
-                Debug.Log("Sigue con el estado");
+                //Debug.Log("Sigue con el estado");
                 return true;
             }
         }

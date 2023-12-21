@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 using UnityEngine.UI;
-using System;
 using UnityEngine.SceneManagement;
 
 public class CharacterMove
@@ -181,7 +180,10 @@ public class CombatFlow : MonoBehaviour
             GameObject button = Instantiate(buttonRef, spawnPlayerBT.transform.position, Quaternion.identity);
             button.transform.SetParent(spawnPlayerBT.transform);
             button.name = "PlayerButton (" + pl.name + ")";
-            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
+
+            //button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name;
+
             button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(pl); });
 
 
@@ -235,7 +237,8 @@ public class CombatFlow : MonoBehaviour
                 GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
                 button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "PlayerButton (" + pl.name + ")";
-                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
+                
+                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name;
                 if (itemOrAtk == null)
                 {
                     button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(pl); });
@@ -260,8 +263,6 @@ public class CombatFlow : MonoBehaviour
 
         enemys = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         players = GameObject.FindGameObjectsWithTag("Player").ToArray();
-
-        Array.Sort(players, (p1, p2) => p1.name.CompareTo(p2.name)); // Reorganiza el array de jugadores por su nombre de esta forma prevenimos un fallo al asignar botones.
 
         GeneratePlayersButtons();
 
@@ -356,16 +357,7 @@ public class CombatFlow : MonoBehaviour
     {
         if (this.character != null && this.movement != null && !wait)
         {
-            // Impide que vuelva a ser selecionado el mismo personaje.
-            playerBT.ForEach(bt =>
-            {
-                // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
-                if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Substring(1, character.name.Length - 1))
-                {
-                    bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                    bt.GetComponent<Button>().enabled = false;
-                }
-            });
+            DesactivatePlayerButton();
 
             DesactivateAllButtons();
 
@@ -393,16 +385,7 @@ public class CombatFlow : MonoBehaviour
 
     private void GoPlayerMultiTarget(GameObject character, List<GameObject> targets, string movement, bool targetsAliesOrEnemies)
     {
-        // Impide que vuelva a ser selecionado el mismo personaje.
-        playerBT.ForEach(bt =>
-        {
-            // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
-            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Substring(1, character.name.Length - 1))
-            {
-                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                bt.GetComponent<Button>().enabled = false;
-            }
-        });
+        DesactivatePlayerButton();
 
         DesactivateAllButtons();
 
@@ -581,16 +564,8 @@ public class CombatFlow : MonoBehaviour
     public void PassTurn(string movement)
     {
         wait = true;
-        // Impide que vuelva a ser selecionado el mismo personaje.
-        playerBT.ForEach(bt =>
-        {
-            // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
-            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Substring(1, character.name.Length - 1))
-            {
-                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                bt.GetComponent<Button>().enabled = false;
-            }
-        });
+
+        DesactivatePlayerButton();
 
         DesactivateAllButtons();
 
@@ -616,16 +591,7 @@ public class CombatFlow : MonoBehaviour
 
         wait = true;
 
-        // Impide que vuelva a ser selecionado el mismo personaje.
-        playerBT.ForEach(bt =>
-        {
-            // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
-            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Substring(1, character.name.Length - 1))
-            {
-                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                bt.GetComponent<Button>().enabled = false;
-            }
-        });
+        DesactivatePlayerButton();
 
         DesactivateAllButtons();
 
@@ -676,6 +642,20 @@ public class CombatFlow : MonoBehaviour
         BattleStatus();
         
     }//fin de NextTurn
+
+    private void DesactivatePlayerButton()
+    {
+        // Impide que vuelva a ser selecionado el mismo personaje.
+        playerBT.ForEach(bt =>
+        {
+            // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
+            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name) // character.name.Substring(1, character.name.Length - 1)
+            {
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
+                bt.GetComponent<Button>().enabled = false;
+            }
+        });
+    }
 
 
     private async void BattleStatus()
@@ -755,7 +735,6 @@ public class CombatFlow : MonoBehaviour
             }
 
         }
-
 
     }//Fin de CheckAtkEnemy
 

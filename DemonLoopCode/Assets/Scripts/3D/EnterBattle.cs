@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -61,7 +62,16 @@ public class EnterBattle : MonoBehaviour
         {
             StartCoroutine(CrossfadeAnimation());
             
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); 
+            StartCoroutine(GetComponent<CombatFlow>().CreateButtons());
+
+            if(GameObject.Find("AlliesBattleZone").transform.childCount == 0){
+                GetComponent<PlayerTeamManager>().PlayersArrayTeam.ToList().ForEach(x => Instantiate(x, GameObject.Find("AlliesBattleZone").transform));
+            }
+            
+            if(GameObject.Find("EnemyBattleZone").transform.childCount > 0){
+                foreach(Transform child in GameObject.Find("EnemyBattleZone").transform)
+                    Destroy(child.gameObject);
+            }
             
             this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x => Instantiate(x, GameObject.Find("EnemyBattleZone").transform));
 
@@ -77,7 +87,7 @@ public class EnterBattle : MonoBehaviour
 
                 foreach (Stats stat in stats)
                 {
-                    stat.Health -= (stat.Health * 0.05f);
+                    stat.Health -= stat.Health * 0.05f;
                 }
             }
         }

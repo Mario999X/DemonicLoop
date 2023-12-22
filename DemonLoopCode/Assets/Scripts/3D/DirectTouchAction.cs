@@ -5,10 +5,19 @@ public class DirectTouchAction : MonoBehaviour
 {
     [Header("Referenced state")]
     [SerializeField] private StateData state;
+    
     [Header("Individual Damage to all team members")]
     [SerializeField] float damage;
     [SerializeField] int timeSleep = 10;
+    
     private bool wait = false;
+
+    DamageVisualEffect visualEffect;
+
+    void Start()
+    {
+        visualEffect = GameObject.Find("Global Volume").GetComponent<DamageVisualEffect>();
+    }
 
     private string ObtainStateName()
     {
@@ -26,6 +35,8 @@ public class DirectTouchAction : MonoBehaviour
     IEnumerator TrupAction()
     {
         wait = true;
+
+        visualEffect.Auch();
 
         LibraryStates states = GameObject.Find("System").GetComponent<LibraryStates>();
 

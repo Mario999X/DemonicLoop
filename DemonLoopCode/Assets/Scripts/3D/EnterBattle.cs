@@ -30,6 +30,10 @@ public class EnterBattle : MonoBehaviour
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
 
+            if(GameObject.Find("AlliesBattleZone").transform.childCount == 0){
+                GetComponent<PlayerTeamManager>().PlayersArrayTeam.ToList().ForEach(x => Instantiate(x, GameObject.Find("AlliesBattleZone").transform));
+            }
+
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
 
@@ -63,10 +67,6 @@ public class EnterBattle : MonoBehaviour
             StartCoroutine(CrossfadeAnimation());
             
             StartCoroutine(GetComponent<CombatFlow>().CreateButtons());
-
-            if(GameObject.Find("AlliesBattleZone").transform.childCount == 0){
-                GetComponent<PlayerTeamManager>().PlayersArrayTeam.ToList().ForEach(x => Instantiate(x, GameObject.Find("AlliesBattleZone").transform));
-            }
             
             if(GameObject.Find("EnemyBattleZone").transform.childCount > 0){
                 foreach(Transform child in GameObject.Find("EnemyBattleZone").transform)

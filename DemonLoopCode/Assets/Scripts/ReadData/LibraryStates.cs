@@ -67,7 +67,6 @@ public class LibraryStates : MonoBehaviour
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             player = GameObject.Find("Player").GetComponent<PlayerMove>();
-            party = GameObject.FindGameObjectsWithTag("Player");
             damageVisualEffect = GameObject.Find("Global Volume").GetComponent<DamageVisualEffect>();
 
             done = true;
@@ -76,18 +75,23 @@ public class LibraryStates : MonoBehaviour
         {
             done = false;
         }
-
-        bool stateDetacted = false;
         
-        foreach (ActualStateData state in characterStates)
+        if (party == null)
+            party = GameObject.FindGameObjectsWithTag("Player");
+        else
         {
-            if (party.Contains(state.Character))
-                stateDetacted = true;
-        }
+            bool stateDetacted = false;
 
-        if (!enterBattle.OneTime && stateDetacted)
-        {
-            damageVisualEffect.Auch();
+            foreach (ActualStateData state in characterStates)
+            {
+                    if (party.Contains(state.Character))
+                        stateDetacted = true;
+            }
+
+            if (!enterBattle.OneTime && stateDetacted)
+            {
+                damageVisualEffect.Auch();
+            }
         }
     }
 

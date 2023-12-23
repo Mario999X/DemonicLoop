@@ -69,7 +69,8 @@ public class DirectTouchAction : MonoBehaviour
 
             // En caso de no haber se le inicia un nuevo estado.
             if (!notFound)
-                StartCoroutine(states.StateEffectGroup("AlliesBattleZone", ObtainStateName()));
+                foreach (GameObject character in GameObject.FindGameObjectsWithTag("Player"))
+                    StartCoroutine(states.StateEffectIndividual(character, ObtainStateName()));
         }
 
         yield return new WaitForSeconds(timeSleep);

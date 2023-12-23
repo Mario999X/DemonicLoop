@@ -28,8 +28,6 @@ public class DamageVisualEffect : MonoBehaviour
 
     IEnumerator palpitacion()
     {
-        yield return null;
-
         wait = true;
 
         while (vignette.smoothness.value != smothnessEffect)
@@ -45,6 +43,8 @@ public class DamageVisualEffect : MonoBehaviour
             yield return new WaitForSeconds(0.0001f);
             vignette.smoothness.value = Mathf.MoveTowards(vignette.smoothness.value, 0.01f, speedOfEffect * Time.deltaTime);
         }
+
+        yield return new WaitForSeconds(1f);
 
         wait = false;
     }

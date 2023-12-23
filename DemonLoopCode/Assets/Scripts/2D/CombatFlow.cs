@@ -824,10 +824,10 @@ public class CombatFlow : MonoBehaviour
 
             someoneHasRevived.transform.SetAsLastSibling();
 
-            GeneratePlayerDefeatedButton(someoneHasRevived); // Si queremos que el personaje revivido pueda atacar durante el turno
+            //GeneratePlayerDefeatedButton(someoneHasRevived); // Si queremos que el personaje revivido pueda atacar durante el turno
 
             // Si NO queremos que el personaje revivido pueda atacar durante el turno
-            /*
+            
             character = someoneHasRevived;
             GeneratePlayerDefeatedButton(someoneHasRevived);
 
@@ -835,7 +835,6 @@ public class CombatFlow : MonoBehaviour
             moves++;
 
             character = null;
-            */
         }
 
     }

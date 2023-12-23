@@ -2,9 +2,8 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
-public enum ObjectTypes { Health, Mana, HealState, Throwable }
+public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 
 [CreateAssetMenu]
 public class ObjectData : ScriptableObject
@@ -16,13 +15,12 @@ public class ObjectData : ScriptableObject
     [SerializeField] private ObjectTypes objectType;
     [SerializeField] private float baseNum;
     [SerializeField] private StateData stateAsociated;
-    [SerializeField] bool targetsToLoad = false;
+    [SerializeField] bool alliesTargets = false;
     [SerializeField] Types type;
     [SerializeField] GameObject buttonPrefab;
 
     float baseDamage = 1.5f;
 
-    CombatFlow combatFlow;
     EnterBattle enterBattle;
     PlayerInventory inventory;
 
@@ -42,7 +40,10 @@ public class ObjectData : ScriptableObject
         enterBattle = GameObject.Find("System").GetComponent<EnterBattle>();
         if (enterBattle.OneTime)
         {
-            GameObject.Find("System").GetComponent<CombatFlow>().GenerateTargetsButtons(targetsToLoad, this);
+            if(objectType == ObjectTypes.Revive)
+            {
+                GameObject.Find("System").GetComponent<CombatFlow>().GeneratePlayersDefeatedButtons(this);
+            } else GameObject.Find("System").GetComponent<CombatFlow>().GenerateTargetsButtons(alliesTargets, this);
         }
         else
         {
@@ -72,9 +73,9 @@ public class ObjectData : ScriptableObject
 
             GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
             bt.transform.SetParent(spawnMoveBT.transform);
-            bt.name = "Allay " + pl.name;//Nombre de los botones que se van a generar
+            bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
             bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1);
-            bt.GetComponent<Button>().onClick.AddListener(delegate { this.UserObject(pl); });
+            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObject(pl); });
         }
     }
 
@@ -101,6 +102,12 @@ public class ObjectData : ScriptableObject
 
             case ObjectTypes.HealState:
                 GameObject.Find("System").GetComponent<LibraryStates>().RemoveCharacterWithState(@character, ObtainStateName());
+                break;
+            
+            case ObjectTypes.Revive:
+                target.Revive(baseNum);
+                GameObject.Find("System").GetComponent<CombatFlow>().CheckIfAnAllyHasRevived();
+
                 break;
 
             case ObjectTypes.Throwable:

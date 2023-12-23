@@ -257,6 +257,48 @@ public class CombatFlow : MonoBehaviour
 
     }//Fin de GenerateTargetsButtons
 
+    private void GeneratePlayerDefeatedButton(GameObject playerDefeated)
+    {
+        GameObject button = Instantiate(buttonRef, spawnPlayerBT.transform.position, Quaternion.identity);
+        button.transform.SetParent(spawnPlayerBT.transform);
+        button.name = "PlayerButton (" + playerDefeated.name + ")";
+
+        //button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name;
+
+        button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(playerDefeated); });
+
+
+        button.transform.localScale = new Vector3(1f, 1f, 1f); // Al cambiar de resolucion, el boton aparecia con una escala distinta (?) asi que asi nos aseguramos que se mantenga.
+        playerBT.Add(button);//Listado de botones generados
+
+        //Debug.Log("1- playerBT "+playerBT.Count);
+
+    }//Fin de GeneratePlayersButtons
+
+    public void GeneratePlayersDefeatedButtons(ObjectData itemOrAtk)
+    {
+        // Despejamos la lista de la zona de botones enemigo. Asi evitamos que se coloquen uno encima de otro y que se mezclen.
+        if (enemyBT.Count > 0)
+        {
+            enemyBT.ForEach(bt => Destroy(bt));
+            enemyBT.Clear();
+        }
+
+        playersDefeated.ForEach(playerDefeated =>
+            {
+                GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
+                button.transform.SetParent(spawnEnemyBT.transform);
+                button.name = "PlayerDefeated (" + playerDefeated.name + ")";
+                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name;
+                
+                button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObject(playerDefeated); });
+
+                button.transform.localScale = new Vector3(1f, 1f, 1f);
+                enemyBT.Add(button);
+            });
+    }
+
     public IEnumerator CreateButtons()
     {
         yield return new WaitForSeconds(0.00000001f);
@@ -597,7 +639,7 @@ public class CombatFlow : MonoBehaviour
 
         moves++;
 
-        this.character = null; this.movement = null;
+        character = null; movement = null;
 
         wait = false;
 
@@ -744,17 +786,58 @@ public class CombatFlow : MonoBehaviour
         moneyPlayer.Money += enemy.GetComponent<Stats>().MoneyDrop;
     }
 
-    public void DeleteAllieFromArray(GameObject allie)
+    public void DeleteAllieFromArray(GameObject ally)
     {
         List<GameObject> actualPlayers = players.ToList();
 
-        actualPlayers.Remove(allie);
+        actualPlayers.Remove(ally);
 
-        playersDefeated.Add(allie);
+        playersDefeated.Add(ally);
 
         players = actualPlayers.ToArray();
 
         GeneratePlayersButtons();
+    }
+
+    public void CheckIfAnAllyHasRevived()
+    {
+        GameObject someoneHasRevived = null;
+
+        if(playersDefeated.Count != 0)
+        {
+            playersDefeated.ForEach(x => 
+            {
+                if(x.GetComponent<Stats>().Health > 0)
+                {
+                    List<GameObject> actualPlayers = players.ToList();
+                    actualPlayers.Add(x);
+                    players = actualPlayers.ToArray();
+
+                    someoneHasRevived = x;
+                }
+            });
+        } else Debug.Log("No hay aliados eliminados");
+
+        if(someoneHasRevived != null)
+        {
+            playersDefeated.Remove(someoneHasRevived);
+
+            someoneHasRevived.transform.SetAsLastSibling();
+
+            GeneratePlayerDefeatedButton(someoneHasRevived); // Si queremos que el personaje revivido pueda atacar durante el turno
+
+            // Si NO queremos que el personaje revivido pueda atacar durante el turno
+            /*
+            character = someoneHasRevived;
+            GeneratePlayerDefeatedButton(someoneHasRevived);
+
+            DesactivatePlayerButton();
+            moves++;
+
+            character = null;
+            */
+        }
+
     }
 
 }

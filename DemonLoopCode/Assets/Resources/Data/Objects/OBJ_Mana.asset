@@ -17,7 +17,7 @@ MonoBehaviour:
   objectType: 1
   baseNum: 25
   stateAsociated: {fileID: 0}
-  targetsToLoad: 1
+  alliesTargets: 1
   type: 0
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

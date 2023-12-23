@@ -140,8 +140,10 @@ public class Stats : MonoBehaviour
         listAtk.Add(attack);
     }
 
-    public void Revive()
-    {
+    public void Revive(float healthToRevive)
+    {   
         gameObject.SetActive(true);
+
+        Health = healthToRevive;
     }
 }

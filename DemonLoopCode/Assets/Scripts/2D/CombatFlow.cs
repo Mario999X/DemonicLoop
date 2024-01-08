@@ -123,6 +123,7 @@ public class CombatFlow : MonoBehaviour
 
     private void LoadCombatOptionsButtons()
     {
+        
         if (combatOptionsBT.Count > 0)
             combatOptionsBT.Clear();
 
@@ -158,6 +159,9 @@ public class CombatFlow : MonoBehaviour
 
     private void GeneratePlayersButtons()
     {
+        //Cuando entremos en combate suena la musica
+        AudioManager.Instance.PlaySoundCombat();
+
         Debug.Log("Turno Actual: " + ActualTurn);
 
         if (playerBT.Count > 0)
@@ -331,6 +335,7 @@ public class CombatFlow : MonoBehaviour
     // Selección de jugador.
     public void PlayerButtonAttacks()
     {
+        
         if (!wait)
         {
             if (enemyBT.Count > 0)
@@ -711,7 +716,8 @@ public class CombatFlow : MonoBehaviour
             Debug.Log("Experiencia: " + experience);
 
             players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
-            
+
+            AudioManager.Instance.StopSoundCombat();
             //Se debe mostrar una pantalla de WIN
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
@@ -724,10 +730,12 @@ public class CombatFlow : MonoBehaviour
         }
         if (playerBT.Count == 0)
         {
+            AudioManager.Instance.StopSoundCombat();
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
             await System.Threading.Tasks.Task.Delay(2000);
             enterBattle.FinishBattle();
+
         }
 
         WINLOSE.enabled = false;

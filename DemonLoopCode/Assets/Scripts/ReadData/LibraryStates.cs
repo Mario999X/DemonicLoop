@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class ActualStateData
 {
@@ -152,22 +153,7 @@ public class LibraryStates : MonoBehaviour
                     if (lastTurn != actualState.Turn)
                     {
 
-                        if (state.ToUpper() == "BURNT")
-                        {
-                            Debug.Log("BURNT " + state.ToUpper());
-
-
-                            GameObject icon = Instantiate(Burnt, target.transform.position, Quaternion.identity);
-                            icon.transform.SetParent(target.transform);
-
-
-                        }
-                        else
-                        {
-                            Debug.Log("POISON " + state.ToUpper());
-                            GameObject icon = Instantiate(Poison, target.transform.position, Quaternion.identity);
-                            icon.transform.SetParent(target.transform);
-                        }
+                        IconState();
 
                         if (targetST.Health > 0)
                         {
@@ -209,7 +195,6 @@ public class LibraryStates : MonoBehaviour
 
             do
             {
-
                 if (!enterBattle.OneTime) // 3D grupo
                 {
                     if (player.Movement)
@@ -238,6 +223,7 @@ public class LibraryStates : MonoBehaviour
                 }
                 else // 2D grupo
                 {
+                    IconState();
 
                     if (lastTurn != actualState.Turn)
                     {
@@ -268,6 +254,27 @@ public class LibraryStates : MonoBehaviour
             } while (actualState.Turn <= stateData.TurnsDuration);
 
             characterStates.Remove(actualState);
+        }
+    }
+
+    // Esta funcion se encarga de buscar las entidades con un estado y les pone el icono de estado.
+    public void IconState()
+    {
+        foreach (ActualStateData actualState in characterStates)
+        {
+            if (actualState.State.ToUpper() == "BURNT")
+            {
+                Debug.Log("BURNT " + actualState.State.ToUpper());
+
+                GameObject icon = Instantiate(Burnt, actualState.Character.transform.position, Quaternion.identity);
+                icon.transform.SetParent(actualState.Character.transform);
+            }
+            else
+            {
+                Debug.Log("POISON " + actualState.State.ToUpper());
+                GameObject icon = Instantiate(Poison, actualState.Character.transform.position, Quaternion.identity);
+                icon.transform.SetParent(actualState.Character.transform);
+            }
         }
     }
 

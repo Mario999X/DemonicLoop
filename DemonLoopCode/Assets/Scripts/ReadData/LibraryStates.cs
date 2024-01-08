@@ -56,7 +56,7 @@ public class LibraryStates : MonoBehaviour
         LoadStates();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
         {
@@ -75,8 +75,9 @@ public class LibraryStates : MonoBehaviour
         {
             done = false;
         }
-        
-        if (party == null)
+
+
+        if (party == null || party.Length == 0)
             party = GameObject.FindGameObjectsWithTag("Player");
         else
         {

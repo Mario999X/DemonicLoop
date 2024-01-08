@@ -16,6 +16,8 @@ public class EnterBattle : MonoBehaviour
     Scene scene;
 
     public bool OneTime { get { return oneTime; } }
+
+    LibraryStates libraryStates;
     
     // Update is called once per frame
     void FixedUpdate()
@@ -36,6 +38,7 @@ public class EnterBattle : MonoBehaviour
 
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
+            libraryStates = GetComponent<LibraryStates>();
 
             done = true;
         }
@@ -78,6 +81,8 @@ public class EnterBattle : MonoBehaviour
             GetComponent<CombatFlow>().TotalEXP = this.enemy.GetComponent<EnemyGenerator>().TotalEXP;
 
             oneTime = true;
+
+            libraryStates.IconState(); // Busca todos las entidades que sufran algun efecto de estado.
 
             fight.enabled = true;
 

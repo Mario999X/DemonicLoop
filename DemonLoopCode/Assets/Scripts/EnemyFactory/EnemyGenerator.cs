@@ -7,10 +7,6 @@ public class EnemyGenerator : MonoBehaviour
     [Header("Enemy Difficulty Level")]
     [SerializeField] int disasterLevel = 1;
 
-    [Header("Enemy experience count")]
-    [SerializeField] float totalEXP;
-    public float TotalEXP { get { return totalEXP; } }
-
     //[SerializeField] // Comentar o descomentar si se quiere ver la generacion de enemigos en el inspector.
     private List<GameObject> listEnemies = new(); // Lista de enemigos que apareceran en batalla.
 
@@ -49,7 +45,6 @@ public class EnemyGenerator : MonoBehaviour
             //Debug.Log("GENERANDO ENEMIGO: " + i);
             var enemy = enemyManagerGenerator.GenerateDemon(disasterLevel);
             
-            totalEXP += enemy.GetComponent<Stats>().DropXP;
             listEnemies.Add(enemy);
         }
     }

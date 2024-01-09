@@ -48,7 +48,7 @@ public class Stats : MonoBehaviour
 
     public float Health { get { return health; } set { health = value; if(barHP != null) OnAttackReceived(); } } // @TODO: Mecanica de ataque sorpresa no funcional, la barra de vida es nula
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
-    public float Mana { get { return mana; } set { mana = value; OnManaChanged(); } }
+    public float Mana { get { return mana; } set { mana = value; if(barMana != null) OnManaChanged(); } }
     public float MaxMana { get { return maxMana; } set { maxMana = value; } }
     public float Strenght { get { return strength; } set { strength = value; } }
     public float PhysicalDefense { get { return physicalDef; } set { physicalDef = value; } }
@@ -61,7 +61,7 @@ public class Stats : MonoBehaviour
     public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; }}
     public Types Type { get { return type; } }
 
-    public float MoneyDrop { get { return moneyDrop; } }
+    public float MoneyDrop { get { return moneyDrop; } set { moneyDrop = value; } }
     public float DropXP { get { return dropXP; } set { dropXP = value; }}
 
     void Start()

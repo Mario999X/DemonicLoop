@@ -161,8 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
-  totalEXP: 0
+  disasterLevel: 2
 --- !u!1 &5862220882609411174
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,9 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c549f493f209c8941b6028ba98ee7d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 8
   distance: 10
   patrol: 0
   speed: 10

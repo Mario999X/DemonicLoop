@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 5498455258513359851}
   - component: {fileID: 4208159725156441736}
   - component: {fileID: 6305089414510223978}
+  - component: {fileID: 1034579314653077739}
   m_Layer: 5
   m_Name: BaseDemon2
   m_TagString: Enemy
@@ -140,7 +141,7 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 270
+  maxHealth: 230
   mana: 0
   maxMana: 100
   strength: 15
@@ -155,6 +156,22 @@ MonoBehaviour:
   type: 2
   moneyDrop: 2
   dropXP: 100
+--- !u!114 &1034579314653077739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486560601053180396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2d0cf0670a440878e2c8aa7e417474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredXP: 0
+  adittionMultiplier: 300
+  powerMultiplier: 2
+  divisionMultiplier: 7
 --- !u!1001 &282081289821599181
 PrefabInstance:
   m_ObjectHideFlags: 0

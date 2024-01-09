@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,26 +61,70 @@ public class EnterBattle : MonoBehaviour
         }
     }
 
+        private int ObtainMaxLevelPlayer()
+    {
+        int maxLevelDetected = 0;
+        
+        List<int> playerlevels = new();
+
+        if(GameObject.Find("AlliesBattleZone").transform.childCount > 0)
+        {
+            foreach(Transform child in GameObject.Find("AlliesBattleZone").transform)
+            {
+                playerlevels.Add(child.GetComponent<Stats>().Level);
+            }
+
+            maxLevelDetected = playerlevels.Max();
+        }
+
+        return maxLevelDetected;
+    }
+
+    private int SetEnemyLevel(int levelDetected)
+    {
+        int levelRandom = Random.Range(levelDetected - 2, levelDetected + 2 + 1);
+
+        if(levelRandom < 1) levelRandom = 1;
+
+        return levelRandom;
+    }
+
     // Funcion para iniciar la batalla.
     public void StartBattle(GameObject enemy, bool sneak)
     {
         this.enemy = enemy;
+        
+        float totalExperience = 0;
 
         if (!oneTime)
         {
+            var playerMaxLevel = ObtainMaxLevelPlayer();
+
             StartCoroutine(CrossfadeAnimation());
             
             StartCoroutine(GetComponent<CombatFlow>().CreateButtons());
             
-            if(GameObject.Find("EnemyBattleZone").transform.childCount > 0){
+            if(GameObject.Find("EnemyBattleZone").transform.childCount > 0)
+            {
                 foreach(Transform child in GameObject.Find("EnemyBattleZone").transform)
                     Destroy(child.gameObject);
             }
             
-            this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x => Instantiate(x, GameObject.Find("EnemyBattleZone").transform));
+            this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x =>
+            {
+                GameObject go = Instantiate(x, GameObject.Find("EnemyBattleZone").transform);
 
-            GetComponent<CombatFlow>().TotalEXP = this.enemy.GetComponent<EnemyGenerator>().TotalEXP;
+                //Debug.Log(go.name);
+                go.GetComponent<LevelSystem>().LevelUpEnemy(SetEnemyLevel(playerMaxLevel), go.GetComponent<Stats>()); // Subida de nivel del enemigo
+            });
 
+            if(GameObject.Find("EnemyBattleZone").transform.childCount > 0)
+            {
+                foreach(Transform child in GameObject.Find("EnemyBattleZone").transform) 
+                    totalExperience += child.GetComponent<Stats>().DropXP;
+            }
+
+            GetComponent<CombatFlow>().TotalEXP = totalExperience;
             oneTime = true;
 
             libraryStates.IconState(); // Busca todos las entidades que sufran algun efecto de estado.

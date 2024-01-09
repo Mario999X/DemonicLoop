@@ -18,7 +18,7 @@ public class LevelSystem : MonoBehaviour
 
     private const float CriticalStatUpgrade = 3;
 
-    private void Start()
+    private void Awake()
     {
         characterST = GetComponent<Stats>();
 
@@ -52,21 +52,21 @@ public class LevelSystem : MonoBehaviour
         IncrementStats();
 
         requiredXP = CalculateRequireXp();
-    } 
+    }
 
-    public void LevelUpEnemy(int setLevel, Stats chara)
+    public void SetLevelEnemy(int setLevel)
     {
-        if(chara.Level < setLevel)
+        if(characterST.Level < setLevel)
         {
-            while(chara.Level < setLevel)
+            while(characterST.Level < setLevel)
             {
-                chara.Level++;
-                IncrementStats(chara);
+                characterST.Level++;
+                IncrementStats();
 
-                chara.DropXP += 30;
-                chara.MoneyDrop += 30;
+                characterST.DropXP += 30;
+                characterST.MoneyDrop += 30;
 
-                Debug.Log("Enemigo: " + chara.name + " subio de nivel: " + chara.Level);
+                Debug.Log("Enemigo: " + characterST.name + " subio de nivel: " + characterST.Level);
             }
         }
     }
@@ -120,57 +120,6 @@ public class LevelSystem : MonoBehaviour
 
         characterST.Health = characterST.MaxHealth;
         characterST.Mana = characterST.MaxMana;
-    }
-
-    // Enemigos
-    private void IncrementStats(Stats chara)
-    {
-        switch(chara.Rol)
-        {
-            case CharacterRol.Tank:
-                chara.MaxHealth += EffectiveStatUpgrade;
-                chara.MaxMana += NormalStatUpgrade;
-                chara.Strenght += NormalStatUpgrade;
-                chara.PhysicalDefense += EffectiveStatUpgrade;
-                chara.MagicAtk += NormalStatUpgrade;
-                chara.MagicDef += EffectiveStatUpgrade;
-                chara.CriticalChance += CriticalStatUpgrade;
-            break;
-
-            case CharacterRol.Priest:
-                chara.MaxHealth += EffectiveStatUpgrade;
-                chara.MaxMana += EffectiveStatUpgrade;
-                chara.Strenght += NormalStatUpgrade;
-                chara.PhysicalDefense += NormalStatUpgrade;
-                chara.MagicAtk += NormalStatUpgrade;
-                chara.MagicDef += EffectiveStatUpgrade;
-                chara.CriticalChance += CriticalStatUpgrade;
-            break;
-
-            case CharacterRol.Wizard:
-                chara.MaxHealth += NormalStatUpgrade;
-                chara.MaxMana += EffectiveStatUpgrade;
-                chara.Strenght += NormalStatUpgrade;
-                chara.PhysicalDefense += NormalStatUpgrade;
-                chara.MagicAtk += EffectiveStatUpgrade;
-                chara.MagicDef += EffectiveStatUpgrade;
-                chara.CriticalChance += CriticalStatUpgrade;
-            break;
-
-            case CharacterRol.Knight:
-                chara.MaxHealth += EffectiveStatUpgrade;
-                chara.MaxMana += NormalStatUpgrade;
-                chara.Strenght += EffectiveStatUpgrade;
-                chara.PhysicalDefense += EffectiveStatUpgrade;
-                chara.MagicAtk += NormalStatUpgrade;
-                chara.MagicDef += NormalStatUpgrade;
-                chara.CriticalChance += CriticalStatUpgrade;
-            break;
-
-        }
-
-        chara.Health = chara.MaxHealth;
-        chara.Mana = chara.MaxMana;
     }
 
     private int CalculateRequireXp()

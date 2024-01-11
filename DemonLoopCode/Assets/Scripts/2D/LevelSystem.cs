@@ -3,6 +3,7 @@ using UnityEngine;
 public class LevelSystem : MonoBehaviour
 {
     private Stats characterST;
+    private LearnableAttacks characterLearneableAttacks;
     [SerializeField] private float requiredXP;
     public float RequiredXP { get { return requiredXP; } set { requiredXP = value; }}
 
@@ -24,6 +25,8 @@ public class LevelSystem : MonoBehaviour
 
         if(characterST.CompareTag("Player"))
         {
+            characterLearneableAttacks = GetComponent<LearnableAttacks>();
+
             requiredXP = CalculateRequireXp();
 
             floatingText = GameObject.Find("System").GetComponent<FloatingTextCombat>();
@@ -71,7 +74,6 @@ public class LevelSystem : MonoBehaviour
         }
     }
 
-    // Jugador
     private void IncrementStats()
     {
         switch(characterST.Rol)
@@ -120,6 +122,16 @@ public class LevelSystem : MonoBehaviour
 
         characterST.Health = characterST.MaxHealth;
         characterST.Mana = characterST.MaxMana;
+
+        if(characterST.CompareTag("Player")) 
+        {
+            var possibleAttackToLearn = characterLearneableAttacks.CanILearnAttack(characterST.Level);
+            
+            if(possibleAttackToLearn)
+            {
+                characterST.SetAttack(characterLearneableAttacks.ReturnAttack(characterST.Level));
+            }
+        }
     }
 
     private int CalculateRequireXp()

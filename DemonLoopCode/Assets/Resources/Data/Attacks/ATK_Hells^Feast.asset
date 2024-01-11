@@ -24,3 +24,4 @@ MonoBehaviour:
   type: 4
   lifeTheft: 0
   manaTheft: 0
+  levelRequired: 2

@@ -77,12 +77,18 @@ public class Stats : MonoBehaviour
 
     // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
     // Solo puede usar 4 ataques que son los espacios acordados
-    private void CheckListAtkMax()
+    private bool CheckListAtkMax()
     {
-        if (listAtk.Count > 4)
-        {
-            listAtk.Remove(listAtk[^1]); // == listAtk.Count - 1
+        var space = true;
+
+        if (listAtk.Count >= 4)
+        {   
+            space = false;
+            
+            Debug.Log(gameObject.name + " Ya tiene 4 ataques, no es posible agregar mas");
         }
+
+        return space;
     }//Fin de CheckListAtk
 
     private void OnAttackReceived()
@@ -134,9 +140,9 @@ public class Stats : MonoBehaviour
 
     public void SetAttack(AttackData attack)
     {   
-        CheckListAtkMax(); // Aqui se realizará la comprobacion del max de ataques por personaje.
+        var enoughSpace = CheckListAtkMax();
 
-        listAtk.Add(attack);
+        if(enoughSpace) listAtk.Add(attack);
     }
 
     public void Revive(float healthToRevive)

@@ -132,7 +132,6 @@ public class Stats : MonoBehaviour
         return nameList;
     }
 
-    // TODO: Funcion para agregar un ataque a la lista pasandole un nombre, hace falta revisarlo.
     public void SetAttack(AttackData attack)
     {   
         CheckListAtkMax(); // Aqui se realizará la comprobacion del max de ataques por personaje.

@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 2714663447928929924}
   - component: {fileID: 5069905765451623992}
   - component: {fileID: 7275690779995491954}
+  - component: {fileID: -2370832026209810532}
   m_Layer: 5
   m_Name: Mario
   m_TagString: Player
@@ -174,6 +175,20 @@ MonoBehaviour:
   adittionMultiplier: 300
   powerMultiplier: 2
   divisionMultiplier: 7
+--- !u!114 &-2370832026209810532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374620420556713923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03903d944e5f6410b8f6195b31c65810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownLearnableAttacks:
+  - {fileID: 11400000, guid: 2715b7a2e352cf54fb7c543e6553931d, type: 2}
 --- !u!1001 &2074734080901391041
 PrefabInstance:
   m_ObjectHideFlags: 0

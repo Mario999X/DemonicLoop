@@ -31,6 +31,8 @@ public class AttackData : ScriptableObject
 
     [SerializeField] private bool manaTheft;
 
+    [SerializeField] [Range(0,100)] private int levelRequired;
+
    
     public float BaseDamage { get { return baseDamage; } }
     public int PhyAttack { get { return phyAttack; } }
@@ -44,6 +46,8 @@ public class AttackData : ScriptableObject
     public bool LifeTheft { get { return lifeTheft; } }
     public bool ManaTheft { get { return manaTheft; } }
     public Types Type { get { return type; } }
+
+    public int LevelRequired { get { return levelRequired; } }
 
     private string ObtainStateName()
     {

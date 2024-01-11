@@ -505,72 +505,99 @@ public class CombatFlow : MonoBehaviour
 
     // Ejecuta las acciones del enemigo.
     private IEnumerator GoEnemy()
-    {   
+    {
         wait = true;
 
         //Chequea que ataque tiene el enemigo y puede usar
         CheckAtkEnemy();
-
 
         foreach (CharacterMove characterMove in movements)
         {
             GameObject characterTarget = characterMove.Target;
 
             // Deteccion si el target aliado esta muerto o no.
-            if(characterTarget.GetComponent<Stats>().Health == 0)
+            if (characterTarget.GetComponent<Stats>().Health == 0)
             {
-                if(players.Length != 0)
+                if (players.Length != 0)
                 {
                     characterTarget = players[UnityEngine.Random.Range(0, players.Length)];
-                } 
-                else 
+                }
+                else
                 {
                     characterMove.Execute = false;
                 }
             }
 
-            if(characterMove.Execute)
+            if (characterMove.Execute)
             {
-            bool dontStop = true, change = true;
-
-            Vector2 v = characterMove.Character.transform.position;
-
-            do
-            {
-                if (change)
+                bool isAOE = library.CheckAoeAttack(characterMove.Movement);
+                if (isAOE)
                 {
-                    characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, characterTarget.transform.position, speed * Time.deltaTime);
+                    var healOrNot = library.CheckAttackOrHeal(characterMove.Movement);
+                    Debug.Log("healOrNot " + healOrNot);
+
+                    if (healOrNot)
+                    {
+                        enemys.ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary); });
+                    }
+                    else
+                    {
+                        players.ToList().ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary); });
+                    }
+
+
+                    foreach (GameObject t in players.ToArray())
+                    {
+                        StartCoroutine(CharacterDead(t, false));
+                    }
                 }
                 else
                 {
-                    characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, v, speed * Time.deltaTime);
+
+                    bool dontStop = true, change = true;
+
+                    Vector2 v = characterMove.Character.transform.position;
+
+                    do
+                    {
+                        if (change)
+                        {
+                            characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, characterTarget.transform.position, speed * Time.deltaTime);
+                        }
+                        else
+                        {
+                            characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, v, speed * Time.deltaTime);
+                        }
+
+                        if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
+                        {
+
+                            library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary); // Realiza el ataque.
+
+                            StartCoroutine(CharacterDead(characterTarget, false));
+
+                            change = false;
+                        }
+
+                        if (Vector2.Distance(characterMove.Character.transform.position, v) < 0.001f && !change)
+                        {
+                            dontStop = false;
+                        }
+
+                        yield return new WaitForSeconds(0.00001f);
+                    } while (dontStop);
                 }
+            }
 
-                if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
-                {
 
-                    library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary); // Realiza el ataque.
 
-                    StartCoroutine(CharacterDead(characterTarget, false));
 
-                    change = false;
-                }
-
-                if (Vector2.Distance(characterMove.Character.transform.position, v) < 0.001f && !change)
-                {
-                    dontStop = false;
-                }
-
-                yield return new WaitForSeconds(0.00001f);
-            } while (dontStop);
-        }
-
-        // Una vez terminado el turno de los enemigos vuelve a activar los botones de los jugadores.
-        playerBT.ForEach(bt =>
-        {
-            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
-            bt.GetComponent<Button>().enabled = true;
-        });
+            // Una vez terminado el turno de los enemigos vuelve a activar los botones de los jugadores.
+            playerBT.ForEach(bt =>
+            {
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
+                bt.GetComponent<Button>().enabled = true;
+            });
 
         }
 
@@ -578,7 +605,7 @@ public class CombatFlow : MonoBehaviour
         moves = 0;
 
         wait = false;
-        
+
 
         NextTurn();
 

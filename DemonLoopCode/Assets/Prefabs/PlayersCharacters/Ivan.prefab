@@ -76,7 +76,7 @@ MonoBehaviour:
   magicDef: 15
   criticalChance: 35
   listAtk:
-  - {fileID: 11400000, guid: 2715b7a2e352cf54fb7c543e6553931d, type: 2}
+  - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
   - {fileID: 11400000, guid: c26bd1d267de74ced872e9c175cca721, type: 2}
   - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}
   - {fileID: 11400000, guid: 2f572df684e1146588ed4165007694e9, type: 2}

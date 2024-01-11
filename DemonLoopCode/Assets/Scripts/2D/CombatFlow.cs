@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class CharacterMove
 {
@@ -34,7 +35,7 @@ public class CombatFlow : MonoBehaviour
 
     [Header("Experience total to distributed. Comes from EnemyGenerator")]
     [SerializeField] private float totalEXP;
-    public float TotalEXP { set { totalEXP = value; }}
+    public float TotalEXP { set { totalEXP = value; } }
 
     private List<CharacterMove> movements = new();
     private List<GameObject> enemys = new();
@@ -43,12 +44,12 @@ public class CombatFlow : MonoBehaviour
     private List<GameObject> moveBT = new();
     private List<GameObject> enemyBT = new();
 
-    public List<GameObject> EnemyBT { get { return enemyBT; } set { enemyBT = value; }}
+    public List<GameObject> EnemyBT { get { return enemyBT; } set { enemyBT = value; } }
 
     GameObject[] players;
 
     List<GameObject> playersDefeated = new();
-    public List<GameObject> PlayersDefeated { get { return playersDefeated; }}
+    public List<GameObject> PlayersDefeated { get { return playersDefeated; } }
 
     private GameObject character = null;
     public GameObject Character { get { return character; } }
@@ -123,11 +124,11 @@ public class CombatFlow : MonoBehaviour
 
     private void LoadCombatOptionsButtons()
     {
-        
+
         if (combatOptionsBT.Count > 0)
             combatOptionsBT.Clear();
 
-        
+
         if (moveBT.Count > 0)
         {
             moveBT.ForEach(bt => Destroy(bt));
@@ -241,7 +242,7 @@ public class CombatFlow : MonoBehaviour
                 GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
                 button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "PlayerButton (" + pl.name + ")";
-                
+
                 button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name;
                 if (itemOrAtk == null)
                 {
@@ -290,17 +291,17 @@ public class CombatFlow : MonoBehaviour
         }
 
         playersDefeated.ForEach(playerDefeated =>
-            {
-                GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
-                button.transform.SetParent(spawnEnemyBT.transform);
-                button.name = "PlayerDefeated (" + playerDefeated.name + ")";
-                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name;
-                
-                button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObject(playerDefeated); });
+        {
+            GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
+            button.transform.SetParent(spawnEnemyBT.transform);
+            button.name = "PlayerDefeated (" + playerDefeated.name + ")";
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name;
 
-                button.transform.localScale = new Vector3(1f, 1f, 1f);
-                enemyBT.Add(button);
-            });
+            button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObject(playerDefeated); });
+
+            button.transform.localScale = new Vector3(1f, 1f, 1f);
+            enemyBT.Add(button);
+        });
     }
 
     public IEnumerator CreateButtons()
@@ -335,7 +336,7 @@ public class CombatFlow : MonoBehaviour
     // Selección de jugador.
     public void PlayerButtonAttacks()
     {
-        
+
         if (!wait)
         {
             if (enemyBT.Count > 0)
@@ -463,7 +464,7 @@ public class CombatFlow : MonoBehaviour
         bool dontStop = true, change = true;
 
         Vector2 v = character.transform.position;
-
+        Debug.Log("Inicio moves en ataque aliado " + moves);
         do
         {
             if (change)
@@ -478,7 +479,11 @@ public class CombatFlow : MonoBehaviour
             if (Vector2.Distance(character.transform.position, target.transform.position) < 100f && change)
             {
                 library.Library(character, target, movement, statesLibrary); // Realiza el ataque.
-
+               /* Debug.Log("moves en ataque aliado " + moves);
+                Debug.Log("character " + character);
+                StartCoroutine(CharacterDead(target, true));
+                Debug.Log("target " + target);
+                StartCoroutine(CharacterDead(character, false));*/
                 change = false;
             }
 
@@ -490,14 +495,20 @@ public class CombatFlow : MonoBehaviour
             yield return new WaitForSeconds(0.00001f);
         } while (dontStop);
 
-        StartCoroutine(CharacterDead(target, true));
+        
 
         moves++;
+        Debug.Log("Final moves en ataque aliado " + moves);
+        Debug.Log("moves en ataque aliado " + moves);
+        Debug.Log("character " + character);
+        StartCoroutine(CharacterDead(target, true));
+        Debug.Log("target " + target);
+        StartCoroutine(CharacterDead(character, false));
 
         this.character = null; this.movement = null;
 
         wait = false;
-
+        
         CheckIfIsEnemyTurn();
 
         yield return null;
@@ -575,6 +586,9 @@ public class CombatFlow : MonoBehaviour
                             library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary); // Realiza el ataque.
 
                             StartCoroutine(CharacterDead(characterTarget, false));
+                            Debug.Log("enemys " + characterMove.Character);
+
+                            StartCoroutine(CharacterDead(characterMove.Character, true));
 
                             change = false;
                         }
@@ -589,6 +603,10 @@ public class CombatFlow : MonoBehaviour
                 }
             }
 
+            //StartCoroutine(CharacterDead(characterTarget, false));
+            Debug.Log("enemys " + characterMove.Character);
+
+            //StartCoroutine(CharacterDead(characterMove.Character, true));
 
 
 
@@ -623,12 +641,14 @@ public class CombatFlow : MonoBehaviour
 
             if (enemy)
             {
+                Debug.Log("Enemy muerto "+target);
                 DeleteEnemyFromList(target);
-
             }
             else
             {
+                Debug.Log("Aliado muerto " + target);
                 DeleteAllieFromArray(target);
+                moves--;
             }
         }
         yield return null;
@@ -676,7 +696,7 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-        
+
     }
 
     // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
@@ -689,7 +709,7 @@ public class CombatFlow : MonoBehaviour
 
         enemyBT.ForEach(bt => { bt.SetActive(false); }); // Desactiva todos los botones de targets en caso de que esten activados.
 
-        if (playerInventory.InventoryState) 
+        if (playerInventory.InventoryState)
             playerInventory.OpenCloseInventory(); // Cierra el inventario en caso de estar activado
     }
 
@@ -698,6 +718,8 @@ public class CombatFlow : MonoBehaviour
     {
         BattleStatus();
         // Espera a que todos los jugadores hagan sus movimientos.
+        Debug.Log("moves " + moves);
+        Debug.Log("players.Length " + players.Length);
         if (moves >= players.Length && !wait)
         {
             StartCoroutine(GoEnemy());
@@ -714,7 +736,7 @@ public class CombatFlow : MonoBehaviour
         });
 
         BattleStatus();
-        
+
     }//fin de NextTurn
 
     private void DesactivatePlayerButton()
@@ -753,7 +775,7 @@ public class CombatFlow : MonoBehaviour
 
             // Se resetea la información del combate para el proximo encuentro
             actualTurn = 0;
-            moves = 0; 
+            moves = 0;
         }
         if (playerBT.Count == 0)
         {
@@ -775,11 +797,11 @@ public class CombatFlow : MonoBehaviour
         foreach (GameObject enemy in enemys)
         {
             List<string> listAtkEnemy = enemy.GetComponent<Stats>().ListNameAtk;
-            string nameAtkEnemy="";
+            string nameAtkEnemy = "";
 
             bool isManaEnough = false;
             // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
-            while (!isManaEnough && listAtkEnemy.Count>0)
+            while (!isManaEnough && listAtkEnemy.Count > 0)
             {
                 //Int 1 lista de ataques del enemigo
                 int i = UnityEngine.Random.Range(0, listAtkEnemy.Count);
@@ -789,13 +811,12 @@ public class CombatFlow : MonoBehaviour
 
                 if (isManaEnough)
                 {
-                    nameAtkEnemy=listAtkEnemy[i];
+                    nameAtkEnemy = listAtkEnemy[i];
                 }
                 else
                 {
                     listAtkEnemy.Remove(listAtkEnemy[i]);
                 }
-                   
             }
 
             if (listAtkEnemy.Count <= 0)
@@ -804,10 +825,21 @@ public class CombatFlow : MonoBehaviour
             }
             else
             {
-                //Int 2 lista de jugadores
-                int z = UnityEngine.Random.Range(0, players.Length);
+                //@TODO Annadir que los enemigos se curen entre ellos
+                bool healOrNot = library.CheckAttackOrHeal(nameAtkEnemy);
+                if (healOrNot)
+                {
+                    //Int e lista de jugadores
+                    int e = UnityEngine.Random.Range(0, enemys.Count);
+                    AddMovement(enemy, enemys[e], nameAtkEnemy);
+                }
+                else
+                {
+                    //Int z lista de jugadores
+                    int z = UnityEngine.Random.Range(0, players.Length);
 
-                AddMovement(enemy, players[z], nameAtkEnemy);
+                    AddMovement(enemy, players[z], nameAtkEnemy);
+                }
 
             }
 
@@ -838,11 +870,11 @@ public class CombatFlow : MonoBehaviour
     {
         GameObject someoneHasRevived = null;
 
-        if(playersDefeated.Count != 0)
+        if (playersDefeated.Count != 0)
         {
-            playersDefeated.ForEach(x => 
+            playersDefeated.ForEach(x =>
             {
-                if(x.GetComponent<Stats>().Health > 0)
+                if (x.GetComponent<Stats>().Health > 0)
                 {
                     List<GameObject> actualPlayers = players.ToList();
                     actualPlayers.Add(x);
@@ -851,9 +883,10 @@ public class CombatFlow : MonoBehaviour
                     someoneHasRevived = x;
                 }
             });
-        } else Debug.Log("No hay aliados eliminados");
+        }
+        else Debug.Log("No hay aliados eliminados");
 
-        if(someoneHasRevived != null)
+        if (someoneHasRevived != null)
         {
             playersDefeated.Remove(someoneHasRevived);
 
@@ -862,7 +895,7 @@ public class CombatFlow : MonoBehaviour
             //GeneratePlayerDefeatedButton(someoneHasRevived); // Si queremos que el personaje revivido pueda atacar durante el turno
 
             // Si NO queremos que el personaje revivido pueda atacar durante el turno
-            
+
             character = someoneHasRevived;
             GeneratePlayerDefeatedButton(someoneHasRevived);
 

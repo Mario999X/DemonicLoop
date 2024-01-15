@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicAudioSource: {fileID: 376500482}
   defaultMusic: {fileID: 8300000, guid: ec2ca2061e2db1c42b6571e7ad1ee03f, type: 3}
-  combatMusic: {fileID: 8300000, guid: 213ac93b7f55ba4489b101ec7e2dd9e9, type: 3}
+  combatMusic: {fileID: 8300000, guid: 419edc95837f221468c844683ba21611, type: 3}
 --- !u!1 &38030348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1191903474}
+  - component: {fileID: 1191903475}
   m_Layer: 5
   m_Name: BattleZone
   m_TagString: Untagged
@@ -1744,6 +1745,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.007507324}
   m_SizeDelta: {x: 0, y: -0.015015}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1191903475
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191903473}
+  m_CullTransparentMesh: 1
 --- !u!1 &1247281013
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,6 +98,8 @@ public class PlayerInventory : MonoBehaviour
                 {
                     item.ButtonINV3D = CreateButtonINV3D(item);
                 }
+                
+                Time.timeScale = 0f;
 
                 inventoryState = true;
             }
@@ -111,6 +113,8 @@ public class PlayerInventory : MonoBehaviour
                 inventoryUI3D.GetComponentInParent<Canvas>().enabled = false;
 
                 GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+
+                Time.timeScale = 1f;
 
                 inventoryState = false;
             }

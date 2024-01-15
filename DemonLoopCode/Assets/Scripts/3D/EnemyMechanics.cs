@@ -19,14 +19,6 @@ public class EnemyMechanics : MonoBehaviour
 
     EnterBattle _Battle;
 
-    void Start()
-    {
-        if (patrol)
-        {
-            StartCoroutine(Enemy_patrol());
-        }  
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -34,50 +26,57 @@ public class EnemyMechanics : MonoBehaviour
         if (_Battle == null)
         {
             _Battle = GameObject.Find("System").GetComponent<EnterBattle>();
-        }
 
-        RaycastHit hit;
-        direction = transform.right;
-
-        // Crea una linea invisible de una determinada distancia el cual actua como un trigger y solo detecta los objetos que se encuentran en las capas selecionadas.
-        if (Physics.Raycast(transform.position, direction, out hit, distance))
-        {
-            if (hit.transform.gameObject.layer == 3)
+            if (patrol)
             {
-                Debug.DrawLine(transform.position, hit.transform.position, Color.green);
-
-                attack = true;
-
-                hit.transform.GetComponent<PlayerMove>().enabled = false; // Desactiva el movimiento del jugador.
-
-                // Si encuentra alguno de los dos componentes en el objeto jugador los desactiva antes de iniciar la pelea.
-                if (hit.transform.GetComponent<KeyBoardControls>())
-                    hit.transform.GetComponent<KeyBoardControls>().enabled = false;
-                if (hit.transform.GetComponent<ControllerControls>())
-                    hit.transform.GetComponent<ControllerControls>().enabled = false;
-
-
-                // Antes de activar la pelea el enemigo se acerca al jugador.
-                if (Vector3.Distance(transform.position, hit.transform.position) < 1.5f) // Inicia el combate.
-                {
-                    _Battle.StartBattle(transform.parent.gameObject, false);
-                }
-                else
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
-                }
+                StartCoroutine(Enemy_patrol());
             }
-            else { Debug.DrawRay(transform.position, direction * distance, Color.red); }
         }
         else
-        { Debug.DrawRay(transform.position, direction * distance, Color.red); }
+        {
+            RaycastHit hit;
+            direction = transform.right;
+
+            // Crea una linea invisible de una determinada distancia el cual actua como un trigger y solo detecta los objetos que se encuentran en las capas selecionadas.
+            if (Physics.Raycast(transform.position, direction, out hit, distance) && !_Battle.OneTime)
+            {
+                if (hit.transform.gameObject.layer == 3)
+                {
+                    Debug.DrawLine(transform.position, hit.transform.position, Color.green);
+
+                    attack = true;
+
+                    hit.transform.GetComponent<PlayerMove>().enabled = false; // Desactiva el movimiento del jugador.
+
+                    // Si encuentra alguno de los dos componentes en el objeto jugador los desactiva antes de iniciar la pelea.
+                    if (hit.transform.GetComponent<KeyBoardControls>())
+                        hit.transform.GetComponent<KeyBoardControls>().enabled = false;
+                    if (hit.transform.GetComponent<ControllerControls>())
+                        hit.transform.GetComponent<ControllerControls>().enabled = false;
+
+
+                    // Antes de activar la pelea el enemigo se acerca al jugador.
+                    if (Vector3.Distance(transform.position, hit.transform.position) < 1.5f) // Inicia el combate.
+                    {
+                        _Battle.StartBattle(transform.parent.gameObject, false);
+                    }
+                    else
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
+                    }
+                }
+                else { Debug.DrawRay(transform.position, direction * distance, Color.red); }
+            }
+            else
+            { Debug.DrawRay(transform.position, direction * distance, Color.red); }
+        }
     }
 
     IEnumerator Enemy_patrol()
     {
         while (true)
         {
-            if (!attack) // Cuando detecta al jugador este deja de estar en modo 
+            if (!attack && !_Battle.OneTime) // Cuando detecta al jugador este deja de estar en modo patrulla
             {
                 if (change)
                 {

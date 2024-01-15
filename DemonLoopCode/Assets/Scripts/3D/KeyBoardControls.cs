@@ -27,9 +27,11 @@ public class KeyBoardControls : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && player_move.OnFloor)
         {
             speedV.y = 0; speedV.y = Jspeed;
-
             player_move.SpeedV = speedV;
         }
+
+        // Cambio de velocidades al moverse para simular caminar y correr.
+        player_move.Speed = Input.GetKey(KeyCode.LeftShift);
 
         // Abrir y cerrar el inventario solo cuando el jugador no se encuentre en batalla.
         if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime)

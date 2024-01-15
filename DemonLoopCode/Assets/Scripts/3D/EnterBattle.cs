@@ -61,7 +61,7 @@ public class EnterBattle : MonoBehaviour
         }
     }
 
-        private int ObtainMaxLevelPlayer()
+    private int ObtainMaxLevelPlayer()
     {
         int maxLevelDetected = 0;
         

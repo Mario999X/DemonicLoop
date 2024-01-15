@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Player stats")]
     [SerializeField] private float speed = 10f;
+    [SerializeField] private float Wspeed = 10f;
+    [SerializeField] private float Rspeed = 12f;
     [SerializeField] private float Jspeed = 10f;
     [SerializeField] private float gravity = 9.82f;
     private float X, Z;
@@ -31,6 +33,16 @@ public class PlayerMove : MonoBehaviour
         }
     }
     public float JSpeed { get { return Jspeed; } }
+    public bool Speed 
+    { 
+        set 
+        { 
+            if (value == true)
+                speed = Rspeed;
+            else
+                speed = Wspeed;
+        } 
+    }
     public bool OnFloor { get { return onFloor; } }
     public Vector3 SpeedV { get { return speedV; } set { this.speedV = value; } }
 
@@ -59,8 +71,12 @@ public class PlayerMove : MonoBehaviour
         Vector3 spherePosition = new Vector3(transform.position.x, (transform.position.y - altitude), transform.position.z);
         RaycastHit hit;
 
+        // Detecion de si se encuentra en el suele y eliminar a acumulacion gravitacional.
         if (Physics.SphereCast(spherePosition, radius, -Vector3.up, out hit, 0.1f, layer))
-            this.onFloor = true;
+        {
+            this.onFloor = true; 
+            speedV.y = 0;
+        }
         else
             this.onFloor = false;
 

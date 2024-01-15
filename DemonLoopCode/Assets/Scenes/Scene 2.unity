@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2577,7 +2577,7 @@ MonoBehaviour:
   - {fileID: 372789990257220145, guid: 55a5bad925203b14783c5ef46ae2166f, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarety: 01000000370000006400000064000000
+  rarety: 00000000370000005700000064000000
   actualroom: 0
   boosRoom: 10
 --- !u!4 &1525719001

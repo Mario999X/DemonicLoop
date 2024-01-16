@@ -114,7 +114,6 @@ public class EnterBattle : MonoBehaviour
             {
                 GameObject go = Instantiate(x, GameObject.Find("EnemyBattleZone").transform);
 
-                //Debug.Log(go.name);
                 go.GetComponent<LevelSystem>().SetLevelEnemy(SetEnemyLevel(playerMaxLevel)); // Subida de nivel del enemigo
             });
 

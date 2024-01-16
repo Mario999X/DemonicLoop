@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
 
 public class CharacterMove
 {
@@ -61,6 +60,9 @@ public class CombatFlow : MonoBehaviour
     [SerializeField] float speed = 50f;
     [SerializeField] Text WINLOSE;
 
+    private TextMeshProUGUI AllyActionBarText, EnemyActionBarText;
+
+
     private int moves = 0;
 
     private bool wait = false;
@@ -104,6 +106,12 @@ public class CombatFlow : MonoBehaviour
             spawnPlayerBT = GameObject.Find("PlayerButtons");
             spawnMoveBT = GameObject.Find("MoveButtons");
             WINLOSE = GameObject.Find("WINLOSE").GetComponent<Text>();
+
+            AllyActionBarText = GameObject.Find("AllyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            EnemyActionBarText = GameObject.Find("EnemyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+            SetAllyActionBarInactive();
+            SetEnemyActionBarInactive();
 
             GameObject.Find("PassTurnButton").GetComponent<Button>().onClick.AddListener(() => { PassTurn("Pass Turn"); });
             GameObject.Find("AttackButton").GetComponent<Button>().onClick.AddListener(() => { PlayerButtonAttacks(); });
@@ -328,6 +336,8 @@ public class CombatFlow : MonoBehaviour
         {
             this.character = player;
 
+            SetTextInAllyActionBar();
+
             combatOptionsBT.ForEach(bt => bt.SetActive(true));
         }
 
@@ -541,6 +551,8 @@ public class CombatFlow : MonoBehaviour
 
             if (characterMove.Execute)
             {
+                SetTextInEnemyActionBar(characterMove.Character.name, characterMove.Movement);
+
                 bool isAOE = library.CheckAoeAttack(characterMove.Movement);
                 if (isAOE)
                 {
@@ -637,16 +649,16 @@ public class CombatFlow : MonoBehaviour
 
         if (targetST.Health == 0)
         {
-            Debug.Log(target.name + " is dead" + " | enemigo: " + enemy);
+            Debug.Log(target.name + " is dead" + " | IsEnemy?: " + enemy);
 
             if (enemy)
             {
-                Debug.Log("Enemy muerto "+target);
+                Debug.Log("Enemy dead "+target);
                 DeleteEnemyFromList(target);
             }
             else
             {
-                Debug.Log("Aliado muerto " + target);
+                Debug.Log("Ally dead " + target);
                 DeleteAllieFromArray(target);
                 moves--;
             }
@@ -716,10 +728,13 @@ public class CombatFlow : MonoBehaviour
     // Funcion para determinar/empezar el turno enemigo.
     private void CheckIfIsEnemyTurn()
     {
+        SetAllyActionBarInactive();
+
         BattleStatus();
         // Espera a que todos los jugadores hagan sus movimientos.
         Debug.Log("moves " + moves);
         Debug.Log("players.Length " + players.Length);
+
         if (moves >= players.Length && !wait)
         {
             StartCoroutine(GoEnemy());
@@ -728,6 +743,8 @@ public class CombatFlow : MonoBehaviour
 
     private void NextTurn()
     {
+        SetEnemyActionBarInactive();
+
         ActualTurn++;
 
         // Paso de turno para los estados
@@ -905,6 +922,30 @@ public class CombatFlow : MonoBehaviour
             character = null;
         }
 
+    }
+
+    private void SetTextInAllyActionBar()
+    {
+        if(!AllyActionBarText.transform.parent.gameObject.activeSelf) AllyActionBarText.transform.parent.gameObject.SetActive(true);
+
+        AllyActionBarText.text = $"{Character.name} | HP: {Character.GetComponent<Stats>().Health}/{Character.GetComponent<Stats>().MaxHealth} | Mana: {Character.GetComponent<Stats>().Mana}/{Character.GetComponent<Stats>().MaxMana}";
+    }
+
+    private void SetTextInEnemyActionBar(string enemyName ,string attackName)
+    {
+        if(!EnemyActionBarText.transform.parent.gameObject.activeSelf) EnemyActionBarText.transform.parent.gameObject.SetActive(true);
+
+        EnemyActionBarText.text = $"{enemyName} | Attack: {attackName}";
+    }
+
+    private void SetAllyActionBarInactive()
+    {
+        AllyActionBarText.transform.parent.gameObject.SetActive(false);
+    }
+
+    private void SetEnemyActionBarInactive()
+    {
+        EnemyActionBarText.transform.parent.gameObject.SetActive(false);
     }
 
 }

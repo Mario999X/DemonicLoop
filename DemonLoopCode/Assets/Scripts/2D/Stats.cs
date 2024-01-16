@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class Stats : MonoBehaviour
     private Image barMana;
 
     private GameObject charFloatingTextSpaceNumbers;
+
+    private TextMeshProUGUI levelText;
 
     [Header("Character Rol Components")]
     [SerializeField] CharacterRol rol = CharacterRol.Tank;
@@ -73,6 +76,10 @@ public class Stats : MonoBehaviour
         barMana = transform.GetChild(1).Find("BarManaFill").GetComponent<Image>();
 
         charFloatingTextSpaceNumbers = transform.GetChild(2).gameObject;
+
+        levelText = transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+
+        SetLevelText(level);
     }
 
     // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
@@ -150,5 +157,13 @@ public class Stats : MonoBehaviour
         gameObject.SetActive(true);
 
         Health = healthToRevive;
+    }
+
+    public void SetLevelText(int level)
+    {
+        if(levelText != null)
+        {
+            levelText.text = level.ToString();
+        } else Debug.Log("No me dio tiempo beach");
     }
 }

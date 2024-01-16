@@ -15,7 +15,7 @@ public class LevelSystem : MonoBehaviour
 
     private const float NormalStatUpgrade = 20;
 
-    private const float EffectiveStatUpgrade = 70;
+    private const float EffectiveStatUpgrade = 40;
 
     private const float CriticalStatUpgrade = 3;
 
@@ -48,8 +48,12 @@ public class LevelSystem : MonoBehaviour
 
     private void LevelUp()
     {
-        Debug.Log("Personaje: " + characterST.name + " subio de nivel");
+        //Debug.Log("Personaje: " + characterST.name + " subio de nivel");
+
         characterST.Level++;
+
+        characterST.SetLevelText(characterST.Level);
+
         characterST.CurrentXP = Mathf.RoundToInt(characterST.CurrentXP - requiredXP); 
 
         IncrementStats();

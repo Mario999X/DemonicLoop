@@ -280,9 +280,9 @@ MonoBehaviour:
   mana: 0
   maxMana: 100
   strength: 15
-  physicalDef: 21
-  magicAtk: 10
-  magicDef: 12
+  physicalDef: 5
+  magicAtk: 5
+  magicDef: 5
   criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}

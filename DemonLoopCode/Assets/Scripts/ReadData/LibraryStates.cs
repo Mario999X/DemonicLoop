@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.GraphicsBuffer;
 
 public class ActualStateData
 {
@@ -12,7 +11,7 @@ public class ActualStateData
     private int turn = 0;
 
     public string State {  get { return state; } }
-    public int Turn { get { return turn; } set { this.turn = value; } }
+    public int Turn { get { return turn; } set { turn = value; } }
     public GameObject Character {  get { return character; } }
 
     public ActualStateData(string state, GameObject character)
@@ -264,21 +263,23 @@ public class LibraryStates : MonoBehaviour
         {
             if (actualState.State.ToUpper() == "BURNT")
             {
-                Debug.Log("BURNT " + actualState.State.ToUpper());
+                //Debug.Log("BURNT " + actualState.State.ToUpper());
 
                 GameObject icon = Instantiate(Burnt, actualState.Character.transform.position, Quaternion.identity);
                 icon.transform.SetParent(actualState.Character.transform);
             }
             else
             {
-                Debug.Log("POISON " + actualState.State.ToUpper());
+                //Debug.Log("POISON " + actualState.State.ToUpper());
+                
                 GameObject icon = Instantiate(Poison, actualState.Character.transform.position, Quaternion.identity);
                 icon.transform.SetParent(actualState.Character.transform);
             }
         }
     }
 
-    public void RemoveCharacterWithState(GameObject character, string state){
+    public void RemoveCharacterWithState(GameObject character, string state)
+    {
         if(states.ContainsKey(state.ToUpper()))
         {
             var stateCharacter = characterStates.Find(x => x.Character == character && x.State == state);
@@ -293,17 +294,26 @@ public class LibraryStates : MonoBehaviour
         }
     }
 
+    public void ResetTurnsOfCharacterState(GameObject character, string state)
+    {
+        if(states.ContainsKey(state.ToUpper()))
+        {
+            var stateCharacter = characterStates.Find(x => x.Character == character && x.State == state);
+
+            if(stateCharacter != null)
+            {
+                stateCharacter.Turn = 0;
+            } else Debug.Log("Character not found with that State");
+        }
+    }
+
     public bool CheckStatus(GameObject target, string state)
     {
         //Recorrer toda la lista de los estados guardados
         foreach (ActualStateData character in characterStates)
         {
-
-            //Debug.Log("character.State.ToUpper() "+ character.State.ToUpper());
-            //Debug.Log("state.ToUpper() " + state.ToUpper());
-            //Debug.Log("character.Characte " + character.Character);
-            //Debug.Log("target " + target);
             string stateLimp = state.Replace("(Clone)", "").Trim();
+
             //Debug.Log("stateLimp " + stateLimp);
             if (character.State.ToUpper() == stateLimp.ToUpper() && character.Character == target)
             {

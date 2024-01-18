@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class IconStated : MonoBehaviour
@@ -15,10 +13,13 @@ public class IconStated : MonoBehaviour
 
     private void Update()
     {
-        if (!states.CheckStatus(gameObject.transform.parent.gameObject, name)) Destroy(gameObject);
+        if (!states.CheckStatus(gameObject.transform.parent.gameObject, name)) gameObject.SetActive(false);
     }
 
-
+    private void OnDisable()
+    {
+        Destroy(gameObject);
+    }
 
 
 }

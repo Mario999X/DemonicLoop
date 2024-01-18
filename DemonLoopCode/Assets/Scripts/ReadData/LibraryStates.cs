@@ -263,17 +263,31 @@ public class LibraryStates : MonoBehaviour
         {
             if (actualState.State.ToUpper() == "BURNT")
             {
-                //Debug.Log("BURNT " + actualState.State.ToUpper());
+                var iconExists = actualState.Character.transform.Find("Burnt(Clone)");
 
-                GameObject icon = Instantiate(Burnt, actualState.Character.transform.position, Quaternion.identity);
-                icon.transform.SetParent(actualState.Character.transform);
+                if(iconExists == null)
+                {
+                    //Debug.Log("BURNT " + actualState.State.ToUpper());
+
+                    GameObject icon = Instantiate(Burnt, actualState.Character.transform.position, Quaternion.identity);
+                    icon.transform.SetParent(actualState.Character.transform);
+
+                    icon.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
             }
             else
             {
-                //Debug.Log("POISON " + actualState.State.ToUpper());
+                var iconExists = actualState.Character.transform.Find("Poison(Clone)");
+
+                if(iconExists == null)
+                {
+                    //Debug.Log("POISON " + actualState.State.ToUpper());
                 
-                GameObject icon = Instantiate(Poison, actualState.Character.transform.position, Quaternion.identity);
-                icon.transform.SetParent(actualState.Character.transform);
+                    GameObject icon = Instantiate(Poison, actualState.Character.transform.position, Quaternion.identity);
+                    icon.transform.SetParent(actualState.Character.transform);
+                    
+                    icon.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
             }
         }
     }

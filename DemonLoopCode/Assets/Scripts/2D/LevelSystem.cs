@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour
 {
@@ -10,8 +6,6 @@ public class LevelSystem : MonoBehaviour
     private LearnableAttacks characterLearneableAttacks;
     [SerializeField] private float requiredXP;
     public float RequiredXP { get { return requiredXP; } set { requiredXP = value; } }
-
-    private FloatingTextCombat floatingText;
 
     [SerializeField][Range(1f, 300f)] private float adittionMultiplier = 300;
     [SerializeField][Range(2f, 4f)] private float powerMultiplier = 2;
@@ -33,8 +27,6 @@ public class LevelSystem : MonoBehaviour
             characterLearneableAttacks = GetComponent<LearnableAttacks>();
 
             requiredXP = CalculateRequireXp();
-
-            floatingText = GameObject.Find("System").GetComponent<FloatingTextCombat>();
         }
     }
 
@@ -46,7 +38,6 @@ public class LevelSystem : MonoBehaviour
 
         if (characterST.CurrentXP > requiredXP)
         {
-            floatingText.ShowFloatingText(characterST.gameObject, "Lvl Up!", Color.black);
             LevelUp();
         }
     }

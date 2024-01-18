@@ -68,9 +68,13 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
+<<<<<<< HEAD
+  maxHealth: 300
+=======
   maxHealth: 100
+>>>>>>> 7a46c25325e66f1ed7f29739b20a4d2280cb4be8
   mana: 0
-  maxMana: 100
+  maxMana: 150
   strength: 15
   physicalDef: 12
   magicAtk: 15

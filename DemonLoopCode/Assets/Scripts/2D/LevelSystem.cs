@@ -1,17 +1,21 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour
 {
     private Stats characterST;
     private LearnableAttacks characterLearneableAttacks;
     [SerializeField] private float requiredXP;
-    public float RequiredXP { get { return requiredXP; } set { requiredXP = value; }}
+    public float RequiredXP { get { return requiredXP; } set { requiredXP = value; } }
 
     private FloatingTextCombat floatingText;
 
-    [SerializeField] [Range(1f,300f)] private float adittionMultiplier = 300;
-    [SerializeField] [Range(2f,4f)] private float powerMultiplier = 2;
-    [SerializeField] [Range(7f,14f)] private float divisionMultiplier = 7;
+    [SerializeField][Range(1f, 300f)] private float adittionMultiplier = 300;
+    [SerializeField][Range(2f, 4f)] private float powerMultiplier = 2;
+    [SerializeField][Range(7f, 14f)] private float divisionMultiplier = 7;
 
     private const float NormalStatUpgrade = 5;
 
@@ -22,8 +26,9 @@ public class LevelSystem : MonoBehaviour
     private void Awake()
     {
         characterST = GetComponent<Stats>();
+        
 
-        if(characterST.CompareTag("Player"))
+        if (characterST.CompareTag("Player"))
         {
             characterLearneableAttacks = GetComponent<LearnableAttacks>();
 
@@ -38,8 +43,8 @@ public class LevelSystem : MonoBehaviour
         characterST.CurrentXP += xpGained;
 
         Debug.Log("Personaje: " + characterST.name + " obtiene experiencia " + xpGained);
-        
-        if(characterST.CurrentXP > requiredXP)
+
+        if (characterST.CurrentXP > requiredXP)
         {
             floatingText.ShowFloatingText(characterST.gameObject, "Lvl Up!", Color.black);
             LevelUp();
@@ -54,33 +59,36 @@ public class LevelSystem : MonoBehaviour
 
         characterST.SetLevelText(characterST.Level);
 
-        characterST.CurrentXP = Mathf.RoundToInt(characterST.CurrentXP - requiredXP); 
+        characterST.CurrentXP = Mathf.RoundToInt(characterST.CurrentXP - requiredXP);
 
         IncrementStats();
 
         requiredXP = CalculateRequireXp();
     }
 
+
+
     public void SetLevelEnemy(int setLevel)
     {
-        if(characterST.Level < setLevel)
+        if (characterST.GetComponent<Stats>().Level < setLevel)
         {
-            while(characterST.Level < setLevel)
+            while (characterST.GetComponent<Stats>().Level < setLevel)
             {
-                characterST.Level++;
+                characterST.GetComponent<Stats>().Level++;
                 IncrementStats();
 
-                characterST.DropXP += 30;
-                characterST.MoneyDrop += 30;
+                characterST.GetComponent<Stats>().DropXP += 30;
+                characterST.GetComponent<Stats>().MoneyDrop += 30;
 
-                Debug.Log("Enemigo: " + characterST.name + " subio de nivel: " + characterST.Level);
+                Debug.Log("Enemigo: " + characterST.GetComponent<Stats>().name + " subio de nivel: " + characterST.GetComponent<Stats>().Level);
             }
         }
     }
 
     private void IncrementStats()
     {
-        switch(characterST.Rol)
+        
+        switch (characterST.Rol)
         {
             case CharacterRol.Tank:
                 characterST.MaxHealth += EffectiveStatUpgrade;
@@ -90,7 +98,7 @@ public class LevelSystem : MonoBehaviour
                 characterST.MagicAtk += NormalStatUpgrade;
                 characterST.MagicDef += EffectiveStatUpgrade;
                 characterST.CriticalChance += CriticalStatUpgrade;
-            break;
+                break;
 
             case CharacterRol.Priest:
                 characterST.MaxHealth += EffectiveStatUpgrade;
@@ -100,7 +108,7 @@ public class LevelSystem : MonoBehaviour
                 characterST.MagicAtk += NormalStatUpgrade;
                 characterST.MagicDef += EffectiveStatUpgrade;
                 characterST.CriticalChance += CriticalStatUpgrade;
-            break;
+                break;
 
             case CharacterRol.Wizard:
                 characterST.MaxHealth += NormalStatUpgrade;
@@ -110,7 +118,7 @@ public class LevelSystem : MonoBehaviour
                 characterST.MagicAtk += EffectiveStatUpgrade;
                 characterST.MagicDef += EffectiveStatUpgrade;
                 characterST.CriticalChance += CriticalStatUpgrade;
-            break;
+                break;
 
             case CharacterRol.Knight:
                 characterST.MaxHealth += EffectiveStatUpgrade;
@@ -120,18 +128,18 @@ public class LevelSystem : MonoBehaviour
                 characterST.MagicAtk += NormalStatUpgrade;
                 characterST.MagicDef += NormalStatUpgrade;
                 characterST.CriticalChance += CriticalStatUpgrade;
-            break;
+                break;
 
         }
 
         characterST.Health = characterST.MaxHealth;
         characterST.Mana = characterST.MaxMana;
 
-        if(characterST.CompareTag("Player")) 
+        if (characterST.CompareTag("Player"))
         {
             var possibleAttackToLearn = characterLearneableAttacks.CanILearnAttack(characterST.Level);
-            
-            if(possibleAttackToLearn)
+
+            if (possibleAttackToLearn)
             {
                 characterST.SetAttack(characterLearneableAttacks.ReturnAttack(characterST.Level));
             }
@@ -144,7 +152,7 @@ public class LevelSystem : MonoBehaviour
 
         for (int levelCycle = 1; levelCycle <= characterST.Level; levelCycle++)
         {
-            solveForRequireXp += (int) Mathf.Floor(levelCycle + adittionMultiplier * Mathf.Pow(powerMultiplier, levelCycle / divisionMultiplier));
+            solveForRequireXp += (int)Mathf.Floor(levelCycle + adittionMultiplier * Mathf.Pow(powerMultiplier, levelCycle / divisionMultiplier));
         }
 
         return solveForRequireXp / 4;

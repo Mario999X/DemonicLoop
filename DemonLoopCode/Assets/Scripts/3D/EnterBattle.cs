@@ -19,7 +19,7 @@ public class EnterBattle : MonoBehaviour
     public bool OneTime { get { return oneTime; } }
 
     LibraryStates libraryStates;
-    
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -33,7 +33,8 @@ public class EnterBattle : MonoBehaviour
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
 
-            if(GameObject.Find("AlliesBattleZone").transform.childCount == 0){
+            if (GameObject.Find("AlliesBattleZone").transform.childCount == 0)
+            {
                 GetComponent<PlayerTeamManager>().PlayersArrayTeam.ToList().ForEach(x => Instantiate(x, GameObject.Find("AlliesBattleZone").transform));
             }
 
@@ -45,7 +46,7 @@ public class EnterBattle : MonoBehaviour
         }
         else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
         {
-            player = null; 
+            player = null;
             fight = null;
             crossfadeTransition = null;
 
@@ -64,12 +65,12 @@ public class EnterBattle : MonoBehaviour
     private int ObtainMaxLevelPlayer()
     {
         int maxLevelDetected = 0;
-        
+
         List<int> playerlevels = new();
 
-        if(GameObject.Find("AlliesBattleZone").transform.childCount > 0)
+        if (GameObject.Find("AlliesBattleZone").transform.childCount > 0)
         {
-            foreach(Transform child in GameObject.Find("AlliesBattleZone").transform)
+            foreach (Transform child in GameObject.Find("AlliesBattleZone").transform)
             {
                 playerlevels.Add(child.GetComponent<Stats>().Level);
             }
@@ -84,7 +85,7 @@ public class EnterBattle : MonoBehaviour
     {
         int levelRandom = Random.Range(levelDetected - 2, levelDetected + 2 + 1);
 
-        if(levelRandom < 1) levelRandom = 1;
+        if (levelRandom < 1) levelRandom = 1;
 
         return levelRandom;
     }
@@ -93,7 +94,7 @@ public class EnterBattle : MonoBehaviour
     public void StartBattle(GameObject enemy, bool sneak)
     {
         this.enemy = enemy;
-        
+
         float totalExperience = 0;
 
         if (!oneTime)
@@ -101,15 +102,18 @@ public class EnterBattle : MonoBehaviour
             var playerMaxLevel = ObtainMaxLevelPlayer();
 
             StartCoroutine(CrossfadeAnimation());
-            
+
             StartCoroutine(GetComponent<CombatFlow>().CreateButtons());
-            
-            if(GameObject.Find("EnemyBattleZone").transform.childCount > 0)
+
+            //Cuando entremos en combate suena la musica
+            AudioManager.Instance.PlaySoundCombat();
+
+            if (GameObject.Find("EnemyBattleZone").transform.childCount > 0)
             {
-                foreach(Transform child in GameObject.Find("EnemyBattleZone").transform)
+                foreach (Transform child in GameObject.Find("EnemyBattleZone").transform)
                     Destroy(child.gameObject);
             }
-            
+
             this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x =>
             {
                 GameObject go = Instantiate(x, GameObject.Find("EnemyBattleZone").transform);
@@ -117,9 +121,9 @@ public class EnterBattle : MonoBehaviour
                 go.GetComponent<LevelSystem>().SetLevelEnemy(SetEnemyLevel(playerMaxLevel)); // Subida de nivel del enemigo
             });
 
-            if(GameObject.Find("EnemyBattleZone").transform.childCount > 0)
+            if (GameObject.Find("EnemyBattleZone").transform.childCount > 0)
             {
-                foreach(Transform child in GameObject.Find("EnemyBattleZone").transform) 
+                foreach (Transform child in GameObject.Find("EnemyBattleZone").transform)
                     totalExperience += child.GetComponent<Stats>().DropXP;
             }
 
@@ -130,7 +134,7 @@ public class EnterBattle : MonoBehaviour
 
             fight.enabled = true;
 
-            if (sneak) 
+            if (sneak)
             {
                 Stats[] stats = GameObject.Find("EnemyBattleZone").GetComponentsInChildren<Stats>();
 

@@ -279,7 +279,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 300
   mana: 0
-  maxMana: 150
+  maxMana: 170
   strength: 15
   physicalDef: 12
   magicAtk: 15

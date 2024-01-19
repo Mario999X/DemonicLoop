@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 
 public class CharacterMove
 {
@@ -44,6 +43,7 @@ public class CombatFlow : MonoBehaviour
     private List<GameObject> moveBT = new();
     private List<GameObject> enemyBT = new();
 
+    private const int SpGenerationPerAction = 5;
 
     [SerializeField] GameObject DataPlayerPlane;
     public List<GameObject> EnemyBT { get { return enemyBT; } set { enemyBT = value; } }
@@ -459,6 +459,8 @@ public class CombatFlow : MonoBehaviour
 
         wait = true;
 
+        AddSPValue(character.GetComponent<Stats>());
+
         targets.ForEach(t => { library.Library(character, t, movement, statesLibrary); });
 
         foreach (GameObject t in targets.ToArray())
@@ -481,6 +483,8 @@ public class CombatFlow : MonoBehaviour
     {
         wait = true;
 
+        AddSPValue(character.GetComponent<Stats>());
+
         bool dontStop = true, change = true;
 
         Vector2 v = character.transform.position;
@@ -499,11 +503,7 @@ public class CombatFlow : MonoBehaviour
             if (Vector2.Distance(character.transform.position, target.transform.position) < 100f && change)
             {
                 library.Library(character, target, movement, statesLibrary); // Realiza el ataque.
-                /* Debug.Log("moves en ataque aliado " + moves);
-                 Debug.Log("character " + character);
-                 StartCoroutine(CharacterDead(target, true));
-                 Debug.Log("target " + target);
-                 StartCoroutine(CharacterDead(character, false));*/
+
                 change = false;
             }
 
@@ -515,14 +515,15 @@ public class CombatFlow : MonoBehaviour
             yield return new WaitForSeconds(0.00001f);
         } while (dontStop);
 
-
-
         moves++;
-        Debug.Log("Final moves en ataque aliado " + moves);
-        Debug.Log("moves en ataque aliado " + moves);
-        Debug.Log("character " + character);
+
+        //Debug.Log("Final moves en ataque aliado " + moves);
+        //Debug.Log("moves en ataque aliado " + moves);
+        //Debug.Log("character " + character);
+
         StartCoroutine(CharacterDead(target, true));
-        Debug.Log("target " + target);
+        //Debug.Log("target " + target);
+
         StartCoroutine(CharacterDead(character, false));
 
         this.character = null; this.movement = null;
@@ -562,6 +563,8 @@ public class CombatFlow : MonoBehaviour
             if (characterMove.Execute)
             {
                 SetTextInEnemyActionBar(characterMove.Character.name, characterMove.Movement);
+
+                AddSPValue(characterMove.Character.GetComponent<Stats>());
 
                 bool isAOE = library.CheckAoeAttack(characterMove.Movement);
                 if (isAOE)
@@ -887,7 +890,7 @@ public class CombatFlow : MonoBehaviour
                 if (healOrNot)
                 {
                     //Int e lista de jugadores
-                    int e = UnityEngine.Random.Range(0, enemys.Count);
+                    int e = Random.Range(0, enemys.Count);
                     AddMovement(enemy, enemys[e], nameAtkEnemy);
                 }
                 else
@@ -964,11 +967,16 @@ public class CombatFlow : MonoBehaviour
 
     }
 
+    private void AddSPValue(Stats characterST)
+    {
+        if(characterST.CanYouLaunchAnSpecialAtk) characterST.SP += 10;
+    }
+
     private void SetTextInAllyActionBar()
     {
         if (!AllyActionBarText.transform.parent.gameObject.activeSelf) AllyActionBarText.transform.parent.gameObject.SetActive(true);
 
-        AllyActionBarText.text = $"{Character.name} | HP: {Character.GetComponent<Stats>().Health}/{Character.GetComponent<Stats>().MaxHealth} | Mana: {Character.GetComponent<Stats>().Mana}/{Character.GetComponent<Stats>().MaxMana}";
+        AllyActionBarText.text = $"{Character.name} | HP: {Character.GetComponent<Stats>().Health}/{Character.GetComponent<Stats>().MaxHealth} | Mana: {Character.GetComponent<Stats>().Mana}/{Character.GetComponent<Stats>().MaxMana} | SP: {Character.GetComponent<Stats>().SP}/{Character.GetComponent<Stats>().MaxSP}";
     }
 
     private void SetTextInEnemyActionBar(string enemyName, string attackName)

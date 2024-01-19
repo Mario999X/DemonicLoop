@@ -17,6 +17,8 @@ public class Stats : MonoBehaviour
 
     private TextMeshProUGUI levelText;
 
+    private Image radialSP;
+
     [Header("Character Rol Components")]
     [SerializeField] CharacterRol rol = CharacterRol.Tank;
 
@@ -31,6 +33,9 @@ public class Stats : MonoBehaviour
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float mana;
     [SerializeField] float maxMana = 100f;
+    [SerializeField] float sp = 0;
+    [SerializeField] float maxSP = 100f;
+    [SerializeField] bool canYouLaunchAnSpecialAtk = false;
     [SerializeField] float strength = 15f;
     [SerializeField] float physicalDef = 12f;
     [SerializeField] float magicAtk = 0f;
@@ -49,10 +54,13 @@ public class Stats : MonoBehaviour
     public int Level { get { return level; } set { level = value; }}
     public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
 
-    public float Health { get { return health; } set { health = value; if(barHP != null) OnAttackReceived(); } } // @TODO: Mecanica de ataque sorpresa no funcional, la barra de vida es nula
+    public float Health { get { return health; } set { health = value; if(barHP != null) OnAttackReceived(); } }
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
     public float Mana { get { return mana; } set { mana = value; if(barMana != null) OnManaChanged(); } }
-    public float MaxMana { get { return maxMana; } set { maxMana = value; } }
+    public float MaxMana { get { return maxMana; } set { maxMana = value; } }    
+    public float SP { get { return sp; } set { sp = value; if(radialSP != null) OnSPChanged(); } }
+    public float MaxSP { get { return maxSP; } set { maxSP = value; } }
+    public bool CanYouLaunchAnSpecialAtk { get { return canYouLaunchAnSpecialAtk; } }
     public float Strenght { get { return strength; } set { strength = value; } }
     public float PhysicalDefense { get { return physicalDef; } set { physicalDef = value; } }
     public float MagicAtk { get { return magicAtk; } set { magicAtk = value; } }
@@ -80,6 +88,14 @@ public class Stats : MonoBehaviour
         levelText = transform.GetChild(4).GetComponent<TextMeshProUGUI>();
 
         SetLevelText(level);
+        
+        radialSP = transform.GetChild(5).Find("RadialSPFill").GetComponent<Image>();
+        radialSP.fillAmount = sp;
+
+        if(!canYouLaunchAnSpecialAtk)
+        {
+            radialSP.transform.parent.gameObject.SetActive(false);
+        }
     }
 
     // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
@@ -131,6 +147,21 @@ public class Stats : MonoBehaviour
         }
 
         barMana.fillAmount = mana / maxMana;
+    }
+
+    private void OnSPChanged()
+    {
+        if(sp >= maxSP)
+        {
+            sp = maxSP;
+        }
+
+        if(sp <= 0)
+        {
+            sp = 0;
+        }
+
+        radialSP.fillAmount = sp / maxSP;
     }
 
     private List<string> ObtainNameAttacks()

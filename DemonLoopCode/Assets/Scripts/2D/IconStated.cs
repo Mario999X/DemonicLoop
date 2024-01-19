@@ -7,7 +7,7 @@ public class IconStated : MonoBehaviour
 
     private void Start()
     {
-        states=GameObject.Find("System").GetComponent<LibraryStates>();
+        states = GameObject.Find("System").GetComponent<LibraryStates>();
 
     }
 

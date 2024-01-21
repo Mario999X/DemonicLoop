@@ -17,7 +17,7 @@ public class AttackData : ScriptableObject
 
     [SerializeField] private float manaCost;
 
-    [SerializeField] private bool berserker; //Nombre provisional ATKPotencial
+    [SerializeField] private bool berserker;
 
     [SerializeField] private ActionStates generateAState;
 
@@ -32,6 +32,8 @@ public class AttackData : ScriptableObject
     [SerializeField] private bool manaTheft;
 
     [SerializeField] [Range(0,100)] private int levelRequired;
+
+    [SerializeField] private BattleModifiers battleModifierAsociated;
 
    
     public float BaseDamage { get { return baseDamage; } }
@@ -48,6 +50,8 @@ public class AttackData : ScriptableObject
     public Types Type { get { return type; } }
 
     public int LevelRequired { get { return levelRequired; } }
+
+    public BattleModifiers BattleModifierAsociated { get { return battleModifierAsociated; } }
 
     private string ObtainStateName()
     {

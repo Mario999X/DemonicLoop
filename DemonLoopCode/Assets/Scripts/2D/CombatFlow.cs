@@ -43,7 +43,7 @@ public class CombatFlow : MonoBehaviour
     private List<GameObject> moveBT = new();
     private List<GameObject> enemyBT = new();
 
-    private const int SpGenerationPerAction = 5;
+    private const int SpGenerationPerAction = 10;
 
     [SerializeField] GameObject DataPlayerPlane;
     public List<GameObject> EnemyBT { get { return enemyBT; } set { enemyBT = value; } }
@@ -80,6 +80,8 @@ public class CombatFlow : MonoBehaviour
 
     private LibraryStates statesLibrary;
 
+    private LibraryBattleModifiers battleModifiersLibrary;
+
     private EnterBattle enterBattle;
 
     GameObject panelGameObject;
@@ -105,6 +107,7 @@ public class CombatFlow : MonoBehaviour
             moneyPlayer = GetComponent<MoneyPlayer>();
             playerInventory = GetComponent<PlayerInventory>();
             statesLibrary = GetComponent<LibraryStates>();
+            battleModifiersLibrary = GetComponent<LibraryBattleModifiers>();
             enterBattle = GetComponent<EnterBattle>();
             spawnCombatOptionsBT = GameObject.Find("CombatOptionsButtons");
             spawnEnemyBT = GameObject.Find("EnemyButtons");
@@ -461,7 +464,7 @@ public class CombatFlow : MonoBehaviour
 
         AddSPValue(character.GetComponent<Stats>());
 
-        targets.ForEach(t => { library.Library(character, t, movement, statesLibrary); });
+        targets.ForEach(t => { library.Library(character, t, movement, statesLibrary, battleModifiersLibrary); });
 
         foreach (GameObject t in targets.ToArray())
         {
@@ -502,7 +505,7 @@ public class CombatFlow : MonoBehaviour
 
             if (Vector2.Distance(character.transform.position, target.transform.position) < 100f && change)
             {
-                library.Library(character, target, movement, statesLibrary); // Realiza el ataque.
+                library.Library(character, target, movement, statesLibrary, battleModifiersLibrary); // Realiza el ataque.
 
                 change = false;
             }
@@ -574,11 +577,11 @@ public class CombatFlow : MonoBehaviour
 
                     if (healOrNot)
                     {
-                        enemys.ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary); });
+                        enemys.ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary); });
                     }
                     else
                     {
-                        players.ToList().ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary); });
+                        players.ToList().ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary); });
                     }
 
 
@@ -608,7 +611,7 @@ public class CombatFlow : MonoBehaviour
                         if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
                         {
 
-                            library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary); // Realiza el ataque.
+                            library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary, battleModifiersLibrary); // Realiza el ataque.
 
                             StartCoroutine(CharacterDead(characterTarget, false));
                             Debug.Log("enemys " + characterMove.Character);
@@ -762,6 +765,8 @@ public class CombatFlow : MonoBehaviour
             x.Turn++;
         });
 
+        battleModifiersLibrary.PassTurnOfModifiers();
+
         BattleStatus();
 
     }//fin de NextTurn
@@ -790,6 +795,8 @@ public class CombatFlow : MonoBehaviour
             var experience = totalEXP / players.LongLength; // Reparto de experiencia
 
             ActivatePanel();
+
+            battleModifiersLibrary.RemoveAllBattleModifiers();
 
             foreach (Transform child in panelGameObject.transform)
             {
@@ -969,7 +976,7 @@ public class CombatFlow : MonoBehaviour
 
     private void AddSPValue(Stats characterST)
     {
-        if(characterST.CanYouLaunchAnSpecialAtk) characterST.SP += 10;
+        if(characterST.CanYouLaunchAnSpecialAtk) characterST.SP += SpGenerationPerAction;
     }
 
     private void SetTextInAllyActionBar()

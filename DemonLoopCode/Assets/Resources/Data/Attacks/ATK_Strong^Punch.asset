@@ -24,3 +24,6 @@ MonoBehaviour:
   type: 2
   lifeTheft: 0
   manaTheft: 0
+  levelRequired: 0
+  battleModifierAsociated: {fileID: 11400000, guid: a1d2147e3b7984fda8c9b7c6d71e04bb,
+    type: 2}

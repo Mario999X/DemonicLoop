@@ -23,7 +23,6 @@ public class LibraryMove : MonoBehaviour
 
     private FloatingTextCombat floatingText;
 
-
     private void Start()
     {
         LoadAttacks();
@@ -33,7 +32,7 @@ public class LibraryMove : MonoBehaviour
 
 
     // Función que realiza un movimiento a un solo objetivo.
-    public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary)
+    public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary, LibraryBattleModifiers battleModifiersLibrary)
     {
         this.character = character;
         this.target = target;
@@ -61,9 +60,7 @@ public class LibraryMove : MonoBehaviour
                 target_ST.Health -= damage;
             }
 
-        }
-
-        else
+        } else
         {
             if (attack.BaseDamage != 0)
             {
@@ -73,6 +70,8 @@ public class LibraryMove : MonoBehaviour
             }
 
         }
+
+        if(attack.BattleModifierAsociated != null) battleModifiersLibrary.ActiveBattleModifier(target, attack.BattleModifierAsociated);
 
         if (attack.GenerateAState != ActionStates.None) StartCoroutine(StateActions(attack, target, statesLibrary));
 
@@ -170,12 +169,6 @@ public class LibraryMove : MonoBehaviour
         ManaManager(attackData, characterST.GetComponent<Stats>());
     }
 
-    // Función para limpiar la cache.
-    private void ResetCache()
-    {
-        attackCache.Clear();
-    }//Fin de ResetCache
-
     private float DamageFull(Stats target_ST, Stats character_ST, AttackData attack)
     {
         float damage;
@@ -197,14 +190,13 @@ public class LibraryMove : MonoBehaviour
 
         if (damage <= 0) damage = 1;
 
-
-
         if (criticalDamage == CriticalDamageMultiplier)
         {
             floatingText.ShowFloatingTextNumbers(target, damage, Color.red);
 
         }
         else floatingText.ShowFloatingTextNumbers(target, damage, Color.white);
+
 
         Debug.Log(character_ST.name + " ataca a " + target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
 
@@ -213,6 +205,7 @@ public class LibraryMove : MonoBehaviour
             character_ST.Health += damage;
             floatingText.ShowFloatingTextNumbers(character, damage, Color.green);
         }
+
         if (attack.ManaTheft)
         {
             character_ST.Mana += damage;
@@ -220,6 +213,7 @@ public class LibraryMove : MonoBehaviour
             floatingText.ShowFloatingTextNumbers(character, damage, Color.blue);
             floatingText.ShowFloatingTextNumbers(target, -damage, Color.blue);
         }
+
         //En el caso de que sea attack.Special (El Special nombre provisional) 
         //Es que el ataque es tan fuerte que te quita hasta vida
         if (attack.Berserker)

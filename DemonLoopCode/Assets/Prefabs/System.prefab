@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 940136127991697590}
   - component: {fileID: 809560638376708105}
   - component: {fileID: 8012680095458680360}
+  - component: {fileID: -2350918577333853545}
   - component: {fileID: 7991278420515955191}
   - component: {fileID: 4450129754072111584}
   - component: {fileID: 2354188879842531627}
@@ -250,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalEXP: 0
+  DataPlayerPlane: {fileID: 0}
   spawnPlayerBT: {fileID: 0}
   spawnMoveBT: {fileID: 0}
   spawnEnemyBT: {fileID: 0}
@@ -284,6 +286,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Burnt: {fileID: 0}
   Poison: {fileID: 0}
+--- !u!114 &-2350918577333853545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178491517262405012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07519f9a525a44b989fba6e3c6802331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7991278420515955191
 MonoBehaviour:
   m_ObjectHideFlags: 0

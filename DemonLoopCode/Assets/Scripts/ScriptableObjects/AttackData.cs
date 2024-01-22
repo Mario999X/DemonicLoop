@@ -35,7 +35,9 @@ public class AttackData : ScriptableObject
 
     [SerializeField] private BattleModifiers battleModifierAsociated;
 
-   
+    [SerializeField] private bool isSpecial;
+    [SerializeField] private float pointSpecial;
+
     public float BaseDamage { get { return baseDamage; } }
     public int PhyAttack { get { return phyAttack; } }
     public int MagicAttack { get { return magicAttack; } }
@@ -52,6 +54,9 @@ public class AttackData : ScriptableObject
     public int LevelRequired { get { return levelRequired; } }
 
     public BattleModifiers BattleModifierAsociated { get { return battleModifierAsociated; } }
+
+    public bool IsSpecial { get { return isSpecial; } }
+    public float PointSpecial { get { return pointSpecial; } }
 
     private string ObtainStateName()
     {

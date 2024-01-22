@@ -280,6 +280,9 @@ MonoBehaviour:
   maxHealth: 1
   mana: 0
   maxMana: 100
+  sp: 0
+  maxSP: 100
+  canYouLaunchAnSpecialAtk: 0
   strength: 15
   physicalDef: 21
   magicAtk: 10

@@ -44,23 +44,27 @@ public class LibraryMove : MonoBehaviour
 
         var healOrAttack = CheckAttackOrHeal(movement);
 
+        var attackSp = CheckSpeacialAttack(movement);
+
+
         if (!healOrAttack)
         {
-            if(target_ST.Type == attack.Type && target_ST.AbsorbsDamageOfSameType)
+            if (target_ST.Type == attack.Type && target_ST.AbsorbsDamageOfSameType)
             {
-                target_ST.Health += attack.BaseDamage/2;
-                
+                target_ST.Health += attack.BaseDamage / 2;
+
                 floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
                 floatingText.ShowFloatingText(target, "ABSORBED", Color.yellow);
-            } 
-            else 
+            }
+            else
             {
                 float damage = DamageFull(target_ST, character_ST, attack);
 
                 target_ST.Health -= damage;
             }
 
-        } else
+        }
+        else
         {
             if (attack.BaseDamage != 0)
             {
@@ -71,13 +75,17 @@ public class LibraryMove : MonoBehaviour
 
         }
 
-        if(attack.BattleModifierAsociated != null) battleModifiersLibrary.ActiveBattleModifier(target, attack.BattleModifierAsociated);
+        if (attack.BattleModifierAsociated != null) battleModifiersLibrary.ActiveBattleModifier(target, attack.BattleModifierAsociated);
 
         if (attack.GenerateAState != ActionStates.None) StartCoroutine(StateActions(attack, target, statesLibrary));
 
         if (attack.ManaCost != 0) ManaManager(attack, character_ST);
 
         character = null; target = null;
+
+
+
+
     }//Fin de Library
 
 
@@ -146,6 +154,36 @@ public class LibraryMove : MonoBehaviour
 
         return isAOE;
     }//Fin de CheckAoeAttack
+
+
+    //Comprueba si es un ATK Special
+    public bool CheckSpeacialAttack(string movementName)
+    {
+        bool isSpecial = false;
+
+        var attackInfo = CheckAttack(movementName);
+
+        if (attackInfo.IsSpecial)
+        {
+            isSpecial = true;
+        }
+
+        return isSpecial;
+    }//Fin de CheckSpeacialAttack
+
+    public bool CheckIfAtkSpecialPoints(GameObject characterST, string movementName)
+    {
+        bool pointSp = false;
+
+        var attackInfo = CheckAttack(movementName);
+
+        if (characterST.GetComponent<Stats>().SP >= attackInfo.PointSpecial)
+        {
+            pointSp = true;
+        }
+
+        return pointSp;
+    }
 
     public bool CheckIfManaIsEnough(GameObject characterST, string movementName)
     {
@@ -310,18 +348,19 @@ public class LibraryMove : MonoBehaviour
             case ActionStates.Inflict:
                 if (Random.Range(0, 100) < attack.ProbabilityOfState)
                 {
-                    if(statesLibrary.CheckStatus(targetToApplyState, attack.StateGenerated))
+                    if (statesLibrary.CheckStatus(targetToApplyState, attack.StateGenerated))
                     {
                         //Debug.Log("El personaje ya tiene ese mismo estado");
                         statesLibrary.ResetTurnsOfCharacterState(targetToApplyState, attack.StateGenerated);
 
-                    } else StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
+                    }
+                    else StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
                 }
 
                 break;
 
             case ActionStates.Heal:
-                Debug.Log("targetToApplyState "+ targetToApplyState);
+                Debug.Log("targetToApplyState " + targetToApplyState);
                 Debug.Log("attack " + attack.StateGenerated);
                 statesLibrary.RemoveCharacterWithState(targetToApplyState, attack.StateGenerated);
 

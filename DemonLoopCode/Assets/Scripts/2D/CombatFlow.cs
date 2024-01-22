@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class CharacterMove
 {
@@ -43,6 +44,7 @@ public class CombatFlow : MonoBehaviour
     private List<GameObject> moveBT = new();
     private List<GameObject> enemyBT = new();
 
+    //Para hacer el ATK Speacial
     private const int SpGenerationPerAction = 10;
 
     [SerializeField] GameObject DataPlayerPlane;
@@ -84,8 +86,13 @@ public class CombatFlow : MonoBehaviour
 
     private EnterBattle enterBattle;
 
+    private SpecialMiniGame specialMiniGame;
+
     GameObject panelGameObject;
     private List<GameObject> panelPlayers = new();
+
+    GameObject panelMiniGame;
+    private List<GameObject> panelSpMini = new();
 
     Scene scene;
 
@@ -109,6 +116,7 @@ public class CombatFlow : MonoBehaviour
             statesLibrary = GetComponent<LibraryStates>();
             battleModifiersLibrary = GetComponent<LibraryBattleModifiers>();
             enterBattle = GetComponent<EnterBattle>();
+            specialMiniGame=GetComponent<SpecialMiniGame>();// Lo del minijuego
             spawnCombatOptionsBT = GameObject.Find("CombatOptionsButtons");
             spawnEnemyBT = GameObject.Find("EnemyButtons");
             spawnPlayerBT = GameObject.Find("PlayerButtons");
@@ -119,6 +127,7 @@ public class CombatFlow : MonoBehaviour
             EnemyActionBarText = GameObject.Find("EnemyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
             panelGameObject = GameObject.Find("PanelPlayers");
+            panelMiniGame = GameObject.Find("PanelMiniGame");
 
             SetAllyActionBarInactive();
             SetEnemyActionBarInactive();
@@ -126,12 +135,16 @@ public class CombatFlow : MonoBehaviour
             GameObject.Find("PassTurnButton").GetComponent<Button>().onClick.AddListener(() => { PassTurn("Pass Turn"); });
             GameObject.Find("AttackButton").GetComponent<Button>().onClick.AddListener(() => { PlayerButtonAttacks(); });
             GameObject.Find("InventoryButton").GetComponent<Button>().onClick.AddListener(() => { LoadInventoryButtons(); });
+            GameObject.Find("SpecialAttackButton").GetComponent<Button>().onClick.AddListener(() => { SpecialAttackTurn(); });
 
             GameObject.Find("PassTurnButton").SetActive(false);
             GameObject.Find("AttackButton").SetActive(false);
             GameObject.Find("InventoryButton").SetActive(false);
+            GameObject.Find("SpecialAttackButton").SetActive(false);
 
             panelGameObject.SetActive(false);
+            panelMiniGame.SetActive(false);
+
 
             LoadCombatOptionsButtons();
             done = true;
@@ -342,7 +355,6 @@ public class CombatFlow : MonoBehaviour
     // Funcion para generar las opciones del jugador en combate.
     public void GenerateOptionsButtons(GameObject player)
     {
-
         DesactivateAllButtons();
 
         if (!wait)
@@ -359,7 +371,6 @@ public class CombatFlow : MonoBehaviour
     // Selección de jugador.
     public void PlayerButtonAttacks()
     {
-
         if (!wait)
         {
             if (enemyBT.Count > 0)
@@ -369,7 +380,9 @@ public class CombatFlow : MonoBehaviour
             }
 
             if (playerInventory.InventoryState)
+            {
                 playerInventory.OpenCloseInventory();
+            }
 
             foreach (GameObject moveBT in moveBT)
             {
@@ -379,23 +392,27 @@ public class CombatFlow : MonoBehaviour
 
             foreach (string listAtk in character.GetComponent<Stats>().ListNameAtk)
             {
-                // Creamos un boton de movimiento.
-                GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
-                bt.transform.SetParent(spawnMoveBT.transform);
-                bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
-                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
-                bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
-
-                bt.transform.localScale = new Vector3(1f, 1f, 1f);
-                moveBT.Add(bt);
-
-                // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
-                var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
-                if (!isManaEnough)
+                //Si el nombre del ATK no es uno de ATK Special lo mostrara
+                if (!library.CheckSpeacialAttack(listAtk.ToUpper()))
                 {
-                    bt.GetComponent<Button>().interactable = false;
+                    // Creamos un boton de movimiento.
+                    GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                    bt.transform.SetParent(spawnMoveBT.transform);
+                    bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
+                    bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
+                    bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
+                    bt.transform.localScale = new Vector3(1f, 1f, 1f);
+                    moveBT.Add(bt);
+
+                    // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
+                    var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
+                    if (!isManaEnough)
+                    {
+                        bt.GetComponent<Button>().interactable = false;
+                    }
                 }
             }
+            
         }
     }//Fin de PlayerButton
 
@@ -403,7 +420,6 @@ public class CombatFlow : MonoBehaviour
     public void MovementButton(string movement)
     {
         this.movement = movement;
-
         var isAOE = library.CheckAoeAttack(movement);
         var targetsToLoad = library.CheckAttackOrHeal(movement);
 
@@ -431,6 +447,7 @@ public class CombatFlow : MonoBehaviour
             DesactivatePlayerButton();
 
             DesactivateAllButtons();
+            
 
             StartCoroutine(GoPlayerSingleTarget(character, enemy, movement));
         }
@@ -464,7 +481,7 @@ public class CombatFlow : MonoBehaviour
 
         AddSPValue(character.GetComponent<Stats>());
 
-        targets.ForEach(t => { library.Library(character, t, movement, statesLibrary, battleModifiersLibrary); });
+        targets.ForEach(t => { library.Library(character, t, movement, statesLibrary, battleModifiersLibrary); });//Aqui realiza el ataque
 
         foreach (GameObject t in targets.ToArray())
         {
@@ -486,7 +503,33 @@ public class CombatFlow : MonoBehaviour
     {
         wait = true;
 
-        AddSPValue(character.GetComponent<Stats>());
+
+
+        //Aqui hay que activar el panel del minijuego
+        if (library.CheckSpeacialAttack(movement))
+        {
+           
+            foreach (Transform child in panelMiniGame.transform)
+            {
+                panelSpMini.Add(child.gameObject);
+
+            }
+            ActivatePanelSpMini();
+            yield return new WaitForSeconds(0.2f);
+            yield return StartCoroutine(specialMiniGame.ChargeSpecialAtk());
+
+
+        }
+        else
+        {
+            AddSPValue(character.GetComponent<Stats>());
+        }
+        Debug.Log("character " + character + " \nenemy " + target + " \nmovement " + movement);
+
+        DisablePanelSpMini();
+
+
+
 
         bool dontStop = true, change = true;
 
@@ -722,8 +765,62 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-
     }
+
+    public void SpecialAttackTurn()
+    {
+        if (!wait)
+        {
+            if (enemyBT.Count > 0)
+            {
+                enemyBT.ForEach(bt => Destroy(bt));
+                enemyBT.Clear();
+            }
+
+            if (playerInventory.InventoryState)
+            {
+                playerInventory.OpenCloseInventory();
+            }
+
+            foreach (GameObject moveBT in moveBT)
+            {
+                Destroy(moveBT);
+            }
+            moveBT.Clear();
+
+            foreach (string listAtk in character.GetComponent<Stats>().ListNameAtk)
+            {
+                //Si el ATK es Special saldra
+                if(library.CheckSpeacialAttack(listAtk.ToUpper()))
+                {
+                    //Es ATK Special
+                    Debug.Log("listAtk.ToUpper() "+ listAtk.ToUpper());
+                
+                    // Creamos un boton de movimiento.
+                    GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                    bt.transform.SetParent(spawnMoveBT.transform);
+                    bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
+                    bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
+                    bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
+
+                    bt.transform.localScale = new Vector3(1f, 1f, 1f);
+                    moveBT.Add(bt);
+
+                    // Comprobamos si tiene suficiente puntos especiales, si no lo es, desactivamos el boton.
+                    var isPointSpEnough = library.CheckIfAtkSpecialPoints(character, listAtk.ToUpper());
+                    if (!isPointSpEnough)
+                    {
+                        bt.GetComponent<Button>().interactable = false;
+                    }
+                }
+
+            }//Fin del foreach
+
+
+        }
+    }//Fin de SpecialAttackTurn
+
+
 
     // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
     private void DesactivateAllButtons()
@@ -761,7 +858,8 @@ public class CombatFlow : MonoBehaviour
         ActualTurn++;
 
         // Paso de turno para los estados
-        statesLibrary.CharacterStates.ForEach(x => {
+        statesLibrary.CharacterStates.ForEach(x =>
+        {
             x.Turn++;
         });
 
@@ -804,35 +902,35 @@ public class CombatFlow : MonoBehaviour
 
             }
 
-            int[] LevelTemp=new int[players.Length];
-            
-            for (int i = 0;i<players.Length;i++)
+            int[] LevelTemp = new int[players.Length];
+
+            for (int i = 0; i < players.Length; i++)
             {
-                LevelTemp[i]=players[i].GetComponent<Stats>().Level;
+                LevelTemp[i] = players[i].GetComponent<Stats>().Level;
             }
 
             Debug.Log("Experiencia: " + experience);
 
-            players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));            
-            
-            for (int i=0; i<players.Length;i++)
+            players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
+
+            for (int i = 0; i < players.Length; i++)
             {
                 if (LevelTemp[i] != players[i].GetComponent<Stats>().Level)
                 {
                     panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"LVP UP!!!!! {players[i].name} " +
-                   $"\n| HP: {players[i].GetComponent<Stats>().Health}/{players[i].GetComponent<Stats>().MaxHealth} " +
-                   $"\n| Mana: {players[i].GetComponent<Stats>().Mana}/{players[i].GetComponent<Stats>().MaxMana}";
+                   $"|\n HP: {players[i].GetComponent<Stats>().Health}/{players[i].GetComponent<Stats>().MaxHealth} " +
+                   $"|\n Mana: {players[i].GetComponent<Stats>().Mana}/{players[i].GetComponent<Stats>().MaxMana}";
                 }
                 else
                 {
                     panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{players[i].name} " +
-                                       $"\n| HP: {players[i].GetComponent<Stats>().Health}/{players[i].GetComponent<Stats>().MaxHealth} " +
-                                       $"\n| Mana: {players[i].GetComponent<Stats>().Mana}/{players[i].GetComponent<Stats>().MaxMana}";
+                                       $"|\n HP: {players[i].GetComponent<Stats>().Health}/{players[i].GetComponent<Stats>().MaxHealth} " +
+                                       $"|\n Mana: {players[i].GetComponent<Stats>().Mana}/{players[i].GetComponent<Stats>().MaxMana}";
                 }
 
             }
 
-            
+
             AudioManager.Instance.StopSoundCombat();
             //Se debe mostrar una pantalla de WIN
             WINLOSE.enabled = true;
@@ -974,9 +1072,10 @@ public class CombatFlow : MonoBehaviour
 
     }
 
+    //Añade puntos para hacer el ATK Special
     private void AddSPValue(Stats characterST)
     {
-        if(characterST.CanYouLaunchAnSpecialAtk) characterST.SP += SpGenerationPerAction;
+        if (characterST.CanYouLaunchAnSpecialAtk) characterST.SP += SpGenerationPerAction;
     }
 
     private void SetTextInAllyActionBar()
@@ -1011,5 +1110,21 @@ public class CombatFlow : MonoBehaviour
     {
         panelGameObject.SetActive(false);
     }
+    private void ActivatePanelSpMini()
+    {
+        panelMiniGame.SetActive(true);
+    }
+    private void DisablePanelSpMini()
+    {
+        panelMiniGame.SetActive(false);
+    }
 
+    /*
+    private void ShowTime()
+    {
+        if (textTime != null)
+        {
+            textTime.text = string.Format("{00:00}:{01:00}", timeLeft / 60, timeLeft % 60);
+        }
+    }*/
 }

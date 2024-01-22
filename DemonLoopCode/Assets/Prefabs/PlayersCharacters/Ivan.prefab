@@ -72,7 +72,7 @@ MonoBehaviour:
   maxHealth: 300
   mana: 0
   maxMana: 150
-  sp: 0
+  sp: 10
   maxSP: 100
   canYouLaunchAnSpecialAtk: 1
   strength: 15
@@ -81,7 +81,7 @@ MonoBehaviour:
   magicDef: 15
   criticalChance: 35
   listAtk:
-  - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
+  - {fileID: 11400000, guid: 6be63b96c4096cf4b9d8ada19337f902, type: 2}
   - {fileID: 11400000, guid: c26bd1d267de74ced872e9c175cca721, type: 2}
   - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}
   - {fileID: 11400000, guid: 2f572df684e1146588ed4165007694e9, type: 2}

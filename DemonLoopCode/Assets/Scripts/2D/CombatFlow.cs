@@ -479,9 +479,11 @@ public class CombatFlow : MonoBehaviour
 
         wait = true;
 
+        float SpCountBar = 0f;
+
         AddSPValue(character.GetComponent<Stats>());
 
-        targets.ForEach(t => { library.Library(character, t, movement, statesLibrary, battleModifiersLibrary); });//Aqui realiza el ataque
+        targets.ForEach(t => { library.Library(character, t, movement, statesLibrary, battleModifiersLibrary, SpCountBar); });//Aqui realiza el ataque
 
         foreach (GameObject t in targets.ToArray())
         {
@@ -504,9 +506,11 @@ public class CombatFlow : MonoBehaviour
         wait = true;
 
 
+        var SpMiniGame = library.CheckSpeacialAttack(movement);
 
+        float SpCountBar=0f;
         //Aqui hay que activar el panel del minijuego
-        if (library.CheckSpeacialAttack(movement))
+        if (SpMiniGame)
         {
            
             foreach (Transform child in panelMiniGame.transform)
@@ -518,19 +522,19 @@ public class CombatFlow : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             yield return StartCoroutine(specialMiniGame.ChargeSpecialAtk());
 
-
+            SpCountBar=specialMiniGame.IncreaseBar;
+            SetSPValue(character.GetComponent<Stats>());
         }
         else
         {
             AddSPValue(character.GetComponent<Stats>());
         }
-        Debug.Log("character " + character + " \nenemy " + target + " \nmovement " + movement);
 
         DisablePanelSpMini();
 
 
 
-
+        Debug.Log("character " + character+" SpCountBar " + SpCountBar);
         bool dontStop = true, change = true;
 
         Vector2 v = character.transform.position;
@@ -548,7 +552,7 @@ public class CombatFlow : MonoBehaviour
 
             if (Vector2.Distance(character.transform.position, target.transform.position) < 100f && change)
             {
-                library.Library(character, target, movement, statesLibrary, battleModifiersLibrary); // Realiza el ataque.
+                library.Library(character, target, movement, statesLibrary, battleModifiersLibrary, SpCountBar); // Realiza el ataque.
 
                 change = false;
             }
@@ -586,6 +590,7 @@ public class CombatFlow : MonoBehaviour
     {
         wait = true;
 
+        float SpCountBar = 0f;
         //Chequea que ataque tiene el enemigo y puede usar
         CheckAtkEnemy();
 
@@ -620,11 +625,11 @@ public class CombatFlow : MonoBehaviour
 
                     if (healOrNot)
                     {
-                        enemys.ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary); });
+                        enemys.ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary, SpCountBar); });
                     }
                     else
                     {
-                        players.ToList().ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary); });
+                        players.ToList().ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary, SpCountBar); });
                     }
 
 
@@ -654,7 +659,7 @@ public class CombatFlow : MonoBehaviour
                         if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
                         {
 
-                            library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary, battleModifiersLibrary); // Realiza el ataque.
+                            library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary, battleModifiersLibrary, SpCountBar); // Realiza el ataque.
 
                             StartCoroutine(CharacterDead(characterTarget, false));
                             Debug.Log("enemys " + characterMove.Character);
@@ -788,33 +793,32 @@ public class CombatFlow : MonoBehaviour
             }
             moveBT.Clear();
 
-            foreach (string listAtk in character.GetComponent<Stats>().ListNameAtk)
+            
+            
+            //Si el ATK es Special saldra
+            if(library.CheckSpeacialAttack(character.GetComponent<Stats>().AtkSpecial.ToUpper()))
             {
-                //Si el ATK es Special saldra
-                if(library.CheckSpeacialAttack(listAtk.ToUpper()))
-                {
-                    //Es ATK Special
-                    Debug.Log("listAtk.ToUpper() "+ listAtk.ToUpper());
+                //Es ATK Special
+                Debug.Log("listAtk.ToUpper() "+ character.GetComponent<Stats>().AtkSpecial.ToUpper());
                 
-                    // Creamos un boton de movimiento.
-                    GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
-                    bt.transform.SetParent(spawnMoveBT.transform);
-                    bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
-                    bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
-                    bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
+                // Creamos un boton de movimiento.
+                GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spawnMoveBT.transform);
+                bt.name = "NameAtk " + character.GetComponent<Stats>().AtkSpecial;//Nombre de los botones que se van a generar
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = character.GetComponent<Stats>().AtkSpecial;
+                bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(character.GetComponent<Stats>().AtkSpecial); });
 
-                    bt.transform.localScale = new Vector3(1f, 1f, 1f);
-                    moveBT.Add(bt);
+                bt.transform.localScale = new Vector3(1f, 1f, 1f);
+                moveBT.Add(bt);
 
-                    // Comprobamos si tiene suficiente puntos especiales, si no lo es, desactivamos el boton.
-                    var isPointSpEnough = library.CheckIfAtkSpecialPoints(character, listAtk.ToUpper());
-                    if (!isPointSpEnough)
-                    {
-                        bt.GetComponent<Button>().interactable = false;
-                    }
+                // Comprobamos si tiene suficiente puntos especiales, si no lo es, desactivamos el boton.
+                var isPointSpEnough = library.CheckIfAtkSpecialPoints(character, character.GetComponent<Stats>().AtkSpecial.ToUpper());
+                if (!isPointSpEnough)
+                {
+                    bt.GetComponent<Button>().interactable = false;
                 }
+            }
 
-            }//Fin del foreach
 
 
         }
@@ -938,6 +942,7 @@ public class CombatFlow : MonoBehaviour
             await System.Threading.Tasks.Task.Delay(2500);
             enterBattle.FinishBattle();
             DisablePanel();
+            ClearPanel();
             // Se resetea la información del combate para el proximo encuentro
             actualTurn = 0;
             moves = 0;
@@ -955,6 +960,14 @@ public class CombatFlow : MonoBehaviour
         WINLOSE.enabled = false;
 
     }//Fin de BattleStatus
+
+    public void ClearPanel()
+    {
+        for (int i = 0; i < players.Length; i++)
+        { 
+            panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+        }
+    }//Fin de ClearPanel
 
 
     public void CheckAtkEnemy()
@@ -1078,6 +1091,12 @@ public class CombatFlow : MonoBehaviour
         if (characterST.CanYouLaunchAnSpecialAtk) characterST.SP += SpGenerationPerAction;
     }
 
+    //Quita puntos para hacer el ATK Special
+    private void SetSPValue(Stats characterST)
+    {
+        if (characterST.CanYouLaunchAnSpecialAtk) characterST.SP -= 0;
+    }
+
     private void SetTextInAllyActionBar()
     {
         if (!AllyActionBarText.transform.parent.gameObject.activeSelf) AllyActionBarText.transform.parent.gameObject.SetActive(true);
@@ -1119,12 +1138,4 @@ public class CombatFlow : MonoBehaviour
         panelMiniGame.SetActive(false);
     }
 
-    /*
-    private void ShowTime()
-    {
-        if (textTime != null)
-        {
-            textTime.text = string.Format("{00:00}:{01:00}", timeLeft / 60, timeLeft % 60);
-        }
-    }*/
 }

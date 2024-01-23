@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class LibraryMove : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class LibraryMove : MonoBehaviour
 
     private FloatingTextCombat floatingText;
 
+    private float spCountBar;
+
     private void Start()
     {
         LoadAttacks();
@@ -32,7 +35,7 @@ public class LibraryMove : MonoBehaviour
 
 
     // Función que realiza un movimiento a un solo objetivo.
-    public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary, LibraryBattleModifiers battleModifiersLibrary)
+    public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary, LibraryBattleModifiers battleModifiersLibrary,float spCountBar)
     {
         this.character = character;
         this.target = target;
@@ -40,11 +43,13 @@ public class LibraryMove : MonoBehaviour
         Stats target_ST = target.GetComponent<Stats>();
         Stats character_ST = character.GetComponent<Stats>();
 
+        this.spCountBar = spCountBar;
+
         var attack = CheckAttack(movement);
 
         var healOrAttack = CheckAttackOrHeal(movement);
 
-        var attackSp = CheckSpeacialAttack(movement);
+        var atkSp=CheckSpeacialAttack(movement);
 
 
         if (!healOrAttack)
@@ -59,8 +64,14 @@ public class LibraryMove : MonoBehaviour
             else
             {
                 float damage = DamageFull(target_ST, character_ST, attack);
-
-                target_ST.Health -= damage;
+                if (atkSp)
+                {
+                    target_ST.Health -= damage*spCountBar;
+                }
+                else
+                {
+                    target_ST.Health -= damage;
+                }
             }
 
         }
@@ -68,9 +79,16 @@ public class LibraryMove : MonoBehaviour
         {
             if (attack.BaseDamage != 0)
             {
-                target_ST.Health += attack.BaseDamage;
+                if (atkSp)
+                {
+                    target_ST.Health += attack.BaseDamage*spCountBar;
+                }
+                else
+                {
+                    target_ST.Health += attack.BaseDamage;
+                }
 
-                floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
+                    floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
             }
 
         }
@@ -259,6 +277,8 @@ public class LibraryMove : MonoBehaviour
             character_ST.Health -= attack.BaseDamage;
             floatingText.ShowFloatingTextNumbers(character, attack.BaseDamage, Color.red);
         }
+
+
 
         return damage;
     }//Fin de DamageFull

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +14,11 @@ public class SpecialMiniGame : MonoBehaviour
 
     [SerializeField] int timeInitial;
     int timeLeft;
-    float increaseBar=0.1f;
+    float increaseBar=0f;
 
-    Text textTime;
+    [SerializeField] TextMeshProUGUI textTime;
+    [SerializeField] TextMeshProUGUI textInf;
+    public float IncreaseBar { get { return increaseBar; } set { increaseBar = value; } }
 
     public void Start()
     {
@@ -26,6 +29,9 @@ public class SpecialMiniGame : MonoBehaviour
 
     public IEnumerator ChargeSpecialAtk()
     {
+        Clear();
+        timeLeft = timeInitial;
+        
         while (timeLeft > 0)
         {
             timeLeft -= Mathf.CeilToInt(Time.deltaTime);
@@ -36,19 +42,33 @@ public class SpecialMiniGame : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.N))
             {
                 totalPress=++countPress;
-                Debug.Log("Contador de veces pulsada "+countPress);
-                Debug.Log("1ºTotal de veces pulsada " + totalPress);
+                Debug.Log("countPress " + countPress);
                 if (barSpecial!=null)
                 {
-                    barSpecial.fillAmount += increaseBar;
-                    //Esto esta para que la barrera no pase sus limites
-                    barSpecial.fillAmount = Mathf.Clamp01(barSpecial.fillAmount);
-                }
+                    increaseBar += 0.01f;
+                    barSpecial.fillAmount = increaseBar;
 
+                    barSpecial.fillAmount = Mathf.Clamp01(barSpecial.fillAmount);
+
+                    if (increaseBar > 1f)
+                    {
+                        timeLeft = 0;
+                        barSpecial.fillAmount = 0f;
+                        Mathf.Clamp01(barSpecial.fillAmount);
+                    }
+                }
             }
         }
-        Debug.Log("2ºTotal de veces pulsada " + totalPress);
-        Debug.Log("Contador de veces pulsada " + countPress);
+
+    }
+
+    public void Clear()
+    {
+        totalPress = 0;
+        countPress = 0;
+        increaseBar = 0.01f;
+        barSpecial.fillAmount = 0f;
+        Mathf.Clamp01(barSpecial.fillAmount);
     }
 
 

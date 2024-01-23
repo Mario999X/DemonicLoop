@@ -44,6 +44,7 @@ public class Stats : MonoBehaviour
     [SerializeField] List<AttackData> listAtk = new();
     [SerializeField] bool absorbsDamageOfSameType = false;
     [SerializeField] Types type;
+    [SerializeField] AttackData atkSpecial;
 
     [Header("Drops Components")]
     [SerializeField] float moneyDrop = 1.1f;
@@ -74,6 +75,9 @@ public class Stats : MonoBehaviour
 
     public float MoneyDrop { get { return moneyDrop; } set { moneyDrop = value; } }
     public float DropXP { get { return dropXP; } set { dropXP = value; }}
+
+    public string AtkSpecial { get { return ObtainNameAttackSpecial(); } }
+
 
     void Start()
     {
@@ -162,6 +166,11 @@ public class Stats : MonoBehaviour
         }
 
         radialSP.fillAmount = sp / maxSP;
+    }
+
+    private string ObtainNameAttackSpecial()
+    {
+        return atkSpecial.name.Substring(4, atkSpecial.name.Length - 4).Replace("^", " ");
     }
 
     private List<string> ObtainNameAttacks()

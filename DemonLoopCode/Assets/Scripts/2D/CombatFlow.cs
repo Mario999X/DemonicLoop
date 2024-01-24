@@ -645,6 +645,10 @@ public class CombatFlow : MonoBehaviour
 
                     Vector2 v = characterMove.Character.transform.position;
 
+                    Animator animator = characterMove.Character.GetComponent<Animator>();
+
+                    animator.SetInteger("State", 1);
+
                     do
                     {
                         if (change)
@@ -658,6 +662,8 @@ public class CombatFlow : MonoBehaviour
 
                         if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
                         {
+                            animator.SetInteger("State", 2);
+                            yield return new WaitForSeconds(0.3f);
 
                             library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary, battleModifiersLibrary, SpCountBar); // Realiza el ataque.
 
@@ -666,12 +672,17 @@ public class CombatFlow : MonoBehaviour
 
                             StartCoroutine(CharacterDead(characterMove.Character, true));
 
-                            change = false;
+                            if (characterMove.Character.GetComponent<Stats>().Attacking == false)
+                            {
+                                change = false;
+                                animator.SetInteger("State", 1);
+                            }
                         }
 
                         if (Vector2.Distance(characterMove.Character.transform.position, v) < 0.001f && !change)
                         {
                             dontStop = false;
+                            animator.SetInteger("State", 0);
                         }
 
                         yield return new WaitForSeconds(0.00001f);

@@ -280,6 +280,9 @@ MonoBehaviour:
   maxHealth: 230
   mana: 0
   maxMana: 100
+  sp: 0
+  maxSP: 100
+  canYouLaunchAnSpecialAtk: 0
   strength: 15
   physicalDef: 5
   magicAtk: 5
@@ -290,6 +293,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed663631fa833d748bf50815bb69da39, type: 2}
   absorbsDamageOfSameType: 1
   type: 2
+  atkSpecial: {fileID: 0}
   moneyDrop: 2
   dropXP: 100
 --- !u!114 &1034579314653077739

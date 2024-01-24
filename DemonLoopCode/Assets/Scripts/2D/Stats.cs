@@ -50,11 +50,13 @@ public class Stats : MonoBehaviour
     [SerializeField] float moneyDrop = 1.1f;
     [SerializeField] private float dropXP = 0;
 
-    public CharacterRol Rol { get { return rol; } }
+    bool attacking = false;
 
+
+    public bool Attacking { get { return attacking; } }
+    public CharacterRol Rol { get { return rol; } }
     public int Level { get { return level; } set { level = value; }}
     public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
-
     public float Health { get { return health; } set { health = value; if(barHP != null) OnAttackReceived(); } }
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
     public float Mana { get { return mana; } set { mana = value; if(barMana != null) OnManaChanged(); } }
@@ -78,6 +80,14 @@ public class Stats : MonoBehaviour
 
     public string AtkSpecial { get { return ObtainNameAttackSpecial(); } }
 
+
+    private void AnimationAttack()
+    {
+        if (attacking)
+            attacking = false;
+        else 
+            attacking = true;
+    }
 
     void Start()
     {

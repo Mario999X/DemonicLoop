@@ -293,6 +293,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
   absorbsDamageOfSameType: 1
   type: 0
+  atkSpecial: {fileID: 0}
   moneyDrop: 50
   dropXP: 100
 --- !u!114 &-1995760961937033985

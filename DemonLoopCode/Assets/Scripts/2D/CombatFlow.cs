@@ -641,7 +641,7 @@ public class CombatFlow : MonoBehaviour
                 else
                 {
 
-                    bool dontStop = true, change = true;
+                    bool dontStop = true, change = true, onAttack = false, oneAtack = false;
 
                     Vector2 v = characterMove.Character.transform.position;
 
@@ -651,31 +651,40 @@ public class CombatFlow : MonoBehaviour
 
                     do
                     {
-                        if (change)
+                        if (change && !onAttack)
                         {
                             characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, characterTarget.transform.position, speed * Time.deltaTime);
                         }
-                        else
+                        else if (!change && !onAttack)
                         {
                             characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, v, speed * Time.deltaTime);
                         }
 
                         if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
                         {
+                            onAttack = true;
+
                             animator.SetInteger("State", 2);
+
                             yield return new WaitForSeconds(0.3f);
 
-                            library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary, battleModifiersLibrary, SpCountBar); // Realiza el ataque.
+                            if (!onAttack)
+                            {
+                                library.Library(characterMove.Character, characterTarget, characterMove.Movement, statesLibrary, battleModifiersLibrary, SpCountBar); // Realiza el ataque.
 
-                            StartCoroutine(CharacterDead(characterTarget, false));
-                            Debug.Log("enemys " + characterMove.Character);
+                                StartCoroutine(CharacterDead(characterTarget, false));
+                                Debug.Log("enemys " + characterMove.Character);
 
-                            StartCoroutine(CharacterDead(characterMove.Character, true));
+                                StartCoroutine(CharacterDead(characterMove.Character, true));
+
+                                onAttack = true;
+                            }
 
                             if (characterMove.Character.GetComponent<Stats>().Attacking == false)
                             {
-                                change = false;
                                 animator.SetInteger("State", 1);
+                                change = false;
+                                onAttack = false;
                             }
                         }
 

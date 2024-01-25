@@ -24,8 +24,6 @@ public class ObjectStock
 }
 public class PlayerInventory : MonoBehaviour
 {
-    //[SerializeField] ScriptableObject m_ScriptableObject;
-
     [Header("Referencia de boton")]
     [SerializeField] GameObject buttonRef3D;
     [SerializeField] GameObject buttonRef2D;
@@ -33,19 +31,19 @@ public class PlayerInventory : MonoBehaviour
     [Header("UI grid de inventario")]
     [SerializeField] GameObject inventoryUI3D;
     [SerializeField] GameObject inventoryUI2D;
-    [SerializeField] List<ScriptableObject> listScriptableObject = new();
 
     bool inventoryState = false;
+    bool done = false;
+    bool dontOpenInventory = false;
 
     Scene scene;
 
     public bool InventoryState { get {  return inventoryState; } }
+    public bool DontOpenInventory { get { return dontOpenInventory; } set { inventoryState = value; } }
 
     Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
 
     EnterBattle enterBattle;
-
-    bool done = false;
 
     void Update()
     {
@@ -55,98 +53,82 @@ public class PlayerInventory : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
             inventoryUI3D = GameObject.Find("Area");
             inventoryUI2D = GameObject.Find("MoveButtons");
 
             enterBattle = GetComponent<EnterBattle>();
 
-            foreach (ScriptableObject m_ScriptableObject in listScriptableObject)
-            {
-                //Se van a agregar todos los Objectos que esten en nuestra lista
-                AddObjectToInventory(m_ScriptableObject.name.Substring(4, m_ScriptableObject.name.Length - 4), m_ScriptableObject, 1);
-            }
-
-            /*
-            foreach (var item in inventory)
-            {
-                Debug.Log(item.Key);
-                Debug.Log(item.Value.Data);
-                Debug.Log("item.Value.Count " + item.Value.Count);
-            }
-            */
-
             done = true;
-        }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
-        {
-            done = false;
         }
     }
 
     // Abre y cierra el inventario.
     public void OpenCloseInventory()
     {
-        if (!enterBattle.OneTime) // En el caso de no estar en batalla solo genera y destruye los botones del objeto en el inventario del mundo 3D.
+        if (!dontOpenInventory)
         {
-            if (!inventoryState) // En el caso de abrir inventario este crea los botones.
+            if (!enterBattle.OneTime) // En el caso de no estar en batalla solo genera y destruye los botones del objeto en el inventario del mundo 3D.
             {
-                inventoryUI3D.GetComponentInParent<Canvas>().enabled = true;
-
-                foreach (ObjectStock item in inventory.Values)
+                if (!inventoryState) // En el caso de abrir inventario este crea los botones.
                 {
-                    item.ButtonINV3D = CreateButtonINV3D(item);
-                }
-                
-                Time.timeScale = 0f;
+                    inventoryUI3D.GetComponentInParent<Canvas>().enabled = true;
 
-                inventoryState = true;
+                    foreach (ObjectStock item in inventory.Values)
+                    {
+                        item.ButtonINV3D = CreateButtonINV3D(item);
+                    }
+
+                    Time.timeScale = 0f;
+
+                    inventoryState = true;
+                }
+                else // En el caso contrario los elimina.
+                {
+                    foreach (ObjectStock item in inventory.Values)
+                    {
+                        Destroy(item.ButtonINV3D);
+                    }
+
+                    inventoryUI3D.GetComponentInParent<Canvas>().enabled = false;
+
+                    GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+
+                    Time.timeScale = 1f;
+
+                    inventoryState = false;
+                }
             }
-            else // En el caso contrario los elimina.
+            else // En el caso contrario solo genera los botones en el inventario de la batalla 2D.
             {
-                foreach (ObjectStock item in inventory.Values)
+                if (!inventoryState) // En el caso de abrir inventario este crea los botones.
                 {
-                    Destroy(item.ButtonINV3D);
+                    // Localizamos combatflow
+                    var combatFlowRef = GameObject.Find("System").GetComponent<CombatFlow>();
+
+                    // Hacemos desaparecer a los botones targets de la batalla
+                    if (combatFlowRef.EnemyBT.Count > 0)
+                    {
+                        combatFlowRef.EnemyBT.ForEach(bt => Destroy(bt));
+                        combatFlowRef.EnemyBT.Clear();
+                    }
+
+                    foreach (ObjectStock item in inventory.Values)
+                    {
+                        item.ButtonINV2D = CreateButtonINV2D(item);
+
+                        item.ButtonINV2D.transform.localScale = new Vector3(1f, 1f, 1f);
+                    }
+
+                    inventoryState = true;
                 }
-
-                inventoryUI3D.GetComponentInParent<Canvas>().enabled = false;
-
-                GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
-
-                Time.timeScale = 1f;
-
-                inventoryState = false;
-            }
-        }
-        else // En el caso contrario solo genera los botones en el inventario de la batalla 2D.
-        {
-            if (!inventoryState) // En el caso de abrir inventario este crea los botones.
-            {
-                // Localizamos combatflow
-                var combatFlowRef = GameObject.Find("System").GetComponent<CombatFlow>();
-
-                // Hacemos desaparecer a los botones targets de la batalla
-                if (combatFlowRef.EnemyBT.Count > 0)
+                else // En el caso contrario los elimina.
                 {
-                    combatFlowRef.EnemyBT.ForEach(bt => Destroy(bt));
-                    combatFlowRef.EnemyBT.Clear();
+                    EliminateINVButtons();
+
+                    inventoryState = false;
                 }
-
-                foreach (ObjectStock item in inventory.Values)
-                {
-                    item.ButtonINV2D = CreateButtonINV2D(item);
-
-                    item.ButtonINV2D.transform.localScale = new Vector3(1f, 1f, 1f);
-                }
-                
-                inventoryState = true;
-            }
-            else // En el caso contrario los elimina.
-            {
-                EliminateINVButtons();
-
-                inventoryState = false;
             }
         }
     }

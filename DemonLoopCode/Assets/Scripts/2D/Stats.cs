@@ -83,10 +83,7 @@ public class Stats : MonoBehaviour
 
     private void AnimationAttack()
     {
-        if (attacking)
-            attacking = false;
-        else 
-            attacking = true;
+        attacking = !attacking;
     }
 
     void Start()

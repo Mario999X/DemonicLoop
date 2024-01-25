@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1776,12 +1776,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5819279393421089, guid: a54c850099ea2d1489ffe38bcb5fb07f, type: 3}
       propertyPath: enemyPrefabsLevel2.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5819279393421089, guid: a54c850099ea2d1489ffe38bcb5fb07f, type: 3}
       propertyPath: enemyPrefabsLevel1.Array.data[0]
       value: 
-      objectReference: {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a,
+      objectReference: {fileID: 9014782617563343838, guid: ed31ef5d4f75df24bb580ff5f217cc93,
         type: 3}
     - target: {fileID: 5819279393421089, guid: a54c850099ea2d1489ffe38bcb5fb07f, type: 3}
       propertyPath: enemyPrefabsLevel1.Array.data[1]
@@ -1796,17 +1796,17 @@ PrefabInstance:
     - target: {fileID: 5819279393421089, guid: a54c850099ea2d1489ffe38bcb5fb07f, type: 3}
       propertyPath: enemyPrefabsLevel2.Array.data[0]
       value: 
-      objectReference: {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a,
+      objectReference: {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1,
         type: 3}
     - target: {fileID: 5819279393421089, guid: a54c850099ea2d1489ffe38bcb5fb07f, type: 3}
       propertyPath: enemyPrefabsLevel2.Array.data[1]
       value: 
-      objectReference: {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57,
+      objectReference: {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a,
         type: 3}
     - target: {fileID: 5819279393421089, guid: a54c850099ea2d1489ffe38bcb5fb07f, type: 3}
       propertyPath: enemyPrefabsLevel2.Array.data[2]
       value: 
-      objectReference: {fileID: 9014782617563343838, guid: ed31ef5d4f75df24bb580ff5f217cc93,
+      objectReference: {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57,
         type: 3}
     - target: {fileID: 5819279393421089, guid: a54c850099ea2d1489ffe38bcb5fb07f, type: 3}
       propertyPath: enemyPrefabsLevel2.Array.data[3]
@@ -5274,7 +5274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000028381273, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749773893

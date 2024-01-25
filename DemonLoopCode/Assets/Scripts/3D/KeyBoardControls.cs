@@ -34,8 +34,10 @@ public class KeyBoardControls : MonoBehaviour
         player_move.Speed = Input.GetKey(KeyCode.LeftShift);
 
         // Abrir y cerrar el inventario solo cuando el jugador no se encuentre en batalla.
-        if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime)
+        if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime && !player_inventory.DontOpenInventory)
             player_inventory.OpenCloseInventory();
+        else if (Input.GetKeyDown(KeyCode.Escape) && player_inventory.DontOpenInventory)
+
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState)
             transform.GetComponentInChildren<PlayerInteract>().Click = true; 

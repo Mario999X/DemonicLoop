@@ -8,6 +8,8 @@ TagManager:
   - Buttons
   - Chest
   - Enemy3D
+  - Normal Shop
+  - Slave Shop
   layers:
   - Default
   - TransparentFX

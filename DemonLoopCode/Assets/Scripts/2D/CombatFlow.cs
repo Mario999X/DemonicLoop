@@ -662,8 +662,6 @@ public class CombatFlow : MonoBehaviour
 
                         if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
                         {
-                            onAttack = true;
-
                             animator.SetInteger("State", 2);
 
                             yield return new WaitForSeconds(0.3f);

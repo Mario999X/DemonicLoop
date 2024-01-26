@@ -7,6 +7,9 @@ public class KeyBoardControls : MonoBehaviour
     PlayerMove player_move;
     PlayerInventory player_inventory;
     EnterBattle enterBattle;
+    ShoppingSystem shopping;
+
+    public ShoppingSystem Shopping { set { shopping = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +40,10 @@ public class KeyBoardControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime && !player_inventory.DontOpenInventory)
             player_inventory.OpenCloseInventory();
         else if (Input.GetKeyDown(KeyCode.Escape) && player_inventory.DontOpenInventory)
+            shopping.OpenCloseShop();
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState && !GameObject.Find("Shop").GetComponent<Canvas>().enabled)
             transform.GetComponentInChildren<PlayerInteract>().Click = true; 
     }
 }

@@ -32,6 +32,8 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] GameObject inventoryUI3D;
     [SerializeField] GameObject inventoryUI2D;
 
+    [SerializeField] ObjectData[] data;
+
     bool inventoryState = false;
     bool done = false;
     bool dontOpenInventory = false;
@@ -39,7 +41,7 @@ public class PlayerInventory : MonoBehaviour
     Scene scene;
 
     public bool InventoryState { get {  return inventoryState; } }
-    public bool DontOpenInventory { get { return dontOpenInventory; } set { inventoryState = value; } }
+    public bool DontOpenInventory { get { return dontOpenInventory; } set { dontOpenInventory = value; } }
 
     Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
 
@@ -59,6 +61,9 @@ public class PlayerInventory : MonoBehaviour
             inventoryUI2D = GameObject.Find("MoveButtons");
 
             enterBattle = GetComponent<EnterBattle>();
+
+            foreach (ObjectData data in data)
+                AddObjectToInventory(data.name, data, 1);
 
             done = true;
         }

@@ -24,7 +24,7 @@ public class PlayerInteract : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.right, out hit, distance, layer) && click)
         {
             Debug.DrawLine(transform.position, hit.point, Color.green);
-            Debug.Log(hit.transform.tag);
+            //Debug.Log(hit.transform.tag);
 
             // Identificamos el objeto para realizar el intercambio de datos correcto.
             switch (hit.transform.tag)
@@ -46,7 +46,13 @@ public class PlayerInteract : MonoBehaviour
 
                         Destroy(hit.transform.GetComponent<ChestContent>()); // Destruye el scrip en el objeto.
                     }
+                    break;
+                case "Slave Shop":
+                case "Normal Shop":
+                    if (transform.GetComponentInParent<KeyBoardControls>())
+                        transform.GetComponentInParent<KeyBoardControls>().Shopping = hit.transform.GetComponent<ShoppingSystem>();
 
+                    hit.transform.GetComponent<ShoppingSystem>().OpenCloseShop();
                     break;
             }
 

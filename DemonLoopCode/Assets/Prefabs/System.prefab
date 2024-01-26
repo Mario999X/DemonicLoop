@@ -316,18 +316,6 @@ MonoBehaviour:
     type: 3}
   inventoryUI3D: {fileID: 0}
   inventoryUI2D: {fileID: 0}
-  listScriptableObject:
-  - {fileID: 11400000, guid: 2d815b0c4af9e68478776e0573aa7b40, type: 2}
-  - {fileID: 11400000, guid: 4908eeb3ff4c516459fd82d778cdb8ea, type: 2}
-  - {fileID: 11400000, guid: f0471b22ae29d5e45a88619f62681891, type: 2}
-  - {fileID: 11400000, guid: 4908eeb3ff4c516459fd82d778cdb8ea, type: 2}
-  - {fileID: 11400000, guid: 381e042fd9a374948a217fdf2a11b45d, type: 2}
-  - {fileID: 11400000, guid: 381e042fd9a374948a217fdf2a11b45d, type: 2}
-  - {fileID: 11400000, guid: 2595fbb8e7c4e0640959a87c25812fc3, type: 2}
-  - {fileID: 11400000, guid: 45e7bb80c9b593e45abb18a45da8f7f5, type: 2}
-  - {fileID: 11400000, guid: 2e25496b66260d349842f344ac6fd4d9, type: 2}
-  - {fileID: 11400000, guid: 45e7bb80c9b593e45abb18a45da8f7f5, type: 2}
-  - {fileID: 11400000, guid: de4fee4df8628fc48ae8506e02a47e8d, type: 2}
 --- !u!114 &4450129754072111584
 MonoBehaviour:
   m_ObjectHideFlags: 0

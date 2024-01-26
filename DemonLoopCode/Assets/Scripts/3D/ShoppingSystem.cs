@@ -1,21 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ShoppingSystem : MonoBehaviour
 {
+    [SerializeField] GameObject button;
+
+    bool done = false;
+
+    int quantity = 0;
+
     Canvas canvas;
 
     Scene scene;
 
-    bool done = false;
-
     Dictionary<string, ObjectData> stock = new();
+
+    PlayerInventory inventory;
+    ScriptableObject data;
 
     // Start is called before the first frame update
     void Start()
     {
+        inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
+
         switch (gameObject.tag)
         {
             case "Normal Shop":
@@ -50,11 +62,32 @@ public class ShoppingSystem : MonoBehaviour
         }
     }
 
-    void OpenCloseShop()
+    public void OpenCloseShop()
     {
         if (canvas != null)
+        {
             canvas.enabled = !canvas.enabled;
+            inventory.DontOpenInventory = !inventory.DontOpenInventory;
+
+            for (int i = 0; i < stock.Count; i++)
+            {
+                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).transform);
+                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = stock.Keys.ElementAt(i).ToString();
+                obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(stock.Values.ElementAt(i)); });
+            }
+        }
     }
 
+    public void QuantityChange(bool disminuir)
+    {
+        if (!disminuir)
+            ++quantity;
+        else
+            quantity = Mathf.Max(0, --quantity);
+    }
 
+    public void ItemSelected(ScriptableObject @object)
+    {
+        data = @object;
+    }
 }

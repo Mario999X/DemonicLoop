@@ -16,9 +16,12 @@ public class ControlElection : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
+        if (!done)
         {
-            log = GameObject.Find("Running").GetComponent<TextMeshProUGUI>();
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title")
+            {
+                log = GameObject.Find("Running").GetComponent<TextMeshProUGUI>();
+            }
 
 
             #if UNITY_EDITOR // Si unity es iniciado en el editor.
@@ -39,10 +42,6 @@ public class ControlElection : MonoBehaviour
             #endif
 
             done = true;
-        }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
-        {
-            done = false;
         }
 
         if (pc && GameObject.Find("Player")) // Si esta corriendo en un ordenador y encuentra el objeto jugador.

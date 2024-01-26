@@ -641,7 +641,7 @@ public class CombatFlow : MonoBehaviour
                 else
                 {
 
-                    bool dontStop = true, change = true, onAttack = false, oneAtack = false;
+                    bool dontStop = true, change = true, onAttack = false;
 
                     Vector2 v = characterMove.Character.transform.position;
 

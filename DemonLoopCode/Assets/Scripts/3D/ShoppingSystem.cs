@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,12 @@ public class ShoppingSystem : MonoBehaviour
 
     bool done = false;
 
-    int quantity = 0;
+    int quantity = 1;
+
+    Image icon;
+    
+    TextMeshProUGUI description;
+    TextMeshProUGUI buy;
 
     Canvas canvas;
 
@@ -41,6 +47,12 @@ public class ShoppingSystem : MonoBehaviour
 
                     //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
                 }
+
+                GameObject displayzone = GameObject.Find("Object display");
+
+                icon = displayzone.transform.GetChild(0).GetComponent<Image>();
+                description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+                buy = displayzone.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>();
                 break;
             case "Slave Shop":
                 break;
@@ -69,14 +81,29 @@ public class ShoppingSystem : MonoBehaviour
             canvas.enabled = !canvas.enabled;
             inventory.DontOpenInventory = !inventory.DontOpenInventory;
 
+            if (canvas.enabled)
+                foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
+                    Destroy(child.gameObject);
+
             foreach (ScriptableObject scriptable in stock.Values)
             {
-                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0));
-                obj.transform.SetParent(canvas.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).GetChild(0).GetChild(0));
+                obj.transform.SetParent(canvas.transform.GetChild(0).GetChild(0).GetChild(0).transform);
                 string nam = scriptable.name.Substring(4, scriptable.name.Length - 4).Replace("^", " ").ToUpper();
                 obj.name = nam;
                 obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = nam;
+                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
                 obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(scriptable); });
+
+                ColorBlock colors = new ColorBlock();
+                colors.normalColor = new Color(255,255,255,0);
+                colors.pressedColor = new Color(255,255,255,0);
+                colors.disabledColor = new Color(255,255,255,0);
+                colors.highlightedColor = new Color(255, 0, 0, 0.1f);
+                colors.selectedColor = new Color(255, 255, 0, 0.5f);
+                colors.colorMultiplier = 1;
+
+                obj.GetComponent<Button>().colors = colors;
             }
         }
     }
@@ -86,11 +113,40 @@ public class ShoppingSystem : MonoBehaviour
         if (!disminuir)
             ++quantity;
         else
-            quantity = Mathf.Max(0, --quantity);
+            quantity = Mathf.Max(1, --quantity);
+
+        GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
+
+        switch (gameObject.tag)
+        {
+            case "Normal Shop":
+                ObjectData data = this.data as ObjectData;
+
+                buy.text = $"Cost: {(data.Cost * quantity)}Ma";
+                break;
+            case "Slave Shop":
+                break;
+        }
     }
 
     public void ItemSelected(ScriptableObject @object)
     {
         this.data = @object as ScriptableObject;
+
+        quantity = 1;
+        GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
+
+        switch (gameObject.tag)
+        {
+            case "Normal Shop":
+                ObjectData data = @object as ObjectData;
+
+                icon.sprite = data.Icon;
+                description.text = data.Description;
+                buy.text = $"Cost: {data.Cost}Ma";
+                break;
+            case "Slave Shop":
+                break;
+        }
     }
 }

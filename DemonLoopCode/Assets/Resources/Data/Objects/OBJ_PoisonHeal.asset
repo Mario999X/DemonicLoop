@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: OBJ_PoisonHeal
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  description: Item to heal a Poison Status.
+  description: An antidote for all type of poisons.
+  cost: 50
   objectType: 2
   baseNum: 0
   stateAsociated: {fileID: 11400000, guid: ac1f8b668c0d0264e8029f8d9fde2681, type: 2}

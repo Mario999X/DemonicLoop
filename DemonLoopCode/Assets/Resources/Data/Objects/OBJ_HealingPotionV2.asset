@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: OBJ_HealingPotionV2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: be80945a996576b43b7bd35b4ab39d00, type: 3}
-  description: Pocion de cura de 75
+  description: Heal 75 HP
+  cost: 30
   objectType: 0
   baseNum: 75
   stateAsociated: {fileID: 0}

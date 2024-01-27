@@ -18,10 +18,10 @@ public class ShoppingSystem : MonoBehaviour
 
     Scene scene;
 
-    Dictionary<string, ObjectData> stock = new();
+    Dictionary<string, ScriptableObject> stock = new();
 
     PlayerInventory inventory;
-    ScriptableObject data;
+    [SerializeField] ScriptableObject data;
 
     // Start is called before the first frame update
     void Start()
@@ -69,11 +69,14 @@ public class ShoppingSystem : MonoBehaviour
             canvas.enabled = !canvas.enabled;
             inventory.DontOpenInventory = !inventory.DontOpenInventory;
 
-            for (int i = 0; i < stock.Count; i++)
+            foreach (ScriptableObject scriptable in stock.Values)
             {
-                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).transform);
-                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = stock.Keys.ElementAt(i).ToString();
-                obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(stock.Values.ElementAt(i)); });
+                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0));
+                obj.transform.SetParent(canvas.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                string nam = scriptable.name.Substring(4, scriptable.name.Length - 4).Replace("^", " ").ToUpper();
+                obj.name = nam;
+                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = nam;
+                obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(scriptable); });
             }
         }
     }
@@ -88,6 +91,6 @@ public class ShoppingSystem : MonoBehaviour
 
     public void ItemSelected(ScriptableObject @object)
     {
-        data = @object;
+        this.data = @object as ScriptableObject;
     }
 }

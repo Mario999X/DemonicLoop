@@ -7,7 +7,7 @@ public class KeyBoardControls : MonoBehaviour
     PlayerMove player_move;
     PlayerInventory player_inventory;
     EnterBattle enterBattle;
-    ShoppingSystem shopping;
+    [SerializeField] ShoppingSystem shopping;
 
     public ShoppingSystem Shopping { set { shopping = value; } }
 
@@ -38,10 +38,12 @@ public class KeyBoardControls : MonoBehaviour
 
         // Abrir y cerrar el inventario solo cuando el jugador no se encuentre en batalla.
         if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime && !player_inventory.DontOpenInventory)
+        {
             player_inventory.OpenCloseInventory();
+            Debug.Log("Inventario");
+        }
         else if (Input.GetKeyDown(KeyCode.Escape) && player_inventory.DontOpenInventory)
             shopping.OpenCloseShop();
-
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState && !GameObject.Find("Shop").GetComponent<Canvas>().enabled)
             transform.GetComponentInChildren<PlayerInteract>().Click = true; 

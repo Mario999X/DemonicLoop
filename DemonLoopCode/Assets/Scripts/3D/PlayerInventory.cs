@@ -78,7 +78,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 if (!inventoryState) // En el caso de abrir inventario este crea los botones.
                 {
-                    inventoryUI3D.GetComponentInParent<Canvas>().enabled = true;
+                    GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = true;
 
                     foreach (ObjectStock item in inventory.Values)
                     {
@@ -96,7 +96,7 @@ public class PlayerInventory : MonoBehaviour
                         Destroy(item.ButtonINV3D);
                     }
 
-                    inventoryUI3D.GetComponentInParent<Canvas>().enabled = false;
+                    GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = false;
 
                     GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
 

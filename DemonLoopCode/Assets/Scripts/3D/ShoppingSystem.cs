@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,8 @@ public class ShoppingSystem : MonoBehaviour
     
     TextMeshProUGUI description;
     TextMeshProUGUI buy;
+
+    [SerializeField] GameObject displayzone;
 
     Canvas canvas;
 
@@ -48,11 +51,12 @@ public class ShoppingSystem : MonoBehaviour
                     //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
                 }
 
-                GameObject displayzone = GameObject.Find("Object display");
-
+                displayzone = GameObject.Find("Object display");
                 icon = displayzone.transform.GetChild(0).GetComponent<Image>();
                 description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
                 buy = displayzone.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>();
+                displayzone.transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Buy());
+                displayzone.SetActive(false);
                 break;
             case "Slave Shop":
                 break;
@@ -82,8 +86,13 @@ public class ShoppingSystem : MonoBehaviour
             inventory.DontOpenInventory = !inventory.DontOpenInventory;
 
             if (canvas.enabled)
+            {
                 foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
                     Destroy(child.gameObject);
+
+                if (displayzone.activeSelf)
+                    displayzone.SetActive(false);
+            }
 
             foreach (ScriptableObject scriptable in stock.Values)
             {
@@ -131,7 +140,8 @@ public class ShoppingSystem : MonoBehaviour
 
     public void ItemSelected(ScriptableObject @object)
     {
-        this.data = @object as ScriptableObject;
+        displayzone.SetActive(true);
+        data = @object;
 
         quantity = 1;
         GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
@@ -139,11 +149,35 @@ public class ShoppingSystem : MonoBehaviour
         switch (gameObject.tag)
         {
             case "Normal Shop":
+
                 ObjectData data = @object as ObjectData;
 
                 icon.sprite = data.Icon;
                 description.text = data.Description;
                 buy.text = $"Cost: {data.Cost}Ma";
+                break;
+            case "Slave Shop":
+                break;
+        }
+    }
+
+    public void Buy()
+    {
+        MoneyPlayer money = GameObject.Find("System").GetComponent<MoneyPlayer>();
+
+        switch (gameObject.tag)
+        {
+            case "Normal Shop":
+                ObjectData data = this.data as ObjectData;
+                float totalCost = (data.Cost * quantity);
+
+                if ((money.Money - totalCost) >= 0)
+                {
+                    money.Money -= totalCost;
+                    inventory.AddObjectToInventory(data.name, data, quantity);
+
+                    //Debug.Log($"Se han comprado {quantity} {data.name}");
+                }
                 break;
             case "Slave Shop":
                 break;

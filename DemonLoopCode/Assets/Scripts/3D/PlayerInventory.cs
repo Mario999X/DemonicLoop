@@ -57,7 +57,7 @@ public class PlayerInventory : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
-            inventoryUI3D = GameObject.Find("Area");
+            inventoryUI3D = GameObject.Find("Inventory").transform.GetChild(0).GetChild(0).gameObject;
             inventoryUI2D = GameObject.Find("MoveButtons");
 
             enterBattle = GetComponent<EnterBattle>();

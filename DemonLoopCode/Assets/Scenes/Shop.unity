@@ -336,6 +336,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: System
       objectReference: {fileID: 0}
+    - target: {fileID: 4450129754072111584, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: money
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6434781112416562394, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -350,7 +355,7 @@ PrefabInstance:
     - target: {fileID: 7991278420515955191, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: data.Array.size
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7991278420515955191, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
@@ -730,6 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a, type: 3}
+  displayzone: {fileID: 0}
   data: {fileID: 0}
 --- !u!1 &1072341487
 GameObject:
@@ -2471,7 +2477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -75.96587}
+  m_AnchoredPosition: {x: 0, y: -92.10041}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1698506584392927563

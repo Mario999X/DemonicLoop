@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_FlashBang
+  m_Name: OBJ_RuneRevive
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: Think fast chakelnuts!!!
-  cost: 38
-  objectType: 3
-  baseNum: 45
+  icon: {fileID: 21300000, guid: 586a74d603a9b478da60be2bfadb7ed8, type: 3}
+  description: Objeto usado para revivir con 50 puntos de salud.
+  cost: 100
+  objectType: 4
+  baseNum: 50
   stateAsociated: {fileID: 0}
-  alliesTargets: 0
+  alliesTargets: 1
   type: 3
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

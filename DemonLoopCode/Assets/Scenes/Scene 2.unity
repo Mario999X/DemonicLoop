@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1816,25 +1816,25 @@ PrefabInstance:
     - target: {fileID: 7991278420515955191, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: data.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7991278420515955191, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: data.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: a85447eef9c89be4db0a190320abfa1d,
+      objectReference: {fileID: 11400000, guid: f0471b22ae29d5e45a88619f62681891,
         type: 2}
     - target: {fileID: 7991278420515955191, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: data.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: de4fee4df8628fc48ae8506e02a47e8d,
+      objectReference: {fileID: 11400000, guid: a85447eef9c89be4db0a190320abfa1d,
         type: 2}
     - target: {fileID: 7991278420515955191, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: data.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 2595fbb8e7c4e0640959a87c25812fc3,
+      objectReference: {fileID: 11400000, guid: 2e25496b66260d349842f344ac6fd4d9,
         type: 2}
     - target: {fileID: 7991278420515955191, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
@@ -4502,9 +4502,10 @@ MonoBehaviour:
   - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
   - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
   - {fileID: 372789990257220145, guid: 55a5bad925203b14783c5ef46ae2166f, type: 3}
+  - {fileID: 2409840099089020148, guid: df87ced23a93534459896769d3954bbc, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarety: 00000000370000005700000064000000
+  rarety: 0000000000000000000000000000000064000000
   actualroom: 0
   boosRoom: 10
 --- !u!4 &1525719001
@@ -5836,7 +5837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 114.84057}
+  m_AnchoredPosition: {x: 0, y: 347.7943}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1660057539 &9223372036854775807

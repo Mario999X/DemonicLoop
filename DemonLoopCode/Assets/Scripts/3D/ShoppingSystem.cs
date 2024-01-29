@@ -101,15 +101,15 @@ public class ShoppingSystem : MonoBehaviour
                 string nam = scriptable.name.Substring(4, scriptable.name.Length - 4).Replace("^", " ").ToUpper();
                 obj.name = nam;
                 obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = nam;
-                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
                 obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(scriptable); });
 
                 ColorBlock colors = new ColorBlock();
-                colors.normalColor = new Color(255,255,255,0);
-                colors.pressedColor = new Color(255,255,255,0);
-                colors.disabledColor = new Color(255,255,255,0);
-                colors.highlightedColor = new Color(255, 0, 0, 0.1f);
-                colors.selectedColor = new Color(255, 255, 0, 0.5f);
+                colors.normalColor = new Color(255,255,255,1);
+                colors.pressedColor = new Color(255,255,255,1);
+                colors.disabledColor = new Color(255,255,255,1);
+                colors.highlightedColor = new Color(255, 0, 0, 1f);
+                colors.selectedColor = new Color(255, 255, 0, 1f);
                 colors.colorMultiplier = 1;
 
                 obj.GetComponent<Button>().colors = colors;

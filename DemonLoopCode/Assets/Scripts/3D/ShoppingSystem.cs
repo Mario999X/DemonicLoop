@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,16 +14,23 @@ public class ShoppingSystem : MonoBehaviour
 
     bool done = false;
 
-    int quantity = 0;
+    int quantity = 1;
+
+    Image icon;
+    
+    TextMeshProUGUI description;
+    TextMeshProUGUI buy;
+
+    [SerializeField] GameObject displayzone;
 
     Canvas canvas;
 
     Scene scene;
 
-    Dictionary<string, ObjectData> stock = new();
+    Dictionary<string, ScriptableObject> stock = new();
 
     PlayerInventory inventory;
-    ScriptableObject data;
+    [SerializeField] ScriptableObject data;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +50,13 @@ public class ShoppingSystem : MonoBehaviour
 
                     //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
                 }
+
+                displayzone = GameObject.Find("Object display");
+                icon = displayzone.transform.GetChild(0).GetComponent<Image>();
+                description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+                buy = displayzone.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>();
+                displayzone.transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Buy());
+                displayzone.SetActive(false);
                 break;
             case "Slave Shop":
                 break;
@@ -69,11 +85,34 @@ public class ShoppingSystem : MonoBehaviour
             canvas.enabled = !canvas.enabled;
             inventory.DontOpenInventory = !inventory.DontOpenInventory;
 
-            for (int i = 0; i < stock.Count; i++)
+            if (canvas.enabled)
             {
-                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).transform);
-                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = stock.Keys.ElementAt(i).ToString();
-                obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(stock.Values.ElementAt(i)); });
+                foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
+                    Destroy(child.gameObject);
+
+                if (displayzone.activeSelf)
+                    displayzone.SetActive(false);
+            }
+
+            foreach (ScriptableObject scriptable in stock.Values)
+            {
+                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).GetChild(0).GetChild(0));
+                obj.transform.SetParent(canvas.transform.GetChild(0).GetChild(0).GetChild(0).transform);
+                string nam = scriptable.name.Substring(4, scriptable.name.Length - 4).Replace("^", " ").ToUpper();
+                obj.name = nam;
+                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = nam;
+                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
+                obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(scriptable); });
+
+                ColorBlock colors = new ColorBlock();
+                colors.normalColor = new Color(255,255,255,1);
+                colors.pressedColor = new Color(255,255,255,1);
+                colors.disabledColor = new Color(255,255,255,1);
+                colors.highlightedColor = new Color(255, 0, 0, 1f);
+                colors.selectedColor = new Color(255, 255, 0, 1f);
+                colors.colorMultiplier = 1;
+
+                obj.GetComponent<Button>().colors = colors;
             }
         }
     }
@@ -83,11 +122,65 @@ public class ShoppingSystem : MonoBehaviour
         if (!disminuir)
             ++quantity;
         else
-            quantity = Mathf.Max(0, --quantity);
+            quantity = Mathf.Max(1, --quantity);
+
+        GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
+
+        switch (gameObject.tag)
+        {
+            case "Normal Shop":
+                ObjectData data = this.data as ObjectData;
+
+                buy.text = $"Cost: {(data.Cost * quantity)}Ma";
+                break;
+            case "Slave Shop":
+                break;
+        }
     }
 
     public void ItemSelected(ScriptableObject @object)
     {
+        displayzone.SetActive(true);
         data = @object;
+
+        quantity = 1;
+        GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
+
+        switch (gameObject.tag)
+        {
+            case "Normal Shop":
+
+                ObjectData data = @object as ObjectData;
+
+                icon.sprite = data.Icon;
+                description.text = data.Description;
+                buy.text = $"Cost: {data.Cost}Ma";
+                break;
+            case "Slave Shop":
+                break;
+        }
+    }
+
+    public void Buy()
+    {
+        MoneyPlayer money = GameObject.Find("System").GetComponent<MoneyPlayer>();
+
+        switch (gameObject.tag)
+        {
+            case "Normal Shop":
+                ObjectData data = this.data as ObjectData;
+                float totalCost = (data.Cost * quantity);
+
+                if ((money.Money - totalCost) >= 0)
+                {
+                    money.Money -= totalCost;
+                    inventory.AddObjectToInventory(data.name, data, quantity);
+
+                    //Debug.Log($"Se han comprado {quantity} {data.name}");
+                }
+                break;
+            case "Slave Shop":
+                break;
+        }
     }
 }

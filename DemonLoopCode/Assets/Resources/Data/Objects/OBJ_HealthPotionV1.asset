@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_QuickRevive
+  m_Name: OBJ_HealthPotionV1
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: Objeto usado para revivir con 50 puntos de salud.
-  objectType: 4
+  icon: {fileID: 21300000, guid: bf5d008cbeb7b46cc93c9079e119301e, type: 3}
+  description: Heal 50 HP
+  cost: 5
+  objectType: 0
   baseNum: 50
   stateAsociated: {fileID: 0}
   alliesTargets: 1

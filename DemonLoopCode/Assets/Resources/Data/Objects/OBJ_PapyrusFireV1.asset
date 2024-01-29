@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_Calabaza
+  m_Name: OBJ_PapyrusFireV1
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 21300000, guid: 1f928eb5f8b424d37b3d4fc629ad5fa3, type: 3}
+  description: "You dont have any one with a fire type move. \nThen use this to burn
+    your enemys alive or you just want to protest."
+  cost: 45
   objectType: 3
   baseNum: 45
   stateAsociated: {fileID: 0}
-  targetsToLoad: 0
-  type: 2
+  alliesTargets: 0
+  type: 0
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

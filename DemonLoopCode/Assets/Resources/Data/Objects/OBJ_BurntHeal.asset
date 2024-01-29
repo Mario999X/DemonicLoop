@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
   m_Name: OBJ_BurntHeal
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 21300000, guid: 25ce4f32fef194732aa6c8715d2f77e9, type: 3}
+  description: Cures burnt problems.
+  cost: 50
   objectType: 2
   baseNum: 12
   stateAsociated: {fileID: 11400000, guid: 37c0e8e9573b2ce4f950a0296d6b9f74, type: 2}

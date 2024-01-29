@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_FlashBang
+  m_Name: OBJ_HealthPotionV2
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: 
-  objectType: 3
-  baseNum: 45
+  icon: {fileID: 21300000, guid: 351521446548348079472d126a9a1eda, type: 3}
+  description: Heal 75 HP
+  cost: 30
+  objectType: 0
+  baseNum: 75
   stateAsociated: {fileID: 0}
-  targetsToLoad: 0
+  alliesTargets: 1
   type: 3
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

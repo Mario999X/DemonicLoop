@@ -1,41 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MoneyPlayer : MonoBehaviour
 {
+    [SerializeField] private float mara;
 
-    public float money = 0f;
+    [SerializeField] List<TextMeshProUGUI> textMoney;
 
-    [SerializeField] Text textMoney;
-
-    public float Money { get { return money; } set { this.money = value; SetMoneyInText(); } }
+    public float Money { get { return mara; } set { mara = value; SetMoneyInText(); } }
 
     bool done = false;
+    
+    Scene scene;
 
     // Start is called before the first frame update
     void Update()
     {
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2" && !done)
-        {
-            textMoney = GameObject.Find("TextMoney").GetComponent<Text>();
-            SetMoneyInText();
-            done = true;
-        }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+        if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
         {
             done = false;
+            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        }
+
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
+        {
+            GameObject[] textObject = GameObject.FindGameObjectsWithTag("Money");
+
+            foreach (GameObject text in textObject)
+                textMoney.Add(text.GetComponent<TextMeshProUGUI>());
+
+            textMoney.RemoveAll(text => text.IsUnityNull());
+            SetMoneyInText();
+
+            done = true;
         }
     }
 
     private void SetMoneyInText()
     {
-        textMoney.text="Money: "+ Money + " Mara";
-    }
-
-
-    //Funcion para de cada en un futuro cuando compremos Items
-    public void BuyItems(GameObject Iteam,float wastedMoney)
-    {
-        money -= wastedMoney;
+        foreach (TextMeshProUGUI text in textMoney)
+            text.text = $"Mara: {mara}";
     }
 }

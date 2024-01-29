@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
-  m_Name: OBJ_HealingPotion
+  m_Name: OBJ_PapyrusPlantV1
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: be80945a996576b43b7bd35b4ab39d00, type: 3}
-  description: Cura 50 de vida
-  objectType: 0
-  baseNum: 50
+  icon: {fileID: 21300000, guid: e1b92d61312ea406a8a1d61b72dfdd29, type: 3}
+  description: 
+  cost: 26
+  objectType: 3
+  baseNum: 45
   stateAsociated: {fileID: 0}
-  alliesTargets: 1
-  type: 3
+  alliesTargets: 0
+  type: 2
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

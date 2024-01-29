@@ -11,6 +11,8 @@ TagManager:
   - Normal Shop
   - Slave Shop
   - Money
+  - Sprite
+  - LeverWithoutOrder
   layers:
   - Default
   - TransparentFX

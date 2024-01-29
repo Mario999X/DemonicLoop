@@ -54,6 +54,10 @@ public class PlayerInteract : MonoBehaviour
 
                     hit.transform.GetComponent<ShoppingSystem>().OpenCloseShop();
                     break;
+                    
+                case "LeverWithoutOrder":
+                    hit.transform.GetComponent<LeverWithoutOrderData>().ActivateDesactivateLever();
+                    break;
             }
 
             click = false;

@@ -639,6 +639,7 @@ GameObject:
   - component: {fileID: 20303386563592010}
   - component: {fileID: -1995760961937033985}
   - component: {fileID: 5833707011182168521}
+  - component: {fileID: -3825940820734521953}
   m_Layer: 5
   m_Name: BaseDemon1
   m_TagString: Enemy
@@ -708,12 +709,14 @@ MonoBehaviour:
   criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
-  - {fileID: 11400000, guid: f7785423cd0c3481090ae0791f22f183, type: 2}
+  - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
+  - {fileID: 11400000, guid: ed663631fa833d748bf50815bb69da39, type: 2}
   absorbsDamageOfSameType: 1
   type: 0
   atkSpecial: {fileID: 0}
   moneyDrop: 50
   dropXP: 100
+  boss: 1
 --- !u!114 &-1995760961937033985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +754,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3825940820734521953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014782617563343838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcd083f7dd63e247bf5de6b8e45201e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabsLevel:
+  - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
+  - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
 --- !u!1001 &20213430036104909
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -94,6 +94,8 @@ public class CombatFlow : MonoBehaviour
     GameObject panelMiniGame;
     private List<GameObject> panelSpMini = new();
 
+    CombatBoss combatBoss;
+    
     Scene scene;
 
     private void Update()
@@ -144,7 +146,7 @@ public class CombatFlow : MonoBehaviour
 
             panelGameObject.SetActive(false);
             panelMiniGame.SetActive(false);
-
+            combatBoss = GetComponent<CombatBoss>();
 
             LoadCombatOptionsButtons();
             done = true;
@@ -591,6 +593,8 @@ public class CombatFlow : MonoBehaviour
         wait = true;
 
         float SpCountBar = 0f;
+
+        
         //Chequea que ataque tiene el enemigo y puede usar
         CheckAtkEnemy();
 
@@ -616,6 +620,8 @@ public class CombatFlow : MonoBehaviour
                 SetTextInEnemyActionBar(characterMove.Character.name, characterMove.Movement);
 
                 AddSPValue(characterMove.Character.GetComponent<Stats>());
+
+                
 
                 bool isAOE = library.CheckAoeAttack(characterMove.Movement);
                 if (isAOE)
@@ -992,6 +998,12 @@ public class CombatFlow : MonoBehaviour
     {
         foreach (GameObject enemy in enemys)
         {
+            if (enemy.GetComponent<Stats>().Boss)
+            {
+                enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoos();
+            }
+
+
             List<string> listAtkEnemy = enemy.GetComponent<Stats>().ListNameAtk;
             string nameAtkEnemy = "";
 
@@ -1039,9 +1051,13 @@ public class CombatFlow : MonoBehaviour
 
             }
 
-        }
+        }//Fin del foreach
+
+
 
     }//Fin de CheckAtkEnemy
+
+    
 
     public void DeleteEnemyFromList(GameObject enemy)
     {
@@ -1156,4 +1172,8 @@ public class CombatFlow : MonoBehaviour
         panelMiniGame.SetActive(false);
     }
 
+    public int NumEnemy()
+    {
+        return enemys.Count;
+    }
 }

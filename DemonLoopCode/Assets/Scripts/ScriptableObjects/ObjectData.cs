@@ -8,6 +8,7 @@ public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 [CreateAssetMenu]
 public class ObjectData : ScriptableObject
 {
+    private FloatingTextCombat floatingText;
     [SerializeField] private Sprite icon;
 
     [TextArea]
@@ -37,6 +38,8 @@ public class ObjectData : ScriptableObject
     // Cuando se hace click en este objeto.
     public void Click(PlayerInventory inventory)
     {
+        floatingText = GameObject.Find("System").GetComponent<FloatingTextCombat>();
+
         this.inventory = inventory;
         enterBattle = GameObject.Find("System").GetComponent<EnterBattle>();
         if (enterBattle.OneTime)
@@ -93,11 +96,13 @@ public class ObjectData : ScriptableObject
         {
             case ObjectTypes.Health:
                 //Debug.Log("Pocion de Cura");
+                floatingText.ShowFloatingTextNumbers(@character, BaseNum, Color.green);
                 target.Health += BaseNum;
                 break;
 
             case ObjectTypes.Mana:
                 //Debug.Log("Pocion de Mana");
+                floatingText.ShowFloatingTextNumbers(@character, BaseNum, Color.blue);
                 target.Mana += BaseNum;
                 break;
 
@@ -107,6 +112,7 @@ public class ObjectData : ScriptableObject
             
             case ObjectTypes.Revive:
                 target.Revive(baseNum);
+                floatingText.ShowFloatingText(character, "Revived", Color.yellow);
                 GameObject.Find("System").GetComponent<CombatFlow>().CheckIfAnAllyHasRevived();
 
                 break;

@@ -15,7 +15,7 @@ MonoBehaviour:
   baseDamage: 10000000
   phyAttack: 1
   magicAttack: 0
-  isAoeAttack: 1
+  isAoeAttack: 0
   manaCost: 1
   berserker: 0
   generateAState: 0
@@ -26,3 +26,5 @@ MonoBehaviour:
   manaTheft: 0
   levelRequired: 0
   battleModifierAsociated: {fileID: 0}
+  isSpecial: 0
+  pointSpecial: 0

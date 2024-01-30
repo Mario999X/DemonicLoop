@@ -49,6 +49,7 @@ public class Stats : MonoBehaviour
     [Header("Drops Components")]
     [SerializeField] float moneyDrop = 1.1f;
     [SerializeField] private float dropXP = 0;
+    [SerializeField] bool boss=false;
 
     bool attacking = false;
 
@@ -68,7 +69,7 @@ public class Stats : MonoBehaviour
     public float PhysicalDefense { get { return physicalDef; } set { physicalDef = value; } }
     public float MagicAtk { get { return magicAtk; } set { magicAtk = value; } }
     public float MagicDef { get { return magicDef; } set { magicDef = value; } }
-    public float CriticalChance { get { return criticalChance; } set { criticalChance = value; } }
+    public float CriticalChance { get { return criticalChance; } set { criticalChance = value; OnCriticalChance(); } }
     public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; }}
     public List<string> ListNameAtk { get { return ObtainNameAttacks(); }}
     public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }
@@ -79,7 +80,7 @@ public class Stats : MonoBehaviour
     public float DropXP { get { return dropXP; } set { dropXP = value; }}
 
     public string AtkSpecial { get { return ObtainNameAttackSpecial(); } }
-
+    public bool Boss { get { return boss; } }
 
     private void AnimationAttack()
     {
@@ -173,6 +174,20 @@ public class Stats : MonoBehaviour
         }
 
         radialSP.fillAmount = sp / maxSP;
+    }
+
+    private void OnCriticalChance()
+    {
+        if (criticalChance >= 100)
+        {
+            criticalChance = 100;
+        }
+
+        if (criticalChance <= 0)
+        {
+            criticalChance = 0;
+        }
+
     }
 
     private string ObtainNameAttackSpecial()

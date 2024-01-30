@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
+  m_Name: STA_Mario
+  m_EditorClassIdentifier: 
+  characterPB: {fileID: 7374620420556713923, guid: f81330ec4b1c5403a87cd789cd80adeb,
+    type: 3}
+  level: 0
+  currentXP: 196
+  health: 220
+  maxHealth: 220
+  mana: 180
+  maxMana: 180
+  sp: 40
+  strength: 35
+  physicalDef: 32
+  magicAtk: 25
+  magicDef: 25
+  criticalChance: 36
+  listAtk:
+  - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
+  - {fileID: 11400000, guid: 3dff1e93ce22c49a298d175c999b5e6d, type: 2}
+  - {fileID: 11400000, guid: e26fac2fdf4af4d0c917716c1ff98b50, type: 2}
+  - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}

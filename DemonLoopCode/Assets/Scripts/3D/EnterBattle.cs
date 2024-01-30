@@ -35,7 +35,30 @@ public class EnterBattle : MonoBehaviour
 
             if (GameObject.Find("AlliesBattleZone").transform.childCount == 0)
             {
-                GetComponent<PlayerTeamManager>().PlayersArrayTeam.ToList().ForEach(x => Instantiate(x, GameObject.Find("AlliesBattleZone").transform));
+                Data.Instance.CharactersTeamStats.ForEach(x =>
+                {
+                    var go = Instantiate(x.CharacterPB, GameObject.Find("AlliesBattleZone").transform);
+
+                    if(x.Level != 0)
+                    {
+                        var statsChar = go.GetComponent<Stats>();
+
+                        statsChar.Level = x.Level;
+                        statsChar.CurrentXP = x.CurrentXP;
+                        statsChar.Health = x.Health;
+                        statsChar.MaxHealth = x.MaxHealth;
+                        statsChar.Mana = x.Mana;
+                        statsChar.MaxMana = x.MaxMana;
+                        statsChar.SP = x.SP;
+                        statsChar.Strenght = x.Strenght;
+                        statsChar.PhysicalDefense = x.PhysicalDefense;
+                        statsChar.MagicAtk = x.MagicAtk;
+                        statsChar.MagicDef = x.MagicDef;
+                        statsChar.CriticalChance = x.CriticalChance;
+
+                        statsChar.ListAtk = x.ListAtk;
+                    }
+                });
             }
 
             player = GameObject.Find("Player");
@@ -152,6 +175,8 @@ public class EnterBattle : MonoBehaviour
         StartCoroutine(CrossfadeAnimation());
 
         Destroy(enemy);
+        
+        SavePlayerCharacterStats();
 
         player.GetComponent<PlayerMove>().enabled = true; // Activa el movimiento del jugador.
 
@@ -173,5 +198,32 @@ public class EnterBattle : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         crossfadeTransition.SetBool("StartBattle", false);
+    }
+
+    private void SavePlayerCharacterStats()
+    {
+        foreach (Transform child in GameObject.Find("AlliesBattleZone").transform)
+        {
+            var statsChar = child.GetComponent<Stats>();
+
+            var savedStats = Data.Instance.SearchCharacterTeamStats(child.name);
+
+            savedStats.Level = statsChar.Level;
+            savedStats.CurrentXP = statsChar.CurrentXP;
+            savedStats.Health = statsChar.Health;
+            savedStats.MaxHealth = statsChar.MaxHealth;
+            savedStats.Mana = statsChar.Mana;
+            savedStats.MaxMana = statsChar.MaxMana;
+            savedStats.SP = statsChar.SP;
+            savedStats.Strenght = statsChar.Strenght;
+            savedStats.PhysicalDefense = statsChar.PhysicalDefense;
+            savedStats.MagicAtk = statsChar.MagicAtk;
+            savedStats.MagicDef = statsChar.MagicDef;
+            savedStats.CriticalChance = statsChar.CriticalChance;
+
+            savedStats.ListAtk = statsChar.ListAtk;
+
+            Debug.Log("Character Saved after battle " + child.name);
+        }
     }
 }

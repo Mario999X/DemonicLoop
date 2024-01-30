@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 2354188879842531627}
   - component: {fileID: 5819279393421089}
   - component: {fileID: 8020943997931809745}
-  - component: {fileID: -2044154429361872729}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -316,6 +315,7 @@ MonoBehaviour:
     type: 3}
   inventoryUI3D: {fileID: 0}
   inventoryUI2D: {fileID: 0}
+  data: []
 --- !u!114 &4450129754072111584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,8 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7f366462e3780429c5a09fa75a14e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1.1
-  textMoney: {fileID: 0}
+  mara: 0
+  textMoney:
+  - {fileID: 0}
 --- !u!114 &2354188879842531627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +366,6 @@ MonoBehaviour:
   - {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57, type: 3}
   - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
   - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
-  - {fileID: 7486560601053180396, guid: 14045934915fd4a4ea04eed2b3eb6703, type: 3}
-  - {fileID: 7486560601053180396, guid: 85e26b0a87c38457bb34ef33a7ec5f19, type: 3}
 --- !u!114 &8020943997931809745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,22 +378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0cdbd8b34be6fe408f71027f57f00d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2044154429361872729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4178491517262405012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38d3f237703841f59d19ff201500193, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playersArrayTeam:
-  - {fileID: 6806864167824992199, guid: 51b2790600c1647798c560609ca0911b, type: 3}
-  - {fileID: 7374620420556713923, guid: f81330ec4b1c5403a87cd789cd80adeb, type: 3}
-  - {fileID: 1984689945073004903, guid: 7687434dc4851435ba2c0680978a4108, type: 3}
+  charactersTeamStats:
+  - {fileID: 11400000, guid: c90d52baa69744107982e91dddc47bf8, type: 2}
+  - {fileID: 11400000, guid: d13bef6530e244d52b457b2dae6f6953, type: 2}
+  - {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75, type: 2}
 --- !u!1 &4889741102227135258
 GameObject:
   m_ObjectHideFlags: 0

@@ -4491,7 +4491,7 @@ MonoBehaviour:
   - {fileID: 2409840099089020148, guid: df87ced23a93534459896769d3954bbc, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarety: 0000000000000000640000000000000064000000
+  rarety: 0000000046000000320000000000000064000000
   actualroom: 0
   boosRoom: 10
 --- !u!4 &1525719001
@@ -5477,6 +5477,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3289983081748897469, guid: 47d4764c9fddafd4ea2e9838a0257b50,
+        type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289983081748897469, guid: 47d4764c9fddafd4ea2e9838a0257b50,
+        type: 3}
+      propertyPath: orthographic size
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5301153487084853827, guid: 47d4764c9fddafd4ea2e9838a0257b50,
         type: 3}
       propertyPath: m_Name
@@ -5828,7 +5838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1844.7393}
+  m_AnchoredPosition: {x: 0, y: 1991.227}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1660057539 &9223372036854775807

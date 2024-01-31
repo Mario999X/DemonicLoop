@@ -45,7 +45,7 @@ public class KeyBoardControls : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape) && player_inventory.DontOpenInventory)
             shopping.OpenCloseShop();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState && !GameObject.Find("Shop").GetComponent<Canvas>().enabled)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState)
             transform.GetComponentInChildren<PlayerInteract>().Click = true; 
     }
 }

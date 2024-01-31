@@ -22,10 +22,11 @@ public class LeversManagerWithoutOrder : MonoBehaviour
     {
         leversActivated++;
 
-        if(leversActivated == leversNumber) 
+        if (leversActivated == leversNumber) 
         {
             foreach(Transform child in gameObject.transform)
             {
+                Debug.Log("El hijo "+child.name);
                 child.GetComponent<LeverWithoutOrderData>().PuzzleDone();
             }
 

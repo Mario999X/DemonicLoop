@@ -53,8 +53,10 @@ public class ShoppingSystem : MonoBehaviour
 
                 displayzone = GameObject.Find("Object display");
                 icon = displayzone.transform.GetChild(0).GetComponent<Image>();
+                
                 description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
                 buy = displayzone.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>();
+                
                 displayzone.transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Buy());
                 displayzone.SetActive(false);
                 break;
@@ -75,6 +77,10 @@ public class ShoppingSystem : MonoBehaviour
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Shop")
         {
             canvas = GameObject.Find("Shop").GetComponent<Canvas>();
+
+            canvas.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
+
+            done = true;
         }
     }
 

@@ -49,10 +49,13 @@ public class PlayerInteract : MonoBehaviour
                     break;
                 case "Slave Shop":
                 case "Normal Shop":
-                    if (transform.GetComponentInParent<KeyBoardControls>())
-                        transform.GetComponentInParent<KeyBoardControls>().Shopping = hit.transform.GetComponent<ShoppingSystem>();
+                    if (!GameObject.Find("Shop").GetComponent<Canvas>().enabled)
+                    {
+                        if (transform.GetComponentInParent<KeyBoardControls>())
+                            transform.GetComponentInParent<KeyBoardControls>().Shopping = hit.transform.GetComponent<ShoppingSystem>();
 
-                    hit.transform.GetComponent<ShoppingSystem>().OpenCloseShop();
+                        hit.transform.GetComponent<ShoppingSystem>().OpenCloseShop();
+                    }
                     break;
                     
                 case "LeverWithoutOrder":

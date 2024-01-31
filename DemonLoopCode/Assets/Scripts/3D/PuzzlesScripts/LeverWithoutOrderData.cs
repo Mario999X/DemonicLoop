@@ -20,6 +20,7 @@ public class LeverWithoutOrderData : MonoBehaviour
 
             if(isActivated)
             {
+                Debug.Log("manager.gameObject.name" + manager.gameObject.name);
                 manager.AddActivatedLever(); Debug.Log("Lever Activated");
             } 
 

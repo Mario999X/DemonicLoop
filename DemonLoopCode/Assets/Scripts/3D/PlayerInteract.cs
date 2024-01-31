@@ -58,8 +58,11 @@ public class PlayerInteract : MonoBehaviour
                     }
                     break;
                     
-                case "LeverWithoutOrder":
+                /*case "LeverWithoutOrder":
                     hit.transform.GetComponent<LeverWithoutOrderData>().ActivateDesactivateLever();
+                    break;*/
+                case "LeverWithOrder":
+                    hit.transform.GetComponent<LeverWithOrderData>().ActivateDesactivateLever();
                     break;
             }
 

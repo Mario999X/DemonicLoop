@@ -69,7 +69,7 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 200
+  maxHealth: 1
   mana: 0
   maxMana: 150
   sp: 10
@@ -90,6 +90,7 @@ MonoBehaviour:
   atkSpecial: {fileID: 11400000, guid: 6be63b96c4096cf4b9d8ada19337f902, type: 2}
   moneyDrop: 1.1
   dropXP: 0
+  boss: 0
 --- !u!114 &1442698945613014394
 MonoBehaviour:
   m_ObjectHideFlags: 0

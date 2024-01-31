@@ -2,6 +2,7 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 
@@ -63,7 +64,11 @@ public class ObjectData : ScriptableObject
                 }
             }
 
-            CreateButtons(GameObject.Find("PartyButtons"));
+            if(objectType == ObjectTypes.Revive)
+            {
+                CreateButtonsPlayersDefeated(GameObject.Find("PartyButtons"));
+            } else if(objectType != ObjectTypes.Throwable) CreateButtons(GameObject.Find("PartyButtons"));
+            
         }
     }
 
@@ -75,6 +80,20 @@ public class ObjectData : ScriptableObject
         {
             Debug.Log(spawnMoveBT);
 
+            GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
+            bt.transform.SetParent(spawnMoveBT.transform);
+            bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
+            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1);
+            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObject(pl); });
+        }
+    }
+
+    private void CreateButtonsPlayersDefeated(GameObject spawnMoveBT)
+    {
+        List<GameObject> playersDefeated = GameObject.Find("System").GetComponent<CombatFlow>().PlayersDefeated;
+
+        foreach (GameObject pl in playersDefeated)
+        {
             GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
             bt.transform.SetParent(spawnMoveBT.transform);
             bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
@@ -166,6 +185,7 @@ public class ObjectData : ScriptableObject
                 break;
 
         }
+
         inventory.RemoveObjectFromInventory(name.Substring(4, name.Length - 4));
     }//Fin de UserObject
 

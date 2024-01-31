@@ -339,12 +339,21 @@ public class CombatFlow : MonoBehaviour
         });
     }
 
+    public void SetPlayersInCombat()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player").ToArray();
+
+        foreach(Transform child in GameObject.Find("AlliesBattleZone").transform)
+        {
+            if(!child.gameObject.activeSelf) playersDefeated.Add(child.gameObject);
+        }
+    }
+
     public IEnumerator CreateButtons()
     {
         yield return new WaitForSeconds(0.00000001f);
 
         enemys = GameObject.FindGameObjectsWithTag("Enemy").ToList();
-        players = GameObject.FindGameObjectsWithTag("Player").ToArray();
 
         GeneratePlayersButtons();
 

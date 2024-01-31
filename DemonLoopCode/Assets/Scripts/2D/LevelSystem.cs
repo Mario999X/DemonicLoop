@@ -71,7 +71,7 @@ public class LevelSystem : MonoBehaviour
                 characterST.GetComponent<Stats>().DropXP += 30;
                 characterST.GetComponent<Stats>().MoneyDrop += 30;
 
-                Debug.Log("Enemigo: " + characterST.GetComponent<Stats>().name + " subio de nivel: " + characterST.GetComponent<Stats>().Level);
+                //Debug.Log("Enemigo: " + characterST.GetComponent<Stats>().name + " subio de nivel: " + characterST.GetComponent<Stats>().Level);
             }
         }
     }

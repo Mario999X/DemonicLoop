@@ -87,7 +87,7 @@ public class Stats : MonoBehaviour
         attacking = !attacking;
     }
 
-    void Start()
+    void Awake()
     {
         health = maxHealth;
         barHP = transform.GetChild(0).Find("BarHPFill").GetComponent<Image>();

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LeversManagerWithOrder : MonoBehaviour
 {
+    [SerializeField] GameObject Door;
     string[] desiredOrder;
     int leverOrder;
     string nameObjLever = "LeverWithOrder";
@@ -54,6 +55,7 @@ public class LeversManagerWithOrder : MonoBehaviour
                     child.GetComponent<LeverWithOrderData>().PuzzleDone();
                 }
                 Debug.Log("Puzzle completo");
+                Door.SetActive(false);
             }
             else
             {

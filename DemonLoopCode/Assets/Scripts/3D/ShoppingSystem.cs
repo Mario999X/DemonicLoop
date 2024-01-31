@@ -78,6 +78,7 @@ public class ShoppingSystem : MonoBehaviour
         {
             canvas = GameObject.Find("Shop").GetComponent<Canvas>();
 
+            canvas.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.RemoveAllListeners();
             canvas.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
 
             done = true;

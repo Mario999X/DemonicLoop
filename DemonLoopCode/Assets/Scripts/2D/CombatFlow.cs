@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class CharacterMove
 {
@@ -93,10 +92,10 @@ public class CombatFlow : MonoBehaviour
 
     GameObject panelMiniGame;
     private List<GameObject> panelSpMini = new();
-
-    CombatBoss combatBoss;
     
     Scene scene;
+
+    private LearningAttacksManager learningAttacksManager;
 
     private void Update()
     {
@@ -131,6 +130,8 @@ public class CombatFlow : MonoBehaviour
             panelGameObject = GameObject.Find("PanelPlayers");
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
+            learningAttacksManager = GetComponent<LearningAttacksManager>();
+
             SetAllyActionBarInactive();
             SetEnemyActionBarInactive();
 
@@ -146,7 +147,6 @@ public class CombatFlow : MonoBehaviour
 
             panelGameObject.SetActive(false);
             panelMiniGame.SetActive(false);
-            combatBoss = GetComponent<CombatBoss>();
 
             LoadCombatOptionsButtons();
             done = true;
@@ -1061,8 +1061,6 @@ public class CombatFlow : MonoBehaviour
             }
 
         }//Fin del foreach
-
-
 
     }//Fin de CheckAtkEnemy
 

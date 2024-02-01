@@ -969,9 +969,8 @@ public class CombatFlow : MonoBehaviour
 
             }
 
-            /*
             players.ToList().ForEach(p =>
-            {
+            { 
                 Debug.Log("1 playerssssssss");
                 AttackData possibleAttack = null;
 
@@ -979,17 +978,18 @@ public class CombatFlow : MonoBehaviour
                 {
                     Debug.Log("2 playerssssssss");
                     possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
-                }
-                
-                if(p.GetComponent<Stats>().CheckListAtkMax() && possibleAttack != null && !p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack)) 
-                {
-                    Debug.Log("3 playerssssssss");
-                    learningAttacksManager.ActiveDesactivePanel();
-                }
-            });
-            */
 
-            await System.Threading.Tasks.Task.Delay(1500);
+                    if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax() )
+                    {
+                        Debug.Log("possibleAttack "+ possibleAttack);
+                        Debug.Log("3 playerssssssss");
+                        learningAttacksManager.SetNewAttackInfo(p, possibleAttack);
+                    }
+                }
+
+            });
+
+            await System.Threading.Tasks.Task.Delay(5500);
 
             //charactersWhoCanLearnAnAttack.Clear();
 

@@ -56,7 +56,7 @@ public class Stats : MonoBehaviour
 
     public bool Attacking { get { return attacking; } }
     public CharacterRol Rol { get { return rol; } }
-    public int Level { get { return level; } set { level = value; }}
+    public int Level { get { return level; } set { level = value; SetLevelText(level); }}
     public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
     public float Health { get { return health; } set { health = value; if(barHP != null) OnAttackReceived(); } }
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
@@ -243,6 +243,6 @@ public class Stats : MonoBehaviour
         if(levelText != null)
         {
             levelText.text = level.ToString();
-        } else Debug.Log("No me dio tiempo beach");
+        }
     }
 }

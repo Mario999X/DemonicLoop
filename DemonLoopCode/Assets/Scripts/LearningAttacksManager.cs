@@ -90,7 +90,7 @@ public class LearningAttacksManager : MonoBehaviour
         typeText = infoOldAttackPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         magicOrPhysicalText = infoOldAttackPanel.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
         aoeText = infoOldAttackPanel.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
-        manaCostTextNA = infoOldAttackPanel.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>();
+        manaCostText = infoOldAttackPanel.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>();
         berserkerAttackText = infoOldAttackPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>();
         stateAsociatedText = infoOldAttackPanel.transform.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
         battleModifierText = infoOldAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
@@ -119,8 +119,8 @@ public class LearningAttacksManager : MonoBehaviour
         unitNameText.text = character.name;
         newAttackNameText.text = newAttack.name;
 
-        baseDamageTextNA.text = newAttack.BaseDamage.ToString();
-        typeTextNA.text = newAttack.Type.ToString();
+        baseDamageTextNA.text = "Base Damage: " + newAttack.BaseDamage;
+        typeTextNA.text = "Type: " + newAttack.Type.ToString();
 
         if(newAttack.PhyAttack == 1 && newAttack.MagicAttack == 0) magicOrPhysicalTextNA.text = "Physical";
 
@@ -149,21 +149,19 @@ public class LearningAttacksManager : MonoBehaviour
             break;
 
             case ActionStates.Heal:
-                stateAsociatedTextNA.text = "Heal State" + newAttack.StateGenerated;
+                stateAsociatedTextNA.text = "Heal State: " + newAttack.StateGenerated;
             break;
 
             case ActionStates.Inflict:
-                stateAsociatedTextNA.text = "Inflict State" + newAttack.StateGenerated + " with probability: " + newAttack.ProbabilityOfState;
+                stateAsociatedTextNA.text = "Inflict State " + newAttack.StateGenerated + " with probability: " + newAttack.ProbabilityOfState;
             break;
         }
 
         if(newAttack.BattleModifierAsociated != null)
         {
-            battleModifierTextNA.text = "Inflict battle modifier" + newAttack.BattleModifierAsociated.ToString();
+            battleModifierTextNA.text = "Inflict battle modifier: " + newAttack.BattleModifierAsociated.ToString();
 
         } else battleModifierTextNA.text = "No battle modifier asociated";
     }
-
-
 
 }

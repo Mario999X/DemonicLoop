@@ -49,7 +49,7 @@ public class LearningAttacksManager : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
-            LocateInterface();
+            //LocateInterface();
             
             done = true;
         }

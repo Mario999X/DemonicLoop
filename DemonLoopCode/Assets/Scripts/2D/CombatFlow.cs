@@ -130,7 +130,7 @@ public class CombatFlow : MonoBehaviour
             panelGameObject = GameObject.Find("PanelPlayers");
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
-            learningAttacksManager = GetComponent<LearningAttacksManager>();
+            //learningAttacksManager = GetComponent<LearningAttacksManager>();
 
             SetAllyActionBarInactive();
             SetEnemyActionBarInactive();

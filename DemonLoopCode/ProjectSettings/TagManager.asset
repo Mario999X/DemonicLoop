@@ -11,7 +11,6 @@ TagManager:
   - Normal Shop
   - Slave Shop
   - Money
-  - Sprite
   - LeverWithoutOrder
   - LeverWithOrder
   layers:

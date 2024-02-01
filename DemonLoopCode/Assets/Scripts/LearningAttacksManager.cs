@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -96,25 +97,27 @@ public class LearningAttacksManager : MonoBehaviour
         battleModifierText = infoOldAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
     }
 
-    public void ActiveDesactivePanel()
+    public void FinishOperation()
     {
-        if(learningAttacksPanel.activeSelf)
-        {
-            character = null;
+        Debug.Log("He entradoX6");
 
-            learningAttacksPanel.SetActive(false);
-        }
+        GetComponent<CombatFlow>().ChangeNewAttackDoneBoolean();
+    }
 
-        if(!learningAttacksPanel.activeSelf)
-        {
-            learningAttacksPanel.SetActive(true);
-        } 
+    public void DesactivatePanel()
+    {
+        character = null;
+
+        learningAttacksPanel.SetActive(false);
+    }
+
+    public void ActivatePanel()
+    {
+        learningAttacksPanel.SetActive(true);
     }
 
     public void SetNewAttackInfo(GameObject characterAsociated, AttackData newAttack)
     {
-        ActiveDesactivePanel();
-
         character = characterAsociated;
         unitNameText.text = character.name;
         newAttackNameText.text = newAttack.name;

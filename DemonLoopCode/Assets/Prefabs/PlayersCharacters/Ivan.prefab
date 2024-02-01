@@ -69,7 +69,7 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 1
+  maxHealth: 100
   mana: 0
   maxMana: 150
   sp: 10
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownLearnableAttacks:
-  - {fileID: 11400000, guid: f7785423cd0c3481090ae0791f22f183, type: 2}
+  - {fileID: 11400000, guid: 3dff1e93ce22c49a298d175c999b5e6d, type: 2}
 --- !u!1 &4930586540418728713
 GameObject:
   m_ObjectHideFlags: 0

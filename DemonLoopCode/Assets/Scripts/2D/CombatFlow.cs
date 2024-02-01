@@ -5,6 +5,8 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using System.Threading.Tasks;
 
 public class CharacterMove
 {
@@ -97,6 +99,8 @@ public class CombatFlow : MonoBehaviour
 
     private LearningAttacksManager learningAttacksManager;
 
+    private static bool newAttacksDone;
+
     private void Update()
     {
         if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
@@ -149,6 +153,9 @@ public class CombatFlow : MonoBehaviour
             panelMiniGame.SetActive(false);
 
             LoadCombatOptionsButtons();
+
+            newAttacksDone = false;
+
             done = true;
         }
         else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
@@ -923,13 +930,19 @@ public class CombatFlow : MonoBehaviour
 
     private async void BattleStatus()
     {
-        await System.Threading.Tasks.Task.Delay(600); // Entre tanta corrutina, esto es necesario para que al programa le de tiempo a actualizar bien las listas del combate.
+        await Task.Delay(600); // Entre tanta corrutina, esto es necesario para que al programa le de tiempo a actualizar bien las listas del combate.
 
+        StartCoroutine(PossibleBattleEnd());
+
+    }//Fin de BattleStatus
+
+    private IEnumerator PossibleBattleEnd()
+    {
         if (enemys.Count == 0)
         {
             var experience = totalEXP / players.LongLength; // Reparto de experiencia
 
-            List<GameObject> charactersWhoCanLearnAnAttack = new();
+            Dictionary<GameObject, AttackData> charactersWhoCanLearnAnAttack = new();
 
             ActivatePanel();
 
@@ -971,10 +984,13 @@ public class CombatFlow : MonoBehaviour
 
             players.ToList().ForEach(p =>
             { 
+                var i = 0;
                 Debug.Log("1 playerssssssss");
                 AttackData possibleAttack = null;
-
-                if(p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
+                if(LevelTemp[i] == p.GetComponent<Stats>().Level)
+                {
+                    Debug.Log("No se subio de nivel, no ataque nuevo");
+                } else if(p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
                 {
                     Debug.Log("2 playerssssssss");
                     possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
@@ -983,21 +999,27 @@ public class CombatFlow : MonoBehaviour
                     {
                         Debug.Log("possibleAttack "+ possibleAttack);
                         Debug.Log("3 playerssssssss");
-                        learningAttacksManager.SetNewAttackInfo(p, possibleAttack);
+                        
+                        charactersWhoCanLearnAnAttack.Add(p, possibleAttack);
                     }
                 }
 
+                i++;
             });
 
-            await System.Threading.Tasks.Task.Delay(5500);
+            if(charactersWhoCanLearnAnAttack.Count > 0) yield return StartCoroutine(ProcessingNewAttacks(charactersWhoCanLearnAnAttack));
 
-            //charactersWhoCanLearnAnAttack.Clear();
+            yield return new WaitForSeconds(3);
+
+            charactersWhoCanLearnAnAttack.Clear();
 
             AudioManager.Instance.StopSoundCombat();
             //Se debe mostrar una pantalla de WIN
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
-            await System.Threading.Tasks.Task.Delay(10500);
+
+            yield return new WaitForSeconds(3);
+
             enterBattle.FinishBattle();
             DisablePanel();
             ClearPanel();
@@ -1010,14 +1032,16 @@ public class CombatFlow : MonoBehaviour
             AudioManager.Instance.StopSoundCombat();
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
-            await System.Threading.Tasks.Task.Delay(2000);
+
+            yield return new WaitForSeconds(3);
+            
             enterBattle.FinishBattle();
 
         }
 
         WINLOSE.enabled = false;
-
-    }//Fin de BattleStatus
+        yield return null;
+    }
 
     public void ClearPanel()
     {
@@ -1026,6 +1050,44 @@ public class CombatFlow : MonoBehaviour
             panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
         }
     }//Fin de ClearPanel
+
+    private IEnumerator ProcessingNewAttacks(Dictionary<GameObject, AttackData> dic)
+    {
+        Debug.Log("He entradoX2");
+        foreach (KeyValuePair<GameObject, AttackData> charAndAttack in dic)
+        {
+            newAttacksDone = false;
+
+            Debug.Log("He entradoX3 " + newAttacksDone);
+            learningAttacksManager.ActivatePanel();
+
+            learningAttacksManager.SetNewAttackInfo(charAndAttack.Key, charAndAttack.Value);
+
+            Debug.Log("He entradoX4");
+
+            // Espera hasta que el jugador cierre el panel
+            yield return StartCoroutine(WaitForUserInputNewAttack());
+
+            Debug.Log("He entradoX5");
+
+            learningAttacksManager.DesactivatePanel();
+        }
+    }
+
+    private IEnumerator WaitForUserInputNewAttack()
+    {
+        while(!newAttacksDone)
+        {
+            //Debug.Log("ESTOY ESPERANDO " + newAttacksDone);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    public void ChangeNewAttackDoneBoolean()
+    {
+        newAttacksDone = true;
+    }
 
 
     public void CheckAtkEnemy()
@@ -1072,7 +1134,7 @@ public class CombatFlow : MonoBehaviour
                 if (healOrNot)
                 {
                     //Int e lista de jugadores
-                    int e = Random.Range(0, enemys.Count);
+                    int e = UnityEngine.Random.Range(0, enemys.Count);
                     AddMovement(enemy, enemys[e], nameAtkEnemy);
                 }
                 else

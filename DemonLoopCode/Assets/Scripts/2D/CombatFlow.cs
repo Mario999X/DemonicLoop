@@ -117,7 +117,7 @@ public class CombatFlow : MonoBehaviour
             statesLibrary = GetComponent<LibraryStates>();
             battleModifiersLibrary = GetComponent<LibraryBattleModifiers>();
             enterBattle = GetComponent<EnterBattle>();
-            specialMiniGame=GetComponent<SpecialMiniGame>();// Lo del minijuego
+            specialMiniGame = GetComponent<SpecialMiniGame>();
             spawnCombatOptionsBT = GameObject.Find("CombatOptionsButtons");
             spawnEnemyBT = GameObject.Find("EnemyButtons");
             spawnPlayerBT = GameObject.Find("PlayerButtons");
@@ -130,7 +130,7 @@ public class CombatFlow : MonoBehaviour
             panelGameObject = GameObject.Find("PanelPlayers");
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
-            //learningAttacksManager = GetComponent<LearningAttacksManager>();
+            learningAttacksManager = GetComponent<LearningAttacksManager>();
 
             SetAllyActionBarInactive();
             SetEnemyActionBarInactive();
@@ -929,6 +929,8 @@ public class CombatFlow : MonoBehaviour
         {
             var experience = totalEXP / players.LongLength; // Reparto de experiencia
 
+            List<GameObject> charactersWhoCanLearnAnAttack = new();
+
             ActivatePanel();
 
             battleModifiersLibrary.RemoveAllBattleModifiers();
@@ -967,12 +969,35 @@ public class CombatFlow : MonoBehaviour
 
             }
 
+            /*
+            players.ToList().ForEach(p =>
+            {
+                Debug.Log("1 playerssssssss");
+                AttackData possibleAttack = null;
+
+                if(p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
+                {
+                    Debug.Log("2 playerssssssss");
+                    possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
+                }
+                
+                if(p.GetComponent<Stats>().CheckListAtkMax() && possibleAttack != null && !p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack)) 
+                {
+                    Debug.Log("3 playerssssssss");
+                    learningAttacksManager.ActiveDesactivePanel();
+                }
+            });
+            */
+
+            await System.Threading.Tasks.Task.Delay(1500);
+
+            //charactersWhoCanLearnAnAttack.Clear();
 
             AudioManager.Instance.StopSoundCombat();
             //Se debe mostrar una pantalla de WIN
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
-            await System.Threading.Tasks.Task.Delay(2500);
+            await System.Threading.Tasks.Task.Delay(10500);
             enterBattle.FinishBattle();
             DisablePanel();
             ClearPanel();

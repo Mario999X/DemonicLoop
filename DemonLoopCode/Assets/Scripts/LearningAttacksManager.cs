@@ -49,7 +49,8 @@ public class LearningAttacksManager : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
-            //LocateInterface();
+            LocateInterface();
+            HideInterface();
             
             done = true;
         }
@@ -57,6 +58,12 @@ public class LearningAttacksManager : MonoBehaviour
         {
             done = false;
         }
+    }
+
+    private void HideInterface()
+    {
+        infoOldAttackPanel.SetActive(false);
+        learningAttacksPanel.SetActive(false);
     }
 
     private void LocateInterface()
@@ -91,18 +98,23 @@ public class LearningAttacksManager : MonoBehaviour
 
     public void ActiveDesactivePanel()
     {
-        if(gameObject.activeSelf)
+        if(learningAttacksPanel.activeSelf)
         {
             character = null;
 
-            gameObject.SetActive(false);
+            learningAttacksPanel.SetActive(false);
         }
 
-        if(!gameObject.activeSelf) gameObject.SetActive(true);
+        if(!learningAttacksPanel.activeSelf)
+        {
+            learningAttacksPanel.SetActive(true);
+        } 
     }
 
     public void SetNewAttackInfo(GameObject characterAsociated, AttackData newAttack)
     {
+        ActiveDesactivePanel();
+
         character = characterAsociated;
         unitNameText.text = character.name;
         newAttackNameText.text = newAttack.name;

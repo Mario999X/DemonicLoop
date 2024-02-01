@@ -87,7 +87,7 @@ public class Stats : MonoBehaviour
         attacking = !attacking;
     }
 
-    void Start()
+    void Awake()
     {
         health = maxHealth;
         barHP = transform.GetChild(0).Find("BarHPFill").GetComponent<Image>();
@@ -112,7 +112,7 @@ public class Stats : MonoBehaviour
 
     // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
     // Solo puede usar 4 ataques que son los espacios acordados
-    private bool CheckListAtkMax()
+    public bool CheckListAtkMax()
     {
         var space = true;
 
@@ -212,6 +212,23 @@ public class Stats : MonoBehaviour
         var enoughSpace = CheckListAtkMax();
 
         if(enoughSpace) listAtk.Add(attack);
+    }
+
+    public void ForgetAttack(AttackData attack)
+    {
+        listAtk.Remove(attack);
+    }
+
+    public bool CheckIfIHaveThatAttack(AttackData attack)
+    {
+        var already = false;
+
+        listAtk.ForEach(a => {
+            if(a == attack) already = true;
+        });
+
+        return already;
+        
     }
 
     public void Revive(float healthToRevive)

@@ -15,9 +15,9 @@ MonoBehaviour:
   characterPB: {fileID: 6806864167824992199, guid: 51b2790600c1647798c560609ca0911b,
     type: 3}
   level: 0
-  currentXP: 196
-  health: 210
-  maxHealth: 210
+  currentXP: 184.33333
+  health: 11
+  maxHealth: 11
   mana: 170
   maxMana: 170
   sp: 0

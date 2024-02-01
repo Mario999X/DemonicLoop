@@ -12,6 +12,7 @@ TagManager:
   - Slave Shop
   - Money
   - LeverWithoutOrder
+  - LeverWithOrder
   layers:
   - Default
   - TransparentFX

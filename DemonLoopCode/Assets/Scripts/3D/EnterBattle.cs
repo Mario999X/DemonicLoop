@@ -39,6 +39,8 @@ public class EnterBattle : MonoBehaviour
                 {
                     var go = Instantiate(x.CharacterPB, GameObject.Find("AlliesBattleZone").transform);
 
+                    Debug.Log("Character: " + x.name);
+
                     if(x.Level != 0)
                     {
                         var statsChar = go.GetComponent<Stats>();
@@ -64,6 +66,8 @@ public class EnterBattle : MonoBehaviour
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
             libraryStates = GetComponent<LibraryStates>();
+            
+            GetComponent<CombatFlow>().SetPlayersInCombat(); // Para la persistencia de los que estan muertos.
 
             done = true;
         }

@@ -138,11 +138,12 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // Elimina o disminuye la cantidad de objetos del inventario seg�n la situaci�n.
+    // Elimina o disminuye la cantidad de objetos del inventario segun la situacion.
     public void RemoveObjectFromInventory(string name)
     {
         if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
         {
+            Debug.Log("He entrao");
             if (inventory[name.ToUpper()].Count > 1) // Si objeto es mayor a uno disminuye su cantidad
             {
 
@@ -159,6 +160,7 @@ public class PlayerInventory : MonoBehaviour
             }
             else // En el caso contrario se remueve del diccionario.
             {
+                Debug.Log("He entrao x2");
                 Debug.Log(name.ToUpper() + " was eliminated from dictionary");
 
                 if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un bot�n.
@@ -177,15 +179,17 @@ public class PlayerInventory : MonoBehaviour
     // A�ade un objeto al inventario.
     public void AddObjectToInventory(string name, ScriptableObject scriptableObject, int count)
     {
-        if (!inventory.ContainsKey(name.ToUpper())) // Cuando es un objeto nuevo se incluye al diccionario
+        var realName = name.Substring(4, name.Length - 4).ToUpper();
+
+        if (!inventory.ContainsKey(realName)) // Cuando es un objeto nuevo se incluye al diccionario
         {
-            Debug.Log("Add object to inventory");
-            inventory.Add(name.ToUpper(), new ObjectStock(scriptableObject as ObjectData, count));
+            Debug.Log("Add object to inventory" + name.ToUpper());
+            inventory.Add(realName, new ObjectStock(scriptableObject as ObjectData, count));
         }
         else // Cuando el objeto ya existe aumenta su cantidad
         {
-            Debug.Log("Object exist. Incrementing count of that object");
-            inventory[name.ToUpper()].Count += count;
+            Debug.Log("Object exist. Incrementing count of that object" + name.ToUpper());
+            inventory[realName].Count += count;
         }
     }
 
@@ -212,7 +216,7 @@ public class PlayerInventory : MonoBehaviour
 
         Button buttonCMP = button.GetComponent<Button>();
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
-        Debug.Log("buttonCMP "+ buttonCMP.name);
+        //Debug.Log("buttonCMP "+ buttonCMP.name);
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name.Substring(4, stock.Data.name.Length - 4) + " x" + stock.Count;
         
         return button;

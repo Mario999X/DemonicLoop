@@ -1,23 +1,33 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class LearningAttacksManager : MonoBehaviour
 {
+    [SerializeField] private GameObject buttonRef;
+
     private GameObject learningAttacksPanel;
 
     private GameObject infoNewAttackPanel;
     private GameObject infoOldAttackPanel;
 
-    private GameObject character;
+    private GameObject character = null;
+    private AttackData newAttack = null;
+    private AttackData oldAttackSelected = null;
+
+    private GameObject learnAttackBtn;
 
     private Scene scene;
     private bool done = false;
 
+    private LibraryMove library;
+
     // General information
     private TextMeshProUGUI unitNameText;
     private TextMeshProUGUI newAttackNameText;
+    private GameObject actualAttacksPanel;
 
     // Texts about the new Attack
     private TextMeshProUGUI baseDamageTextNA;
@@ -30,7 +40,7 @@ public class LearningAttacksManager : MonoBehaviour
     private TextMeshProUGUI battleModifierTextNA;
 
     // Texts about the old selected Attack
-    private TextMeshProUGUI baseDamageAttackText;
+    private TextMeshProUGUI baseDamageText;
     private TextMeshProUGUI typeText;
     private TextMeshProUGUI magicOrPhysicalText;
     private TextMeshProUGUI aoeText;
@@ -50,6 +60,8 @@ public class LearningAttacksManager : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
+            library = GetComponent<LibraryMove>();
+
             LocateInterface();
             HideInterface();
             
@@ -59,12 +71,69 @@ public class LearningAttacksManager : MonoBehaviour
         {
             done = false;
         }
+
     }
+
 
     private void HideInterface()
     {
         infoOldAttackPanel.SetActive(false);
         learningAttacksPanel.SetActive(false);
+        learnAttackBtn.SetActive(false);
+    }
+
+    private void SetOldAttackToForget(string movement)
+    {
+        oldAttackSelected = library.CheckAttack(movement);
+
+        baseDamageText.text = "Base Damage: " + oldAttackSelected.BaseDamage;
+        typeText.text = "Type: " + oldAttackSelected.Type.ToString();
+
+        if(oldAttackSelected.PhyAttack == 1 && oldAttackSelected.MagicAttack == 0) magicOrPhysicalText.text = "Physical";
+
+        if(oldAttackSelected.PhyAttack == 0 && oldAttackSelected.MagicAttack == 1) magicOrPhysicalText.text = "Magic";
+
+        if(oldAttackSelected.PhyAttack == 0 && oldAttackSelected.MagicAttack == 0) magicOrPhysicalText.text = "Heal";
+
+        if(oldAttackSelected.IsAoeAttack)
+        {
+            aoeText.text = "Is AOE";
+
+        } else aoeText.text = "Is NOT AOE";
+
+        manaCostText.text = "Mana cost: " + oldAttackSelected.ManaCost.ToString();
+
+        if(oldAttackSelected.Berserker)
+        {
+            berserkerAttackText.text = "Is Berserker";
+
+        } else berserkerAttackText.text = "Is NOT Berserker";
+
+        switch (oldAttackSelected.GenerateAState)
+        {
+            case ActionStates.None:
+                stateAsociatedText.text = "No state asociated";
+            break;
+
+            case ActionStates.Heal:
+                stateAsociatedText.text = "Heal State: " + oldAttackSelected.StateGenerated;
+            break;
+
+            case ActionStates.Inflict:
+                stateAsociatedText.text = "Inflict State " + oldAttackSelected.StateGenerated + " | Probability: " + oldAttackSelected.ProbabilityOfState;
+            break;
+        }
+
+        if(oldAttackSelected.BattleModifierAsociated != null)
+        {
+            battleModifierText.text = "Inflict battle modifier: " + oldAttackSelected.BattleModifierAsociated.ToString();
+
+        } else battleModifierText.text = "No battle modifier asociated";
+
+        infoOldAttackPanel.SetActive(true);
+
+        learnAttackBtn.SetActive(true);
+        learnAttackBtn.GetComponent<Button>().onClick.AddListener(delegate { ForgetOldAttackAndLearnNewAttack(); });
     }
 
     private void LocateInterface()
@@ -87,7 +156,7 @@ public class LearningAttacksManager : MonoBehaviour
         battleModifierTextNA = infoNewAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
 
 
-        baseDamageAttackText = infoOldAttackPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        baseDamageText = infoOldAttackPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         typeText = infoOldAttackPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         magicOrPhysicalText = infoOldAttackPanel.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
         aoeText = infoOldAttackPanel.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
@@ -95,18 +164,33 @@ public class LearningAttacksManager : MonoBehaviour
         berserkerAttackText = infoOldAttackPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>();
         stateAsociatedText = infoOldAttackPanel.transform.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
         battleModifierText = infoOldAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
+
+        actualAttacksPanel = learningAttacksPanel.transform.GetChild(6).gameObject;
+        learnAttackBtn = learningAttacksPanel.transform.GetChild(5).gameObject;
     }
 
-    public void FinishOperation()
+    public void FinishOperationNoNewAttack()
     {
-        Debug.Log("He entradoX6");
-
         GetComponent<CombatFlow>().ChangeNewAttackDoneBoolean();
+    }
+
+    public void ForgetOldAttackAndLearnNewAttack()
+    {
+        character.GetComponent<Stats>().ForgetAttack(oldAttackSelected);
+        character.GetComponent<Stats>().SetAttack(newAttack);
+
+        FinishOperationNoNewAttack();
     }
 
     public void DesactivatePanel()
     {
         character = null;
+        newAttack = null;
+        oldAttackSelected = null;
+
+        foreach(Transform button in actualAttacksPanel.transform) Destroy(button.gameObject);
+
+        HideInterface();
 
         learningAttacksPanel.SetActive(false);
     }
@@ -116,55 +200,67 @@ public class LearningAttacksManager : MonoBehaviour
         learningAttacksPanel.SetActive(true);
     }
 
-    public void SetNewAttackInfo(GameObject characterAsociated, AttackData newAttack)
+    public void SetNewAttackInfo(GameObject characterAsociated, AttackData newAttackAsociated)
     {
         character = characterAsociated;
+        newAttack = newAttackAsociated;
+
         unitNameText.text = character.name;
-        newAttackNameText.text = newAttack.name;
+        newAttackNameText.text = newAttackAsociated.name;
 
-        baseDamageTextNA.text = "Base Damage: " + newAttack.BaseDamage;
-        typeTextNA.text = "Type: " + newAttack.Type.ToString();
+        baseDamageTextNA.text = "Base Damage: " + newAttackAsociated.BaseDamage;
+        typeTextNA.text = "Type: " + newAttackAsociated.Type.ToString();
 
-        if(newAttack.PhyAttack == 1 && newAttack.MagicAttack == 0) magicOrPhysicalTextNA.text = "Physical";
+        if(newAttackAsociated.PhyAttack == 1 && newAttackAsociated.MagicAttack == 0) magicOrPhysicalTextNA.text = "Physical";
 
-        if(newAttack.PhyAttack == 0 && newAttack.MagicAttack == 1) magicOrPhysicalTextNA.text = "Magic";
+        if(newAttackAsociated.PhyAttack == 0 && newAttackAsociated.MagicAttack == 1) magicOrPhysicalTextNA.text = "Magic";
 
-        if(newAttack.PhyAttack == 0 && newAttack.MagicAttack == 0) magicOrPhysicalTextNA.text = "Heal";
+        if(newAttackAsociated.PhyAttack == 0 && newAttackAsociated.MagicAttack == 0) magicOrPhysicalTextNA.text = "Heal";
 
-        if(newAttack.IsAoeAttack)
+        if(newAttackAsociated.IsAoeAttack)
         {
             aoeTextNA.text = "Is AOE";
 
         } else aoeTextNA.text = "Is NOT AOE";
 
-        manaCostTextNA.text = newAttack.ManaCost.ToString();
+        manaCostTextNA.text = "Mana cost: " + newAttackAsociated.ManaCost.ToString();
 
-        if(newAttack.Berserker)
+        if(newAttackAsociated.Berserker)
         {
             berserkerAttackTextNA.text = "Is Berserker";
 
         } else berserkerAttackTextNA.text = "Is NOT Berserker";
 
-        switch (newAttack.GenerateAState)
+        switch (newAttackAsociated.GenerateAState)
         {
             case ActionStates.None:
                 stateAsociatedTextNA.text = "No state asociated";
             break;
 
             case ActionStates.Heal:
-                stateAsociatedTextNA.text = "Heal State: " + newAttack.StateGenerated;
+                stateAsociatedTextNA.text = "Heal State: " + newAttackAsociated.StateGenerated;
             break;
 
             case ActionStates.Inflict:
-                stateAsociatedTextNA.text = "Inflict State " + newAttack.StateGenerated + " with probability: " + newAttack.ProbabilityOfState;
+                stateAsociatedTextNA.text = "Inflict State " + newAttackAsociated.StateGenerated + " | Probability: " + newAttackAsociated.ProbabilityOfState;
             break;
         }
 
-        if(newAttack.BattleModifierAsociated != null)
+        if(newAttackAsociated.BattleModifierAsociated != null)
         {
-            battleModifierTextNA.text = "Inflict battle modifier: " + newAttack.BattleModifierAsociated.ToString();
+            battleModifierTextNA.text = "Inflict battle modifier: " + newAttackAsociated.BattleModifierAsociated.ToString();
 
         } else battleModifierTextNA.text = "No battle modifier asociated";
+
+        characterAsociated.GetComponent<Stats>().ListNameAtk.ForEach(name => {
+            GameObject bt = Instantiate(buttonRef, actualAttacksPanel.transform.position, Quaternion.identity);
+            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = name;
+
+            bt.GetComponent<Button>().onClick.AddListener(delegate { SetOldAttackToForget(name); });
+            bt.transform.SetParent(actualAttacksPanel.transform);
+
+            bt.transform.localScale = new Vector3(1f,1f,1f);
+        });
     }
 
 }

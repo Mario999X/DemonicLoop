@@ -1009,8 +1009,6 @@ public class CombatFlow : MonoBehaviour
 
             if(charactersWhoCanLearnAnAttack.Count > 0) yield return StartCoroutine(ProcessingNewAttacks(charactersWhoCanLearnAnAttack));
 
-            yield return new WaitForSeconds(3);
-
             charactersWhoCanLearnAnAttack.Clear();
 
             AudioManager.Instance.StopSoundCombat();

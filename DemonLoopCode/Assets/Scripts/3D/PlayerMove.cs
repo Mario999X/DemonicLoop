@@ -57,8 +57,8 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         // Captura del los ejes X y Z
-        X = Input.GetAxis("Horizontal");
-        Z = Input.GetAxis("Vertical");
+        Z = -Input.GetAxis("Horizontal");
+        X = Input.GetAxis("Vertical");
 
         // Capacidad de moverse a trav�s de los ejes X y Z
         Vector3 move = transform.right * X + transform.forward * Z;

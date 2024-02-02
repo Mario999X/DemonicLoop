@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 2
+  disasterLevel: 1
 --- !u!1 &5862220882609411174
 GameObject:
   m_ObjectHideFlags: 0

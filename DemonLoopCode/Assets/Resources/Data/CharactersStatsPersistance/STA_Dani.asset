@@ -15,12 +15,12 @@ MonoBehaviour:
   characterPB: {fileID: 6806864167824992199, guid: 51b2790600c1647798c560609ca0911b,
     type: 3}
   level: 0
-  currentXP: 114
-  health: 105
-  maxHealth: 105
+  currentXP: 27
+  health: 305
+  maxHealth: 305
   mana: 160
   maxMana: 160
-  sp: 0
+  sp: 40
   strength: 20
   physicalDef: 17
   magicAtk: 25
@@ -30,4 +30,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
   - {fileID: 11400000, guid: f7785423cd0c3481090ae0791f22f183, type: 2}
   - {fileID: 11400000, guid: c5e92f23de0588141b3542d2400c9c0b, type: 2}
-  - {fileID: 11400000, guid: 3dff1e93ce22c49a298d175c999b5e6d, type: 2}
+  - {fileID: 11400000, guid: cf7a8b30912f44407b11be432aeff6d9, type: 2}

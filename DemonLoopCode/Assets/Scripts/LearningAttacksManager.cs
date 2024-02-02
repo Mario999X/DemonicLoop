@@ -74,12 +74,76 @@ public class LearningAttacksManager : MonoBehaviour
 
     }
 
+    private void LocateInterface()
+    {
+        learningAttacksPanel = GameObject.Find("LearningAttacksPanel");
+
+        infoNewAttackPanel = learningAttacksPanel.transform.GetChild(2).gameObject;
+        infoOldAttackPanel = learningAttacksPanel.transform.GetChild(3).gameObject;
+
+        unitNameText = learningAttacksPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        newAttackNameText = learningAttacksPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+
+        baseDamageTextNA = infoNewAttackPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        typeTextNA = infoNewAttackPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+        magicOrPhysicalTextNA = infoNewAttackPanel.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
+        aoeTextNA = infoNewAttackPanel.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
+        manaCostTextNA = infoNewAttackPanel.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>();
+        berserkerAttackTextNA = infoNewAttackPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>();
+        stateAsociatedTextNA = infoNewAttackPanel.transform.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
+        battleModifierTextNA = infoNewAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
+
+
+        baseDamageText = infoOldAttackPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        typeText = infoOldAttackPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+        magicOrPhysicalText = infoOldAttackPanel.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
+        aoeText = infoOldAttackPanel.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
+        manaCostText = infoOldAttackPanel.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>();
+        berserkerAttackText = infoOldAttackPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>();
+        stateAsociatedText = infoOldAttackPanel.transform.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
+        battleModifierText = infoOldAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
+
+        actualAttacksPanel = learningAttacksPanel.transform.GetChild(6).gameObject;
+        learnAttackBtn = learningAttacksPanel.transform.GetChild(5).gameObject;
+    }
+
 
     private void HideInterface()
     {
         infoOldAttackPanel.SetActive(false);
         learningAttacksPanel.SetActive(false);
-        learnAttackBtn.SetActive(false);
+        learnAttackBtn.GetComponent<Button>().interactable = false;
+    }
+
+    public void FinishOperationNoNewAttack()
+    {
+        GetComponent<CombatFlow>().ChangeNewAttackDoneBoolean();
+    }
+
+    public void ForgetOldAttackAndLearnNewAttack()
+    {
+        character.GetComponent<Stats>().ForgetAttack(oldAttackSelected);
+        character.GetComponent<Stats>().SetAttack(newAttack);
+
+        FinishOperationNoNewAttack();
+    }
+
+    public void DesactivatePanel()
+    {
+        character = null;
+        newAttack = null;
+        oldAttackSelected = null;
+
+        foreach(Transform button in actualAttacksPanel.transform) Destroy(button.gameObject);
+
+        HideInterface();
+
+        learningAttacksPanel.SetActive(false);
+    }
+
+    public void ActivatePanel()
+    {
+        learningAttacksPanel.SetActive(true);
     }
 
     private void SetOldAttackToForget(string movement)
@@ -126,78 +190,14 @@ public class LearningAttacksManager : MonoBehaviour
 
         if(oldAttackSelected.BattleModifierAsociated != null)
         {
-            battleModifierText.text = "Inflict battle modifier: " + oldAttackSelected.BattleModifierAsociated.ToString();
+            battleModifierText.text = "Inflict battle modifier: " + oldAttackSelected.ObtainBattleModifierName();
 
         } else battleModifierText.text = "No battle modifier asociated";
 
         infoOldAttackPanel.SetActive(true);
 
-        learnAttackBtn.SetActive(true);
+        learnAttackBtn.GetComponent<Button>().interactable = true;
         learnAttackBtn.GetComponent<Button>().onClick.AddListener(delegate { ForgetOldAttackAndLearnNewAttack(); });
-    }
-
-    private void LocateInterface()
-    {
-        learningAttacksPanel = GameObject.Find("LearningAttacksPanel");
-
-        infoNewAttackPanel = learningAttacksPanel.transform.GetChild(2).gameObject;
-        infoOldAttackPanel = learningAttacksPanel.transform.GetChild(3).gameObject;
-
-        unitNameText = learningAttacksPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        newAttackNameText = learningAttacksPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
-
-        baseDamageTextNA = infoNewAttackPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        typeTextNA = infoNewAttackPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
-        magicOrPhysicalTextNA = infoNewAttackPanel.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
-        aoeTextNA = infoNewAttackPanel.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
-        manaCostTextNA = infoNewAttackPanel.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>();
-        berserkerAttackTextNA = infoNewAttackPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>();
-        stateAsociatedTextNA = infoNewAttackPanel.transform.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
-        battleModifierTextNA = infoNewAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
-
-
-        baseDamageText = infoOldAttackPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        typeText = infoOldAttackPanel.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
-        magicOrPhysicalText = infoOldAttackPanel.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
-        aoeText = infoOldAttackPanel.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
-        manaCostText = infoOldAttackPanel.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>();
-        berserkerAttackText = infoOldAttackPanel.transform.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>();
-        stateAsociatedText = infoOldAttackPanel.transform.GetChild(6).gameObject.GetComponent<TextMeshProUGUI>();
-        battleModifierText = infoOldAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
-
-        actualAttacksPanel = learningAttacksPanel.transform.GetChild(6).gameObject;
-        learnAttackBtn = learningAttacksPanel.transform.GetChild(5).gameObject;
-    }
-
-    public void FinishOperationNoNewAttack()
-    {
-        GetComponent<CombatFlow>().ChangeNewAttackDoneBoolean();
-    }
-
-    public void ForgetOldAttackAndLearnNewAttack()
-    {
-        character.GetComponent<Stats>().ForgetAttack(oldAttackSelected);
-        character.GetComponent<Stats>().SetAttack(newAttack);
-
-        FinishOperationNoNewAttack();
-    }
-
-    public void DesactivatePanel()
-    {
-        character = null;
-        newAttack = null;
-        oldAttackSelected = null;
-
-        foreach(Transform button in actualAttacksPanel.transform) Destroy(button.gameObject);
-
-        HideInterface();
-
-        learningAttacksPanel.SetActive(false);
-    }
-
-    public void ActivatePanel()
-    {
-        learningAttacksPanel.SetActive(true);
     }
 
     public void SetNewAttackInfo(GameObject characterAsociated, AttackData newAttackAsociated)
@@ -206,7 +206,7 @@ public class LearningAttacksManager : MonoBehaviour
         newAttack = newAttackAsociated;
 
         unitNameText.text = character.name;
-        newAttackNameText.text = newAttackAsociated.name;
+        newAttackNameText.text = newAttackAsociated.name.Substring(4, newAttackAsociated.name.Length - 4).Replace("^", " ").ToUpper();
 
         baseDamageTextNA.text = "Base Damage: " + newAttackAsociated.BaseDamage;
         typeTextNA.text = "Type: " + newAttackAsociated.Type.ToString();
@@ -248,7 +248,7 @@ public class LearningAttacksManager : MonoBehaviour
 
         if(newAttackAsociated.BattleModifierAsociated != null)
         {
-            battleModifierTextNA.text = "Inflict battle modifier: " + newAttackAsociated.BattleModifierAsociated.ToString();
+            battleModifierTextNA.text = "Battle modifier: " + newAttackAsociated.ObtainBattleModifierName();
 
         } else battleModifierTextNA.text = "No battle modifier asociated";
 

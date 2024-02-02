@@ -985,21 +985,18 @@ public class CombatFlow : MonoBehaviour
             players.ToList().ForEach(p =>
             { 
                 var i = 0;
-                Debug.Log("1 playerssssssss");
+
                 AttackData possibleAttack = null;
                 if(LevelTemp[i] == p.GetComponent<Stats>().Level)
                 {
                     Debug.Log("No se subio de nivel, no ataque nuevo");
                 } else if(p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
                 {
-                    Debug.Log("2 playerssssssss");
                     possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
 
                     if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax() )
                     {
-                        Debug.Log("possibleAttack "+ possibleAttack);
-                        Debug.Log("3 playerssssssss");
-                        
+                
                         charactersWhoCanLearnAnAttack.Add(p, possibleAttack);
                     }
                 }
@@ -1009,29 +1006,30 @@ public class CombatFlow : MonoBehaviour
 
             if(charactersWhoCanLearnAnAttack.Count > 0) yield return StartCoroutine(ProcessingNewAttacks(charactersWhoCanLearnAnAttack));
 
-            yield return new WaitForSeconds(3);
-
             charactersWhoCanLearnAnAttack.Clear();
 
-            AudioManager.Instance.StopSoundCombat();
             //Se debe mostrar una pantalla de WIN
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
+
+            AudioManager.Instance.StopSoundCombat();
 
             yield return new WaitForSeconds(3);
 
             enterBattle.FinishBattle();
             DisablePanel();
             ClearPanel();
+
             // Se resetea la información del combate para el proximo encuentro
             actualTurn = 0;
             moves = 0;
         }
         if (playerBT.Count == 0)
         {
-            AudioManager.Instance.StopSoundCombat();
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
+
+            AudioManager.Instance.StopSoundCombat();
 
             yield return new WaitForSeconds(3);
             
@@ -1053,22 +1051,17 @@ public class CombatFlow : MonoBehaviour
 
     private IEnumerator ProcessingNewAttacks(Dictionary<GameObject, AttackData> dic)
     {
-        Debug.Log("He entradoX2");
+        // Pasa por cada personaje que haya subido de nivel, tenga que aprender un ataque y ya tenga el maximo posible
         foreach (KeyValuePair<GameObject, AttackData> charAndAttack in dic)
         {
             newAttacksDone = false;
 
-            Debug.Log("He entradoX3 " + newAttacksDone);
             learningAttacksManager.ActivatePanel();
 
             learningAttacksManager.SetNewAttackInfo(charAndAttack.Key, charAndAttack.Value);
 
-            Debug.Log("He entradoX4");
-
-            // Espera hasta que el jugador cierre el panel
+            // Espera activa hasta que el jugador pulse sobre algun boton posible del panel
             yield return StartCoroutine(WaitForUserInputNewAttack());
-
-            Debug.Log("He entradoX5");
 
             learningAttacksManager.DesactivatePanel();
         }
@@ -1080,7 +1073,7 @@ public class CombatFlow : MonoBehaviour
         {
             //Debug.Log("ESTOY ESPERANDO " + newAttacksDone);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
         }
     }
 

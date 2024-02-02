@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class LibraryMove : MonoBehaviour
 {
@@ -100,10 +99,6 @@ public class LibraryMove : MonoBehaviour
         if (attack.ManaCost != 0) ManaManager(attack, character_ST);
 
         character = null; target = null;
-
-
-
-
     }//Fin de Library
 
 
@@ -124,7 +119,7 @@ public class LibraryMove : MonoBehaviour
 
 
     // Se llama para recibir la clase base de ataques. Se obtiene su informacion esencial.
-    private AttackData CheckAttack(string movement)
+    public AttackData CheckAttack(string movement)
     {
         AttackData attackData;
 

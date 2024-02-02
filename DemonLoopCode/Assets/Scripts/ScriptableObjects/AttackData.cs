@@ -62,4 +62,9 @@ public class AttackData : ScriptableObject
     {
         return stateAsociated.name.Substring(4, stateAsociated.name.Length - 4).ToUpper();
     }
+
+    public string ObtainBattleModifierName()
+    {
+        return battleModifierAsociated.name.Substring(4, battleModifierAsociated.name.Length - 4);
+    }
 }

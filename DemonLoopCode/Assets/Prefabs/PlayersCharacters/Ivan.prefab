@@ -69,7 +69,7 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 100
+  maxHealth: 300
   mana: 0
   maxMana: 150
   sp: 10

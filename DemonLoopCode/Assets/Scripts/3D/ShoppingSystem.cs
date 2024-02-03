@@ -30,12 +30,14 @@ public class ShoppingSystem : MonoBehaviour
     Dictionary<string, ScriptableObject> stock = new();
 
     PlayerInventory inventory;
+    Data party;
     [SerializeField] ScriptableObject data;
 
     // Start is called before the first frame update
     void Start()
     {
         inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
+        party = GameObject.Find("System").GetComponent<Data>();
 
         switch (gameObject.tag)
         {
@@ -44,11 +46,11 @@ public class ShoppingSystem : MonoBehaviour
 
                 foreach (ObjectData obj in objects)
                 {
-                    string atkName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
+                    string objName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
 
-                    stock.Add(atkName, obj);
+                    stock.Add(objName, obj);
 
-                    //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
+                    //Debug.Log("Ataque " + objName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
                 }
 
                 displayzone = GameObject.Find("Object display");
@@ -61,6 +63,24 @@ public class ShoppingSystem : MonoBehaviour
                 displayzone.SetActive(false);
                 break;
             case "Slave Shop":
+                List<StatsPersistenceData> slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
+
+                List<StatsPersistenceData> group = party.CharactersTeamStats;
+
+                group.ForEach(g => { if (slaves.Contains(g)) slaves.Remove(g); });
+
+                slaves.ForEach(s => stock.Add(s.name.Substring(s.name.IndexOf("_") + 1), s));
+
+                displayzone = GameObject.Find("Slave display");
+                icon = displayzone.transform.GetChild(0).GetComponent<Image>();
+
+                description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+                buy = displayzone.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+                displayzone.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => Buy());
+                displayzone.SetActive(false);
+
                 break;
         }
     }
@@ -78,8 +98,8 @@ public class ShoppingSystem : MonoBehaviour
         {
             canvas = GameObject.Find("Shop").GetComponent<Canvas>();
 
-            canvas.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.RemoveAllListeners();
-            canvas.transform.GetChild(0).GetChild(3).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
+            canvas.transform.GetChild(0).GetChild(4).GetComponent<Button>().onClick.RemoveAllListeners();
+            canvas.transform.GetChild(0).GetChild(4).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
 
             done = true;
         }
@@ -92,34 +112,36 @@ public class ShoppingSystem : MonoBehaviour
             canvas.enabled = !canvas.enabled;
             inventory.DontOpenInventory = !inventory.DontOpenInventory;
 
-            if (canvas.enabled)
+            foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
             {
-                foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
-                    Destroy(child.gameObject);
-
-                if (displayzone.activeSelf)
-                    displayzone.SetActive(false);
+                Destroy(child.gameObject);
             }
 
-            foreach (ScriptableObject scriptable in stock.Values)
+            if (displayzone.activeSelf)
+                displayzone.SetActive(false);
+
+            if (canvas.enabled)
             {
-                GameObject obj = Instantiate(button, canvas.transform.GetChild(0).GetChild(0).GetChild(0));
-                obj.transform.SetParent(canvas.transform.GetChild(0).GetChild(0).GetChild(0).transform);
-                string nam = scriptable.name.Substring(4, scriptable.name.Length - 4).Replace("^", " ").ToUpper();
-                obj.name = nam;
-                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = nam;
-                obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
-                obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(scriptable); });
+                foreach (ScriptableObject scriptable in stock.Values)
+                {
+                    GameObject obj = Instantiate(button, canvas.transform.GetChild(0).GetChild(0).GetChild(0));
+                    obj.transform.SetParent(canvas.transform.GetChild(0).GetChild(0).GetChild(0).transform);
+                    string nam = scriptable.name.Substring(4, scriptable.name.Length - 4).Replace("^", " ").ToUpper();
+                    obj.name = nam;
+                    obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = nam;
+                    obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
+                    obj.GetComponent<Button>().onClick.AddListener(() => { ItemSelected(scriptable); });
 
-                ColorBlock colors = new ColorBlock();
-                colors.normalColor = new Color(255,255,255,1);
-                colors.pressedColor = new Color(255,255,255,1);
-                colors.disabledColor = new Color(255,255,255,1);
-                colors.highlightedColor = new Color(255, 0, 0, 1f);
-                colors.selectedColor = new Color(255, 255, 0, 1f);
-                colors.colorMultiplier = 1;
+                    ColorBlock colors = new ColorBlock();
+                    colors.normalColor = new Color(255, 255, 255, 1);
+                    colors.pressedColor = new Color(255, 255, 255, 1);
+                    colors.disabledColor = new Color(255, 255, 255, 1);
+                    colors.highlightedColor = new Color(255, 0, 0, 1f);
+                    colors.selectedColor = new Color(255, 255, 0, 1f);
+                    colors.colorMultiplier = 1;
 
-                obj.GetComponent<Button>().colors = colors;
+                    obj.GetComponent<Button>().colors = colors;
+                }
             }
         }
     }
@@ -151,11 +173,11 @@ public class ShoppingSystem : MonoBehaviour
         data = @object;
 
         quantity = 1;
-        GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
 
         switch (gameObject.tag)
         {
             case "Normal Shop":
+                GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
 
                 ObjectData data = @object as ObjectData;
 
@@ -164,6 +186,10 @@ public class ShoppingSystem : MonoBehaviour
                 buy.text = $"Cost: {data.Cost}Ma";
                 break;
             case "Slave Shop":
+                StatsPersistenceData slave = @object as StatsPersistenceData;
+
+                icon.sprite = slave.CharacterPB.transform.GetChild(3).GetComponent<Image>().sprite;
+                buy.text = $"Cost: {slave.Cost}Ma";
                 break;
         }
     }
@@ -171,12 +197,13 @@ public class ShoppingSystem : MonoBehaviour
     public void Buy()
     {
         MoneyPlayer money = GameObject.Find("System").GetComponent<MoneyPlayer>();
+        float totalCost;
 
         switch (gameObject.tag)
         {
             case "Normal Shop":
                 ObjectData data = this.data as ObjectData;
-                float totalCost = (data.Cost * quantity);
+                totalCost = (data.Cost * quantity);
 
                 if ((money.Money - totalCost) >= 0)
                 {
@@ -187,6 +214,26 @@ public class ShoppingSystem : MonoBehaviour
                 }
                 break;
             case "Slave Shop":
+                StatsPersistenceData slave = this.data as StatsPersistenceData;
+                totalCost = (slave.Cost * quantity);
+
+                if ((money.Money - totalCost) >= 0)
+                {
+                    money.Money -= totalCost;
+                    
+                    if (party.CharactersTeamStats.Count < 4)
+                    {
+                        party.CharactersTeamStats.Add(slave);
+                    }
+                    else
+                    {
+                        party.CharactersBackupStats.Add(slave);
+                    }
+
+                    stock.Remove(slave.name.Substring(slave.name.IndexOf("_") + 1));
+
+                    Destroy(GameObject.Find(slave.name.Substring(slave.name.IndexOf("_") + 1).ToUpper()));
+                }
                 break;
         }
     }

@@ -18,7 +18,9 @@ public class StatsPersistenceData : ScriptableObject
     [SerializeField] private float magicDef;
     [SerializeField] private float criticalChance;
     [SerializeField] private List<AttackData> listAtk;
+    [SerializeField] float cost;
 
+    public float Cost { get { return cost; } }
     public GameObject CharacterPB { get { return characterPB; }}
     public int Level { get { return level; } set { level = value; }}
     public float CurrentXP { get { return currentXP; } set { currentXP = value; }}

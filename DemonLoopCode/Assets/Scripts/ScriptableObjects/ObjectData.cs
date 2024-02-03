@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 
@@ -43,6 +44,7 @@ public class ObjectData : ScriptableObject
 
         this.inventory = inventory;
         enterBattle = GameObject.Find("System").GetComponent<EnterBattle>();
+
         if (enterBattle.OneTime)
         {
             if(objectType == ObjectTypes.Revive)
@@ -52,39 +54,60 @@ public class ObjectData : ScriptableObject
         }
         else
         {
-            GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(true);
-
-            GameObject[] buttons = GameObject.FindGameObjectsWithTag("Buttons");
-
-            if (buttons.Length > 0)
+            if (ObjectTypes.Throwable != ObjectType)
             {
-                foreach (GameObject bt in buttons)
+                GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(true);
+
+                GameObject[] buttons = GameObject.FindGameObjectsWithTag("Buttons");
+
+                if (buttons.Length > 0)
                 {
-                    Destroy(bt);
+                    foreach (GameObject bt in buttons)
+                    {
+                        Destroy(bt);
+                    }
                 }
-            }
 
-            if(objectType == ObjectTypes.Revive)
-            {
-                CreateButtonsPlayersDefeated(GameObject.Find("PartyButtons"));
-            } else if(objectType != ObjectTypes.Throwable) CreateButtons(GameObject.Find("PartyButtons"));
-            
+                if (objectType == ObjectTypes.Revive)
+                {
+                    CreateButtonsPlayersDefeated(GameObject.Find("PartyButtons"));
+                }
+                else if (objectType != ObjectTypes.Throwable) CreateButtons(GameObject.Find("PartyButtons"));
+            }
         }
     }
 
     void CreateButtons(GameObject spawnMoveBT)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player").ToArray();
-
-        foreach (GameObject pl in players)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Shop")
         {
-            Debug.Log(spawnMoveBT);
+            List<StatsPersistenceData> charactersTeamStats = GameObject.Find("System").GetComponent<Data>().CharactersTeamStats;
 
-            GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
-            bt.transform.SetParent(spawnMoveBT.transform);
-            bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
-            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1);
-            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObject(pl); });
+            foreach (StatsPersistenceData stats in charactersTeamStats)
+            {
+                Debug.Log(spawnMoveBT);
+
+                GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spawnMoveBT.transform);
+                bt.name = "Ally " + stats.name;//Nombre de los botones que se van a generar
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = stats.name.Substring(stats.name.IndexOf("_") + 1);
+                bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectSP(stats); });
+            }
+        }
+        else
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player").ToArray();
+
+            foreach (GameObject pl in players)
+            {
+                Debug.Log(spawnMoveBT);
+
+                GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spawnMoveBT.transform);
+                bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(pl.name.IndexOf("_") + 1);
+                bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectS2(pl); });
+            }
         }
     }
 
@@ -97,12 +120,39 @@ public class ObjectData : ScriptableObject
             GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
             bt.transform.SetParent(spawnMoveBT.transform);
             bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
-            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1);
-            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObject(pl); });
+            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(pl.name.IndexOf("_") + 1);
+            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectS2(pl); });
         }
     }
 
-    public void UserObject(GameObject @character)
+    public void UserObjectSP(StatsPersistenceData target)
+    {
+
+        switch (ObjectType)
+        {
+            case ObjectTypes.Health:
+                //Debug.Log("Pocion de Cura");
+                target.Health += BaseNum;
+                break;
+
+            case ObjectTypes.Mana:
+                //Debug.Log("Pocion de Mana");
+                target.Mana += BaseNum;
+                break;
+
+            case ObjectTypes.HealState:
+                GameObject.Find("System").GetComponent<LibraryStates>().RemoveCharacterWithState(target.CharacterPB, ObtainStateName());
+                break;
+
+            case ObjectTypes.Revive:
+                target.Health = baseNum;
+                break;
+        }
+
+        inventory.RemoveObjectFromInventory(name.Substring(4, name.Length - 4));
+    }//Fin de UserObjectSP
+
+    public void UserObjectS2(GameObject @character)
     {
         if (enterBattle.OneTime)
             GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
@@ -187,7 +237,7 @@ public class ObjectData : ScriptableObject
         }
 
         inventory.RemoveObjectFromInventory(name.Substring(4, name.Length - 4));
-    }//Fin de UserObject
+    }//Fin de UserObjectS2
 
     private string ObtainStateName()
     {

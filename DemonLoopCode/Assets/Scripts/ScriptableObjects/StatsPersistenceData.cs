@@ -22,9 +22,9 @@ public class StatsPersistenceData : ScriptableObject
     public GameObject CharacterPB { get { return characterPB; }}
     public int Level { get { return level; } set { level = value; }}
     public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
-    public float Health { get { return health; } set { health = value; } }
+    public float Health { get { return health; } set { health = value; OnHealthChanged(); } }
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
-    public float Mana { get { return mana; } set { mana = value; } }
+    public float Mana { get { return mana; } set { mana = value; OnManaChanged(); } }
     public float MaxMana { get { return maxMana; } set { maxMana = value; } }    
     public float SP { get { return sp; } set { sp = value; } }
     public float Strenght { get { return strength; } set { strength = value; } }
@@ -34,4 +34,29 @@ public class StatsPersistenceData : ScriptableObject
     public float CriticalChance { get { return criticalChance; } set { criticalChance = value; } }
     public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; }}
 
+    private void OnManaChanged()
+    {
+        if (mana >= maxMana)
+        {
+            mana = maxMana;
+        }
+
+        if (mana <= 0)
+        {
+            mana = 0;
+        }
+    }
+
+    private void OnHealthChanged()
+    {
+        if (health >= maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        if (health <= 0)
+        {
+            health = 0;
+        }
+    }//Fin de OnAttackReceived
 }

@@ -15,6 +15,8 @@ public class Stats : MonoBehaviour
 
     private GameObject charFloatingTextSpaceNumbers;
 
+    private GameObject charFloatingBattleModifierIconSpace;
+
     private TextMeshProUGUI levelText;
 
     private Image radialSP;
@@ -73,6 +75,7 @@ public class Stats : MonoBehaviour
     public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; }}
     public List<string> ListNameAtk { get { return ObtainNameAttacks(); }}
     public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }
+    public GameObject CharFloatingBattleModifierIconSpace { get { return charFloatingBattleModifierIconSpace; } }
     public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; }}
     public Types Type { get { return type; } }
 
@@ -96,6 +99,7 @@ public class Stats : MonoBehaviour
         barMana = transform.GetChild(1).Find("BarManaFill").GetComponent<Image>();
 
         charFloatingTextSpaceNumbers = transform.GetChild(2).gameObject;
+        charFloatingBattleModifierIconSpace = transform.GetChild(6).gameObject;
 
         levelText = transform.GetChild(4).GetComponent<TextMeshProUGUI>();
 

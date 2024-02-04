@@ -12,7 +12,7 @@ public class Data : MonoBehaviour
     float money;
     [SerializeField] private List<StatsPersistenceData> charactersTeamStats = new();
 
-    private List<StatsPersistenceData> charactersBackupStats = new();
+    [SerializeField] private List<StatsPersistenceData> charactersBackupStats = new();
 
     public int SaveRoom { get { return saveRoom; } set { saveRoom = value; } }
     public int Room { get { return room; } set { room = value; } }

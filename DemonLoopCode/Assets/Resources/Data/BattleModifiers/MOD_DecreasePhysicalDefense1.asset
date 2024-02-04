@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47e20654a0504940ab758455e81e6d1, type: 3}
   m_Name: MOD_DecreasePhysicalDefense1
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: db5adf4e5c24e45e1adbf38e0e361449, type: 3}
   baseEffectNumber: 10
   isADebuff: 1
   modifierEffect: 0

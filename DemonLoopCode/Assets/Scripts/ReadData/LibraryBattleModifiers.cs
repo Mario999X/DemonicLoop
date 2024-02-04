@@ -41,9 +41,13 @@ public class LibraryBattleModifiers : MonoBehaviour
     private Dictionary<string, BattleModifiers> battleModifiersCache = new();
     private List<ActualBattleModifiers> battleModifiersActive = new();
 
+    private BattleModifierIconsCombat battleModifierIconsCombat;
+
     private void Start()
     {
         LoadBattleModifiers();
+
+        battleModifierIconsCombat = GetComponent<BattleModifierIconsCombat>();
     }
 
     private void LoadBattleModifiers()
@@ -71,6 +75,8 @@ public class LibraryBattleModifiers : MonoBehaviour
         } else
         {
             Debug.Log($"{target.name} se le agrega el modificador {modifier.name}");
+
+            battleModifierIconsCombat.ShowBattleModifierIcon(target, modifier);
 
             ActualBattleModifiers actualModifier = new();
 
@@ -185,6 +191,8 @@ public class LibraryBattleModifiers : MonoBehaviour
                 var modifier = battleModifiersActive[i];
                 var targetST = battleModifiersActive[i].Character;
 
+                battleModifierIconsCombat.DeleteBattleModifierIcon(targetST.transform.gameObject, modifierData);
+
                 var buffOrDebuffReturnToNormal = "-";
 
                 if(modifierData.IsADebuff)
@@ -266,6 +274,8 @@ public class LibraryBattleModifiers : MonoBehaviour
             var modifier = battleModifiersActive[i];
             var targetST = battleModifiersActive[i].Character;
 
+            battleModifierIconsCombat.DeleteBattleModifierIcon(targetST.transform.gameObject, modifierData);
+
             var buffOrDebuffReturnToNormal = "-";
 
             if(modifierData.IsADebuff)
@@ -337,7 +347,11 @@ public class LibraryBattleModifiers : MonoBehaviour
 
         for (int i = 0; i < battleModifiersActive.Count; i++)
         {
-            if(modifier.name == battleModifiersActive[i].ModifierName && target.name == battleModifiersActive[i].Character.name) battleModifierSearch = battleModifiersActive[i];
+            if(modifier.name == battleModifiersActive[i].ModifierName && target.name == battleModifiersActive[i].Character.name)
+            {
+                battleModifierSearch = battleModifiersActive[i];
+                break;
+            } 
         }
 
         return battleModifierSearch;

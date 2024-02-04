@@ -21,7 +21,7 @@ public class ShoppingSystem : MonoBehaviour
     TextMeshProUGUI description;
     TextMeshProUGUI buy;
 
-    [SerializeField] GameObject displayzone;
+    GameObject displayzone;
 
     Canvas canvas;
 
@@ -31,7 +31,7 @@ public class ShoppingSystem : MonoBehaviour
 
     PlayerInventory inventory;
     Data party;
-    [SerializeField] ScriptableObject data;
+    ScriptableObject data;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +39,10 @@ public class ShoppingSystem : MonoBehaviour
         inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
         party = GameObject.Find("System").GetComponent<Data>();
 
+        // Dependiendo de que tipo de tienda guarda y modifica lo que tiene que utilizar
         switch (gameObject.tag)
         {
-            case "Normal Shop":
+            case "Normal Shop": // En el caso de la tienda normal este tiene que cargar todos los objetos y guardar los componentes.
                 ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
 
                 foreach (ObjectData obj in objects)
@@ -49,8 +50,6 @@ public class ShoppingSystem : MonoBehaviour
                     string objName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
 
                     stock.Add(objName, obj);
-
-                    //Debug.Log("Ataque " + objName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
                 }
 
                 displayzone = GameObject.Find("Object display");
@@ -62,12 +61,14 @@ public class ShoppingSystem : MonoBehaviour
                 displayzone.transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Buy());
                 displayzone.SetActive(false);
                 break;
-            case "Slave Shop":
+            case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los compañeros y guardar los componentes que se van a utilizar.
                 List<StatsPersistenceData> slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
 
                 List<StatsPersistenceData> group = party.CharactersTeamStats;
+                List<StatsPersistenceData> backup = party.CharactersBackupStats;
 
                 group.ForEach(g => { if (slaves.Contains(g)) slaves.Remove(g); });
+                backup.ForEach(b => { if (slaves.Contains(b)) slaves.Remove(b); });
 
                 slaves.ForEach(s => stock.Add(s.name.Substring(s.name.IndexOf("_") + 1), s));
 
@@ -105,6 +106,7 @@ public class ShoppingSystem : MonoBehaviour
         }
     }
 
+    // Cierra y abre la interfaz de la tienda.
     public void OpenCloseShop()
     {
         if (canvas != null)
@@ -112,14 +114,23 @@ public class ShoppingSystem : MonoBehaviour
             canvas.enabled = !canvas.enabled;
             inventory.DontOpenInventory = !inventory.DontOpenInventory;
 
+            // Destruye todos los botones generados para evitar duplicaciones.
             foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
-            {
                 Destroy(child.gameObject);
-            }
 
             if (displayzone.activeSelf)
                 displayzone.SetActive(false);
 
+            if (GameObject.Find("GroupOrGulab").GetComponent<Image>().enabled)
+            {
+                foreach(Transform child in GameObject.Find("GroupOrGulab").transform) 
+                    Destroy(child.gameObject);
+
+                GameObject.Find("GroupOrGulab").GetComponent<Image>().enabled = false;
+            }
+                
+
+            // Genera las botones de la mercancia.
             if (canvas.enabled)
             {
                 foreach (ScriptableObject scriptable in stock.Values)
@@ -146,6 +157,7 @@ public class ShoppingSystem : MonoBehaviour
         }
     }
 
+    // Este solo se utiliza en la tienda normal para que el jugador pueda comprar un objeto varias veces a la vez.
     public void QuantityChange(bool disminuir)
     {
         if (!disminuir)
@@ -155,18 +167,12 @@ public class ShoppingSystem : MonoBehaviour
 
         GameObject.Find("Cantidad").GetComponent<TextMeshProUGUI>().text = quantity.ToString();
 
-        switch (gameObject.tag)
-        {
-            case "Normal Shop":
-                ObjectData data = this.data as ObjectData;
+        ObjectData data = this.data as ObjectData;
 
-                buy.text = $"Cost: {(data.Cost * quantity)}Ma";
-                break;
-            case "Slave Shop":
-                break;
-        }
+        buy.text = $"Cost: {(data.Cost * quantity)}Ma";
     }
 
+    // Muestra la informacion de la mercancia.
     public void ItemSelected(ScriptableObject @object)
     {
         displayzone.SetActive(true);
@@ -194,6 +200,7 @@ public class ShoppingSystem : MonoBehaviour
         }
     }
 
+    // Cuando el jugador da al boton de comprar esta funcion se encarga de realizar todo el proceso de la transaccion.
     public void Buy()
     {
         MoneyPlayer money = GameObject.Find("System").GetComponent<MoneyPlayer>();
@@ -209,8 +216,6 @@ public class ShoppingSystem : MonoBehaviour
                 {
                     money.Money -= totalCost;
                     inventory.AddObjectToInventory(data.name, data, quantity);
-
-                    //Debug.Log($"Se han comprado {quantity} {data.name}");
                 }
                 break;
             case "Slave Shop":
@@ -219,22 +224,94 @@ public class ShoppingSystem : MonoBehaviour
 
                 if ((money.Money - totalCost) >= 0)
                 {
-                    money.Money -= totalCost;
                     
+                    // En el caso de que el grupo este lleno se le dara la opcion al jugador de si quiere incorporarlo al grupo o almacenarlo.
+                    // En el caso contrario se incluira automaticamente al grupo.
                     if (party.CharactersTeamStats.Count < 4)
                     {
                         party.CharactersTeamStats.Add(slave);
+                        
+                        money.Money -= totalCost;
+
+                        stock.Remove(slave.name.Substring(slave.name.IndexOf("_") + 1));
+
+                        Destroy(GameObject.Find(slave.name.Substring(slave.name.IndexOf("_") + 1).ToUpper()));
+
+                        displayzone.SetActive(false);
                     }
                     else
                     {
-                        party.CharactersBackupStats.Add(slave);
+                        ChooseGG(slave, money);
                     }
+                }
+                break;
+        }
+    }
+
+    // Las opciones de que se quiere hacer con el esclavo obtenido
+    void ChooseGG(StatsPersistenceData slave, MoneyPlayer money)
+    {
+        GameObject choose = GameObject.Find("GroupOrGulab");
+        choose.GetComponent<Image>().enabled = true;
+
+        GameObject group = Instantiate(button, choose.transform);
+        group.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Party";
+        group.GetComponent<Button>().onClick.AddListener(() => { Party(choose, slave, money); });
+
+        GameObject gulab = Instantiate(button, choose.transform);
+        gulab.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Dimensional pocket";
+        gulab.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            party.CharactersBackupStats.Add(slave);
+
+            money.Money -= slave.Cost;
+
+            foreach (Transform child in choose.transform)
+                Destroy(child.gameObject);
+
+            choose.GetComponent<Image>().enabled = false;
+
+            stock.Remove(slave.name.Substring(slave.name.IndexOf("_") + 1));
+
+            Destroy(GameObject.Find(slave.name.Substring(slave.name.IndexOf("_") + 1).ToUpper()));
+
+            displayzone.SetActive(false);
+        });
+
+    }
+
+    // Guarda el esclavo que vamos a sustituir he incorpora el nuevo.
+    void Party(GameObject choose, StatsPersistenceData slave, MoneyPlayer money)
+    {
+        foreach(Transform child in choose.transform)
+            Destroy(child.gameObject);
+
+        foreach(StatsPersistenceData member in party.CharactersTeamStats)
+        {
+            if (!member.name.ToUpper().Contains("MARIO"))
+            {
+                GameObject move = Instantiate(button, choose.transform);
+                move.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = member.name.Substring(member.name.IndexOf("_") + 1);
+                move.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    party.CharactersBackupStats.Add(member);
+                    party.CharactersTeamStats.Remove(member);
+                    party.CharactersTeamStats.Add(slave);
+
+                    money.Money -= slave.Cost;
+
+                    foreach (Transform child in choose.transform)
+                        Destroy(child.gameObject);
+
+                    choose.GetComponent<Image>().enabled = false;
 
                     stock.Remove(slave.name.Substring(slave.name.IndexOf("_") + 1));
 
                     Destroy(GameObject.Find(slave.name.Substring(slave.name.IndexOf("_") + 1).ToUpper()));
-                }
-                break;
+
+                    displayzone.SetActive(false);
+                });
+            }
         }
     }
 }

@@ -8,13 +8,15 @@ using UnityEngine.SceneManagement;
 public class MoneyPlayer : MonoBehaviour
 {
     [SerializeField] private float mara;
+    [SerializeField] private float maraRefined;//Dinero que solo te lo da al ganar aun jefe
 
     [SerializeField] List<TextMeshProUGUI> textMoney;
+    [SerializeField] List<TextMeshProUGUI> textMoneyRefined;
 
     public float Money { get { return mara; } set { mara = value; SetMoneyInText(); } }
-
+    public float MoneyRefined { get { return maraRefined; } set { maraRefined = value; SetMoneyRefinedInText(); } }
     bool done = false;
-    
+
     Scene scene;
 
     // Start is called before the first frame update
@@ -29,12 +31,19 @@ public class MoneyPlayer : MonoBehaviour
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
             GameObject[] textObject = GameObject.FindGameObjectsWithTag("Money");
+            GameObject[] textObjectRefined = GameObject.FindGameObjectsWithTag("MoneyRefined");
 
             foreach (GameObject text in textObject)
                 textMoney.Add(text.GetComponent<TextMeshProUGUI>());
 
             textMoney.RemoveAll(text => text.IsUnityNull());
             SetMoneyInText();
+
+            foreach (GameObject textRefined in textObjectRefined)
+                textMoneyRefined.Add(textRefined.GetComponent<TextMeshProUGUI>());
+
+            textMoneyRefined.RemoveAll(textRefined => textRefined.IsUnityNull());
+            SetMoneyRefinedInText();
 
             done = true;
         }
@@ -44,5 +53,11 @@ public class MoneyPlayer : MonoBehaviour
     {
         foreach (TextMeshProUGUI text in textMoney)
             text.text = $"Mara: {mara}";
+    }
+
+    private void SetMoneyRefinedInText()
+    {
+        foreach (TextMeshProUGUI text in textMoneyRefined)
+            text.text = $"Mara Refined: {maraRefined}";
     }
 }

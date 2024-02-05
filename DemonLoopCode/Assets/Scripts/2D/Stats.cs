@@ -3,7 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CharacterRol {
+public enum CharacterRol
+{
     Tank, Priest, Wizard, Knight
 }
 
@@ -51,20 +52,21 @@ public class Stats : MonoBehaviour
     [Header("Drops Components")]
     [SerializeField] float moneyDrop = 1.1f;
     [SerializeField] private float dropXP = 0;
-    [SerializeField] bool boss=false;
+    [SerializeField] float moneyRefinedDrop = 0f;
+    [SerializeField] bool boss = false;
 
     bool attacking = false;
 
 
     public bool Attacking { get { return attacking; } }
     public CharacterRol Rol { get { return rol; } }
-    public int Level { get { return level; } set { level = value; SetLevelText(level); }}
-    public float CurrentXP { get { return currentXP; } set { currentXP = value; }}
-    public float Health { get { return health; } set { health = value; if(barHP != null) OnAttackReceived(); } }
+    public int Level { get { return level; } set { level = value; SetLevelText(level); } }
+    public float CurrentXP { get { return currentXP; } set { currentXP = value; } }
+    public float Health { get { return health; } set { health = value; if (barHP != null) OnAttackReceived(); } }
     public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
-    public float Mana { get { return mana; } set { mana = value; if(barMana != null) OnManaChanged(); } }
-    public float MaxMana { get { return maxMana; } set { maxMana = value; } }    
-    public float SP { get { return sp; } set { sp = value; if(radialSP != null) OnSPChanged(); } }
+    public float Mana { get { return mana; } set { mana = value; if (barMana != null) OnManaChanged(); } }
+    public float MaxMana { get { return maxMana; } set { maxMana = value; } }
+    public float SP { get { return sp; } set { sp = value; if (radialSP != null) OnSPChanged(); } }
     public float MaxSP { get { return maxSP; } set { maxSP = value; } }
     public bool CanYouLaunchAnSpecialAtk { get { return canYouLaunchAnSpecialAtk; } }
     public float Strenght { get { return strength; } set { strength = value; } }
@@ -72,15 +74,16 @@ public class Stats : MonoBehaviour
     public float MagicAtk { get { return magicAtk; } set { magicAtk = value; } }
     public float MagicDef { get { return magicDef; } set { magicDef = value; } }
     public float CriticalChance { get { return criticalChance; } set { criticalChance = value; OnCriticalChance(); } }
-    public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; }}
-    public List<string> ListNameAtk { get { return ObtainNameAttacks(); }}
+    public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; } }
+    public List<string> ListNameAtk { get { return ObtainNameAttacks(); } }
     public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }
     public GameObject CharFloatingBattleModifierIconSpace { get { return charFloatingBattleModifierIconSpace; } }
-    public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; }}
+    public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; } }
     public Types Type { get { return type; } }
 
     public float MoneyDrop { get { return moneyDrop; } set { moneyDrop = value; } }
-    public float DropXP { get { return dropXP; } set { dropXP = value; }}
+    public float MoneyRefinedDrop { get { return moneyRefinedDrop; } set { moneyRefinedDrop = value; } }
+    public float DropXP { get { return dropXP; } set { dropXP = value; } }
 
     public string AtkSpecial { get { return ObtainNameAttackSpecial(); } }
     public bool Boss { get { return boss; } }
@@ -104,11 +107,11 @@ public class Stats : MonoBehaviour
         levelText = transform.GetChild(4).GetComponent<TextMeshProUGUI>();
 
         SetLevelText(level);
-        
+
         radialSP = transform.GetChild(5).Find("RadialSPFill").GetComponent<Image>();
         radialSP.fillAmount = sp;
 
-        if(!canYouLaunchAnSpecialAtk)
+        if (!canYouLaunchAnSpecialAtk)
         {
             radialSP.transform.parent.gameObject.SetActive(false);
         }
@@ -121,9 +124,9 @@ public class Stats : MonoBehaviour
         var space = true;
 
         if (listAtk.Count >= 4)
-        {   
+        {
             space = false;
-            
+
             Debug.Log(gameObject.name + " Ya tiene 4 ataques, no es posible agregar mas");
         }
 
@@ -152,12 +155,12 @@ public class Stats : MonoBehaviour
 
     private void OnManaChanged()
     {
-        if(mana >= maxMana)
+        if (mana >= maxMana)
         {
             mana = maxMana;
         }
 
-        if(mana <= 0)
+        if (mana <= 0)
         {
             mana = 0;
         }
@@ -167,12 +170,12 @@ public class Stats : MonoBehaviour
 
     private void OnSPChanged()
     {
-        if(sp >= maxSP)
+        if (sp >= maxSP)
         {
             sp = maxSP;
         }
 
-        if(sp <= 0)
+        if (sp <= 0)
         {
             sp = 0;
         }
@@ -204,18 +207,18 @@ public class Stats : MonoBehaviour
         List<string> nameList = new();
 
         listAtk.ForEach(x => {
-            if(x != null) 
-                nameList.Add(x.name.Substring(4, x.name.Length - 4).Replace("^", " ")); 
-            });
+            if (x != null)
+                nameList.Add(x.name.Substring(4, x.name.Length - 4).Replace("^", " "));
+        });
 
         return nameList;
     }
 
     public void SetAttack(AttackData attack)
-    {   
+    {
         var enoughSpace = CheckListAtkMax();
 
-        if(enoughSpace) listAtk.Add(attack);
+        if (enoughSpace) listAtk.Add(attack);
     }
 
     public void ForgetAttack(AttackData attack)
@@ -228,15 +231,15 @@ public class Stats : MonoBehaviour
         var already = false;
 
         listAtk.ForEach(a => {
-            if(a == attack) already = true;
+            if (a == attack) already = true;
         });
 
         return already;
-        
+
     }
 
     public void Revive(float healthToRevive)
-    {   
+    {
         gameObject.SetActive(true);
 
         Health = healthToRevive;
@@ -244,7 +247,7 @@ public class Stats : MonoBehaviour
 
     public void SetLevelText(int level)
     {
-        if(levelText != null)
+        if (levelText != null)
         {
             levelText.text = level.ToString();
         }

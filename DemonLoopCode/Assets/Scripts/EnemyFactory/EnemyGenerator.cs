@@ -40,6 +40,10 @@ public class EnemyGenerator : MonoBehaviour
     { 
         var enemiesGenerated = Random.Range(MinNumEnemies, MaxNumEnemies);
 
+        if (disasterLevel == 0)
+        {
+            enemiesGenerated = 1;
+        }
         for(int i = 1; i <= enemiesGenerated; i++ ){
 
             //Debug.Log("GENERANDO ENEMIGO: " + i);

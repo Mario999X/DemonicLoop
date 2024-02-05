@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -107,6 +108,7 @@ public class SceneManager : MonoBehaviour
             GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(2); });
             GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { exitGame(); });
 
+            GameObject.Find("AppVerText").GetComponent<TextMeshProUGUI>().text = "App ver. " + Application.version;
             Debug.Log("Done");
 
             done = true;

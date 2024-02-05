@@ -94,7 +94,7 @@ public class CombatFlow : MonoBehaviour
 
     GameObject panelMiniGame;
     private List<GameObject> panelSpMini = new();
-    
+
     Scene scene;
 
     private LearningAttacksManager learningAttacksManager;
@@ -350,9 +350,9 @@ public class CombatFlow : MonoBehaviour
     {
         players = GameObject.FindGameObjectsWithTag("Player").ToArray();
 
-        foreach(Transform child in GameObject.Find("AlliesBattleZone").transform)
+        foreach (Transform child in GameObject.Find("AlliesBattleZone").transform)
         {
-            if(!child.gameObject.activeSelf) playersDefeated.Add(child.gameObject);
+            if (!child.gameObject.activeSelf) playersDefeated.Add(child.gameObject);
         }
     }
 
@@ -430,7 +430,7 @@ public class CombatFlow : MonoBehaviour
                     }
                 }
             }
-            
+
         }
     }//Fin de PlayerButton
 
@@ -465,7 +465,7 @@ public class CombatFlow : MonoBehaviour
             DesactivatePlayerButton();
 
             DesactivateAllButtons();
-            
+
 
             StartCoroutine(GoPlayerSingleTarget(character, enemy, movement));
         }
@@ -526,11 +526,11 @@ public class CombatFlow : MonoBehaviour
 
         var SpMiniGame = library.CheckSpeacialAttack(movement);
 
-        float SpCountBar=0f;
+        float SpCountBar = 0f;
         //Aqui hay que activar el panel del minijuego
         if (SpMiniGame)
         {
-           
+
             foreach (Transform child in panelMiniGame.transform)
             {
                 panelSpMini.Add(child.gameObject);
@@ -540,7 +540,7 @@ public class CombatFlow : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             yield return StartCoroutine(specialMiniGame.ChargeSpecialAtk());
 
-            SpCountBar=specialMiniGame.IncreaseBar;
+            SpCountBar = specialMiniGame.IncreaseBar;
             SetSPValue(character.GetComponent<Stats>());
         }
         else
@@ -552,7 +552,7 @@ public class CombatFlow : MonoBehaviour
 
 
 
-        Debug.Log("character " + character+" SpCountBar " + SpCountBar);
+        Debug.Log("character " + character + " SpCountBar " + SpCountBar);
         bool dontStop = true, change = true;
 
         Vector2 v = character.transform.position;
@@ -610,7 +610,7 @@ public class CombatFlow : MonoBehaviour
 
         float SpCountBar = 0f;
 
-        
+
         //Chequea que ataque tiene el enemigo y puede usar
         CheckAtkEnemy();
 
@@ -637,7 +637,7 @@ public class CombatFlow : MonoBehaviour
 
                 AddSPValue(characterMove.Character.GetComponent<Stats>());
 
-                
+
 
                 bool isAOE = library.CheckAoeAttack(characterMove.Movement);
                 if (isAOE)
@@ -833,14 +833,14 @@ public class CombatFlow : MonoBehaviour
             }
             moveBT.Clear();
 
-            
-            
+
+
             //Si el ATK es Special saldra
-            if(library.CheckSpeacialAttack(character.GetComponent<Stats>().AtkSpecial.ToUpper()))
+            if (library.CheckSpeacialAttack(character.GetComponent<Stats>().AtkSpecial.ToUpper()))
             {
                 //Es ATK Special
-                Debug.Log("listAtk.ToUpper() "+ character.GetComponent<Stats>().AtkSpecial.ToUpper());
-                
+                Debug.Log("listAtk.ToUpper() " + character.GetComponent<Stats>().AtkSpecial.ToUpper());
+
                 // Creamos un boton de movimiento.
                 GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
                 bt.transform.SetParent(spawnMoveBT.transform);
@@ -983,20 +983,21 @@ public class CombatFlow : MonoBehaviour
             }
 
             players.ToList().ForEach(p =>
-            { 
+            {
                 var i = 0;
 
                 AttackData possibleAttack = null;
-                if(LevelTemp[i] == p.GetComponent<Stats>().Level)
+                if (LevelTemp[i] == p.GetComponent<Stats>().Level)
                 {
                     Debug.Log("No se subio de nivel, no ataque nuevo");
-                } else if(p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
+                }
+                else if (p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
                 {
                     possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
 
-                    if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax() )
+                    if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax())
                     {
-                
+
                         charactersWhoCanLearnAnAttack.Add(p, possibleAttack);
                     }
                 }
@@ -1004,7 +1005,7 @@ public class CombatFlow : MonoBehaviour
                 i++;
             });
 
-            if(charactersWhoCanLearnAnAttack.Count > 0) yield return StartCoroutine(ProcessingNewAttacks(charactersWhoCanLearnAnAttack));
+            if (charactersWhoCanLearnAnAttack.Count > 0) yield return StartCoroutine(ProcessingNewAttacks(charactersWhoCanLearnAnAttack));
 
             charactersWhoCanLearnAnAttack.Clear();
 
@@ -1032,7 +1033,7 @@ public class CombatFlow : MonoBehaviour
             AudioManager.Instance.StopSoundCombat();
 
             yield return new WaitForSeconds(3);
-            
+
             enterBattle.FinishBattle();
 
         }
@@ -1044,7 +1045,7 @@ public class CombatFlow : MonoBehaviour
     public void ClearPanel()
     {
         for (int i = 0; i < players.Length; i++)
-        { 
+        {
             panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
         }
     }//Fin de ClearPanel
@@ -1069,7 +1070,7 @@ public class CombatFlow : MonoBehaviour
 
     private IEnumerator WaitForUserInputNewAttack()
     {
-        while(!newAttacksDone)
+        while (!newAttacksDone)
         {
             //Debug.Log("ESTOY ESPERANDO " + newAttacksDone);
 
@@ -1144,12 +1145,16 @@ public class CombatFlow : MonoBehaviour
 
     }//Fin de CheckAtkEnemy
 
-    
+
 
     public void DeleteEnemyFromList(GameObject enemy)
     {
         enemys.Remove(enemy);
         moneyPlayer.Money += enemy.GetComponent<Stats>().MoneyDrop;
+        if (enemy.GetComponent<Stats>().Boss)
+        {
+            moneyPlayer.MoneyRefined += enemy.GetComponent<Stats>().MoneyRefinedDrop;
+        }
     }
 
     public void DeleteAllieFromArray(GameObject ally)

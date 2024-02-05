@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2387,8 +2387,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1952768996}
   m_HandleRect: {fileID: 1952768995}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.9999968
+  m_Value: 1
+  m_Size: 0.99862844
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4650,7 +4650,7 @@ MonoBehaviour:
   - {fileID: 2409840099089020148, guid: df87ced23a93534459896769d3954bbc, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarety: 0000000046000000320000000000000064000000
+  rarety: 0000000000000000000000000000000064000000
   actualroom: 0
   boosRoom: 10
 --- !u!4 &1525719001
@@ -5416,9 +5416,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 38030349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 118.679634, y: -155.21173}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000028381273, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749773893
@@ -6189,7 +6189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 22855.799}
+  m_AnchoredPosition: {x: 0, y: 24769.645}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1660057539 &9223372036854775807

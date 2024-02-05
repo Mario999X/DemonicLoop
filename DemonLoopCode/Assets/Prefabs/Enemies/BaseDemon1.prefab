@@ -717,7 +717,7 @@ MonoBehaviour:
   atkSpecial: {fileID: 0}
   moneyDrop: 50
   dropXP: 100
-  boss: 1
+  boss: 0
 --- !u!114 &-1995760961937033985
 MonoBehaviour:
   m_ObjectHideFlags: 0

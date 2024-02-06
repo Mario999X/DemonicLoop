@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1667bfcbd07434c86a0c86261a05c6, type: 3}
+  m_Name: Pwr_ManaV3
+  m_EditorClassIdentifier: 
+  icon: {fileID: -7929779680174771499, guid: 75386da3816034ced9f7f29535f677d7, type: 3}
+  description: Aumento del Mana Base +250 V3
+  costRefined: 35
+  improvementsType: 1
+  alliesTargets: 0
+  obtained: 0
+  buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
+    type: 3}

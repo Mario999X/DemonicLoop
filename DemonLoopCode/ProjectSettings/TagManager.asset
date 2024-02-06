@@ -15,6 +15,7 @@ TagManager:
   - LeverWithOrder
   - Sprite
   - MoneyRefined
+  - Special Shop
   layers:
   - Default
   - TransparentFX

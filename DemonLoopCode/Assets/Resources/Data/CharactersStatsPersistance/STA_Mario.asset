@@ -25,9 +25,11 @@ MonoBehaviour:
   physicalDef: 22
   magicAtk: 20
   magicDef: 20
-  criticalChance: 33
+  criticalChance: 20
   listAtk:
   - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
   - {fileID: 11400000, guid: 3dff1e93ce22c49a298d175c999b5e6d, type: 2}
   - {fileID: 11400000, guid: e26fac2fdf4af4d0c917716c1ff98b50, type: 2}
   - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
+  cost: 0
+  protagonist: 1

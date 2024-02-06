@@ -38,18 +38,20 @@ public class ShoppingSystem : MonoBehaviour
     {
         inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
         party = GameObject.Find("System").GetComponent<Data>();
+        
 
         // Dependiendo de que tipo de tienda guarda y modifica lo que tiene que utilizar
         switch (gameObject.tag)
         {
             case "Normal Shop": // En el caso de la tienda normal este tiene que cargar todos los objetos y guardar los componentes.
                 ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
-
+                Debug.Log("Normal Shop gameObject.tag " + gameObject.tag);
                 foreach (ObjectData obj in objects)
                 {
                     string objName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
 
                     stock.Add(objName, obj);
+                   // Debug.Log("Normal Shop stock " + objName+ " obj "+obj );
                 }
 
                 displayzone = GameObject.Find("Object display");
@@ -61,6 +63,7 @@ public class ShoppingSystem : MonoBehaviour
                 displayzone.transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Buy());
                 displayzone.SetActive(false);
                 break;
+
             case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los compañeros y guardar los componentes que se van a utilizar.
                 List<StatsPersistenceData> slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
 
@@ -81,7 +84,26 @@ public class ShoppingSystem : MonoBehaviour
 
                 displayzone.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => Buy());
                 displayzone.SetActive(false);
+                break;
 
+            case "Special Shop": // En el caso de la tienda normal este tiene que cargar todos los objetos y guardar los componentes.
+                ImprovementsData[] mejoras = Resources.LoadAll<ImprovementsData>("Data/Improvements");
+
+                foreach (ImprovementsData obj in mejoras)
+                {
+                    string objNamePWD = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
+
+                    stock.Add(objNamePWD, obj);
+                }
+
+                displayzone = GameObject.Find("Special display");
+                icon = displayzone.transform.GetChild(0).GetComponent<Image>();
+
+                description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+                buy = displayzone.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
+
+                displayzone.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => Buy());
+                displayzone.SetActive(false);
                 break;
         }
     }
@@ -99,8 +121,8 @@ public class ShoppingSystem : MonoBehaviour
         {
             canvas = GameObject.Find("Shop").GetComponent<Canvas>();
 
-            canvas.transform.GetChild(0).GetChild(4).GetComponent<Button>().onClick.RemoveAllListeners();
-            canvas.transform.GetChild(0).GetChild(4).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
+            canvas.transform.GetChild(0).GetChild(5).GetComponent<Button>().onClick.RemoveAllListeners();
+            canvas.transform.GetChild(0).GetChild(5).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
 
             done = true;
         }
@@ -197,6 +219,15 @@ public class ShoppingSystem : MonoBehaviour
                 icon.sprite = slave.CharacterPB.transform.GetChild(3).GetComponent<Image>().sprite;
                 buy.text = $"Cost: {slave.Cost}Ma";
                 break;
+
+            case "Special Shop":
+                ImprovementsData improvement = @object as ImprovementsData;
+               
+                icon.sprite = improvement.Icon;
+                description.text = improvement.Description;
+                buy.text = $"Cost: {improvement.CostRefined}MaraRef";
+               
+                break;
         }
     }
 
@@ -204,6 +235,7 @@ public class ShoppingSystem : MonoBehaviour
     public void Buy()
     {
         MoneyPlayer money = GameObject.Find("System").GetComponent<MoneyPlayer>();
+        MoneyPlayer moneyRef = GameObject.Find("System").GetComponent<MoneyPlayer>();
         float totalCost;
 
         switch (gameObject.tag)
@@ -243,6 +275,26 @@ public class ShoppingSystem : MonoBehaviour
                     {
                         ChooseGG(slave, money);
                     }
+                }
+                break;
+            case "Special Shop":
+                //StatsPersistenceData target = this.data as StatsPersistenceData;
+                List<StatsPersistenceData> target = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
+
+                ImprovementsData improv = this.data as ImprovementsData;
+                if ((money.MoneyRefined - improv.CostRefined) >= 0)
+                {
+                    money.MoneyRefined -= improv.CostRefined;
+                    target.ForEach(x => {
+                        if (x.Protagonist == true)
+                        {
+                            //Debug.Log("x.CharacterPB.name(Clone)");
+                            improv.BuyImprovement(x);
+                        };
+                    });
+                
+                    
+                    
                 }
                 break;
         }

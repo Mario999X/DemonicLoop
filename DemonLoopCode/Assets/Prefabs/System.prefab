@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 8020943997931809745}
   - component: {fileID: 7977741290860725486}
   - component: {fileID: 2296548530998863524}
+  - component: {fileID: 3394840683561504598}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -331,8 +332,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mara: 0
+  maraRefined: 0
   textMoney:
   - {fileID: 0}
+  textMoneyRefined: []
 --- !u!114 &2354188879842531627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +420,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a45d3c1ad2f4e7d9bbf5215c38f3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3394840683561504598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178491517262405012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe17e7c0d08841cd83c23eeecf49389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterActiveTeamPod: {fileID: 4502439097768756003, guid: 683174b3361aa4e7eba09181898cdc26,
+    type: 3}
+  characterBacklogTeamPod: {fileID: 526443679428046180, guid: fa1edaa08e52e47c8b9db3c4da43dff4,
+    type: 3}
 --- !u!1 &4889741102227135258
 GameObject:
   m_ObjectHideFlags: 0

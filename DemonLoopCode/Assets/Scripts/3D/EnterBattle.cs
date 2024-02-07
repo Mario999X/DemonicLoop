@@ -33,41 +33,11 @@ public class EnterBattle : MonoBehaviour
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
 
-            if (GameObject.Find("AlliesBattleZone").transform.childCount == 0)
-            {
-                Data.Instance.CharactersTeamStats.ForEach(x =>
-                {
-                    var go = Instantiate(x.CharacterPB, GameObject.Find("AlliesBattleZone").transform);
-
-                    Debug.Log("Character: " + x.name);
-
-                    if(x.Level != 0)
-                    {
-                        var statsChar = go.GetComponent<Stats>();
-
-                        statsChar.Level = x.Level;
-                        statsChar.CurrentXP = x.CurrentXP;
-                        statsChar.Health = x.Health;
-                        statsChar.MaxHealth = x.MaxHealth;
-                        statsChar.Mana = x.Mana;
-                        statsChar.MaxMana = x.MaxMana;
-                        statsChar.SP = x.SP;
-                        statsChar.Strenght = x.Strenght;
-                        statsChar.PhysicalDefense = x.PhysicalDefense;
-                        statsChar.MagicAtk = x.MagicAtk;
-                        statsChar.MagicDef = x.MagicDef;
-                        statsChar.CriticalChance = x.CriticalChance;
-
-                        statsChar.ListAtk = x.ListAtk;
-                    }
-                });
-            }
+            StartCoroutine(RespawnAlliesInBattle());
 
             player = GameObject.Find("Player");
             fight = GameObject.Find("Fight").GetComponent<Canvas>();
             libraryStates = GetComponent<LibraryStates>();
-            
-            GetComponent<CombatFlow>().SetPlayersInCombat(); // Para la persistencia de los que estan muertos.
 
             done = true;
         }
@@ -87,6 +57,55 @@ public class EnterBattle : MonoBehaviour
         {
             FinishBattle();
         }
+    }
+
+    public IEnumerator RespawnAlliesInBattle()
+    {
+        var alliesBattleZone = GameObject.Find("AlliesBattleZone");
+
+        if(alliesBattleZone.transform.childCount > 0)
+        {
+            GetComponent<CombatFlow>().ResetPlayersInCombat();
+
+            foreach(Transform child in alliesBattleZone.transform) Destroy(child.gameObject);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        Debug.Log(alliesBattleZone.transform.childCount);
+
+        if (alliesBattleZone.transform.childCount == 0)
+        {
+            Debug.Log("Respawn de aliados");
+            Data.Instance.CharactersTeamStats.ForEach(x =>
+            {
+                var go = Instantiate(x.CharacterPB, alliesBattleZone.transform);
+
+                Debug.Log("Character: " + x.name);
+
+                if(x.Level != 0)
+                {
+                    var statsChar = go.GetComponent<Stats>();
+
+                    statsChar.Level = x.Level;
+                    statsChar.CurrentXP = x.CurrentXP;
+                    statsChar.Health = x.Health;
+                    statsChar.MaxHealth = x.MaxHealth;
+                    statsChar.Mana = x.Mana;
+                    statsChar.MaxMana = x.MaxMana;
+                    statsChar.SP = x.SP;
+                    statsChar.Strenght = x.Strenght;
+                    statsChar.PhysicalDefense = x.PhysicalDefense;
+                    statsChar.MagicAtk = x.MagicAtk;
+                    statsChar.MagicDef = x.MagicDef;
+                    statsChar.CriticalChance = x.CriticalChance;
+
+                    statsChar.ListAtk = x.ListAtk;
+                }
+            });
+        }
+
+        GetComponent<CombatFlow>().SetPlayersInCombat(); // Para la persistencia de los que estan muertos.
     }
 
     private int ObtainMaxLevelPlayer()

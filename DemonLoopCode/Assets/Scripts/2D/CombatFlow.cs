@@ -356,6 +356,14 @@ public class CombatFlow : MonoBehaviour
         }
     }
 
+    public void ResetPlayersInCombat()
+    {
+        var tempList = players.ToList();
+
+        tempList.Clear();
+        players = tempList.ToArray();
+    }
+
     public IEnumerator CreateButtons()
     {
         yield return new WaitForSeconds(0.00000001f);

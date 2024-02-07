@@ -37,9 +37,57 @@ public class Data : MonoBehaviour
             {
                 //Debug.Log("x.CharacterPB.name(Clone)");
                 charStats = x;
-            };
+            }
         });
 
         return charStats;
+    }
+
+    public void SwitchActiveTeamPositions(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
+    {
+        var firstIndex = charactersTeamStats.IndexOf(firstCharacter);
+        var secondIndex = charactersTeamStats.IndexOf(secondCharacter);
+
+        //Debug.Log(firstIndex);
+        //Debug.Log(secondIndex);
+
+        charactersTeamStats[firstIndex] = secondCharacter;
+        charactersTeamStats[secondIndex] = firstCharacter;
+    }
+
+    public void SwitchBackupTeamPositions(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
+    {
+        var firstIndex = charactersBackupStats.IndexOf(firstCharacter);
+        var secondIndex = charactersBackupStats.IndexOf(secondCharacter);
+
+        //Debug.Log(firstIndex);
+        //Debug.Log(secondIndex);
+
+        charactersBackupStats[firstIndex] = secondCharacter;
+        charactersBackupStats[secondIndex] = firstCharacter;
+    }
+
+    public void SwitchBetweenTeamPositionsFirstCharActiveTeam(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
+    {
+        var firstIndex = charactersTeamStats.IndexOf(firstCharacter);
+        var secondIndex = charactersBackupStats.IndexOf(secondCharacter);
+
+        //Debug.Log(firstIndex);
+        //Debug.Log(secondIndex);
+
+        charactersTeamStats[firstIndex] = secondCharacter;
+        charactersBackupStats[secondIndex] = firstCharacter;
+    }
+
+    public void SwitchBetweenTeamPositionsFirstCharBackupTeam(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
+    {
+        var firstIndex = charactersBackupStats.IndexOf(firstCharacter);
+        var secondIndex = charactersTeamStats.IndexOf(secondCharacter);
+
+        //Debug.Log(firstIndex);
+        //Debug.Log(secondIndex);
+
+        charactersBackupStats[firstIndex] = secondCharacter;
+        charactersTeamStats[secondIndex] = firstCharacter;
     }
 }

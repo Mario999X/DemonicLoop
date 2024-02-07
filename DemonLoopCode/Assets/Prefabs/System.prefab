@@ -436,6 +436,8 @@ MonoBehaviour:
     type: 3}
   characterBacklogTeamPod: {fileID: 526443679428046180, guid: fa1edaa08e52e47c8b9db3c4da43dff4,
     type: 3}
+  attackTextDetailsView: {fileID: 5011955487508678774, guid: a5c4aee42a35743d2a1dd96373acd985,
+    type: 3}
 --- !u!1 &4889741102227135258
 GameObject:
   m_ObjectHideFlags: 0

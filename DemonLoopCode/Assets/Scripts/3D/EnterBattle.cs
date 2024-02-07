@@ -248,5 +248,7 @@ public class EnterBattle : MonoBehaviour
 
             Debug.Log("Character Saved after battle " + child.name);
         }
+
+        GetComponent<TeamViewManager>().SetActiveTeamData();
     }
 }

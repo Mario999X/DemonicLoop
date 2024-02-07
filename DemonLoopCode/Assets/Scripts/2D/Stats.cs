@@ -24,8 +24,7 @@ public class Stats : MonoBehaviour
 
     [Header("Character Rol Components")]
     [SerializeField] CharacterRol rol = CharacterRol.Tank;
-
-    // IMAGEN ASOCIADA AL ROL
+    [SerializeField] Sprite rolIcon;
 
     [Header("Level Components")]
     [SerializeField] int level = 1;
@@ -47,6 +46,8 @@ public class Stats : MonoBehaviour
     [SerializeField] List<AttackData> listAtk = new();
     [SerializeField] bool absorbsDamageOfSameType = false;
     [SerializeField] Types type;
+    [SerializeField] Sprite typeIcon;
+
     [SerializeField] AttackData atkSpecial;
 
     [Header("Drops Components")]
@@ -60,6 +61,7 @@ public class Stats : MonoBehaviour
 
     public bool Attacking { get { return attacking; } }
     public CharacterRol Rol { get { return rol; } }
+    public Sprite RolIcon { get { return rolIcon; }}
     public int Level { get { return level; } set { level = value; SetLevelText(level); } }
     public float CurrentXP { get { return currentXP; } set { currentXP = value; } }
     public float Health { get { return health; } set { health = value; if (barHP != null) OnAttackReceived(); } }
@@ -80,6 +82,7 @@ public class Stats : MonoBehaviour
     public GameObject CharFloatingBattleModifierIconSpace { get { return charFloatingBattleModifierIconSpace; } }
     public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; } }
     public Types Type { get { return type; } }
+    public Sprite TypeIcon { get { return typeIcon; }}
 
     public float MoneyDrop { get { return moneyDrop; } set { moneyDrop = value; } }
     public float MoneyRefinedDrop { get { return moneyRefinedDrop; } set { moneyRefinedDrop = value; } }

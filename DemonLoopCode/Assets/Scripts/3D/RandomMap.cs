@@ -9,7 +9,7 @@ public class RandomMap : MonoBehaviour
     [SerializeField] GameObject[] oblMaps;
 
     [Header("The last map of the list must be 100")]
-    [SerializeField] int[] rarety;
+    [SerializeField] int[] rarity;
 
     [SerializeField] int actualroom;
     [SerializeField] int boosRoom;
@@ -52,7 +52,7 @@ public class RandomMap : MonoBehaviour
 
                     for (int i = 0; i < maps.Length; i++)
                     {
-                        if (Random.value <= ((float)rarety[i] / 100) && !finish)
+                        if (Random.value <= ((float)rarity[i] / 100) && !finish)
                         {
                             Instantiate(maps[i], transform.position, Quaternion.identity);
                             finish = true;

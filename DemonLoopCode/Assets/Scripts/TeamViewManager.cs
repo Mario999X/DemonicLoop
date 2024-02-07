@@ -7,12 +7,16 @@ public class TeamViewManager : MonoBehaviour
 {
     [SerializeField] GameObject characterActiveTeamPod;
     [SerializeField] GameObject characterBacklogTeamPod;
+    [SerializeField] GameObject attackTextDetailsView;
 
     GameObject teamViewScreen;
 
     GameObject controlPanelActiveTeamPods;
 
     GameObject controlPanelBacklogTeamPods;
+
+    GameObject characterDetailsView;
+    GameObject characterStatsGroupDetails;
 
     private bool done = false;
     private Scene scene;
@@ -41,10 +45,18 @@ public class TeamViewManager : MonoBehaviour
             controlPanelActiveTeamPods = GameObject.Find("ControlPanelActiveTeamPods");
             controlPanelBacklogTeamPods = GameObject.Find("ControlPanelBacklogTeamPodsContent");
 
+            characterDetailsView = teamViewScreen.transform.GetChild(1).gameObject;
+
+            characterStatsGroupDetails = characterDetailsView.transform.GetChild(6).gameObject;
+
+            characterDetailsView.transform.GetChild(8).GetComponent<Button>().onClick.AddListener(delegate {HideCharacterDetails(); });
+
             SetActiveTeamData();
             SetBackupTeamData();
 
             enterBattle = GetComponent<EnterBattle>();
+
+            characterDetailsView.SetActive(false);
 
             done = true;
         }
@@ -59,6 +71,7 @@ public class TeamViewManager : MonoBehaviour
             } else
             {
                 teamViewScreen.GetComponent<Canvas>().enabled = false;
+                HideCharacterDetails();
             } 
         }
 
@@ -71,6 +84,7 @@ public class TeamViewManager : MonoBehaviour
             } else
             {
                 teamViewScreen.GetComponent<Canvas>().enabled = false;
+                HideCharacterDetails();
             } 
         }
     }
@@ -99,6 +113,7 @@ public class TeamViewManager : MonoBehaviour
             pod.GetChild(2).GetComponent<TextMeshProUGUI>().text = "HP: " + x.Health + "/" + x.MaxHealth;
             pod.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Mana: " + x.Mana + "/" + x.MaxMana;
             
+            go.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ViewCharacterDetails(x); });
             go.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { SelectCharacter(x, true); });
         });
     }
@@ -123,6 +138,7 @@ public class TeamViewManager : MonoBehaviour
 
             pod.GetChild(1).GetComponent<TextMeshProUGUI>().text = x.CharacterPB.name;
 
+            go.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ViewCharacterDetails(x); });
             go.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { SelectCharacter(x, false); });
         });
     }
@@ -206,5 +222,80 @@ public class TeamViewManager : MonoBehaviour
 
         firstCharacterSelected = null;
         secondCharacterSelected = null;
+    }
+
+    private void ViewCharacterDetails(StatsPersistenceData character)
+    {
+        var sprite = character.CharacterPB.transform.GetChild(3);
+        var spriteImage = characterDetailsView.transform.GetChild(0);
+        
+        var spriteGo = Instantiate(sprite, spriteImage.transform.position, Quaternion.identity, spriteImage.transform);
+        spriteGo.transform.localPosition = Vector3.zero;
+
+        characterDetailsView.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = character.CharacterPB.name;
+        characterDetailsView.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "LVL: " + character.Level;
+        characterDetailsView.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "Actual XP: " + character.CurrentXP;
+
+        characterStatsGroupDetails.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "HP: " + character.Health + "/" + character.MaxHealth;
+        characterStatsGroupDetails.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Mana: " + character.Mana + "/" + character.MaxMana;
+        characterStatsGroupDetails.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "SP: " + character.SP + "/100";
+        characterStatsGroupDetails.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Strenght: " + character.Strenght;
+        characterStatsGroupDetails.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Physical Defense: " + character.PhysicalDefense;
+        characterStatsGroupDetails.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "Magic Attack: " + character.MagicAtk;
+        characterStatsGroupDetails.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "Magic Defense: " + character.MagicDef;
+        characterStatsGroupDetails.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "Critical Chance: " + character.CriticalChance;
+
+        var actualAttackListDetails = characterDetailsView.transform.GetChild(7).gameObject;
+
+        character.ListAtk.ForEach(a => {
+
+            var attackName = a.name[4..].Replace("^", " ");
+
+            var attackGO = Instantiate(attackTextDetailsView, actualAttackListDetails.transform.position, Quaternion.identity, actualAttackListDetails.transform);
+
+            attackGO.GetComponent<TextMeshProUGUI>().text = attackName;
+        });
+
+        var charRolIconDetails = characterDetailsView.transform.GetChild(1).gameObject;
+
+        GameObject charRolIconGO = new();
+
+        Image charRolIcon = charRolIconGO.AddComponent<Image>();
+        charRolIcon.sprite = character.CharacterPB.GetComponent<Stats>().RolIcon;
+
+        charRolIconGO.transform.SetParent(charRolIconDetails.transform);
+        charRolIconGO.transform.position = charRolIconDetails.transform.position;
+        charRolIconGO.transform.localScale = new Vector3(1.5f,1.5f,1f);
+
+
+        var charTypeIconDetails = characterDetailsView.transform.GetChild(2).gameObject;
+
+        GameObject charTypeIconGO = new();
+
+        Image charTypeIcon = charTypeIconGO.AddComponent<Image>();
+        charTypeIcon.sprite = character.CharacterPB.GetComponent<Stats>().TypeIcon;
+
+        charTypeIconGO.transform.SetParent(charTypeIconDetails.transform);
+        charTypeIconGO.transform.position = charTypeIconDetails.transform.position;
+        charTypeIconGO.transform.localScale = new Vector3(1.5f,1.5f,1f);
+
+        characterDetailsView.SetActive(true);
+    }
+
+    private void HideCharacterDetails()
+    {
+        var oldSprite = characterDetailsView.transform.GetChild(0);
+        foreach(Transform child in oldSprite) Destroy(child.gameObject);
+
+        var actualAttackListDetails = characterDetailsView.transform.GetChild(7);
+        foreach(Transform child in actualAttackListDetails) Destroy(child.gameObject);
+
+        var charRolIconDetails = characterDetailsView.transform.GetChild(1).gameObject;
+        foreach(Transform child in charRolIconDetails.transform) Destroy(child.gameObject);
+
+        var charTypeIconDetails = characterDetailsView.transform.GetChild(2).gameObject;
+        foreach(Transform child in charTypeIconDetails.transform) Destroy(child.gameObject);
+
+        characterDetailsView.SetActive(false);
     }
 }

@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rol: 3
+  rolIcon: {fileID: 21300000, guid: d7907d70ddd824ae1b9f4f2cc3fd6dca, type: 3}
   level: 1
   currentXP: 0
   health: 0
@@ -297,9 +298,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
   absorbsDamageOfSameType: 0
   type: 2
+  typeIcon: {fileID: 21300000, guid: 58fa9eaf7c177448eb12c2f9059485c7, type: 3}
   atkSpecial: {fileID: 11400000, guid: 71cd317f76d2be447bbe74d105d06223, type: 2}
   moneyDrop: 1.1
   dropXP: 0
+  moneyRefinedDrop: 0
   boss: 0
 --- !u!114 &7275690779995491954
 MonoBehaviour:

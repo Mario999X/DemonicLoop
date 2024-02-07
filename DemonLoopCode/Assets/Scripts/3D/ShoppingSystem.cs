@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using static Unity.Collections.AllocatorManager;
 public class ShoppingSystem : MonoBehaviour
 {
     [SerializeField] GameObject button;
@@ -17,7 +18,7 @@ public class ShoppingSystem : MonoBehaviour
     int quantity = 1;
 
     Image icon;
-    
+
     TextMeshProUGUI description;
     TextMeshProUGUI buy;
 
@@ -28,6 +29,7 @@ public class ShoppingSystem : MonoBehaviour
     Scene scene;
 
     Dictionary<string, ScriptableObject> stock = new();
+    List<ImprovementsData> stockImprovements = new List<ImprovementsData>();
 
     PlayerInventory inventory;
     Data party;
@@ -38,7 +40,7 @@ public class ShoppingSystem : MonoBehaviour
     {
         inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
         party = GameObject.Find("System").GetComponent<Data>();
-        
+
 
         // Dependiendo de que tipo de tienda guarda y modifica lo que tiene que utilizar
         switch (gameObject.tag)
@@ -51,15 +53,15 @@ public class ShoppingSystem : MonoBehaviour
                     string objName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
 
                     stock.Add(objName, obj);
-                   // Debug.Log("Normal Shop stock " + objName+ " obj "+obj );
+                    // Debug.Log("Normal Shop stock " + objName+ " obj "+obj );
                 }
 
                 displayzone = GameObject.Find("Object display");
                 icon = displayzone.transform.GetChild(0).GetComponent<Image>();
-                
+
                 description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
                 buy = displayzone.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>();
-                
+
                 displayzone.transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Buy());
                 displayzone.SetActive(false);
                 break;
@@ -96,6 +98,9 @@ public class ShoppingSystem : MonoBehaviour
                     stock.Add(objNamePWD, obj);
                 }
 
+
+
+
                 displayzone = GameObject.Find("Special display");
                 icon = displayzone.transform.GetChild(0).GetComponent<Image>();
 
@@ -128,6 +133,18 @@ public class ShoppingSystem : MonoBehaviour
         }
     }
 
+    private bool HasPurchased()
+    {
+        foreach (var improvement_ in stockImprovements)
+        {
+            if (improvement_.isVersion)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Cierra y abre la interfaz de la tienda.
     public void OpenCloseShop()
     {
@@ -145,12 +162,12 @@ public class ShoppingSystem : MonoBehaviour
 
             if (GameObject.Find("GroupOrGulab").GetComponent<Image>().enabled)
             {
-                foreach(Transform child in GameObject.Find("GroupOrGulab").transform) 
+                foreach (Transform child in GameObject.Find("GroupOrGulab").transform)
                     Destroy(child.gameObject);
 
                 GameObject.Find("GroupOrGulab").GetComponent<Image>().enabled = false;
             }
-                
+
 
             // Genera las botones de la mercancia.
             if (canvas.enabled)
@@ -177,6 +194,7 @@ public class ShoppingSystem : MonoBehaviour
                 }
             }
         }
+       
     }
 
     // Este solo se utiliza en la tienda normal para que el jugador pueda comprar un objeto varias veces a la vez.
@@ -222,11 +240,11 @@ public class ShoppingSystem : MonoBehaviour
 
             case "Special Shop":
                 ImprovementsData improvement = @object as ImprovementsData;
-               
+
                 icon.sprite = improvement.Icon;
                 description.text = improvement.Description;
                 buy.text = $"Cost: {improvement.CostRefined}MaraRef";
-               
+
                 break;
         }
     }
@@ -256,13 +274,13 @@ public class ShoppingSystem : MonoBehaviour
 
                 if ((money.Money - totalCost) >= 0)
                 {
-                    
+
                     // En el caso de que el grupo este lleno se le dara la opcion al jugador de si quiere incorporarlo al grupo o almacenarlo.
                     // En el caso contrario se incluira automaticamente al grupo.
                     if (party.CharactersTeamStats.Count < 4)
                     {
                         party.CharactersTeamStats.Add(slave);
-                        
+
                         money.Money -= totalCost;
 
                         stock.Remove(slave.name.Substring(slave.name.IndexOf("_") + 1));
@@ -278,27 +296,89 @@ public class ShoppingSystem : MonoBehaviour
                 }
                 break;
             case "Special Shop":
-                //StatsPersistenceData target = this.data as StatsPersistenceData;
+                displayzone.SetActive(false);
                 List<StatsPersistenceData> target = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
-
+                string nombrePWR;
                 ImprovementsData improv = this.data as ImprovementsData;
+
+                if (!improv.isVersion && !HasPurchased())
+                {
+                    return;
+                }
                 if ((money.MoneyRefined - improv.CostRefined) >= 0)
                 {
                     money.MoneyRefined -= improv.CostRefined;
-                    target.ForEach(x => {
+                    target.ForEach(x =>
+                    {
                         if (x.Protagonist == true)
                         {
-                            //Debug.Log("x.CharacterPB.name(Clone)");
-                            improv.BuyImprovement(x);
+
+                            nombrePWR = improv.BuyImprovement(x);
+
+                            UpdateImprovementsId(nombrePWR);
+                            nombrePWR = "";
                         };
                     });
-                
-                    
-                    
+
                 }
                 break;
         }
     }
+
+    public void UpdateImprovementsId(string nombrePWR)
+    {
+        ImprovementsData[] mejoras = Resources.LoadAll<ImprovementsData>("Data/Improvements");
+        for (int i = 0; i < mejoras.Length; i++)
+        {
+            if (mejoras[i].name == nombrePWR)
+            {
+                string objName = mejoras[i].name.Substring(4, mejoras[i].name.Length - 4).Replace("^", " ").ToUpper();
+                OcultarButtons(objName);
+
+                switch (mejoras[i].ImprovementsType)
+                {
+                    case ImprovementsTypes.Health:
+                        mejoras[i + 1].isVersion = true;
+                        mejoras[i].isVersion = false;
+                        stock.Remove(objName);
+                        mejoras[i + 1].idHealth = mejoras[i].idHealth;
+                        break;
+                    case ImprovementsTypes.Mana:
+                        mejoras[i + 1].isVersion = true;
+                        mejoras[i].isVersion = false;
+                        stock.Remove(objName);
+                        mejoras[i + 1].idMana = mejoras[i].idMana;
+                        break;
+                    case ImprovementsTypes.CriticalChance:
+                        mejoras[i + 1].isVersion = true;
+                        mejoras[i].isVersion = false;
+                        stock.Remove(objName);
+                        mejoras[i + 1].idCriticalChance = mejoras[i].idCriticalChance;
+                        break;
+                }
+
+
+            }
+            else
+            {
+                Debug.Log("sssssssssssss");
+            }
+        }
+
+
+    }
+
+    void OcultarButtons(string mejoraName)
+    {
+
+        Transform button = canvas.transform.GetChild(0).GetChild(0).GetChild(0).Find(mejoraName);
+        // Debug.Log("button "+ button);
+        if (button != null)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
+
 
     // Las opciones de que se quiere hacer con el esclavo obtenido
     void ChooseGG(StatsPersistenceData slave, MoneyPlayer money)
@@ -335,10 +415,10 @@ public class ShoppingSystem : MonoBehaviour
     // Guarda el esclavo que vamos a sustituir he incorpora el nuevo.
     void Party(GameObject choose, StatsPersistenceData slave, MoneyPlayer money)
     {
-        foreach(Transform child in choose.transform)
+        foreach (Transform child in choose.transform)
             Destroy(child.gameObject);
 
-        foreach(StatsPersistenceData member in party.CharactersTeamStats)
+        foreach (StatsPersistenceData member in party.CharactersTeamStats)
         {
             if (!member.name.ToUpper().Contains("MARIO"))
             {

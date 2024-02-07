@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Pwr_HeathV1
   m_EditorClassIdentifier: 
   icon: {fileID: -7929779680174771499, guid: 75386da3816034ced9f7f29535f677d7, type: 3}
+  hola: 1
+  hola2: 1
+  hola3: 1
   description: Aumento de vida Base +100 v1
   costRefined: 10
   improvementsType: 0
-  alliesTargets: 0
-  obtained: 0
+  isVersion: 1
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

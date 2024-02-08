@@ -27,6 +27,21 @@ public class CharacterMove
     }
 }
 
+public class CharacterAndAttack
+{
+    private GameObject character;
+    private AttackData newAttack;
+
+    public GameObject Character { get { return character; } }
+    public AttackData NewAttack { get { return newAttack; } }
+
+    public CharacterAndAttack(GameObject character, AttackData newAttack)
+    {
+        this.character = character;
+        this.newAttack = newAttack;
+    }
+}
+
 public class CombatFlow : MonoBehaviour
 {
 
@@ -54,6 +69,10 @@ public class CombatFlow : MonoBehaviour
 
     List<GameObject> playersDefeated = new();
     public List<GameObject> PlayersDefeated { get { return playersDefeated; } }
+
+    List<CharacterAndAttack> charactersWhoCanLearnAnAttack = new();
+
+    public List<CharacterAndAttack> CharactersWhoCanLearnAnAttack { get { return charactersWhoCanLearnAnAttack; }}
 
     private GameObject character = null;
     public GameObject Character { get { return character; } }
@@ -97,8 +116,6 @@ public class CombatFlow : MonoBehaviour
     Scene scene;
 
     private LearningAttacksManager learningAttacksManager;
-
-    private static bool newAttacksDone;
 
     private void Update()
     {
@@ -152,8 +169,6 @@ public class CombatFlow : MonoBehaviour
             panelMiniGame.SetActive(false);
 
             LoadCombatOptionsButtons();
-
-            newAttacksDone = false;
 
             done = true;
         }
@@ -939,17 +954,15 @@ public class CombatFlow : MonoBehaviour
     {
         await Task.Delay(600); // Entre tanta corrutina, esto es necesario para que al programa le de tiempo a actualizar bien las listas del combate.
 
-        StartCoroutine(PossibleBattleEnd());
+        CheckBattleStatus();
 
     }//Fin de BattleStatus
 
-    private IEnumerator PossibleBattleEnd()
+    private void CheckBattleStatus()
     {
         if (enemys.Count == 0)
         {
             var experience = totalEXP / players.LongLength; // Reparto de experiencia
-
-            Dictionary<GameObject, AttackData> charactersWhoCanLearnAnAttack = new();
 
             ActivatePanel();
 
@@ -1004,18 +1017,37 @@ public class CombatFlow : MonoBehaviour
 
                     if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax())
                     {
-
-                        charactersWhoCanLearnAnAttack.Add(p, possibleAttack);
+                        Debug.Log("Tratando de aprender un ataque");
+                        charactersWhoCanLearnAnAttack.Add(new(p, possibleAttack));
                     }
                 }
 
                 i++;
             });
 
-            if (charactersWhoCanLearnAnAttack.Count > 0) yield return StartCoroutine(ProcessingNewAttacks(charactersWhoCanLearnAnAttack));
+            if (charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
+            else StartCoroutine(FinishBattle());
+        }
+        if (players.Length == 0)
+        {
+            StartCoroutine(FinishBattle());
+        }
+    }
 
-            charactersWhoCanLearnAnAttack.Clear();
+    public void CheckIfMoreCharactersWantNewAttack()
+    {
+        learningAttacksManager.HideInterface();
+        
+        if(charactersWhoCanLearnAnAttack.Count > 0) charactersWhoCanLearnAnAttack.RemoveAt(0); // Por algun motivo desconocido, daba nulo si no pongo el If; funciona sin el, pero asi nos evitamos el mensaje de nulo.
 
+        if(charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
+        else StartCoroutine(FinishBattle());
+    }
+
+    public IEnumerator FinishBattle()
+    {
+        if (enemys.Count == 0)
+        {
             //Se debe mostrar una pantalla de WIN
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
@@ -1027,12 +1059,8 @@ public class CombatFlow : MonoBehaviour
             enterBattle.FinishBattle();
             DisablePanel();
             ClearPanel();
-
-            // Se resetea la información del combate para el proximo encuentro
-            actualTurn = 0;
-            moves = 0;
         }
-        if (playerBT.Count == 0)
+        if (players.Length == 0)
         {
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
@@ -1045,8 +1073,11 @@ public class CombatFlow : MonoBehaviour
 
         }
 
+        // Se resetea la información del combate para el proximo encuentro
+        actualTurn = 0;
+        moves = 0;
+
         WINLOSE.enabled = false;
-        yield return null;
     }
 
     public void ClearPanel()
@@ -1057,39 +1088,12 @@ public class CombatFlow : MonoBehaviour
         }
     }//Fin de ClearPanel
 
-    private IEnumerator ProcessingNewAttacks(Dictionary<GameObject, AttackData> dic)
+    public void ProcessingNewAttacks()
     {
-        // Pasa por cada personaje que haya subido de nivel, tenga que aprender un ataque y ya tenga el maximo posible
-        foreach (KeyValuePair<GameObject, AttackData> charAndAttack in dic)
-        {
-            newAttacksDone = false;
+        learningAttacksManager.ActivatePanel();
 
-            learningAttacksManager.ActivatePanel();
-
-            learningAttacksManager.SetNewAttackInfo(charAndAttack.Key, charAndAttack.Value);
-
-            // Espera activa hasta que el jugador pulse sobre algun boton posible del panel
-            yield return StartCoroutine(WaitForUserInputNewAttack());
-
-            learningAttacksManager.DesactivatePanel();
-        }
+        learningAttacksManager.SetNewAttackInfo(charactersWhoCanLearnAnAttack[0].Character, charactersWhoCanLearnAnAttack[0].NewAttack);
     }
-
-    private IEnumerator WaitForUserInputNewAttack()
-    {
-        while (!newAttacksDone)
-        {
-            //Debug.Log("ESTOY ESPERANDO " + newAttacksDone);
-
-            yield return new WaitForSeconds(0.7f);
-        }
-    }
-
-    public void ChangeNewAttackDoneBoolean()
-    {
-        newAttacksDone = true;
-    }
-
 
     public void CheckAtkEnemy()
     {

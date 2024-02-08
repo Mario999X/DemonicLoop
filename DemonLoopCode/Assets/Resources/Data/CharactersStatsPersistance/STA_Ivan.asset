@@ -15,17 +15,17 @@ MonoBehaviour:
   characterPB: {fileID: 1984689945073004903, guid: 7687434dc4851435ba2c0680978a4108,
     type: 3}
   level: 0
-  currentXP: 70
-  health: 310
-  maxHealth: 310
-  mana: 155
-  maxMana: 155
-  sp: 20
-  strength: 20
-  physicalDef: 22
-  magicAtk: 20
-  magicDef: 25
-  criticalChance: 38
+  currentXP: 115
+  health: 330
+  maxHealth: 330
+  mana: 165
+  maxMana: 165
+  sp: 10
+  strength: 30
+  physicalDef: 42
+  magicAtk: 30
+  magicDef: 45
+  criticalChance: 44
   listAtk:
   - {fileID: 11400000, guid: c26bd1d267de74ced872e9c175cca721, type: 2}
   - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}

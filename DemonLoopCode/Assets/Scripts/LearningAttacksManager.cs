@@ -1,7 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class LearningAttacksManager : MonoBehaviour
@@ -17,6 +17,7 @@ public class LearningAttacksManager : MonoBehaviour
     private AttackData newAttack = null;
     private AttackData oldAttackSelected = null;
 
+    private GameObject dontLearnAttackBtn;
     private GameObject learnAttackBtn;
 
     private Scene scene;
@@ -104,20 +105,27 @@ public class LearningAttacksManager : MonoBehaviour
         battleModifierText = infoOldAttackPanel.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
 
         actualAttacksPanel = learningAttacksPanel.transform.GetChild(6).gameObject;
+        dontLearnAttackBtn = learningAttacksPanel.transform.GetChild(4).gameObject;
         learnAttackBtn = learningAttacksPanel.transform.GetChild(5).gameObject;
     }
 
 
-    private void HideInterface()
+    public void HideInterface()
     {
+        foreach(Transform button in actualAttacksPanel.transform) Destroy(button.gameObject);
+
         infoOldAttackPanel.SetActive(false);
         learningAttacksPanel.SetActive(false);
         learnAttackBtn.GetComponent<Button>().interactable = false;
+
+        character = null;
+        newAttack = null;
+        oldAttackSelected = null; 
     }
 
     public void FinishOperationNoNewAttack()
     {
-        GetComponent<CombatFlow>().ChangeNewAttackDoneBoolean();
+        GetComponent<CombatFlow>().CheckIfMoreCharactersWantNewAttack();
     }
 
     public void ForgetOldAttackAndLearnNewAttack()
@@ -126,19 +134,6 @@ public class LearningAttacksManager : MonoBehaviour
         character.GetComponent<Stats>().SetAttack(newAttack);
 
         FinishOperationNoNewAttack();
-    }
-
-    public void DesactivatePanel()
-    {
-        character = null;
-        newAttack = null;
-        oldAttackSelected = null;
-
-        foreach(Transform button in actualAttacksPanel.transform) Destroy(button.gameObject);
-
-        HideInterface();
-
-        learningAttacksPanel.SetActive(false);
     }
 
     public void ActivatePanel()
@@ -261,6 +256,9 @@ public class LearningAttacksManager : MonoBehaviour
 
             bt.transform.localScale = new Vector3(1f,1f,1f);
         });
+
+        dontLearnAttackBtn.GetComponent<Button>().onClick.AddListener(delegate { FinishOperationNoNewAttack(); });
+
     }
 
 }

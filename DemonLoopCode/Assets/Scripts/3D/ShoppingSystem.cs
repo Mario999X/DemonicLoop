@@ -337,6 +337,7 @@ public class ShoppingSystem : MonoBehaviour
             if (mejoras[i].name == nombrePWR)
             {
                 string objName = mejoras[i].name.Substring(4, mejoras[i].name.Length - 4).Replace("^", " ").ToUpper();
+                AudioManager.Instance.PlaySoundButtons();
                 OcultarButtons(objName);
 
                 switch (mejoras[i].ImprovementsType)
@@ -368,12 +369,7 @@ public class ShoppingSystem : MonoBehaviour
                         mejoras[i].isVersion = false;
 
                         stock.Remove(objName);
-                        
 
-                        /*for (int x = 0; x <1; x++)
-                        {
-                            mejoras[x].DiscountImprovements(mejoras);
-                        }*/
 
                         for (int z = 0; z < 1; z++)
                         {
@@ -382,10 +378,6 @@ public class ShoppingSystem : MonoBehaviour
                             mejoras[z].DiscountSlaves(slaves);
                         }
 
-                       /*/ for (int s = 0; s < 1; s++)
-                        {
-                            mejoras[s].DiscountSlaves(slaves);
-                        }*/
 
                         mejoras[i + 1].idDiscount = mejoras[i].idDiscount;
                         mejoras[i + 1].DiscountV = mejoras[i].DiscountV;

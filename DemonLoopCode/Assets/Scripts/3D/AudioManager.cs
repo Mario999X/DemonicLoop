@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicAudioSource;
+    [SerializeField] private AudioSource sfxAudioSource;
+    [SerializeField] private AudioClip sfxClip;
     [SerializeField] private AudioClip defaultMusic;
     [SerializeField] private AudioClip combatMusic;
 
@@ -49,5 +51,10 @@ public class AudioManager : MonoBehaviour
         musicAudioSource.Stop();
         musicAudioSource.clip = almacenTempMusic;
         musicAudioSource.Play();
+    }
+
+    public void PlaySoundButtons()
+    {
+        sfxAudioSource.PlayOneShot(sfxClip);
     }
 }

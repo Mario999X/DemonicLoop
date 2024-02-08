@@ -78,21 +78,7 @@ public class ImprovementsData : ScriptableObject
                 bt.GetComponent<Button>().onClick.AddListener(delegate { BuyImprovement(stats); });
             }
         }
-        /* else
-         {
-             GameObject[] players = GameObject.FindGameObjectsWithTag("Player").ToArray();
-
-             foreach (GameObject pl in players)
-             {
-                 Debug.Log(spawnMoveBT);
-
-                 GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
-                 bt.transform.SetParent(spawnMoveBT.transform);
-                 bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
-                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(pl.name.IndexOf("_") + 1);
-                 bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectS2(pl); });
-             }
-         }*/
+        
     }
 
 
@@ -196,8 +182,7 @@ public class ImprovementsData : ScriptableObject
                 discountVTemp = objdata[i].Cost * discountV1;
                 objdata[i].Cost = objdata[i].Cost - discountVTemp;
             }
-            discountVTemp = 0f;
-           // idDiscount = 2;
+
         }
         else if (isVersion == true && idDiscount == 2)
         {
@@ -207,8 +192,7 @@ public class ImprovementsData : ScriptableObject
                 discountVTemp = objdata[i].Cost * discountV2;
                 objdata[i].Cost = objdata[i].Cost - discountVTemp;
             }
-           
-           // idDiscount = 3;
+
         }
         else if (isVersion == true && idDiscount == 3)
         {
@@ -233,8 +217,7 @@ public class ImprovementsData : ScriptableObject
                 discountV = objdata[i].CostRefined * discountV1;
                 objdata[i].CostRefined = objdata[i].CostRefined - discountV;
             }
-           
-            //idDiscount = 2;
+
         }
         else if (isVersion == true && idDiscount == 2)
         {
@@ -244,8 +227,7 @@ public class ImprovementsData : ScriptableObject
                 discountV = objdata[i].CostRefined * discountV2;
                 objdata[i].CostRefined = objdata[i].CostRefined - discountV;
             }
-            
-           // idDiscount = 3;
+
         }
         else if (isVersion == true && idDiscount == 3)
         {
@@ -270,7 +252,6 @@ public class ImprovementsData : ScriptableObject
                 slavesjdata[i].Cost = slavesjdata[i].Cost - discountV;
             }
 
-            idDiscount = 2;
         }
         else if (isVersion == true && idDiscount == 2)
         {
@@ -280,8 +261,7 @@ public class ImprovementsData : ScriptableObject
                 discountV = slavesjdata[i].Cost * discountV2;
                 slavesjdata[i].Cost = slavesjdata[i].Cost - discountV;
             }
-           
-            idDiscount = 3;
+
         }
         else if (isVersion == true && idDiscount == 3)
         {

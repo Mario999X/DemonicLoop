@@ -127,7 +127,7 @@ public class ObjectData : ScriptableObject
 
     public void UserObjectSP(StatsPersistenceData target)
     {
-
+        AudioManager.Instance.PlaySoundButtons();
         switch (ObjectType)
         {
             case ObjectTypes.Health:

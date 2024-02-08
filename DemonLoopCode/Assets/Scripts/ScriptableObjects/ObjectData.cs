@@ -30,7 +30,7 @@ public class ObjectData : ScriptableObject
 
     public Sprite Icon { get { return icon; } }
     public string Description { get { return description; } }
-    public float Cost { get { return cost; } }
+    public float Cost { get { return cost; } set { cost = value; } }
     public ObjectTypes ObjectType { get { return objectType; } }
     public Types Type { get { return type; } }
     public float BaseNum { get { return baseNum; } }

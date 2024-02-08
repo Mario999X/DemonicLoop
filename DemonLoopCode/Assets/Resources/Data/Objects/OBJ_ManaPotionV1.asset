@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: OBJ_ManaPotionV1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: e6ea3a17e3da049bab8fa34e4c283d1a, type: 3}
-  description: Restores 25 MP
+  description: 'Restores 25 MP
+
+    Original price: 15'
   cost: 15
   objectType: 1
   baseNum: 25

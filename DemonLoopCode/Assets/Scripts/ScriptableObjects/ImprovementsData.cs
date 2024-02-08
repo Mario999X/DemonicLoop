@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using static UnityEngine.GraphicsBuffer;
 
-public enum ImprovementsTypes { Health, Mana, CriticalChance }
+public enum ImprovementsTypes { Health, Mana, CriticalChance, Discount }
 
 [CreateAssetMenu]
 public class ImprovementsData : ScriptableObject
@@ -28,10 +28,16 @@ public class ImprovementsData : ScriptableObject
     int powerCriticalV2 = 10;
     int powerCriticalV3 = 15;
 
+    public float discountV = 0.02f;
+    float discountV1 = 0.02f;
+    float discountV2 = 0.05f;
+    float discountV3 = 0.07f;
+
 
     public int idHealth = 1;
     public int idMana = 1;
     public int idCriticalChance = 1;
+    public int idDiscount = 1;
 
     private FloatingTextCombat floatingText;
 
@@ -49,10 +55,11 @@ public class ImprovementsData : ScriptableObject
     public Sprite Icon { get { return icon; } }
     public string Description { get { return description; } set { description = value; } }
     public float CostRefined { get { return costRefined; } set { costRefined = value; } }
+    public float DiscountV { get { return discountV; } set { discountV = value; } }
     public ImprovementsTypes ImprovementsType { get { return improvementsType; } }
 
 
-   
+
 
     void CreateButtons(GameObject spawnMoveBT)
     {
@@ -126,7 +133,7 @@ public class ImprovementsData : ScriptableObject
                 else if (isVersion == true && idMana == 2)
                 {
                     target.MaxMana += powerManaV2;
-                    target.Mana=target.MaxMana;
+                    target.Mana = target.MaxMana;
                     idMana = 3;
                 }
                 else if (isVersion == true && idMana == 3)
@@ -137,7 +144,7 @@ public class ImprovementsData : ScriptableObject
                 break;
 
             case ImprovementsTypes.CriticalChance:
-                if (isVersion==true && idCriticalChance == 1)
+                if (isVersion == true && idCriticalChance == 1)
                 {
                     target.CriticalChance += powerCriticalV1;
                     idCriticalChance = 2;
@@ -152,9 +159,142 @@ public class ImprovementsData : ScriptableObject
                     target.CriticalChance += powerCriticalV3;
                 }
                 break;
+
+            case ImprovementsTypes.Discount:
+                if (isVersion == true && idDiscount == 1)
+                {
+                    Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+
+                    idDiscount = 2;
+                }
+                else if (isVersion == true && idDiscount == 2)
+                {
+                    Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+
+                    idDiscount = 3;
+                }
+                else if (isVersion == true && idDiscount == 3)
+                {
+                    Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+
+
+                }
+                break;
         }//Fin del switch
 
         return this.name;
     }
+
+    public void DiscountItems(ObjectData[] objdata)
+    {
+        float discountVTemp = 0f;
+        if (isVersion == true && idDiscount == 1)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountVTemp " + discountVTemp);
+            for (int i = 0; i < objdata.Length; i++)
+            {
+                discountVTemp = objdata[i].Cost * discountV1;
+                objdata[i].Cost = objdata[i].Cost - discountVTemp;
+            }
+            discountVTemp = 0f;
+           // idDiscount = 2;
+        }
+        else if (isVersion == true && idDiscount == 2)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountVTemp " + discountVTemp);
+            for (int i = 0; i < objdata.Length; i++)
+            {
+                discountVTemp = objdata[i].Cost * discountV2;
+                objdata[i].Cost = objdata[i].Cost - discountVTemp;
+            }
+           
+           // idDiscount = 3;
+        }
+        else if (isVersion == true && idDiscount == 3)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountVTemp " + discountVTemp);
+            for (int i = 0; i < objdata.Length; i++)
+            {
+                discountVTemp = objdata[i].Cost * discountV3;
+                objdata[i].Cost = objdata[i].Cost - discountVTemp;
+            }
+
+        }
+    }//Fin de DiscountItems
+
+
+    public void DiscountImprovements(ImprovementsData[] objdata)
+    {
+        if (isVersion == true && idDiscount == 1)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+            for (int i = 0; i < objdata.Length; i++)
+            {
+                discountV = objdata[i].CostRefined * discountV1;
+                objdata[i].CostRefined = objdata[i].CostRefined - discountV;
+            }
+           
+            //idDiscount = 2;
+        }
+        else if (isVersion == true && idDiscount == 2)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+            for (int i = 0; i < objdata.Length; i++)
+            {
+                discountV = objdata[i].CostRefined * discountV2;
+                objdata[i].CostRefined = objdata[i].CostRefined - discountV;
+            }
+            
+           // idDiscount = 3;
+        }
+        else if (isVersion == true && idDiscount == 3)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+            for (int i = 0; i < objdata.Length; i++)
+            {
+                discountV = objdata[i].CostRefined * discountV3;
+                objdata[i].CostRefined = objdata[i].CostRefined - discountV;
+            }
+
+        }
+    }//Fin de DiscountImprovements
+
+    public void DiscountSlaves(StatsPersistenceData[] slavesjdata)
+    {
+        if (isVersion == true && idDiscount == 1)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+            for (int i = 0; i < slavesjdata.Length; i++)
+            {
+                discountV = slavesjdata[i].Cost * discountV1;
+                slavesjdata[i].Cost = slavesjdata[i].Cost - discountV;
+            }
+
+            idDiscount = 2;
+        }
+        else if (isVersion == true && idDiscount == 2)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+            for (int i = 0; i < slavesjdata.Length; i++)
+            {
+                discountV = slavesjdata[i].Cost * discountV2;
+                slavesjdata[i].Cost = slavesjdata[i].Cost - discountV;
+            }
+           
+            idDiscount = 3;
+        }
+        else if (isVersion == true && idDiscount == 3)
+        {
+            Debug.Log("idDiscount " + idDiscount + " discountV " + discountV);
+            for (int i = 0; i < slavesjdata.Length; i++)
+            {
+                discountV = slavesjdata[i].Cost * discountV3;
+                slavesjdata[i].Cost = slavesjdata[i].Cost - discountV;
+            }
+
+        }
+    }//Fin de DiscountSlaves
+
+
 
 }

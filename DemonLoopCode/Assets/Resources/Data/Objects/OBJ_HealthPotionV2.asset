@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: OBJ_HealthPotionV2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 351521446548348079472d126a9a1eda, type: 3}
-  description: Heal 75 HP
-  cost: 30
+  description: 'Heal 75 HP
+
+    Original price: 25'
+  cost: 25
   objectType: 0
   baseNum: 75
   stateAsociated: {fileID: 0}

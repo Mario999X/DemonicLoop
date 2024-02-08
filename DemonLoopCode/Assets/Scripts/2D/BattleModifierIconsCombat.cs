@@ -12,7 +12,7 @@ public class BattleModifierIconsCombat : MonoBehaviour
 
         iconImage.sprite = battleModifier.Icon;
 
-        iconObject.transform.localScale = new(0.6f,0.6f,0.6f);
+        iconObject.transform.localScale = new(0.6f,0.6f,1f);
 
         iconObject.transform.SetParent(character.GetComponent<Stats>().CharFloatingBattleModifierIconSpace.transform);
     }

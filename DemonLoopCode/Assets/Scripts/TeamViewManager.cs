@@ -68,10 +68,14 @@ public class TeamViewManager : MonoBehaviour
                 teamViewScreen.GetComponent<Canvas>().enabled = true;
                 controlPanelBacklogTeamPods.transform.parent.gameObject.SetActive(false);
 
+                Time.timeScale = 0f;
+
             } else
             {
                 teamViewScreen.GetComponent<Canvas>().enabled = false;
                 HideCharacterDetails();
+
+                Time.timeScale = 1f;
             } 
         }
 
@@ -81,10 +85,14 @@ public class TeamViewManager : MonoBehaviour
             {
                 teamViewScreen.GetComponent<Canvas>().enabled = true;
 
+                Time.timeScale = 0f;
+
             } else
             {
                 teamViewScreen.GetComponent<Canvas>().enabled = false;
                 HideCharacterDetails();
+
+                Time.timeScale = 1f;
             } 
         }
     }

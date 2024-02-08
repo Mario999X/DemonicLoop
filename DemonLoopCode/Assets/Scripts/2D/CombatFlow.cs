@@ -180,7 +180,6 @@ public class CombatFlow : MonoBehaviour
 
     private void LoadCombatOptionsButtons()
     {
-
         if (combatOptionsBT.Count > 0)
             combatOptionsBT.Clear();
 
@@ -211,6 +210,8 @@ public class CombatFlow : MonoBehaviour
         }
         moveBT.Clear();
 
+        AudioManager.Instance.PlaySoundButtons();
+
         playerInventory.OpenCloseInventory();
     }
 
@@ -229,11 +230,12 @@ public class CombatFlow : MonoBehaviour
             playerBT.Clear();
         }
 
+        
+
         // Creamos un boton por todos los jugadores existentes.
         foreach (GameObject pl in players)
         {
             //panelPlayers.Add(pl);//Listado de jugadores
-
 
             //Comprobamos si el player que tiene asignado el boton esta muerto o no
             StartCoroutine(CharacterDead(pl, false));
@@ -395,6 +397,8 @@ public class CombatFlow : MonoBehaviour
     // Funcion para generar las opciones del jugador en combate.
     public void GenerateOptionsButtons(GameObject player)
     {
+        AudioManager.Instance.PlaySoundButtons();
+
         DesactivateAllButtons();
 
         if (!wait)
@@ -413,6 +417,7 @@ public class CombatFlow : MonoBehaviour
     {
         if (!wait)
         {
+
             if (enemyBT.Count > 0)
             {
                 enemyBT.ForEach(bt => Destroy(bt));
@@ -429,6 +434,8 @@ public class CombatFlow : MonoBehaviour
                 Destroy(moveBT);
             }
             moveBT.Clear();
+
+            AudioManager.Instance.PlaySoundButtons();
 
             foreach (string listAtk in character.GetComponent<Stats>().ListNameAtk)
             {
@@ -463,6 +470,8 @@ public class CombatFlow : MonoBehaviour
         var isAOE = library.CheckAoeAttack(movement);
         var targetsToLoad = library.CheckAttackOrHeal(movement);
 
+        AudioManager.Instance.PlaySoundButtons();
+
         if (isAOE)
         {
             // Ataca o cura AOE, segun la segunda comprobacion
@@ -488,7 +497,7 @@ public class CombatFlow : MonoBehaviour
 
             DesactivateAllButtons();
 
-
+            AudioManager.Instance.PlaySoundButtons();
             StartCoroutine(GoPlayerSingleTarget(character, enemy, movement));
         }
     }//Fin de EnemyButton
@@ -794,6 +803,8 @@ public class CombatFlow : MonoBehaviour
     public void PassTurn(string movement)
     {
         wait = true;
+        
+        AudioManager.Instance.PlaySoundButtons();
 
         DesactivatePlayerButton();
 
@@ -855,7 +866,7 @@ public class CombatFlow : MonoBehaviour
             }
             moveBT.Clear();
 
-
+            AudioManager.Instance.PlaySoundButtons();
 
             //Si el ATK es Special saldra
             if (library.CheckSpeacialAttack(character.GetComponent<Stats>().AtkSpecial.ToUpper()))
@@ -1265,6 +1276,7 @@ public class CombatFlow : MonoBehaviour
     private void DisablePanel()
     {
         panelGameObject.SetActive(false);
+        AudioManager.Instance.PlaySoundButtons();
     }
     private void ActivatePanelSpMini()
     {

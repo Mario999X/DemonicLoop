@@ -141,6 +141,8 @@ public class PlayerInventory : MonoBehaviour
     // Elimina o disminuye la cantidad de objetos del inventario segun la situacion.
     public void RemoveObjectFromInventory(string name)
     {
+        AudioManager.Instance.PlaySoundButtons();
+
         if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
         {
             Debug.Log("He entrao");
@@ -200,6 +202,9 @@ public class PlayerInventory : MonoBehaviour
         button.transform.SetParent(inventoryUI3D.transform);
 
         Button buttonCMP = button.GetComponent<Button>();
+
+        AudioManager.Instance.PlaySoundButtons();
+
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
 
         button.GetComponentInChildren<Image>().sprite = stock.Data.Icon;
@@ -215,6 +220,9 @@ public class PlayerInventory : MonoBehaviour
         button.transform.SetParent(inventoryUI2D.transform);
 
         Button buttonCMP = button.GetComponent<Button>();
+
+        AudioManager.Instance.PlaySoundButtons();
+
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
         //Debug.Log("buttonCMP "+ buttonCMP.name);
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name.Substring(4, stock.Data.name.Length - 4) + " x" + stock.Count;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5066,15 +5066,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maps:
   - {fileID: 8788623212404409470, guid: ef9d10eba5de95542828a10937c5a592, type: 3}
-  - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
-  - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
-  - {fileID: 372789990257220145, guid: 55a5bad925203b14783c5ef46ae2166f, type: 3}
-  - {fileID: 2409840099089020148, guid: df87ced23a93534459896769d3954bbc, type: 3}
   - {fileID: 4503541210712415587, guid: f2369b58f9e1a5c42879b6794e62d751, type: 3}
   - {fileID: 4503541210712415587, guid: 5382e09f34213904d9eb2a4699ceffde, type: 3}
+  - {fileID: 2409840099089020148, guid: df87ced23a93534459896769d3954bbc, type: 3}
+  - {fileID: 372789990257220145, guid: 55a5bad925203b14783c5ef46ae2166f, type: 3}
+  - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
+  - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarity: 00000000000000003200000000000000000000000000000064000000
+  rarity: 00000000000000000000000000000000000000000000000064000000
   actualroom: 0
   boosRoom: 10
 --- !u!4 &1525719001
@@ -6653,7 +6653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 40451.12}
+  m_AnchoredPosition: {x: 0, y: 51973.617}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1660057539 &9223372036854775807

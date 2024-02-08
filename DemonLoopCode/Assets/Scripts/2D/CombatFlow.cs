@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
 using System.Threading.Tasks;
 
 public class CharacterMove

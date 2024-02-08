@@ -99,8 +99,6 @@ public class ShoppingSystem : MonoBehaviour
                 }
 
 
-
-
                 displayzone = GameObject.Find("Special display");
                 icon = displayzone.transform.GetChild(0).GetComponent<Image>();
 
@@ -194,7 +192,7 @@ public class ShoppingSystem : MonoBehaviour
                 }
             }
         }
-       
+
     }
 
     // Este solo se utiliza en la tienda normal para que el jugador pueda comprar un objeto varias veces a la vez.
@@ -254,6 +252,7 @@ public class ShoppingSystem : MonoBehaviour
     {
         MoneyPlayer money = GameObject.Find("System").GetComponent<MoneyPlayer>();
         MoneyPlayer moneyRef = GameObject.Find("System").GetComponent<MoneyPlayer>();
+
         float totalCost;
 
         switch (gameObject.tag)
@@ -300,6 +299,7 @@ public class ShoppingSystem : MonoBehaviour
                 List<StatsPersistenceData> target = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
                 string nombrePWR;
                 ImprovementsData improv = this.data as ImprovementsData;
+                ObjectData objdata = this.data as ObjectData;
 
                 if (!improv.isVersion && !HasPurchased())
                 {
@@ -328,8 +328,12 @@ public class ShoppingSystem : MonoBehaviour
     public void UpdateImprovementsId(string nombrePWR)
     {
         ImprovementsData[] mejoras = Resources.LoadAll<ImprovementsData>("Data/Improvements");
+        ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
+        StatsPersistenceData[] slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance");
+        ImprovementsData improv = this.data as ImprovementsData;
         for (int i = 0; i < mejoras.Length; i++)
         {
+
             if (mejoras[i].name == nombrePWR)
             {
                 string objName = mejoras[i].name.Substring(4, mejoras[i].name.Length - 4).Replace("^", " ").ToUpper();
@@ -343,17 +347,48 @@ public class ShoppingSystem : MonoBehaviour
                         stock.Remove(objName);
                         mejoras[i + 1].idHealth = mejoras[i].idHealth;
                         break;
+
                     case ImprovementsTypes.Mana:
                         mejoras[i + 1].isVersion = true;
                         mejoras[i].isVersion = false;
                         stock.Remove(objName);
                         mejoras[i + 1].idMana = mejoras[i].idMana;
                         break;
+
                     case ImprovementsTypes.CriticalChance:
                         mejoras[i + 1].isVersion = true;
                         mejoras[i].isVersion = false;
                         stock.Remove(objName);
                         mejoras[i + 1].idCriticalChance = mejoras[i].idCriticalChance;
+                        break;
+
+                    case ImprovementsTypes.Discount:
+
+                        mejoras[i + 1].isVersion = true;
+                        mejoras[i].isVersion = false;
+
+                        stock.Remove(objName);
+                        
+
+                        /*for (int x = 0; x <1; x++)
+                        {
+                            mejoras[x].DiscountImprovements(mejoras);
+                        }*/
+
+                        for (int z = 0; z < 1; z++)
+                        {
+                            mejoras[z].DiscountItems(objects);
+                            mejoras[z].DiscountImprovements(mejoras);
+                            mejoras[z].DiscountSlaves(slaves);
+                        }
+
+                       /*/ for (int s = 0; s < 1; s++)
+                        {
+                            mejoras[s].DiscountSlaves(slaves);
+                        }*/
+
+                        mejoras[i + 1].idDiscount = mejoras[i].idDiscount;
+                        mejoras[i + 1].DiscountV = mejoras[i].DiscountV;
                         break;
                 }
 
@@ -365,7 +400,7 @@ public class ShoppingSystem : MonoBehaviour
             }
         }
 
-
+        displayzone.SetActive(false);
     }
 
     void OcultarButtons(string mejoraName)

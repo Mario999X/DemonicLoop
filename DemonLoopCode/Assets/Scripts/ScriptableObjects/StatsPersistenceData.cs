@@ -21,7 +21,7 @@ public class StatsPersistenceData : ScriptableObject
     [SerializeField] float cost;
     [SerializeField] bool protagonist = false;
 
-    public float Cost { get { return cost; } }
+    public float Cost { get { return cost; } set { cost = value; } }
     public GameObject CharacterPB { get { return characterPB; } }
     public int Level { get { return level; } set { level = value; } }
     public float CurrentXP { get { return currentXP; } set { currentXP = value; } }

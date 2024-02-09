@@ -67,6 +67,7 @@ public class ShoppingSystem : MonoBehaviour
                 break;
 
             case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los compañeros y guardar los componentes que se van a utilizar.
+                Debug.Log(gameObject.tag);
                 List<StatsPersistenceData> slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
 
                 List<StatsPersistenceData> group = party.CharactersTeamStats;
@@ -447,7 +448,7 @@ public class ShoppingSystem : MonoBehaviour
 
         foreach (StatsPersistenceData member in party.CharactersTeamStats)
         {
-            if (!member.name.ToUpper().Contains("MARIO"))
+            if (!member.Protagonist)
             {
                 GameObject move = Instantiate(button, choose.transform);
                 move.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = member.name.Substring(member.name.IndexOf("_") + 1);

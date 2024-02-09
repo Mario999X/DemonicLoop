@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722644, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2742,12 +2742,12 @@ PrefabInstance:
     - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: charactersTeamStats.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: charactersBackupStats.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
@@ -2759,11 +2759,35 @@ PrefabInstance:
         type: 3}
       propertyPath: charactersTeamStats.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: d13bef6530e244d52b457b2dae6f6953,
+      objectReference: {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75,
         type: 2}
     - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: charactersTeamStats.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75,
+        type: 2}
+    - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: charactersTeamStats.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75,
+        type: 2}
+    - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: charactersTeamStats.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75,
+        type: 2}
+    - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: charactersTeamStats.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75,
+        type: 2}
+    - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: charactersTeamStats.Array.data[7]
       value: 
       objectReference: {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75,
         type: 2}
@@ -32434,7 +32458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -4917.9507}
+  m_AnchoredPosition: {x: 0, y: -4933.6426}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!23 &1377124704024392409

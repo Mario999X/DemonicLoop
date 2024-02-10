@@ -99,6 +99,7 @@ public class EnterBattle : MonoBehaviour
                     statsChar.MagicAtk = x.MagicAtk;
                     statsChar.MagicDef = x.MagicDef;
                     statsChar.CriticalChance = x.CriticalChance;
+                    statsChar.ActualStates = x.ActualStates;
 
                     statsChar.ListAtk = x.ListAtk;
                 }
@@ -176,7 +177,8 @@ public class EnterBattle : MonoBehaviour
             GetComponent<CombatFlow>().TotalEXP = totalExperience;
             oneTime = true;
 
-            libraryStates.IconState(); // Busca todos las entidades que sufran algun efecto de estado.
+            foreach (GameObject character in GameObject.FindGameObjectsWithTag("Player"))
+                libraryStates.IconState(character); // Busca todos las entidades que sufran algun efecto de estado.
 
             fight.enabled = true;
 
@@ -186,7 +188,7 @@ public class EnterBattle : MonoBehaviour
 
                 foreach (Stats stat in stats)
                 {
-                    stat.Health -= stat.Health * 0.05f;
+                    stat.Health -= stat.Health * 0.15f;
                 }
             }
         }
@@ -243,6 +245,7 @@ public class EnterBattle : MonoBehaviour
             savedStats.MagicAtk = statsChar.MagicAtk;
             savedStats.MagicDef = statsChar.MagicDef;
             savedStats.CriticalChance = statsChar.CriticalChance;
+            savedStats.ActualStates = statsChar.ActualStates;
 
             savedStats.ListAtk = statsChar.ListAtk;
 

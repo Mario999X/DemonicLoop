@@ -363,13 +363,7 @@ public class LibraryMove : MonoBehaviour
             case ActionStates.Inflict:
                 if (Random.Range(0, 100) < attack.ProbabilityOfState)
                 {
-                    if (statesLibrary.CheckStatus(targetToApplyState, attack.StateGenerated))
-                    {
-                        //Debug.Log("El personaje ya tiene ese mismo estado");
-                        statesLibrary.ResetTurnsOfCharacterState(targetToApplyState, attack.StateGenerated);
-
-                    }
-                    else StartCoroutine(statesLibrary.StateEffectIndividual(targetToApplyState, attack.StateGenerated));
+                    statesLibrary.AddState(targetToApplyState, attack.StateGenerated);
                 }
 
                 break;

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class DirectTouchAction : MonoBehaviour
@@ -40,10 +41,10 @@ public class DirectTouchAction : MonoBehaviour
 
         LibraryStates states = GameObject.Find("System").GetComponent<LibraryStates>();
 
-        Stats[] aliados = GameObject.Find("AlliesBattleZone").GetComponentsInChildren<Stats>();
+        StatsPersistenceData[] aliados = GameObject.Find("System").GetComponent<Data>().CharactersTeamStats.ToArray();
 
         // Por cada aliado se le hace un da�o establecido.
-        foreach (Stats stats in aliados)
+        foreach (StatsPersistenceData stats in aliados)
         {
             stats.Health -= damage;
         }
@@ -51,26 +52,8 @@ public class DirectTouchAction : MonoBehaviour
         // En el caso de que la trampa aplique un estado.
         if (state != null)
         {
-            bool notFound = false;
-
-            // Si hay un estado verifica si es el mismo que va aplicar.
-            if (states.CharacterStates.Count > 0)
-            {
-                // En el caso de que exista resetea los turnos que lleva.
-                foreach (ActualStateData actual in states.CharacterStates)
-                {
-                    if (actual.State.Equals(state))
-                    {
-                        notFound = true;
-                        actual.Turn = 0;
-                    }
-                }
-            }
-
-            // En caso de no haber se le inicia un nuevo estado.
-            if (!notFound)
-                foreach (GameObject character in GameObject.FindGameObjectsWithTag("Player"))
-                    StartCoroutine(states.StateEffectIndividual(character, ObtainStateName()));
+            foreach (StatsPersistenceData character in GameObject.Find("System").GetComponent<Data>().CharactersTeamStats)
+                character.ActualStates.Add(new ActualStateData(ObtainStateName()));
         }
 
         yield return new WaitForSeconds(timeSleep);

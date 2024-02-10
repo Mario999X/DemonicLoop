@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class Data : MonoBehaviour
     int room;
     int floor;
     float money;
+
     [SerializeField] private List<StatsPersistenceData> charactersTeamStats = new();
 
     [SerializeField] private List<StatsPersistenceData> charactersBackupStats = new();
@@ -21,11 +23,82 @@ public class Data : MonoBehaviour
     public List<StatsPersistenceData> CharactersTeamStats { get { return charactersTeamStats;} set { charactersTeamStats = value; }}
     public List<StatsPersistenceData> CharactersBackupStats { get { return charactersBackupStats;} set { charactersBackupStats = value; }}
 
+    EnterBattle enterBattle;
+    [SerializeField] PlayerMove player = null;
+    LibraryStates libraryStates;
+    DamageVisualEffect visualEffect;
+
     // Start is called before the first frame update
     void Awake()
     {
         if (instance == null) { instance = this; }
         else { Destroy(this); }
+    }
+
+    private void Start()
+    {
+        enterBattle = GetComponent<EnterBattle>();
+        libraryStates = GetComponent<LibraryStates>();
+
+        #if UNITY_EDITOR
+            foreach (StatsPersistenceData data in charactersTeamStats)
+                data.Health = data.MaxHealth;
+        #endif
+    }
+
+    void FixedUpdate()
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        {
+            if (player == null)
+            {
+                player = GameObject.Find("Player").GetComponent<PlayerMove>();
+                visualEffect = GameObject.Find("Global Volume").GetComponent<DamageVisualEffect>();
+            }
+
+            if (!enterBattle.OneTime) // 3D individual
+            {
+                foreach (StatsPersistenceData data in charactersTeamStats)
+                {
+                    //Debug.Log(data.name);
+
+                    if (data.ActualStates.Count > 0)
+                    {
+                        List<ActualStateData> statesToRemove = new List<ActualStateData>();
+                            
+                        visualEffect.Auch();
+
+                        foreach (ActualStateData actualState in data.ActualStates)
+                        {
+                            StateData stateData = libraryStates.State(actualState.State);
+
+                            if (player.Movement)
+                            {
+                                data.Time += Time.deltaTime;
+                            }
+
+
+                            if (data.Time >= stateData.TimeMoving)
+                            {
+                                if ((data.Health - stateData.BaseDamage) > 1)
+                                    data.Health = data.Health - stateData.BaseDamage;
+                                else
+                                    data.Health = 1;
+
+                                actualState.Turn++;
+                                data.Time = 0;
+                            }
+
+                            if (stateData.TurnsDuration <= actualState.Turn)
+                                statesToRemove.Add(actualState);
+                        }
+
+                        foreach (ActualStateData actualState in statesToRemove)
+                            data.ActualStates.Remove(actualState);
+                    }
+                }
+            }
+        }
     }
 
     public StatsPersistenceData SearchCharacterTeamStats(string characterName)

@@ -58,6 +58,7 @@ public class Stats : MonoBehaviour
 
     bool attacking = false;
 
+    List<ActualStateData> actualStates = new List<ActualStateData>();
 
     public bool Attacking { get { return attacking; } }
     public CharacterRol Rol { get { return rol; } }
@@ -83,11 +84,10 @@ public class Stats : MonoBehaviour
     public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; } }
     public Types Type { get { return type; } }
     public Sprite TypeIcon { get { return typeIcon; }}
-
+    public List<ActualStateData> ActualStates { get { return actualStates; } set { actualStates = value; } }
     public float MoneyDrop { get { return moneyDrop; } set { moneyDrop = value; } }
     public float MoneyRefinedDrop { get { return moneyRefinedDrop; } set { moneyRefinedDrop = value; } }
     public float DropXP { get { return dropXP; } set { dropXP = value; } }
-
     public string AtkSpecial { get { return ObtainNameAttackSpecial(); } }
     public bool Boss { get { return boss; } }
 

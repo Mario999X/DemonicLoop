@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 // Esta clase se encarga de generar a los demonios que tenga almacenados en las listas según el nivel principal de la amenaza.
 public class EnemyManagerGenerator : MonoBehaviour
 {
+    [SerializeField] GameObject mimeEnemy;
     [SerializeField] List<GameObject> enemyPrefabsLevel0;
 
     [SerializeField] List<GameObject> enemyPrefabsLevel1;
@@ -21,11 +21,16 @@ public class EnemyManagerGenerator : MonoBehaviour
 
         switch (disasterLevel)
         {
+            case -1: // En el caso de mimicos
+                demon = mimeEnemy;
+                break;
+
             case 0: //En el 0 solo jefes
                 randomDemon = Random.Range(0, enemyPrefabsLevel0.Count);
 
                 demon = enemyPrefabsLevel0[randomDemon];
                 break;
+                
             case 1:
                 randomDemon = Random.Range(0, enemyPrefabsLevel1.Count);
 

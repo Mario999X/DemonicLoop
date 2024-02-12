@@ -199,6 +199,18 @@ public class EnterBattle : MonoBehaviour
     {
         StartCoroutine(CrossfadeAnimation());
 
+        if(enemy.CompareTag("MimeChest"))
+        {
+            Content content = enemy.GetComponent<ChestContent>().chest();
+
+            PlayerInventory inventory = GetComponent<PlayerInventory>();
+
+            if (content.Count > 0)
+            {
+                inventory.AddObjectToInventory(content.Data.name.Substring(4, content.Data.name.Length - 4), content.Data, content.Count);
+            }
+        }
+
         Destroy(enemy);
         
         SavePlayerCharacterStats();

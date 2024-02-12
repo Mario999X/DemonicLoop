@@ -1993,6 +1993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299ea1dfd9be94ab784820f2c3505b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mimeEnemy: {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1,
+    type: 3}
   enemyPrefabsLevel0:
   - {fileID: 9014782617563343838, guid: 5644c94beb0beba4fa78221247de9525, type: 3}
   enemyPrefabsLevel1:

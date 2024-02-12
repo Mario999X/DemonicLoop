@@ -20,7 +20,10 @@ public class StatsPersistenceData : ScriptableObject
     [SerializeField] private List<AttackData> listAtk;
     [SerializeField] float cost;
     [SerializeField] bool protagonist = false;
+    private List<ActualStateData> actualStates = new List<ActualStateData>();
+    float time = 0;
 
+    public float Time { get { return time; } set { time = value; } }
     public float Cost { get { return cost; } set { cost = value; } }
     public GameObject CharacterPB { get { return characterPB; } }
     public int Level { get { return level; } set { level = value; } }
@@ -37,6 +40,8 @@ public class StatsPersistenceData : ScriptableObject
     public float CriticalChance { get { return criticalChance; } set { criticalChance = value; } }
     public List<AttackData> ListAtk { get { return listAtk; } set { listAtk = value; } }
     public bool Protagonist { get { return protagonist; } }
+    public List<ActualStateData> ActualStates {  get { return actualStates; } set { actualStates = value; } }
+    
     private void OnManaChanged()
     {
         if (mana >= maxMana)
@@ -61,5 +66,6 @@ public class StatsPersistenceData : ScriptableObject
         {
             health = 0;
         }
+
     }//Fin de OnAttackReceived
 }

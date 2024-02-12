@@ -96,9 +96,14 @@ public class SceneManager : MonoBehaviour
     }
 
     // Cierra la aplicación.
-    public void exitGame()
+    public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void ShowSettingsView()
+    {
+        GameObject.Find("SettingsView").GetComponent<Canvas>().enabled = true;
     }
 
     void FixedUpdate()
@@ -106,7 +111,8 @@ public class SceneManager : MonoBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
         {
             GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(2); });
-            GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { exitGame(); });
+            GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { ExitGame(); });
+            GameObject.Find("Settings").GetComponent<Button>().onClick.AddListener(() => { ShowSettingsView(); });
 
             GameObject.Find("AppVerText").GetComponent<TextMeshProUGUI>().text = "App ver. " + Application.version;
             Debug.Log("Done");

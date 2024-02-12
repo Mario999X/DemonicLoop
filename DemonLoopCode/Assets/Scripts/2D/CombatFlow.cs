@@ -935,10 +935,10 @@ public class CombatFlow : MonoBehaviour
         ActualTurn++;
 
         // Paso de turno para los estados
-        statesLibrary.CharacterStates.ForEach(x =>
-        {
-            x.Turn++;
-        });
+        GameObject[] allCharacters = GameObject.FindGameObjectsWithTag("Player").ToArray().Concat(GameObject.FindGameObjectsWithTag("Enemy").ToArray()).ToArray();
+
+        statesLibrary.CheckStates(allCharacters);
+        
 
         battleModifiersLibrary.PassTurnOfModifiers();
 

@@ -693,10 +693,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rol: 0
+  rolIcon: {fileID: 0}
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 500
+  maxHealth: 200
   mana: 0
   maxMana: 100
   sp: 0
@@ -713,6 +714,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed663631fa833d748bf50815bb69da39, type: 2}
   absorbsDamageOfSameType: 1
   type: 0
+  typeIcon: {fileID: 0}
   atkSpecial: {fileID: 0}
   moneyDrop: 50
   dropXP: 100

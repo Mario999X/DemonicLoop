@@ -37,16 +37,17 @@ public class EnemyGenerator : MonoBehaviour
 
     // Funcion para generar enemigos y agregarlos al listado.
     private void SpawnEnemies()
-    { 
-        var enemiesGenerated = Random.Range(MinNumEnemies, MaxNumEnemies);
+    {
+        int enemiesGenerated;
 
-        if (disasterLevel == 0)
+        if (disasterLevel == 0 || disasterLevel == -1)
         {
             enemiesGenerated = 1;
-        }
+
+        } else enemiesGenerated = Random.Range(MinNumEnemies, MaxNumEnemies);
+
         for(int i = 1; i <= enemiesGenerated; i++ ){
 
-            //Debug.Log("GENERANDO ENEMIGO: " + i);
             var enemy = enemyManagerGenerator.GenerateDemon(disasterLevel);
             
             listEnemies.Add(enemy);

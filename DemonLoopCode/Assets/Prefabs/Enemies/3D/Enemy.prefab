@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2766495910402441774}
   - component: {fileID: 2639664326087891210}
+  - component: {fileID: 7057558848840165991}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy3D
@@ -162,6 +163,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+--- !u!114 &7057558848840165991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898345592402466617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32237e978167d345898a0684e9c5999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rarety: 76
 --- !u!1 &5862220882609411174
 GameObject:
   m_ObjectHideFlags: 0

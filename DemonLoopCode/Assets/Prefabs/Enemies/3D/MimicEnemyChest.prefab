@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2766495910402441774}
   m_Layer: 8
-  m_Name: MimeChestEnemy
-  m_TagString: MimeChest
+  m_Name: MimicEnemyChest
+  m_TagString: Mimic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1794060406267516385}
   m_Layer: 8
   m_Name: Body
-  m_TagString: MimeChest
+  m_TagString: Mimic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

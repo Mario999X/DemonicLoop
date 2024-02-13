@@ -48,7 +48,7 @@ public class PlayerInteract : MonoBehaviour
                     }
                     break;
 
-                case "MimeChest":
+                case "Mimic":
                     GameObject.Find("System").GetComponent<EnterBattle>().StartBattle(hit.transform.gameObject, false);
                     break;
 

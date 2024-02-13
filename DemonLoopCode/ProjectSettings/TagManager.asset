@@ -16,6 +16,7 @@ TagManager:
   - Sprite
   - MoneyRefined
   - Special Shop
+  - Mimic
   layers:
   - Default
   - TransparentFX

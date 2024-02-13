@@ -4,7 +4,7 @@ using UnityEngine;
 // Esta clase se encarga de generar a los demonios que tenga almacenados en las listas según el nivel principal de la amenaza.
 public class EnemyManagerGenerator : MonoBehaviour
 {
-    [SerializeField] GameObject mimeEnemy;
+    [SerializeField] GameObject mimicEnemy;
     [SerializeField] List<GameObject> enemyPrefabsLevel0;
 
     [SerializeField] List<GameObject> enemyPrefabsLevel1;
@@ -22,7 +22,7 @@ public class EnemyManagerGenerator : MonoBehaviour
         switch (disasterLevel)
         {
             case -1: // En el caso de mimicos
-                demon = mimeEnemy;
+                demon = mimicEnemy;
                 break;
 
             case 0: //En el 0 solo jefes

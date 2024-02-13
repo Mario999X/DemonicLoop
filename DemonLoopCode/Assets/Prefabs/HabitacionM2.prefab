@@ -799,7 +799,7 @@ PrefabInstance:
     - target: {fileID: 1898345592402466617, guid: b2e292a8cb7c64deeb4181872bbba989,
         type: 3}
       propertyPath: m_Name
-      value: MimeChestEnemy
+      value: MimicEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2766495910402441774, guid: b2e292a8cb7c64deeb4181872bbba989,
         type: 3}

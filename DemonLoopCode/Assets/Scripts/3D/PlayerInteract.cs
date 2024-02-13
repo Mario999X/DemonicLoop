@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] float distance = 10f;
@@ -47,6 +47,11 @@ public class PlayerInteract : MonoBehaviour
                         Destroy(hit.transform.GetComponent<ChestContent>()); // Destruye el scrip en el objeto.
                     }
                     break;
+
+                case "MimeChest":
+                    GameObject.Find("System").GetComponent<EnterBattle>().StartBattle(hit.transform.gameObject, false);
+                    break;
+
                 case "Slave Shop":
                 case "Normal Shop":
                 case "Special Shop":
@@ -59,9 +64,10 @@ public class PlayerInteract : MonoBehaviour
                     }
                     break;
 
-                /*case "LeverWithoutOrder":
+                case "LeverWithoutOrder":
                     hit.transform.GetComponent<LeverWithoutOrderData>().ActivateDesactivateLever();
-                    break;*/
+                    break;
+
                 case "LeverWithOrder":
                     hit.transform.GetComponent<LeverWithOrderData>().ActivateDesactivateLever();
                     break;

@@ -43,7 +43,7 @@ public class PlayerInventory : MonoBehaviour
     public bool InventoryState { get {  return inventoryState; } }
     public bool DontOpenInventory { get { return dontOpenInventory; } set { dontOpenInventory = value; } }
 
-    Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
+    public Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
 
     EnterBattle enterBattle;
 

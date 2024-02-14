@@ -117,6 +117,8 @@ public class CombatFlow : MonoBehaviour
 
     private LearningAttacksManager learningAttacksManager;
 
+    LoserReset loserReset;
+
     private void Update()
     {
         if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
@@ -151,6 +153,7 @@ public class CombatFlow : MonoBehaviour
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
             learningAttacksManager = GetComponent<LearningAttacksManager>();
+            loserReset = GetComponent<LoserReset>();
 
             SetAllyActionBarInactive();
             SetEnemyActionBarInactive();
@@ -1075,6 +1078,8 @@ public class CombatFlow : MonoBehaviour
         {
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
+
+            loserReset.ShowImage(true);
 
             AudioManager.Instance.StopSoundCombat();
 

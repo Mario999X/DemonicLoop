@@ -1,13 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CombatBoss : MonoBehaviour
 {
+    [SerializeField] int bossNumber = 0;
     private FloatingTextCombat floatingText;
     [SerializeField] List<GameObject> enemyPrefabsLevel;
-    List<string> listAtkEnemy = new();
-    Stats stats;
-    LibraryMove libraryMove;
     const int numHealth = 50;
     private CombatFlow combatFlow;
     float health;
@@ -18,42 +17,71 @@ public class CombatBoss : MonoBehaviour
     {
         floatingText = GameObject.Find("System").GetComponent<FloatingTextCombat>();
 
-        listAtkEnemy = GetComponent<Stats>().ListNameAtk;
         combatFlow = GameObject.Find("System").GetComponent<CombatFlow>();
-        stats = GetComponent<Stats>();
-        libraryMove = GetComponent<LibraryMove>();
         health = GetComponent<Stats>().Health;
         criticalChance = GetComponent<Stats>().CriticalChance;
     }
 
 
 
-    public void CheckAtkEnemyBoos()
+    public void CheckAtkEnemyBoss(GameObject targetSelected)
     {
-        Debug.Log(" ");
-        Debug.Log("combatFlow.ActualTurn "+ combatFlow.ActualTurn);
-        Debug.Log("health "+ health);
-        Debug.Log("criticalChance " + criticalChance);
-        if (combatFlow.ActualTurn / 2 == 0)
+        switch(bossNumber)
         {
-            floatingText.ShowFloatingTextNumbers(gameObject, numHealth, Color.green);
-            health = health + numHealth;
-        }
-        else if (combatFlow.ActualTurn / 5 == 0)
-        {
-            int newEnemy = UnityEngine.Random.Range(0, enemyPrefabsLevel.Count);
-            if (combatFlow.NumEnemy()<4)
+            case 1:
+
+                if (combatFlow.ActualTurn / 2 == 0)
+                {
+                    floatingText.ShowFloatingTextNumbers(gameObject, numHealth, Color.green);
+                    health += numHealth;
+                }
+                else if (combatFlow.ActualTurn / 5 == 0)
+                {
+                    int newEnemy = Random.Range(0, enemyPrefabsLevel.Count);
+                    if (combatFlow.NumEnemy() < 4)
+                    {
+                        floatingText.ShowFloatingText(gameObject, "Invader summoned", Color.magenta);
+                        Instantiate(enemyPrefabsLevel[newEnemy], GameObject.Find("EnemyBattleZone").transform);
+                        StartCoroutine(combatFlow.CreateButtons());
+                    }
+                
+                }
+            else
             {
-                floatingText.ShowFloatingText(gameObject, "Invasor Aparecio", Color.magenta);
-                Instantiate(enemyPrefabsLevel[newEnemy], GameObject.Find("EnemyBattleZone").transform);
-                StartCoroutine(combatFlow.CreateButtons());
+                int c = Random.Range(0, 50);
+                criticalChance += c;
             }
+                break;
             
-        }
-        else
-        {
-            int c = UnityEngine.Random.Range(0, 50);
-            criticalChance = criticalChance + c;
+            case 2:
+
+                if(combatFlow.ActualTurn / 2 == 0)
+                {
+                    floatingText.ShowFloatingText(gameObject, "Plague released", Color.yellow);
+
+
+
+                } else if(combatFlow.ActualTurn / 4 == 0)
+                {
+                    var players = combatFlow.Players.ToList();
+
+                    int r = Random.Range(0, players.Count);
+
+                    var randomCharacter = players[r];
+
+                    if(randomCharacter == targetSelected)
+                    {
+                        players.Remove(randomCharacter);
+
+                        r = Random.Range(0, players.Count);
+
+                        randomCharacter = players[r];
+                    }
+
+                    randomCharacter.GetComponent<Stats>().Health = 1;
+                }
+                
+                break;
         }
 
 

@@ -67,6 +67,8 @@ public class CombatFlow : MonoBehaviour
 
     GameObject[] players;
 
+    public GameObject[] Players { get { return players; }}
+
     List<GameObject> playersDefeated = new();
     public List<GameObject> PlayersDefeated { get { return playersDefeated; } }
 
@@ -1115,14 +1117,10 @@ public class CombatFlow : MonoBehaviour
     {
         foreach (GameObject enemy in enemys)
         {
-            if (enemy.GetComponent<Stats>().Boss)
-            {
-                enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoos();
-            }
-
-
             List<string> listAtkEnemy = enemy.GetComponent<Stats>().ListNameAtk;
             string nameAtkEnemy = "";
+
+            GameObject target = null;
 
             bool isManaEnough = false;
             // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
@@ -1150,22 +1148,30 @@ public class CombatFlow : MonoBehaviour
             }
             else
             {
-                //@TODO Annadir que los enemigos se curen entre ellos
                 bool healOrNot = library.CheckAttackOrHeal(nameAtkEnemy);
+
                 if (healOrNot)
                 {
-                    //Int e lista de jugadores
-                    int e = UnityEngine.Random.Range(0, enemys.Count);
-                    AddMovement(enemy, enemys[e], nameAtkEnemy);
+                    //Int e lista de enemigos
+                    int e = Random.Range(0, enemys.Count);
+                    
+                    target = enemys[e];
+                    AddMovement(enemy, target, nameAtkEnemy);
                 }
                 else
                 {
                     //Int z lista de jugadores
-                    int z = UnityEngine.Random.Range(0, players.Length);
-
-                    AddMovement(enemy, players[z], nameAtkEnemy);
+                    int z = Random.Range(0, players.Length);
+                    
+                    target = players[z];
+                    AddMovement(enemy, target, nameAtkEnemy);
                 }
 
+            }
+
+            if (enemy.GetComponent<Stats>().Boss)
+            {
+                enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoss(target);
             }
 
         }//Fin del foreach

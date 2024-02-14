@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 0
+  disasterLevel: 4
 --- !u!95 &484738753145088343
 Animator:
   serializedVersion: 5

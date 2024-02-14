@@ -40,7 +40,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         int enemiesGenerated;
 
-        if (disasterLevel == 0 || disasterLevel == -1)
+        if (disasterLevel == 0 || disasterLevel > 3)
         {
             enemiesGenerated = 1;
 

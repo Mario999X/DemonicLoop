@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.Collections.AllocatorManager;
 
 public class LoserReset : MonoBehaviour
 {
@@ -11,15 +15,17 @@ public class LoserReset : MonoBehaviour
     GameObject[] players;
     MoneyPlayer moneyPlayer;
     PlayerInventory playerInventory;
-
+    StatsPersistenceData[] aliados;
 
     List<ObjectStock> initialObject;
+    List<StatsPersistenceData> listTeam = Data.Instance.CharactersTeamStats;
 
     void Start()
     {
         imageLose.GetComponent<Image>().enabled = false;
-        moneyPlayer = GetComponent<MoneyPlayer>();
+        moneyPlayer = GameObject.Find("System").GetComponent<MoneyPlayer>();
         playerInventory = GameObject.Find("System").GetComponent<PlayerInventory>();
+        aliados = GameObject.Find("System").GetComponent<Data>().CharactersTeamStats.ToArray();
 
 
         initialObject = new List<ObjectStock>();
@@ -34,8 +40,8 @@ public class LoserReset : MonoBehaviour
 
         ResetInventory();
 
-       // ResetMoney();
-
+        ResetMoney();
+        ResetTeam();
         yield return new WaitForSeconds(3);
 
 
@@ -72,8 +78,22 @@ public class LoserReset : MonoBehaviour
 
     public void ResetMoney()
     {
-        moneyPlayer.Money = 100f;
-        moneyPlayer.MoneyRefined = 100f;
+        moneyPlayer.mara = 100f;
+        moneyPlayer.maraRefined = 100f;
+    }
+
+    public void ResetTeam()
+    {
+        foreach (StatsPersistenceData member in aliados)
+        {
+            if (member.Protagonist!=true)
+            {
+                Data.Instance.CharactersTeamStats.Remove(member);
+
+            }
+
+        }
+
     }
 
 

@@ -46,7 +46,7 @@ public class EnterBattle : MonoBehaviour
             player = null;
             fight = null;
             crossfadeTransition = null;
-
+            oneTime = false;
             done = false;
         }
     }
@@ -63,11 +63,11 @@ public class EnterBattle : MonoBehaviour
     {
         var alliesBattleZone = GameObject.Find("AlliesBattleZone");
 
-        if(alliesBattleZone.transform.childCount > 0)
+        if (alliesBattleZone.transform.childCount > 0)
         {
             GetComponent<CombatFlow>().ResetPlayersInCombat();
 
-            foreach(Transform child in alliesBattleZone.transform) Destroy(child.gameObject);
+            foreach (Transform child in alliesBattleZone.transform) Destroy(child.gameObject);
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -83,7 +83,7 @@ public class EnterBattle : MonoBehaviour
 
                 Debug.Log("Character: " + x.name);
 
-                if(x.Level != 0)
+                if (x.Level != 0)
                 {
                     var statsChar = go.GetComponent<Stats>();
 
@@ -199,7 +199,7 @@ public class EnterBattle : MonoBehaviour
     {
         StartCoroutine(CrossfadeAnimation());
 
-        if(enemy.CompareTag("MimeChest"))
+        if (enemy.CompareTag("Mimic"))
         {
             Content content = enemy.GetComponent<ChestContent>().chest();
 
@@ -212,7 +212,7 @@ public class EnterBattle : MonoBehaviour
         }
 
         Destroy(enemy);
-        
+
         SavePlayerCharacterStats();
 
         player.GetComponent<PlayerMove>().enabled = true; // Activa el movimiento del jugador.

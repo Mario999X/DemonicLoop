@@ -67,14 +67,14 @@ public class CombatFlow : MonoBehaviour
 
     GameObject[] players;
 
-    public GameObject[] Players { get { return players; }}
+    public GameObject[] Players { get { return players; } }
 
     List<GameObject> playersDefeated = new();
     public List<GameObject> PlayersDefeated { get { return playersDefeated; } }
 
     List<CharacterAndAttack> charactersWhoCanLearnAnAttack = new();
 
-    public List<CharacterAndAttack> CharactersWhoCanLearnAnAttack { get { return charactersWhoCanLearnAnAttack; }}
+    public List<CharacterAndAttack> CharactersWhoCanLearnAnAttack { get { return charactersWhoCanLearnAnAttack; } }
 
     private GameObject character = null;
     public GameObject Character { get { return character; } }
@@ -148,6 +148,8 @@ public class CombatFlow : MonoBehaviour
             spawnMoveBT = GameObject.Find("MoveButtons");
             WINLOSE = GameObject.Find("WINLOSE").GetComponent<Text>();
 
+
+
             AllyActionBarText = GameObject.Find("AllyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             EnemyActionBarText = GameObject.Find("EnemyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
@@ -155,7 +157,7 @@ public class CombatFlow : MonoBehaviour
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
             learningAttacksManager = GetComponent<LearningAttacksManager>();
-            loserReset = GetComponent<LoserReset>();
+            loserReset = GameObject.Find("Fight").GetComponent<LoserReset>();
 
             SetAllyActionBarInactive();
             SetEnemyActionBarInactive();
@@ -235,7 +237,7 @@ public class CombatFlow : MonoBehaviour
             playerBT.Clear();
         }
 
-        
+
 
         // Creamos un boton por todos los jugadores existentes.
         foreach (GameObject pl in players)
@@ -808,7 +810,7 @@ public class CombatFlow : MonoBehaviour
     public void PassTurn(string movement)
     {
         wait = true;
-        
+
         AudioManager.Instance.PlaySoundButtons();
 
         DesactivatePlayerButton();
@@ -943,7 +945,7 @@ public class CombatFlow : MonoBehaviour
         GameObject[] allCharacters = GameObject.FindGameObjectsWithTag("Player").ToArray().Concat(GameObject.FindGameObjectsWithTag("Enemy").ToArray()).ToArray();
 
         statesLibrary.CheckStates(allCharacters);
-        
+
 
         battleModifiersLibrary.PassTurnOfModifiers();
 
@@ -1053,10 +1055,10 @@ public class CombatFlow : MonoBehaviour
     public void CheckIfMoreCharactersWantNewAttack()
     {
         learningAttacksManager.HideInterface();
-        
-        if(charactersWhoCanLearnAnAttack.Count > 0) charactersWhoCanLearnAnAttack.RemoveAt(0); // Por algun motivo desconocido, daba nulo si no pongo el If; funciona sin el, pero asi nos evitamos el mensaje de nulo.
 
-        if(charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
+        if (charactersWhoCanLearnAnAttack.Count > 0) charactersWhoCanLearnAnAttack.RemoveAt(0); // Por algun motivo desconocido, daba nulo si no pongo el If; funciona sin el, pero asi nos evitamos el mensaje de nulo.
+
+        if (charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
         else StartCoroutine(FinishBattle());
     }
 
@@ -1081,21 +1083,22 @@ public class CombatFlow : MonoBehaviour
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
 
-            loserReset.ShowImage(true);
+            StartCoroutine(loserReset.ShowImage());
+
 
             AudioManager.Instance.StopSoundCombat();
 
             yield return new WaitForSeconds(3);
 
-            enterBattle.FinishBattle();
+
 
         }
 
         // Se resetea la información del combate para el proximo encuentro
-        actualTurn = 0;
-        moves = 0;
+        //actualTurn = 0;
+        //moves = 0;
 
-        WINLOSE.enabled = false;
+        //WINLOSE.enabled = false;
     }
 
     public void ClearPanel()
@@ -1154,7 +1157,7 @@ public class CombatFlow : MonoBehaviour
                 {
                     //Int e lista de enemigos
                     int e = Random.Range(0, enemys.Count);
-                    
+
                     target = enemys[e];
                     AddMovement(enemy, target, nameAtkEnemy);
                 }
@@ -1162,7 +1165,7 @@ public class CombatFlow : MonoBehaviour
                 {
                     //Int z lista de jugadores
                     int z = Random.Range(0, players.Length);
-                    
+
                     target = players[z];
                     AddMovement(enemy, target, nameAtkEnemy);
                 }

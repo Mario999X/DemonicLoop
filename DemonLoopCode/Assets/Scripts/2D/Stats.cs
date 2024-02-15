@@ -58,7 +58,7 @@ public class Stats : MonoBehaviour
 
     bool attacking = false;
 
-    List<ActualStateData> actualStates = new List<ActualStateData>();
+    [SerializeField] List<ActualStateData> actualStates = new List<ActualStateData>();
 
     public bool Attacking { get { return attacking; } }
     public CharacterRol Rol { get { return rol; } }

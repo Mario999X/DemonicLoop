@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Data : MonoBehaviour
@@ -163,4 +164,7 @@ public class Data : MonoBehaviour
         charactersBackupStats[firstIndex] = secondCharacter;
         charactersTeamStats[secondIndex] = firstCharacter;
     }
+
+
+    
 }

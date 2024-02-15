@@ -28,7 +28,8 @@ Material:
     m_Floats:
     - _Bright: 0.46
     - _Noise_Strength: 36.4
-    m_Colors: []
+    m_Colors:
+    - _Speed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2610732880321320689
 MonoBehaviour:

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,7 +5,9 @@ public class CombatBoss : MonoBehaviour
 {
     [SerializeField] int bossNumber = 0;
     private FloatingTextCombat floatingText;
-    [SerializeField] List<GameObject> enemyPrefabsLevel;
+    [SerializeField] GameObject[] enemyPrefabsLevel;
+    [SerializeField] BattleModifiers[] battleModifiers;
+
     const int numHealth = 50;
     private CombatFlow combatFlow;
     float health;
@@ -24,7 +25,7 @@ public class CombatBoss : MonoBehaviour
 
 
 
-    public void CheckAtkEnemyBoss(GameObject targetSelected)
+    public void CheckAtkEnemyBoss(GameObject targetSelected, LibraryBattleModifiers libraryBattleModifiers)
     {
         switch(bossNumber)
         {
@@ -37,7 +38,7 @@ public class CombatBoss : MonoBehaviour
                 }
                 else if (combatFlow.ActualTurn / 5 == 0)
                 {
-                    int newEnemy = Random.Range(0, enemyPrefabsLevel.Count);
+                    int newEnemy = Random.Range(0, enemyPrefabsLevel.Length);
                     if (combatFlow.NumEnemy() < 4)
                     {
                         floatingText.ShowFloatingText(gameObject, "Invader summoned", Color.magenta);
@@ -59,23 +60,29 @@ public class CombatBoss : MonoBehaviour
                 {
                     floatingText.ShowFloatingText(gameObject, "Plague released", Color.yellow);
 
+                    var players = combatFlow.Players;
 
+                    int numPlayerRandom = Random.Range(0, players.Length);
+
+                    int numModifierRandom = Random.Range(0, battleModifiers.Length);
+
+                    libraryBattleModifiers.ActiveBattleModifier(players[numPlayerRandom], battleModifiers[numModifierRandom]);
 
                 } else if(combatFlow.ActualTurn / 4 == 0)
                 {
                     var players = combatFlow.Players.ToList();
 
-                    int r = Random.Range(0, players.Count);
+                    int numPlayerRandom = Random.Range(0, players.Count);
 
-                    var randomCharacter = players[r];
+                    var randomCharacter = players[numPlayerRandom];
 
                     if(randomCharacter == targetSelected)
                     {
                         players.Remove(randomCharacter);
 
-                        r = Random.Range(0, players.Count);
+                        numPlayerRandom = Random.Range(0, players.Count);
 
-                        randomCharacter = players[r];
+                        randomCharacter = players[numPlayerRandom];
                     }
 
                     randomCharacter.GetComponent<Stats>().Health = 1;

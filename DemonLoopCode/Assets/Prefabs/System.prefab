@@ -2137,7 +2137,7 @@ MonoBehaviour:
   - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
   mimicEnemy: {fileID: 7486560601053180396, guid: 6de951144b3734acfaab363510a99ca6,
     type: 3}
-  boss1: {fileID: 9014782617563343838, guid: 5644c94beb0beba4fa78221247de9525, type: 3}
+  boss1: {fileID: 9014782617563343838, guid: 01645ddc0a66d47bda65fbfd7690020c, type: 3}
   boss2: {fileID: 9014782617563343838, guid: 01645ddc0a66d47bda65fbfd7690020c, type: 3}
 --- !u!114 &8020943997931809745
 MonoBehaviour:

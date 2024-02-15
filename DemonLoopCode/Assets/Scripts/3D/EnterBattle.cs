@@ -199,7 +199,7 @@ public class EnterBattle : MonoBehaviour
     {
         StartCoroutine(CrossfadeAnimation());
 
-        if(enemy.CompareTag("MimeChest"))
+        if(enemy.CompareTag("Mimic"))
         {
             Content content = enemy.GetComponent<ChestContent>().chest();
 

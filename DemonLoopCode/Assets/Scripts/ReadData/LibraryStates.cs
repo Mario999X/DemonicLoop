@@ -155,33 +155,23 @@ public class LibraryStates : MonoBehaviour
         {
             if (actualState.State.ToUpper() == "BURNT")
             {
-                var iconExists = character.transform.Find("BURNT");
+                //Debug.Log("BURNT " + actualState.State.ToUpper());
 
-                if(iconExists == null)
-                {
-                    //Debug.Log("BURNT " + actualState.State.ToUpper());
+                GameObject icon = Instantiate(Burnt, character.transform.position, Quaternion.identity);
+                icon.name = "BURNT";
+                icon.transform.SetParent(character.transform);
 
-                    GameObject icon = Instantiate(Burnt, character.transform.position, Quaternion.identity);
-                    icon.name = "BURNT";
-                    icon.transform.SetParent(character.transform);
-
-                    icon.transform.localScale = new Vector3(1f, 1f, 1f);
-                }
+                icon.transform.localScale = new Vector3(1f, 1f, 1f);
             }
             else
             {
-                var iconExists = character.transform.Find("POISON");
-
-                if(iconExists == null)
-                {
-                    //Debug.Log("POISON " + actualState.State.ToUpper());
+                //Debug.Log("POISON " + actualState.State.ToUpper());
                 
-                    GameObject icon = Instantiate(Poison, character.transform.position, Quaternion.identity);
-                    iconExists.name = "POISON";
-                    icon.transform.SetParent(character.transform);
+                GameObject icon = Instantiate(Poison, character.transform.position, Quaternion.identity);
+                icon.name = "POISON";
+                icon.transform.SetParent(character.transform);
                     
-                    icon.transform.localScale = new Vector3(1f, 1f, 1f);
-                }
+                icon.transform.localScale = new Vector3(1f, 1f, 1f);
             }
         }
     }

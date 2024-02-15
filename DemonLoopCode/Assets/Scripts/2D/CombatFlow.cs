@@ -1171,7 +1171,7 @@ public class CombatFlow : MonoBehaviour
 
             if (enemy.GetComponent<Stats>().Boss)
             {
-                enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoss(target);
+                enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoss(target, battleModifiersLibrary);
             }
 
         }//Fin del foreach

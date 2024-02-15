@@ -9,7 +9,7 @@ public class LoserReset : MonoBehaviour
 
     [SerializeField] Image imageLose;
     GameObject[] players;
-
+    MoneyPlayer moneyPlayer;
     PlayerInventory playerInventory;
 
 
@@ -18,8 +18,8 @@ public class LoserReset : MonoBehaviour
     void Start()
     {
         imageLose.GetComponent<Image>().enabled = false;
-
-        playerInventory = GetComponent<PlayerInventory>();
+        moneyPlayer = GetComponent<MoneyPlayer>();
+        playerInventory = GameObject.Find("System").GetComponent<PlayerInventory>();
 
 
         initialObject = new List<ObjectStock>();
@@ -33,6 +33,9 @@ public class LoserReset : MonoBehaviour
         ResetPersistence();
 
         ResetInventory();
+
+       // ResetMoney();
+
         yield return new WaitForSeconds(3);
 
 
@@ -58,28 +61,19 @@ public class LoserReset : MonoBehaviour
 
     }
 
-
     public void ResetInventory()
     {
-        //playerInventory.inventory.Clear();
-
-        foreach (var initialObj in initialObject)
+        if (playerInventory != null)
         {
-            ObjectStock resetInitialStock = new ObjectStock(initialObj.Data, 0);
+            playerInventory.ResetInventario();
 
-            initialObject.Add(resetInitialStock);
         }
+    }
 
-        /* foreach (ObjectStock item in initialObject)
-         {
-             playerInventory.EliminateINVButtons();
-             Destroy(item.ButtonINV3D);
-             playerInventory.inventory.Remove(item.Data.name.ToUpper());
-         }
-
-         GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = false;
-
-         GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);*/
+    public void ResetMoney()
+    {
+        moneyPlayer.Money = 100f;
+        moneyPlayer.MoneyRefined = 100f;
     }
 
 

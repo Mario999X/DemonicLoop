@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class SettingsMenuScript : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class SettingsMenuScript : MonoBehaviour
     private void Start()
     {
         SetResolutionsInArrayAndDropdown();
+
+        SetDefaultValueFullScreen();
+
+        //SetDefaultValuesOnVolumeSliders();
     }
 
     private void SetResolutionsInArrayAndDropdown()
@@ -57,9 +62,23 @@ public class SettingsMenuScript : MonoBehaviour
         audioMixer.SetFloat("MusicVolume", volume);
     }
 
+    // Funcion pensada para poner el valor por defecto en los sliders de sonidos. Se deberán usar los PlayerPrefs o un JSON.
+    private void SetDefaultValuesOnVolumeSliders()
+    {
+        GameObject.Find("MainVolumeSlider").GetComponent<Slider>();
+        GameObject.Find("SFXVolumeSlider").GetComponent<Slider>();
+        GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+    }
+
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+
+    private void SetDefaultValueFullScreen()
+    {
+        if(Screen.fullScreen) GameObject.Find("FullScreenToogle").GetComponent<Toggle>().isOn = true;
+        else GameObject.Find("FullScreenToogle").GetComponent<Toggle>().isOn = false;
     }
 
     public void SetResolution(int resolutionIndex)

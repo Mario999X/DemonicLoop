@@ -236,8 +236,6 @@ public class CombatFlow : MonoBehaviour
             playerBT.Clear();
         }
 
-
-
         // Creamos un boton por todos los jugadores existentes.
         foreach (GameObject pl in players)
         {
@@ -445,24 +443,20 @@ public class CombatFlow : MonoBehaviour
 
             foreach (string listAtk in character.GetComponent<Stats>().ListNameAtk)
             {
-                //Si el nombre del ATK no es uno de ATK Special lo mostrara
-                if (!library.CheckSpeacialAttack(listAtk.ToUpper()))
-                {
-                    // Creamos un boton de movimiento.
-                    GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
-                    bt.transform.SetParent(spawnMoveBT.transform);
-                    bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
-                    bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
-                    bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
-                    bt.transform.localScale = new Vector3(1f, 1f, 1f);
-                    moveBT.Add(bt);
+                // Creamos un boton de movimiento.
+                GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spawnMoveBT.transform);
+                bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
+                bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
+                bt.transform.localScale = new Vector3(1f, 1f, 1f);
+                moveBT.Add(bt);
 
-                    // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
-                    var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
-                    if (!isManaEnough)
-                    {
-                        bt.GetComponent<Button>().interactable = false;
-                    }
+                // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
+                var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
+                if (!isManaEnough)
+                {
+                    bt.GetComponent<Button>().interactable = false;
                 }
             }
 
@@ -766,7 +760,7 @@ public class CombatFlow : MonoBehaviour
             playerBT.ForEach(bt =>
             {
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
-                bt.GetComponent<Button>().enabled = true;
+                bt.GetComponent<Button>().interactable = true;
             });
 
         }
@@ -945,7 +939,6 @@ public class CombatFlow : MonoBehaviour
 
         statesLibrary.CheckStates(allCharacters);
 
-
         battleModifiersLibrary.PassTurnOfModifiers();
 
         BattleStatus();
@@ -961,7 +954,7 @@ public class CombatFlow : MonoBehaviour
             if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name) // character.name.Substring(1, character.name.Length - 1)
             {
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                bt.GetComponent<Button>().enabled = false;
+                bt.GetComponent<Button>().interactable = false;
             }
         });
     }

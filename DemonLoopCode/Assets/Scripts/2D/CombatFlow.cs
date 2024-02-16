@@ -44,7 +44,6 @@ public class CharacterAndAttack
 
 public class CombatFlow : MonoBehaviour
 {
-
     private int actualTurn = 1;
     public int ActualTurn { get { return actualTurn; } set { actualTurn = value; } }
 
@@ -967,7 +966,6 @@ public class CombatFlow : MonoBehaviour
         });
     }
 
-
     private async void BattleStatus()
     {
         await Task.Delay(600); // Entre tanta corrutina, esto es necesario para que al programa le de tiempo a actualizar bien las listas del combate.
@@ -1045,8 +1043,8 @@ public class CombatFlow : MonoBehaviour
 
             if (charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
             else StartCoroutine(FinishBattle());
-        }
-        if (players.Length == 0)
+
+        } else if (players.Length == 0)
         {
             StartCoroutine(FinishBattle());
         }
@@ -1067,6 +1065,7 @@ public class CombatFlow : MonoBehaviour
         if (enemys.Count == 0)
         {
             //Se debe mostrar una pantalla de WIN
+            
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
 
@@ -1095,10 +1094,11 @@ public class CombatFlow : MonoBehaviour
         }
 
         // Se resetea la información del combate para el proximo encuentro
-        //actualTurn = 0;
-        //moves = 0;
 
-        //WINLOSE.enabled = false;
+        actualTurn = 0;
+        moves = 0;
+
+        WINLOSE.enabled = false;
     }
 
     public void ClearPanel()

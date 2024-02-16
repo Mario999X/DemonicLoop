@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPB: {fileID: 6806864167824992199, guid: 51b2790600c1647798c560609ca0911b,
     type: 3}
-  level: 0
-  currentXP: 33.333332
+  level: 1
+  currentXP: 63.333332
   health: 300
   maxHealth: 300
-  mana: 90
+  mana: 150
   maxMana: 150
-  sp: 10
+  sp: 0
   strength: 15
   physicalDef: 12
   magicAtk: 15

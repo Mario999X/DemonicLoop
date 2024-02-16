@@ -1,34 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.Collections.AllocatorManager;
 
 public class LoserReset : MonoBehaviour
 {
 
     [SerializeField] Image imageLose;
-    GameObject[] players;
     MoneyPlayer moneyPlayer;
     PlayerInventory playerInventory;
-    StatsPersistenceData[] aliados;
-
-    List<ObjectStock> initialObject;
-    List<StatsPersistenceData> listTeam = Data.Instance.CharactersTeamStats;
+    StatsPersistenceData[] playerCharacters;
 
     void Start()
     {
         imageLose.GetComponent<Image>().enabled = false;
         moneyPlayer = GameObject.Find("System").GetComponent<MoneyPlayer>();
         playerInventory = GameObject.Find("System").GetComponent<PlayerInventory>();
-        aliados = GameObject.Find("System").GetComponent<Data>().CharactersTeamStats.ToArray();
-
-
-        initialObject = new List<ObjectStock>();
+        playerCharacters = Data.Instance.CharactersTeamStats.ToArray();
     }
 
     public IEnumerator ShowImage()
@@ -84,7 +71,7 @@ public class LoserReset : MonoBehaviour
 
     public void ResetTeam()
     {
-        foreach (StatsPersistenceData member in aliados)
+        foreach (StatsPersistenceData member in playerCharacters)
         {
             if (member.Protagonist!=true)
             {

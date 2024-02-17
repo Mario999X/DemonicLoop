@@ -20,7 +20,7 @@ public class SettingsMenuScript : MonoBehaviour
 
         SetDefaultValueFullScreen();
 
-        //SetDefaultValuesOnVolumeSliders();
+        SetDefaultValuesOnVolumeSliders();
     }
 
     private void SetResolutionsInArrayAndDropdown()
@@ -50,24 +50,41 @@ public class SettingsMenuScript : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("MainVolume", volume);
+
+        PlayerPrefs.SetFloat("MainVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFXVolume", volume);
+
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("MusicVolume", volume);
+
+        PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 
-    // Funcion pensada para poner el valor por defecto en los sliders de sonidos. Se deberán usar los PlayerPrefs o un JSON.
     private void SetDefaultValuesOnVolumeSliders()
     {
-        GameObject.Find("MainVolumeSlider").GetComponent<Slider>();
-        GameObject.Find("SFXVolumeSlider").GetComponent<Slider>();
-        GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        var mainVolume = PlayerPrefs.GetFloat("MainVolume");
+        var sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
+        var musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+
+        SetVolume(mainVolume);
+
+        GameObject.Find("MainVolumeSlider").GetComponent<Slider>().value = mainVolume;
+
+        SetSFXVolume(sfxVolume);
+
+        GameObject.Find("SFXVolumeSlider").GetComponent<Slider>().value = sfxVolume;
+
+        SetMusicVolume(musicVolume);
+
+        GameObject.Find("MusicVolumeSlider").GetComponent<Slider>().value = musicVolume;
     }
 
     public void SetFullScreen(bool isFullScreen)

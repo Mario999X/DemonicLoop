@@ -10,8 +10,6 @@ public class CombatBoss : MonoBehaviour
 
     const int numHealth = 50;
     private CombatFlow combatFlow;
-    float health;
-    float criticalChance;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +17,6 @@ public class CombatBoss : MonoBehaviour
         floatingText = GameObject.Find("System").GetComponent<FloatingTextCombat>();
 
         combatFlow = GameObject.Find("System").GetComponent<CombatFlow>();
-        health = GetComponent<Stats>().Health;
-        criticalChance = GetComponent<Stats>().CriticalChance;
     }
 
 
@@ -31,12 +27,13 @@ public class CombatBoss : MonoBehaviour
         {
             case 1:
 
-                if (combatFlow.ActualTurn / 2 == 0)
+                if (combatFlow.ActualTurn % 2 == 0)
                 {
                     floatingText.ShowFloatingTextNumbers(gameObject, numHealth, Color.green);
-                    health += numHealth;
+
+                    GetComponent<Stats>().Health += numHealth;
                 }
-                else if (combatFlow.ActualTurn / 5 == 0)
+                else if (combatFlow.ActualTurn % 5 == 0)
                 {
                     int newEnemy = Random.Range(0, enemyPrefabsLevel.Length);
                     if (combatFlow.NumEnemy() < 4)
@@ -47,17 +44,18 @@ public class CombatBoss : MonoBehaviour
                     }
                 
                 }
-            else
-            {
-                int c = Random.Range(0, 50);
-                criticalChance += c;
-            }
+                else
+                {
+                    int c = Random.Range(0, 50);
+                    GetComponent<Stats>().CriticalChance += c;
+                }
                 break;
             
             case 2:
 
-                if(combatFlow.ActualTurn / 2 == 0)
+                if(combatFlow.ActualTurn % 2 == 0)
                 {
+
                     floatingText.ShowFloatingText(gameObject, "Plague released", Color.yellow);
 
                     var players = combatFlow.Players;
@@ -68,8 +66,11 @@ public class CombatBoss : MonoBehaviour
 
                     libraryBattleModifiers.ActiveBattleModifier(players[numPlayerRandom], battleModifiers[numModifierRandom]);
 
-                } else if(combatFlow.ActualTurn / 4 == 0)
+                }
+                
+                if(combatFlow.ActualTurn % 4 == 0)
                 {
+
                     var players = combatFlow.Players.ToList();
 
                     int numPlayerRandom = Random.Range(0, players.Count);

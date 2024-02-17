@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -73,7 +72,7 @@ public class LearningAttacksManager : MonoBehaviour
             done = false;
         }
 
-        Debug.Log(character + " " + oldAttackSelected);
+        //Debug.Log(character + " " + oldAttackSelected);
 
     }
 

@@ -751,7 +751,7 @@ public class CombatFlow : MonoBehaviour
             }
 
             //StartCoroutine(CharacterDead(characterTarget, false));
-            Debug.Log("enemys " + characterMove.Character);
+            //Debug.Log("enemys " + characterMove.Character);
 
             //StartCoroutine(CharacterDead(characterMove.Character, true));
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722638, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2899,7 +2899,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1952768995}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999715
+  m_Size: 0.99981916
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5313,7 +5313,7 @@ MonoBehaviour:
   - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarity: 0000000000000000000000000000000000000000640000000000000064000000
+  rarity: 0000000000000000000000000000000064000000000000000000000064000000
   actualroom: 0
   boosRoom: 10
 --- !u!4 &1525719001
@@ -7048,7 +7048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 110124.516}
+  m_AnchoredPosition: {x: 0, y: 110204.664}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1660057539 &9223372036854775807

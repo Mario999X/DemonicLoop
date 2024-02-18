@@ -27,4 +27,4 @@ MonoBehaviour:
   levelRequired: 0
   battleModifierAsociated: {fileID: 0}
   isSpecial: 1
-  pointSpecial: 10
+  pointSpecial: 90

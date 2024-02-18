@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class MoneyPlayer : MonoBehaviour
 {
-    [SerializeField] private float mara;
-    [SerializeField] private float maraRefined;//Dinero que solo te lo da al ganar aun jefe
+    [SerializeField] public float mara;
+    [SerializeField] public float maraRefined;//Dinero que solo te lo da al ganar aun jefe
 
     [SerializeField] List<TextMeshProUGUI> textMoney;
     [SerializeField] List<TextMeshProUGUI> textMoneyRefined;

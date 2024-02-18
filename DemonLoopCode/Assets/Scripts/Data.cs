@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Data : MonoBehaviour
@@ -19,9 +20,9 @@ public class Data : MonoBehaviour
     public int SaveRoom { get { return saveRoom; } set { saveRoom = value; } }
     public int Room { get { return room; } set { room = value; } }
     public int Floor { get { return floor; } set { floor = value; } }
-    public float Money { get { return money; } set {  money = value; } }
-    public List<StatsPersistenceData> CharactersTeamStats { get { return charactersTeamStats;} set { charactersTeamStats = value; }}
-    public List<StatsPersistenceData> CharactersBackupStats { get { return charactersBackupStats;} set { charactersBackupStats = value; }}
+    public float Money { get { return money; } set { money = value; } }
+    public List<StatsPersistenceData> CharactersTeamStats { get { return charactersTeamStats; } set { charactersTeamStats = value; } }
+    public List<StatsPersistenceData> CharactersBackupStats { get { return charactersBackupStats; } set { charactersBackupStats = value; } }
 
     EnterBattle enterBattle;
     [SerializeField] PlayerMove player = null;
@@ -40,10 +41,10 @@ public class Data : MonoBehaviour
         enterBattle = GetComponent<EnterBattle>();
         libraryStates = GetComponent<LibraryStates>();
 
-        #if UNITY_EDITOR
-            foreach (StatsPersistenceData data in charactersTeamStats)
-                data.Health = data.MaxHealth;
-        #endif
+#if UNITY_EDITOR
+        foreach (StatsPersistenceData data in charactersTeamStats)
+            data.Health = data.MaxHealth;
+#endif
     }
 
     void FixedUpdate()
@@ -65,7 +66,7 @@ public class Data : MonoBehaviour
                     if (data.ActualStates.Count > 0)
                     {
                         List<ActualStateData> statesToRemove = new List<ActualStateData>();
-                            
+
                         visualEffect.Auch();
 
                         foreach (ActualStateData actualState in data.ActualStates)
@@ -106,7 +107,7 @@ public class Data : MonoBehaviour
         StatsPersistenceData charStats = null;
 
         charactersTeamStats.ForEach(x => {
-            if(x.CharacterPB.name + "(Clone)" == characterName)
+            if (x.CharacterPB.name + "(Clone)" == characterName)
             {
                 //Debug.Log("x.CharacterPB.name(Clone)");
                 charStats = x;
@@ -163,4 +164,7 @@ public class Data : MonoBehaviour
         charactersBackupStats[firstIndex] = secondCharacter;
         charactersTeamStats[secondIndex] = firstCharacter;
     }
+
+
+    
 }

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class ObjectStock
 {
@@ -11,7 +12,7 @@ public class ObjectStock
     private GameObject buttonINV2D;
     private int count = 1;
 
-    public ObjectData Data { get { return data; } }
+    public ObjectData Data { get { return data; } set { this.data = value; } }
     public int Count { get { return count; } set { this.count = value; } }
     public GameObject ButtonINV3D { get { return buttonINV3D; } set { this.buttonINV3D = value; } }
     public GameObject ButtonINV2D { get { return buttonINV2D; } set { this.buttonINV2D = value; } }
@@ -40,7 +41,7 @@ public class PlayerInventory : MonoBehaviour
 
     Scene scene;
 
-    public bool InventoryState { get {  return inventoryState; } }
+    public bool InventoryState { get { return inventoryState; } }
     public bool DontOpenInventory { get { return dontOpenInventory; } set { dontOpenInventory = value; } }
 
     public Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
@@ -181,12 +182,15 @@ public class PlayerInventory : MonoBehaviour
     // A�ade un objeto al inventario.
     public void AddObjectToInventory(string name, ScriptableObject scriptableObject, int count)
     {
+        Debug.Log("data name" + name);
+        Debug.Log("data Cost" + count);
         var realName = name.Substring(4, name.Length - 4).ToUpper();
 
         if (!inventory.ContainsKey(realName)) // Cuando es un objeto nuevo se incluye al diccionario
         {
             Debug.Log("Add object to inventory" + name.ToUpper());
             inventory.Add(realName, new ObjectStock(scriptableObject as ObjectData, count));
+
         }
         else // Cuando el objeto ya existe aumenta su cantidad
         {
@@ -194,6 +198,8 @@ public class PlayerInventory : MonoBehaviour
             inventory[realName].Count += count;
         }
     }
+
+
 
     // Crea y devuelve el boton 3D
     private GameObject CreateButtonINV3D(ObjectStock stock)
@@ -226,7 +232,7 @@ public class PlayerInventory : MonoBehaviour
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
         //Debug.Log("buttonCMP "+ buttonCMP.name);
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name.Substring(4, stock.Data.name.Length - 4) + " x" + stock.Count;
-        
+
         return button;
     }
 
@@ -243,5 +249,31 @@ public class PlayerInventory : MonoBehaviour
         {
             Destroy(stock.ButtonINV2D);
         }
+    }
+
+    public void ResetInventario()
+    {
+
+        foreach (ObjectStock item in inventory.Values)
+        {
+            var realName = item.Data.name.Substring(4, item.Data.name.Length - 4).ToUpper();
+            Debug.Log("realName " + realName);
+            Destroy(item.ButtonINV3D);
+            inventory.Remove(item.Data.name.ToUpper());
+            inventory[realName].Count = 0;
+            EliminateINVButtons();
+        }
+
+
+        GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = false;
+
+        GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+
+        Time.timeScale = 1f;
+
+        inventoryState = false;
+        inventory.Clear();
+        Debug.Log("Limpio " + inventory.Values.Count);
+        Debug.Log("Limpio inventory " + inventory.Values);
     }
 }

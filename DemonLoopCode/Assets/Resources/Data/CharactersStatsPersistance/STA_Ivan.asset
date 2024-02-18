@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPB: {fileID: 1984689945073004903, guid: 7687434dc4851435ba2c0680978a4108,
     type: 3}
-  level: 0
-  currentXP: 33.333332
+  level: 1
+  currentXP: 63.333332
   health: 300
   maxHealth: 300
   mana: 150

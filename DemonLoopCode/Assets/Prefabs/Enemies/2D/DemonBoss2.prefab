@@ -515,14 +515,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9014782617563343838}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fcd083f7dd63e247bf5de6b8e45201e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossNumber: 0
+  bossNumber: 2
   enemyPrefabsLevel: []
-  battleModifiers: []
+  battleModifiers:
+  - {fileID: 11400000, guid: cb007449e9c8c4fdc8fbcf0938fd008b, type: 2}
+  - {fileID: 11400000, guid: 90eef16dcb1384bceb87cf63a586fa3c, type: 2}
+  - {fileID: 11400000, guid: 13b017e11a360488a84ad2767c7af6ee, type: 2}
+  - {fileID: 11400000, guid: 70def9b9d4c9c467ebb61193bf9cc1bd, type: 2}
+  - {fileID: 11400000, guid: 6163f32d4ba5247c39339c21d8a1b6b7, type: 2}
 --- !u!95 &5134182831197875097
 Animator:
   serializedVersion: 5

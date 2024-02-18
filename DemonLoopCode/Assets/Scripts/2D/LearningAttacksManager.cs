@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -73,6 +72,8 @@ public class LearningAttacksManager : MonoBehaviour
             done = false;
         }
 
+        //Debug.Log(character + " " + oldAttackSelected);
+
     }
 
     private void LocateInterface()
@@ -118,9 +119,11 @@ public class LearningAttacksManager : MonoBehaviour
         learningAttacksPanel.SetActive(false);
         learnAttackBtn.GetComponent<Button>().interactable = false;
 
-        character = null;
-        newAttack = null;
-        oldAttackSelected = null; 
+        // Parecia necesario, pero no lo es y evita un bug de null reference
+        
+        //character = null;
+        //newAttack = null;
+        //oldAttackSelected = null; 
     }
 
     public void FinishOperationNoNewAttack()

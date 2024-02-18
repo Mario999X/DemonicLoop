@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);//Es para que no se pierda el sonido en el cambio de escena
         }
     }
 

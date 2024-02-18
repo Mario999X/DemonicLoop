@@ -44,7 +44,6 @@ public class CharacterAndAttack
 
 public class CombatFlow : MonoBehaviour
 {
-
     private int actualTurn = 1;
     public int ActualTurn { get { return actualTurn; } set { actualTurn = value; } }
 
@@ -67,14 +66,14 @@ public class CombatFlow : MonoBehaviour
 
     GameObject[] players;
 
-    public GameObject[] Players { get { return players; }}
+    public GameObject[] Players { get { return players; } }
 
     List<GameObject> playersDefeated = new();
     public List<GameObject> PlayersDefeated { get { return playersDefeated; } }
 
     List<CharacterAndAttack> charactersWhoCanLearnAnAttack = new();
 
-    public List<CharacterAndAttack> CharactersWhoCanLearnAnAttack { get { return charactersWhoCanLearnAnAttack; }}
+    public List<CharacterAndAttack> CharactersWhoCanLearnAnAttack { get { return charactersWhoCanLearnAnAttack; } }
 
     private GameObject character = null;
     public GameObject Character { get { return character; } }
@@ -148,6 +147,8 @@ public class CombatFlow : MonoBehaviour
             spawnMoveBT = GameObject.Find("MoveButtons");
             WINLOSE = GameObject.Find("WINLOSE").GetComponent<Text>();
 
+
+
             AllyActionBarText = GameObject.Find("AllyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             EnemyActionBarText = GameObject.Find("EnemyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
@@ -155,7 +156,7 @@ public class CombatFlow : MonoBehaviour
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
             learningAttacksManager = GetComponent<LearningAttacksManager>();
-            loserReset = GetComponent<LoserReset>();
+            loserReset = GameObject.Find("Fight").GetComponent<LoserReset>();
 
             SetAllyActionBarInactive();
             SetEnemyActionBarInactive();
@@ -234,8 +235,6 @@ public class CombatFlow : MonoBehaviour
             playerBT.ForEach(bt => Destroy(bt));
             playerBT.Clear();
         }
-
-        
 
         // Creamos un boton por todos los jugadores existentes.
         foreach (GameObject pl in players)
@@ -444,24 +443,20 @@ public class CombatFlow : MonoBehaviour
 
             foreach (string listAtk in character.GetComponent<Stats>().ListNameAtk)
             {
-                //Si el nombre del ATK no es uno de ATK Special lo mostrara
-                if (!library.CheckSpeacialAttack(listAtk.ToUpper()))
-                {
-                    // Creamos un boton de movimiento.
-                    GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
-                    bt.transform.SetParent(spawnMoveBT.transform);
-                    bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
-                    bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
-                    bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
-                    bt.transform.localScale = new Vector3(1f, 1f, 1f);
-                    moveBT.Add(bt);
+                // Creamos un boton de movimiento.
+                GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spawnMoveBT.transform);
+                bt.name = "NameAtk " + listAtk;//Nombre de los botones que se van a generar
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
+                bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
+                bt.transform.localScale = new Vector3(1f, 1f, 1f);
+                moveBT.Add(bt);
 
-                    // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
-                    var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
-                    if (!isManaEnough)
-                    {
-                        bt.GetComponent<Button>().interactable = false;
-                    }
+                // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
+                var isManaEnough = library.CheckIfManaIsEnough(character, listAtk.ToUpper());
+                if (!isManaEnough)
+                {
+                    bt.GetComponent<Button>().interactable = false;
                 }
             }
 
@@ -756,7 +751,7 @@ public class CombatFlow : MonoBehaviour
             }
 
             //StartCoroutine(CharacterDead(characterTarget, false));
-            Debug.Log("enemys " + characterMove.Character);
+            //Debug.Log("enemys " + characterMove.Character);
 
             //StartCoroutine(CharacterDead(characterMove.Character, true));
 
@@ -765,7 +760,7 @@ public class CombatFlow : MonoBehaviour
             playerBT.ForEach(bt =>
             {
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
-                bt.GetComponent<Button>().enabled = true;
+                bt.GetComponent<Button>().interactable = true;
             });
 
         }
@@ -808,7 +803,7 @@ public class CombatFlow : MonoBehaviour
     public void PassTurn(string movement)
     {
         wait = true;
-        
+
         AudioManager.Instance.PlaySoundButtons();
 
         DesactivatePlayerButton();
@@ -943,7 +938,6 @@ public class CombatFlow : MonoBehaviour
         GameObject[] allCharacters = GameObject.FindGameObjectsWithTag("Player").ToArray().Concat(GameObject.FindGameObjectsWithTag("Enemy").ToArray()).ToArray();
 
         statesLibrary.CheckStates(allCharacters);
-        
 
         battleModifiersLibrary.PassTurnOfModifiers();
 
@@ -960,11 +954,10 @@ public class CombatFlow : MonoBehaviour
             if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name) // character.name.Substring(1, character.name.Length - 1)
             {
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
-                bt.GetComponent<Button>().enabled = false;
+                bt.GetComponent<Button>().interactable = false;
             }
         });
     }
-
 
     private async void BattleStatus()
     {
@@ -1043,8 +1036,8 @@ public class CombatFlow : MonoBehaviour
 
             if (charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
             else StartCoroutine(FinishBattle());
-        }
-        if (players.Length == 0)
+
+        } else if (players.Length == 0)
         {
             StartCoroutine(FinishBattle());
         }
@@ -1053,10 +1046,10 @@ public class CombatFlow : MonoBehaviour
     public void CheckIfMoreCharactersWantNewAttack()
     {
         learningAttacksManager.HideInterface();
-        
-        if(charactersWhoCanLearnAnAttack.Count > 0) charactersWhoCanLearnAnAttack.RemoveAt(0); // Por algun motivo desconocido, daba nulo si no pongo el If; funciona sin el, pero asi nos evitamos el mensaje de nulo.
 
-        if(charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
+        if (charactersWhoCanLearnAnAttack.Count > 0) charactersWhoCanLearnAnAttack.RemoveAt(0); // Por algun motivo desconocido, daba nulo si no pongo el If; funciona sin el, pero asi nos evitamos el mensaje de nulo.
+
+        if (charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
         else StartCoroutine(FinishBattle());
     }
 
@@ -1065,6 +1058,7 @@ public class CombatFlow : MonoBehaviour
         if (enemys.Count == 0)
         {
             //Se debe mostrar una pantalla de WIN
+            
             WINLOSE.enabled = true;
             WINLOSE.text = "WIN";
 
@@ -1081,17 +1075,19 @@ public class CombatFlow : MonoBehaviour
             WINLOSE.enabled = true;
             WINLOSE.text = "LOSE";
 
-            loserReset.ShowImage(true);
+            StartCoroutine(loserReset.ShowImage());
+
 
             AudioManager.Instance.StopSoundCombat();
 
             yield return new WaitForSeconds(3);
 
-            enterBattle.FinishBattle();
+
 
         }
 
         // Se resetea la información del combate para el proximo encuentro
+
         actualTurn = 0;
         moves = 0;
 
@@ -1154,7 +1150,7 @@ public class CombatFlow : MonoBehaviour
                 {
                     //Int e lista de enemigos
                     int e = Random.Range(0, enemys.Count);
-                    
+
                     target = enemys[e];
                     AddMovement(enemy, target, nameAtkEnemy);
                 }
@@ -1162,7 +1158,7 @@ public class CombatFlow : MonoBehaviour
                 {
                     //Int z lista de jugadores
                     int z = Random.Range(0, players.Length);
-                    
+
                     target = players[z];
                     AddMovement(enemy, target, nameAtkEnemy);
                 }

@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rol: 0
+  rolIcon: {fileID: 0}
   level: 1
   currentXP: 0
   health: 0
@@ -677,6 +678,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}
   absorbsDamageOfSameType: 1
   type: 3
+  typeIcon: {fileID: 0}
   atkSpecial: {fileID: 0}
   moneyDrop: 500
   dropXP: 1000
@@ -710,10 +712,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcd083f7dd63e247bf5de6b8e45201e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossNumber: 1
   enemyPrefabsLevel:
   - {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57, type: 3}
   - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
   - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
+  battleModifiers: []
 --- !u!95 &7187217983403485639
 Animator:
   serializedVersion: 5

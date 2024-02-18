@@ -89,10 +89,10 @@ public class LibraryStates : MonoBehaviour
                         newState = true;
                     }
                 }
-
-                if (!newState)
-                    targetStates.Add(new ActualStateData(state));
             }
+
+            if (!newState)
+                targetStates.Add(new ActualStateData(state));
 
             if (enterBattle.OneTime)
                 IconState(target);

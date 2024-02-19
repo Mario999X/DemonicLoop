@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPB: {fileID: 1984689945073004903, guid: 7687434dc4851435ba2c0680978a4108,
     type: 3}
-  level: 1
-  currentXP: 63.333332
-  health: 300
-  maxHealth: 300
-  mana: 150
-  maxMana: 150
-  sp: 10
-  strength: 15
-  physicalDef: 12
-  magicAtk: 15
-  magicDef: 15
-  criticalChance: 35
+  level: 0
+  currentXP: 448
+  health: 340
+  maxHealth: 350
+  mana: 170
+  maxMana: 175
+  sp: 20
+  strength: 40
+  physicalDef: 62
+  magicAtk: 40
+  magicDef: 65
+  criticalChance: 50
   listAtk:
   - {fileID: 11400000, guid: c26bd1d267de74ced872e9c175cca721, type: 2}
   - {fileID: 11400000, guid: aeb7db8b8a8e047d1868dae08c34f071, type: 2}

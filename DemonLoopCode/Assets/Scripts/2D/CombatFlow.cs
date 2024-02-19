@@ -83,7 +83,7 @@ public class CombatFlow : MonoBehaviour
 
     [Header("Characters speed of movement")]
     [SerializeField] float speed = 50f;
-    [SerializeField] Text WINLOSE;
+    //[SerializeField] Text WINLOSE;
 
     private TextMeshProUGUI AllyActionBarText, EnemyActionBarText;
 
@@ -118,6 +118,8 @@ public class CombatFlow : MonoBehaviour
 
     private LearningAttacksManager learningAttacksManager;
 
+    private PostBattleTeam postBattleTeam;
+
     LoserReset loserReset;
 
     private void Update()
@@ -145,7 +147,7 @@ public class CombatFlow : MonoBehaviour
             spawnEnemyBT = GameObject.Find("EnemyButtons");
             spawnPlayerBT = GameObject.Find("PlayerButtons");
             spawnMoveBT = GameObject.Find("MoveButtons");
-            WINLOSE = GameObject.Find("WINLOSE").GetComponent<Text>();
+            //WINLOSE = GameObject.Find("WINLOSE").GetComponent<Text>();
 
 
 
@@ -156,6 +158,7 @@ public class CombatFlow : MonoBehaviour
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
             learningAttacksManager = GetComponent<LearningAttacksManager>();
+            postBattleTeam = GetComponent<PostBattleTeam>();
             loserReset = GameObject.Find("Fight").GetComponent<LoserReset>();
 
             SetAllyActionBarInactive();
@@ -171,6 +174,7 @@ public class CombatFlow : MonoBehaviour
             GameObject.Find("InventoryButton").SetActive(false);
             GameObject.Find("SpecialAttackButton").SetActive(false);
 
+           
             panelGameObject.SetActive(false);
             panelMiniGame.SetActive(false);
 
@@ -969,11 +973,14 @@ public class CombatFlow : MonoBehaviour
 
     private void CheckBattleStatus()
     {
+        
         if (enemys.Count == 0)
         {
             var experience = totalEXP / players.LongLength; // Reparto de experiencia
 
             ActivatePanel();
+
+            postBattleTeam.ActivatePanel();
 
             battleModifiersLibrary.RemoveAllBattleModifiers();
 
@@ -994,23 +1001,9 @@ public class CombatFlow : MonoBehaviour
 
             players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
 
-            for (int i = 0; i < players.Length; i++)
-            {
-                if (LevelTemp[i] != players[i].GetComponent<Stats>().Level)
-                {
-                    panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"LVP UP!!!!! {players[i].name} " +
-                   $"|\n HP: {players[i].GetComponent<Stats>().Health}/{players[i].GetComponent<Stats>().MaxHealth} " +
-                   $"|\n Mana: {players[i].GetComponent<Stats>().Mana}/{players[i].GetComponent<Stats>().MaxMana}";
-                }
-                else
-                {
-                    panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{players[i].name} " +
-                                       $"|\n HP: {players[i].GetComponent<Stats>().Health}/{players[i].GetComponent<Stats>().MaxHealth} " +
-                                       $"|\n Mana: {players[i].GetComponent<Stats>().Mana}/{players[i].GetComponent<Stats>().MaxMana}";
-                }
+            StartCoroutine(postBattleTeam.InfoPanelTeam(players));
 
-            }
-
+            
             players.ToList().ForEach(p =>
             {
                 var i = 0;
@@ -1033,7 +1026,7 @@ public class CombatFlow : MonoBehaviour
 
                 i++;
             });
-
+            
             if (charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
             else StartCoroutine(FinishBattle());
 
@@ -1053,36 +1046,31 @@ public class CombatFlow : MonoBehaviour
         else StartCoroutine(FinishBattle());
     }
 
+
+
     public IEnumerator FinishBattle()
     {
         if (enemys.Count == 0)
         {
-            //Se debe mostrar una pantalla de WIN
+            //WINLOSE.enabled = true;
+            //WINLOSE.text = "WIN";
             
-            WINLOSE.enabled = true;
-            WINLOSE.text = "WIN";
-
             AudioManager.Instance.StopSoundCombat();
-
+          
             yield return new WaitForSeconds(3);
-
+            
             enterBattle.FinishBattle();
             DisablePanel();
             ClearPanel();
+            
         }
         if (players.Length == 0)
         {
-            WINLOSE.enabled = true;
-            WINLOSE.text = "LOSE";
-
             StartCoroutine(loserReset.ShowImage());
-
 
             AudioManager.Instance.StopSoundCombat();
 
             yield return new WaitForSeconds(3);
-
-
 
         }
 
@@ -1091,7 +1079,7 @@ public class CombatFlow : MonoBehaviour
         actualTurn = 0;
         moves = 0;
 
-        WINLOSE.enabled = false;
+        //WINLOSE.enabled = false;
     }
 
     public void ClearPanel()

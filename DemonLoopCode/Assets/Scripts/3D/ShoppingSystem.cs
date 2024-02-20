@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static Unity.Collections.AllocatorManager;
 public class ShoppingSystem : MonoBehaviour
 {
     [SerializeField] GameObject button;
@@ -66,7 +61,7 @@ public class ShoppingSystem : MonoBehaviour
                 displayzone.SetActive(false);
                 break;
 
-            case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los compañeros y guardar los componentes que se van a utilizar.
+            case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los compaï¿½eros y guardar los componentes que se van a utilizar.
                 Debug.Log(gameObject.tag);
                 List<StatsPersistenceData> slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
 
@@ -420,6 +415,7 @@ public class ShoppingSystem : MonoBehaviour
 
         GameObject gulab = Instantiate(button, choose.transform);
         gulab.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Dimensional pocket";
+
         gulab.GetComponent<Button>().onClick.AddListener(() =>
         {
             party.CharactersBackupStats.Add(slave);
@@ -436,6 +432,8 @@ public class ShoppingSystem : MonoBehaviour
             Destroy(GameObject.Find(slave.name.Substring(slave.name.IndexOf("_") + 1).ToUpper()));
 
             displayzone.SetActive(false);
+
+            GameObject.Find("System").GetComponent<TeamViewManager>().SetBackupTeamData();
         });
 
     }
@@ -470,6 +468,9 @@ public class ShoppingSystem : MonoBehaviour
                     Destroy(GameObject.Find(slave.name.Substring(slave.name.IndexOf("_") + 1).ToUpper()));
 
                     displayzone.SetActive(false);
+
+                    GameObject.Find("System").GetComponent<TeamViewManager>().SetActiveTeamData();
+                    GameObject.Find("System").GetComponent<TeamViewManager>().SetBackupTeamData();
                 });
             }
         }

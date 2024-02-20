@@ -188,7 +188,7 @@ public class LearningAttacksManager : MonoBehaviour
 
         if(oldAttackSelected.BattleModifierAsociated != null)
         {
-            battleModifierText.text = "Inflict battle modifier: " + oldAttackSelected.ObtainBattleModifierName();
+            battleModifierText.text = "Battle modifier: " + oldAttackSelected.ObtainBattleModifierName();
 
         } else battleModifierText.text = "No battle modifier asociated";
 

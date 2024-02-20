@@ -100,6 +100,7 @@ public class TeamViewManager : MonoBehaviour
 
     public void SetActiveTeamData()
     {
+
         if(controlPanelActiveTeamPods.transform.childCount > 0)
         {
             foreach(Transform child in controlPanelActiveTeamPods.transform) Destroy(child.gameObject);

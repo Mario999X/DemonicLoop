@@ -1051,9 +1051,6 @@ public class CombatFlow : MonoBehaviour
     {
         if (enemys.Count == 0)
         {
-            //WINLOSE.enabled = true;
-            //WINLOSE.text = "WIN";
-            
             AudioManager.Instance.StopSoundCombat();
           
             yield return new WaitForSeconds(3);
@@ -1074,11 +1071,8 @@ public class CombatFlow : MonoBehaviour
         }
 
         // Se resetea la información del combate para el proximo encuentro
-
         actualTurn = 0;
         moves = 0;
-
-        //WINLOSE.enabled = false;
     }
 
     public void ClearPanel()

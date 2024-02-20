@@ -1932,6 +1932,7 @@ GameObject:
   - component: {fileID: 2296548530998863524}
   - component: {fileID: 3394840683561504598}
   - component: {fileID: 8532567367282478903}
+  - component: {fileID: 4074413519889989265}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -2022,7 +2023,6 @@ MonoBehaviour:
   buttonRef: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}
   speed: 1500
-  WINLOSE: {fileID: 0}
 --- !u!114 &809560638376708105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2214,6 +2214,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8552cbcec524641b8c5315deb82684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4074413519889989265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178491517262405012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66b5f93a0d199948bf4b92567300c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5301153487084853827, guid: 47d4764c9fddafd4ea2e9838a0257b50, type: 3}
 --- !u!1 &4362766764357955600
 GameObject:
   m_ObjectHideFlags: 0

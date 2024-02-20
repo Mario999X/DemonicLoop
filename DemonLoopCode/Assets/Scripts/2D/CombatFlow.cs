@@ -997,21 +997,20 @@ public class CombatFlow : MonoBehaviour
                 LevelTemp[i] = players[i].GetComponent<Stats>().Level;
             }
 
-            Debug.Log("Experiencia: " + experience);
+            //Debug.Log("Experiencia: " + experience);
 
             players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
 
             StartCoroutine(postBattleTeam.InfoPanelTeam(players));
 
-            
             players.ToList().ForEach(p =>
             {
                 var i = 0;
 
                 AttackData possibleAttack = null;
-                if (LevelTemp[i] == p.GetComponent<Stats>().Level)
+                if (LevelTemp[i] > p.GetComponent<Stats>().Level)
                 {
-                    Debug.Log("No se subio de nivel, no ataque nuevo");
+                    //Debug.Log("No se subio de nivel, no ataque nuevo");
                 }
                 else if (p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
                 {

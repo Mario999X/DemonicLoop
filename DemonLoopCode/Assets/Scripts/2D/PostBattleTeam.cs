@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PostBattleTeam : MonoBehaviour
 {
@@ -19,11 +17,6 @@ public class PostBattleTeam : MonoBehaviour
 
     private Scene scene;
     private bool done = false;
-
-    private LibraryMove library;
-
-    // General information
-    private TextMeshProUGUI postBattleText;
 
     // Imagenes Team
     private Image unit1;
@@ -92,8 +85,6 @@ public class PostBattleTeam : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
-            library = GetComponent<LibraryMove>();
-
             LocateInterface();
             HideInterfacePostBattle();
             
@@ -104,7 +95,6 @@ public class PostBattleTeam : MonoBehaviour
             done = false;
         }
 
-        //Debug.Log(character + " " + oldAttackSelected);
 
     }
 
@@ -113,19 +103,17 @@ public class PostBattleTeam : MonoBehaviour
         postBattleTeamPanel = GameObject.Find("PostBattleTeamPanel");
         alliesBattleZone = GameObject.Find("AlliesBattleZone");
 
-        postBattleText = postBattleTeamPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-
         // Imagenes Team
-        unit1 = postBattleTeamPanel.transform.GetChild(1).gameObject.GetComponent<Image>();
-        unit2 = postBattleTeamPanel.transform.GetChild(2).gameObject.GetComponent<Image>();
-        unit3 = postBattleTeamPanel.transform.GetChild(3).gameObject.GetComponent<Image>();
-        unit4 = postBattleTeamPanel.transform.GetChild(4).gameObject.GetComponent<Image>();
+        unit1 = postBattleTeamPanel.transform.GetChild(0).gameObject.GetComponent<Image>();
+        unit2 = postBattleTeamPanel.transform.GetChild(1).gameObject.GetComponent<Image>();
+        unit3 = postBattleTeamPanel.transform.GetChild(2).gameObject.GetComponent<Image>();
+        unit4 = postBattleTeamPanel.transform.GetChild(3).gameObject.GetComponent<Image>();
 
         // Info Panels
-        infoNewStatsPanel1 = postBattleTeamPanel.transform.GetChild(5).gameObject;
-        infoNewStatsPanel2 = postBattleTeamPanel.transform.GetChild(6).gameObject;
-        infoNewStatsPanel3 = postBattleTeamPanel.transform.GetChild(7).gameObject;
-        infoNewStatsPanel4 = postBattleTeamPanel.transform.GetChild(8).gameObject;
+        infoNewStatsPanel1 = postBattleTeamPanel.transform.GetChild(4).gameObject;
+        infoNewStatsPanel2 = postBattleTeamPanel.transform.GetChild(5).gameObject;
+        infoNewStatsPanel3 = postBattleTeamPanel.transform.GetChild(6).gameObject;
+        infoNewStatsPanel4 = postBattleTeamPanel.transform.GetChild(7).gameObject;
 
         // Unidad 1
 
@@ -281,8 +269,7 @@ public class PostBattleTeam : MonoBehaviour
 
     public void HideInterfacePostBattle()
     {
-        // foreach (Transform button in actualAttacksPanel.transform) Destroy(button.gameObject);
-        Debug.Log("postBattleTeamPanel "+ postBattleTeamPanel);
+
         postBattleTeamPanel.SetActive(false);
         infoNewStatsPanel1.SetActive(false);
         infoNewStatsPanel2.SetActive(false);
@@ -292,13 +279,7 @@ public class PostBattleTeam : MonoBehaviour
         unit2.gameObject.SetActive(false);
         unit3.gameObject.SetActive(false);
         unit4.gameObject.SetActive(false);
-        //learnAttackBtn.GetComponent<Button>().interactable = false;
 
-        // Parecia necesario, pero no lo es y evita un bug de null reference
-
-        //character = null;
-        //newAttack = null;
-        //oldAttackSelected = null; 
     }
 
 

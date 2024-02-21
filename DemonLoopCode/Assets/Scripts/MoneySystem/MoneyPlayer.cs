@@ -49,13 +49,16 @@ public class MoneyPlayer : MonoBehaviour
         }
     }
 
-    private void SetMoneyInText()
+    public void SetMoneyInText()
     {
-        foreach (TextMeshProUGUI text in textMoney)
+        if (textMoney != null)
+        {
+            foreach (TextMeshProUGUI text in textMoney)
             text.text = $"Mara: {mara}";
+        }
     }
 
-    private void SetMoneyRefinedInText()
+    public void SetMoneyRefinedInText()
     {
         foreach (TextMeshProUGUI text in textMoneyRefined)
             text.text = $"Mara Refined: {maraRefined}";

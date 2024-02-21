@@ -7,10 +7,10 @@ using System.Linq;
 
 public class ObjectStock
 {
-    private ObjectData data;
-    private GameObject buttonINV3D;
-    private GameObject buttonINV2D;
-    private int count = 1;
+    public ObjectData data;
+    public GameObject buttonINV3D;
+    public GameObject buttonINV2D;
+    public int count = 1;
 
     public ObjectData Data { get { return data; } set { this.data = value; } }
     public int Count { get { return count; } set { this.count = value; } }
@@ -188,7 +188,7 @@ public class PlayerInventory : MonoBehaviour
 
         if (!inventory.ContainsKey(realName)) // Cuando es un objeto nuevo se incluye al diccionario
         {
-            Debug.Log("Add object to inventory" + name.ToUpper());
+            Debug.Log("Add object to inventory " + name.ToUpper());
             inventory.Add(realName, new ObjectStock(scriptableObject as ObjectData, count));
 
         }
@@ -276,4 +276,5 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log("Limpio " + inventory.Values.Count);
         Debug.Log("Limpio inventory " + inventory.Values);
     }
+
 }

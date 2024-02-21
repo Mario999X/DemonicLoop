@@ -2094,8 +2094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mara: 0
   maraRefined: 0
-  textMoney:
-  - {fileID: 0}
+  textMoney: []
   textMoneyRefined: []
 --- !u!114 &2354188879842531627
 MonoBehaviour:

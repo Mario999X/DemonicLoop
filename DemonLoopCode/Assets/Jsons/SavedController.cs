@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using static UnityEditor.Progress;
 using TMPro;
+using UnityEditor.U2D.Animation;
 
 [System.Serializable]
 public class ObjectStockData
@@ -22,12 +23,12 @@ public class ObjectStockData
 public class StatsPersistenceContainer
 {
     public GameObject player;
-    /* public int playerLevel;
+     public int playerLevel;
      public float playerExperience;
      public float playerHealth;
      public float playerMana;
      public float playerAttack;
-     public float playerDefense;*/
+     public float playerDefense;
     public List<ObjectStockData> inventory;
     public float money;
     public float moneyRefined;
@@ -155,14 +156,16 @@ public class SavedController : MonoBehaviour
 
                 // Team y Stats
                 Data.Instance.CharactersTeamStats.Clear();
-                Data.Instance.CharactersTeamStats.AddRange(Data.Instance.CharactersTeamStats);
-
+                foreach (var characterData in loadedStats.teamCharacterStats)
+                {
+                    Data.Instance.CharactersTeamStats.Add(characterData);
+                }
                 Debug.Log("Buscar loadedStats.inventory " + loadedStats.inventory);
                 Debug.Log("playerInventory.inventory.Values " + playerInventory.inventory.Values);
                 Debug.Log("loadedStats.inventoryDictionary " + loadedStats.inventoryDictionary);
 
                 // Inventario 
-                playerInventory.inventory.Clear();
+                //playerInventory.inventory.Clear();
 
                 /*if (loadedStats.inventoryDictionary !=null)
                 {
@@ -182,7 +185,7 @@ public class SavedController : MonoBehaviour
                      //loadedStats.inventoryDictionary.Add(obj.name, obj);
 
                  }*/
-                foreach (var item in loadedStats.inventory)
+                /*foreach (var item in loadedStats.inventory)
                 {
                     playerInventory.AddObjectToInventory(playerInventory.name,item.objData ,item.count);
                 }
@@ -195,7 +198,7 @@ public class SavedController : MonoBehaviour
                         playerInventory.AddObjectToInventory(realObjName, objName.Value, loadedStats.inventoryDictionary.Count);
                     }
                 }
-
+                */
 
                 /*foreach (var objName in loadedStats.inventory)
                 {

@@ -16,7 +16,7 @@ MonoBehaviour:
     type: 3}
   level: 0
   currentXP: 327
-  health: 310
+  health: 50
   maxHealth: 310
   mana: 155
   maxMana: 155

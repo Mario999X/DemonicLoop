@@ -11,14 +11,14 @@ public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 public class ObjectData : ScriptableObject
 {
     private FloatingTextCombat floatingText;
-    [SerializeField] private Sprite icon;
+    [SerializeField] public Sprite icon;
 
     [TextArea]
-    [SerializeField] private string description;
-    [SerializeField] private float cost;
-    [SerializeField] private ObjectTypes objectType;
-    [SerializeField] private float baseNum;
-    [SerializeField] private StateData stateAsociated;
+    [SerializeField] public string description;
+    [SerializeField] public float cost;
+    [SerializeField] public ObjectTypes objectType;
+    [SerializeField] public float baseNum;
+    [SerializeField] public StateData stateAsociated;
     [SerializeField] bool alliesTargets = false;
     [SerializeField] Types type;
     [SerializeField] GameObject buttonPrefab;
@@ -28,7 +28,7 @@ public class ObjectData : ScriptableObject
     EnterBattle enterBattle;
     PlayerInventory inventory;
 
-    public Sprite Icon { get { return icon; } }
+    public Sprite Icon { get { return icon; } set { icon = value; } }
     public string Description { get { return description; } }
     public float Cost { get { return cost; } set { cost = value; } }
     public ObjectTypes ObjectType { get { return objectType; } }

@@ -165,12 +165,12 @@ public class SavedController : MonoBehaviour
                 Debug.Log("loadedStats.inventoryDictionary " + loadedStats.inventoryDictionary);
 
                 // Inventario 
-                //playerInventory.inventory.Clear();
+                playerInventory.inventory.Clear();
 
-                /*if (loadedStats.inventoryDictionary !=null)
+                if (loadedStats.inventoryDictionary !=null)
                 {
                     loadedStats.inventoryDictionary.Clear();
-                }*/
+                }
 
                 ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
 
@@ -185,9 +185,20 @@ public class SavedController : MonoBehaviour
                      //loadedStats.inventoryDictionary.Add(obj.name, obj);
 
                  }*/
-                /*foreach (var item in loadedStats.inventory)
+
+
+
+                /* foreach (var obj in playerInventory.inventory.Values)
+                 {
+                     loadedStats.inventory.Add(new ObjectStockData(obj.Data, obj.Count));
+                     loadedStats.inventoryDictionary.Add(obj.Data.name, obj.Data);
+                 }*/
+                int i = 0;
+                foreach (var item in loadedStats.inventory)
                 {
-                    playerInventory.AddObjectToInventory(playerInventory.name,item.objData ,item.count);
+
+                    playerInventory.AddObjectToInventory(objects[i].name,item.objData ,item.count);
+                    i++;
                 }
 
                 if (loadedStats.inventoryDictionary != null)
@@ -198,7 +209,7 @@ public class SavedController : MonoBehaviour
                         playerInventory.AddObjectToInventory(realObjName, objName.Value, loadedStats.inventoryDictionary.Count);
                     }
                 }
-                */
+                
 
                 /*foreach (var objName in loadedStats.inventory)
                 {

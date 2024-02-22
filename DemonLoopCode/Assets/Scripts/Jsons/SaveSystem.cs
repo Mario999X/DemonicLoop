@@ -173,8 +173,9 @@ public class SaveSystem : MonoBehaviour
 
 
                 // Ruta del Json donde esta guardado 
-                string ruta = Path.Combine(Application.dataPath + "/SaveGame/", "newStatsPersistenceData.json");
-                loadedStats = LoadController.LoadStats(ruta);
+                string fileNameLoad = "newStatsPersistenceData.json";
+                string filePathLoad = Path.Combine(Application.persistentDataPath, fileNameLoad);
+                loadedStats = LoadController.LoadStats(filePathLoad);
                 Debug.Log("Datos cargados exitosamente.");
             }
             else

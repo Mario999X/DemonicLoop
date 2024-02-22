@@ -23,18 +23,11 @@ public class ObjectStockData
 public class StatsPersistenceContainer
 {
     public GameObject player;
-     public int playerLevel;
-     public float playerExperience;
-     public float playerHealth;
-     public float playerMana;
-     public float playerAttack;
-     public float playerDefense;
     public List<ObjectStockData> inventory;
     public float money;
     public float moneyRefined;
     public string sceneName;
     public List<StatsPersistenceData> teamCharacterStats;
-    //public List <ObjectData> dataList;
     public Dictionary<string, ObjectData> inventoryDictionary;
     public ScriptableObject dataScriptableObject;
 
@@ -47,7 +40,6 @@ public class StatsPersistenceContainer
         teamCharacterStats = new List<StatsPersistenceData>();
         inventoryDictionary = new Dictionary<string, ObjectData>();
         dataScriptableObject = ScriptableObject.CreateInstance<ScriptableObject>();
-        // dataList = new List<ObjectData>();
 
     }
 }
@@ -70,17 +62,6 @@ public class SavedController : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            SaveData();
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            LoadData();
-        }
-    }
 
     public void SaveData()
     {
@@ -99,13 +80,8 @@ public class SavedController : MonoBehaviour
         // Inventario 
         foreach (var obj in playerInventory.inventory.Values)
         {
-
             savedController.inventory.Add(new ObjectStockData(obj.Data, obj.Count));
-
             savedController.inventoryDictionary.Add(obj.Data.name, obj.Data);
-           // playerInventory.AddObjectToInventory(obj.Data.name, savedController.dataScriptableObject as ObjectData, obj.Count);
-
-            //playerInventory.inventory.Add(obj.Data.name,new ObjectStock(savedController.dataScriptableObject as ObjectData, obj.Count));
 
         }
 
@@ -167,66 +143,38 @@ public class SavedController : MonoBehaviour
                 // Inventario 
                 playerInventory.inventory.Clear();
 
-                if (loadedStats.inventoryDictionary !=null)
+                if (loadedStats.inventoryDictionary != null)
                 {
                     loadedStats.inventoryDictionary.Clear();
                 }
 
                 ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
 
-                /* foreach (ObjectData obj in objects)
-                 {
-                     Debug.Log("cargando Objeto " + obj.name);
-                     string objName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
-
-                     Debug.Log("loadedStats.inventory " + loadedStats.inventory);
-
-                     //loadedStats.inventory.Add(new ObjectStockData(obj, loadedStats.inventory.Count));
-                     //loadedStats.inventoryDictionary.Add(obj.name, obj);
-
-                 }*/
-
-
-
-                /* foreach (var obj in playerInventory.inventory.Values)
-                 {
-                     loadedStats.inventory.Add(new ObjectStockData(obj.Data, obj.Count));
-                     loadedStats.inventoryDictionary.Add(obj.Data.name, obj.Data);
-                 }*/
                 int i = 0;
                 foreach (var item in loadedStats.inventory)
                 {
+                    Debug.Log("objects[i].name " + objects[i].name + " i " + i);
+                    if (objects[i] = item.objData)
+                    {
+                        playerInventory.AddObjectToInventory(objects[i].name, item.objData, item.count);
+                        i++;
 
-                    playerInventory.AddObjectToInventory(objects[i].name,item.objData ,item.count);
-                    i++;
+                    }
                 }
-
+                int c = 0;
                 if (loadedStats.inventoryDictionary != null)
                 {
                     foreach (var objName in loadedStats.inventoryDictionary)
                     {
-                        var realObjName = objName.Key.Substring(4, objName.Key.Length - 4).ToUpper();
-                        playerInventory.AddObjectToInventory(realObjName, objName.Value, loadedStats.inventoryDictionary.Count);
-                    }
-                }
-                
-
-                /*foreach (var objName in loadedStats.inventory)
-                {
-                    var realObjName = objName.objData.name.Substring(4, objName.objData.name.Length - 4).ToUpper();
-                    playerInventory.AddObjectToInventory(realObjName, loadedStats.dataScriptableObject as ObjectData, objName.count);
-                    foreach (string objDictionary in loadedStats.inventoryDictionary.Keys)
-                    {
-                        
-                        if (realObjName.ToUpper() == objDictionary.ToUpper())
+                        Debug.Log("objects[c].name " + objects[c].name + " c " + c);
+                        var realObjName = objects[c].name.Substring(4, objects[c].name.Length - 4).ToUpper();
+                        if (objects[i] = objName.Value)
                         {
-                            Debug.Log("Se esta añadiendo objeto "+ realObjName);
-                            //playerInventory.AddObjectToInventory(realObjName, loadedStats.dataScriptableObject as ObjectData, objName.count);
-                            //playerInventory.AddObjectToInventory(realObjName, loadedStats.inventoryDictionary[realObjName], objName.count);
-                           
+                            playerInventory.AddObjectToInventory(objects[i].name, objects[i], loadedStats.inventoryDictionary.Count);
+                            c++;
                         }
                     }
-                }*/
+                }
 
 
                 // Ruta del Json donde esta guardado 

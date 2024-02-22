@@ -153,8 +153,10 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log("Counter of '" + name.ToUpper() + "' went down");
                 inventory[name.ToUpper()].Count--;
 
-                if (!enterBattle.OneTime) // En caso de no estar en batalla modifica el texto.
+                if (!enterBattle.OneTime)// En caso de no estar en batalla modifica el texto.
+                {
                     EditButtonINVText(inventory[name.ToUpper()]);
+                }
                 else
                 {
                     EliminateINVButtons();
@@ -167,7 +169,10 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log(name.ToUpper() + " was eliminated from dictionary");
 
                 if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un bot�n.
+                {
                     Destroy(inventory[name.ToUpper()].ButtonINV3D);
+                    GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+                }
                 else
                 {
                     EliminateINVButtons();

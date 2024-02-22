@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    SavedController controller;
+    SaveSystem controller;
     void Start()
     {
-        controller = GameObject.Find("System").GetComponent<SavedController>();
+        controller = GameObject.Find("System").GetComponent<SaveSystem>();
     }
     private void OnTriggerEnter(Collider other)
     {

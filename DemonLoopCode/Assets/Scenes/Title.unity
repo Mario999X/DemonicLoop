@@ -1998,12 +1998,12 @@ PrefabInstance:
     - target: {fileID: 4450129754072111584, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: mara
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4450129754072111584, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: maraRefined
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4899735187399990167, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}

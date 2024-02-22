@@ -65,8 +65,8 @@ public class LoserReset : MonoBehaviour
 
     public void ResetMoney()
     {
-        moneyPlayer.mara = 100f;
-        moneyPlayer.maraRefined = 100f;
+        moneyPlayer.mara = 0f;
+        moneyPlayer.maraRefined = 0f;
     }
 
     public void ResetTeam()

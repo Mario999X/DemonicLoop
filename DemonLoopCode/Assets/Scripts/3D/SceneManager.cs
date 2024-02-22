@@ -9,7 +9,7 @@ public class SceneManager : MonoBehaviour
     [Header("Componentes de la pantalla de carga")]
     [SerializeField] private Slider slider;
     [SerializeField] private Canvas _loadingCanvas;
-    SavedController savedController;
+    SaveSystem SaveSystem;
 
     bool done = false;
 
@@ -28,7 +28,7 @@ public class SceneManager : MonoBehaviour
 
     void Start()
     {
-        savedController = GetComponent<SavedController>();
+        SaveSystem = GetComponent<SaveSystem>();
         _loadingCanvas.enabled = false;
     }
 
@@ -112,10 +112,10 @@ public class SceneManager : MonoBehaviour
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
         {
-            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(2); });
+            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { SaveSystem.LoadResetData(); });
             GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { ExitGame(); });
             GameObject.Find("Settings").GetComponent<Button>().onClick.AddListener(() => { ShowSettingsView(); });
-            GameObject.Find("Continue").GetComponent<Button>().onClick.AddListener(() => { savedController.LoadData(); });
+            GameObject.Find("Continue").GetComponent<Button>().onClick.AddListener(() => { SaveSystem.LoadData(); });
             GameObject.Find("AppVerText").GetComponent<TextMeshProUGUI>().text = "App ver. " + Application.version;
             Debug.Log("Done");
 

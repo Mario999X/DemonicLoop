@@ -9,6 +9,7 @@ Videojuego desarrollado por estudiantes del Curso de Especialización de Videoju
 ## Índice
 
 - [***Autores***](#autores)
+- [***Atribuciones***](#atribuciones)
 
 ---
 
@@ -17,3 +18,8 @@ Videojuego desarrollado por estudiantes del Curso de Especialización de Videoju
 - [Mario Resa](https://github.com/Mario999X)
 - [Ivan San Jose](https://github.com/ivansanjose1)
 - [Daniel Carlos](https://github.com/Loy-Angel)
+
+## Atribuciones
+
+- <a href="https://www.flaticon.com/free-icons/explosion" title="explosion icons">Explosion icons created by Aldo Cervantes - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/pentagram" title="pentagram icons">Pentagram icons created by Freepik - Flaticon</a>

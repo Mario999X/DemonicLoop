@@ -147,9 +147,6 @@ public class CombatFlow : MonoBehaviour
             spawnEnemyBT = GameObject.Find("EnemyButtons");
             spawnPlayerBT = GameObject.Find("PlayerButtons");
             spawnMoveBT = GameObject.Find("MoveButtons");
-            //WINLOSE = GameObject.Find("WINLOSE").GetComponent<Text>();
-
-
 
             AllyActionBarText = GameObject.Find("AllyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             EnemyActionBarText = GameObject.Find("EnemyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -558,7 +555,6 @@ public class CombatFlow : MonoBehaviour
     {
         wait = true;
 
-
         var SpMiniGame = library.CheckSpeacialAttack(movement);
 
         float SpCountBar = 0f;
@@ -571,6 +567,7 @@ public class CombatFlow : MonoBehaviour
                 panelSpMini.Add(child.gameObject);
 
             }
+            
             ActivatePanelSpMini();
             yield return new WaitForSeconds(0.2f);
             yield return StartCoroutine(specialMiniGame.ChargeSpecialAtk());
@@ -586,14 +583,18 @@ public class CombatFlow : MonoBehaviour
         DisablePanelSpMini();
 
 
-
         Debug.Log("character " + character + " SpCountBar " + SpCountBar);
         bool dontStop = true, change = true;
 
         Vector2 v = character.transform.position;
         Debug.Log("Inicio moves en ataque aliado " + moves);
+
         do
         {
+            Animator animator = character.GetComponent<Animator>();
+
+            animator.SetInteger("State", 1);
+
             if (change)
             {
                 character.transform.position = Vector2.MoveTowards(character.transform.position, target.transform.position, speed * Time.deltaTime);
@@ -605,14 +606,25 @@ public class CombatFlow : MonoBehaviour
 
             if (Vector2.Distance(character.transform.position, target.transform.position) < 100f && change)
             {
+                animator.SetInteger("State", 2);
+
+                yield return new WaitForSeconds(1f);
+
                 library.Library(character, target, movement, statesLibrary, battleModifiersLibrary, SpCountBar); // Realiza el ataque.
 
                 change = false;
+
+                if (character.GetComponent<Stats>().Attacking == false)
+                {
+                    animator.SetInteger("State", 1);
+                    change = false;
+                }
             }
 
             if (Vector2.Distance(character.transform.position, v) < 0.001f && !change)
             {
                 dontStop = false;
+                animator.SetInteger("State", 0);
             }
 
             yield return new WaitForSeconds(0.00001f);
@@ -620,12 +632,7 @@ public class CombatFlow : MonoBehaviour
 
         moves++;
 
-        //Debug.Log("Final moves en ataque aliado " + moves);
-        //Debug.Log("moves en ataque aliado " + moves);
-        //Debug.Log("character " + character);
-
         StartCoroutine(CharacterDead(target, true));
-        //Debug.Log("target " + target);
 
         StartCoroutine(CharacterDead(character, false));
 
@@ -658,7 +665,7 @@ public class CombatFlow : MonoBehaviour
             {
                 if (players.Length != 0)
                 {
-                    characterTarget = players[UnityEngine.Random.Range(0, players.Length)];
+                    characterTarget = players[Random.Range(0, players.Length)];
                 }
                 else
                 {
@@ -671,7 +678,6 @@ public class CombatFlow : MonoBehaviour
                 SetTextInEnemyActionBar(characterMove.Character.name, characterMove.Movement);
 
                 AddSPValue(characterMove.Character.GetComponent<Stats>());
-
 
 
                 bool isAOE = library.CheckAoeAttack(characterMove.Movement);

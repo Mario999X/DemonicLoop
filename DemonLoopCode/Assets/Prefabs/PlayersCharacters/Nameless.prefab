@@ -695,8 +695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61777fa7711cc458a68121cc7168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rol: 3
-  rolIcon: {fileID: 21300000, guid: d7907d70ddd824ae1b9f4f2cc3fd6dca, type: 3}
+  rol: 1
+  rolIcon: {fileID: 21300000, guid: 59b01fd652c104c4aa2122c18f1b22ac, type: 3}
   level: 1
   currentXP: 0
   health: 0
@@ -712,14 +712,12 @@ MonoBehaviour:
   magicDef: 15
   criticalChance: 30
   listAtk:
-  - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
-  - {fileID: 11400000, guid: 3dff1e93ce22c49a298d175c999b5e6d, type: 2}
-  - {fileID: 11400000, guid: e26fac2fdf4af4d0c917716c1ff98b50, type: 2}
-  - {fileID: 11400000, guid: 91be188f7f9889a4da5abb7fa51eca18, type: 2}
+  - {fileID: 11400000, guid: 8650a099b9cb04ea8ae048e1380cad52, type: 2}
+  - {fileID: 11400000, guid: 01308935cd98346e8a552d97513ef003, type: 2}
   absorbsDamageOfSameType: 0
-  type: 2
-  typeIcon: {fileID: 21300000, guid: 58fa9eaf7c177448eb12c2f9059485c7, type: 3}
-  atkSpecial: {fileID: 11400000, guid: 71cd317f76d2be447bbe74d105d06223, type: 2}
+  type: 3
+  typeIcon: {fileID: 21300000, guid: 1f75a6a48c721480d9b5cb9b55bd7d2a, type: 3}
+  atkSpecial: {fileID: 11400000, guid: 6be63b96c4096cf4b9d8ada19337f902, type: 2}
   moneyDrop: 1.1
   dropXP: 0
   moneyRefinedDrop: 0
@@ -753,7 +751,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownLearnableAttacks:
-  - {fileID: 11400000, guid: 2715b7a2e352cf54fb7c543e6553931d, type: 2}
+  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
+  - {fileID: 11400000, guid: 39dca8f5444414b05ab06d213e8605b5, type: 2}
+  - {fileID: 11400000, guid: c53d9f9f6936d440cbaa64eebfcd7d42, type: 2}
+  - {fileID: 11400000, guid: cdeb3e01830e8455ba8bde6d3631d7d7, type: 2}
+  - {fileID: 11400000, guid: fa93b067f10d043a39a2bfb5005a6e03, type: 2}
+  - {fileID: 11400000, guid: 107ea18027e5f4906b48e4cd125af8f4, type: 2}
+  - {fileID: 11400000, guid: 33da40df3fa784de8b5d70a8b03d25e4, type: 2}
+  - {fileID: 11400000, guid: 0fd7d0ce5fbad4e70be5b286789e7110, type: 2}
+  - {fileID: 11400000, guid: 34abcb3f429394587a9dbe70dbe3985d, type: 2}
 --- !u!95 &920800129067957850
 Animator:
   serializedVersion: 5

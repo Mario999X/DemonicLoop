@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
   m_Name: ATK_Ice^Ray
   m_EditorClassIdentifier: 
-  baseDamage: 33
+  baseDamage: 120
   phyAttack: 0
   magicAttack: 1
   isAoeAttack: 0
-  manaCost: 40
-  berserker: 0
+  manaCost: 100
+  berserker: 1
   generateAState: 0
   stateAsociated: {fileID: 0}
   probabilityOfState: 0
   type: 1
-  lifeTheft: 0
+  lifeTheft: 1
   manaTheft: 0
-  levelRequired: 3
+  levelRequired: 15
+  battleModifierAsociated: {fileID: 0}
+  isSpecial: 0
+  pointSpecial: 0

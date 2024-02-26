@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rol: 2
+  rolIcon: {fileID: 0}
   level: 1
   currentXP: 0
   health: 0
@@ -595,13 +596,15 @@ MonoBehaviour:
   magicDef: 5
   criticalChance: 10
   listAtk:
-  - {fileID: 11400000, guid: c26bd1d267de74ced872e9c175cca721, type: 2}
-  - {fileID: 11400000, guid: c5e92f23de0588141b3542d2400c9c0b, type: 2}
+  - {fileID: 11400000, guid: 116afbc48b1b2434ea1957ba9a54c0a4, type: 2}
+  - {fileID: 11400000, guid: 92089c238d1d34b389175610d46cf0da, type: 2}
   absorbsDamageOfSameType: 0
   type: 1
+  typeIcon: {fileID: 0}
   atkSpecial: {fileID: 0}
   moneyDrop: 2
   dropXP: 100
+  moneyRefinedDrop: 0
   boss: 0
 --- !u!114 &7843969990629665491
 MonoBehaviour:

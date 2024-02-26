@@ -12,20 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
   m_Name: ATK_Punch
   m_EditorClassIdentifier: 
-  baseDamage: 15
+  baseDamage: 30
   phyAttack: 1
   magicAttack: 0
   isAoeAttack: 0
-  manaCost: -20
+  manaCost: 0
   berserker: 0
   generateAState: 0
   stateAsociated: {fileID: 0}
-  probabilityOfState: 70
-  type: 2
+  probabilityOfState: 0
+  type: 3
   lifeTheft: 0
   manaTheft: 0
   levelRequired: 0
-  battleModifierAsociated: {fileID: 11400000, guid: a1d2147e3b7984fda8c9b7c6d71e04bb,
-    type: 2}
+  battleModifierAsociated: {fileID: 0}
   isSpecial: 0
   pointSpecial: 0

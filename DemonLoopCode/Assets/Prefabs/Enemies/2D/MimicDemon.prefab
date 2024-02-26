@@ -633,10 +633,9 @@ MonoBehaviour:
   magicDef: 5
   criticalChance: 20
   listAtk:
-  - {fileID: 11400000, guid: 3dff1e93ce22c49a298d175c999b5e6d, type: 2}
-  - {fileID: 11400000, guid: c5e92f23de0588141b3542d2400c9c0b, type: 2}
-  - {fileID: 11400000, guid: f77c17da1d01942c6a172a22c44bcb28, type: 2}
-  - {fileID: 11400000, guid: ed663631fa833d748bf50815bb69da39, type: 2}
+  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
+  - {fileID: 11400000, guid: 392f55923182c47f9894599ff0069942, type: 2}
+  - {fileID: 11400000, guid: 1c5ae8f8da91e4223b154207c021db89, type: 2}
   absorbsDamageOfSameType: 1
   type: 4
   typeIcon: {fileID: 21300000, guid: f1586e864bb174dd79ef7756a2672197, type: 3}

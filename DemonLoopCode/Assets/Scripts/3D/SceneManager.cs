@@ -112,7 +112,7 @@ public class SceneManager : MonoBehaviour
     {//LoadScene(2)
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
         {//SaveSystem.LoadResetData()
-            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { SaveSystem.LoadResetData(); });
+            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { LoadScene(2); });
             GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { ExitGame(); });
             GameObject.Find("Settings").GetComponent<Button>().onClick.AddListener(() => { ShowSettingsView(); });
             GameObject.Find("Continue").GetComponent<Button>().onClick.AddListener(() => { SaveSystem.LoadData(); });

@@ -291,7 +291,7 @@ public class CombatFlow : MonoBehaviour
                 }
                 else
                 {
-                    button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObjectS2(enemy); });
+                    button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObjectInBattle(enemy); });
                 }
 
                 button.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -314,7 +314,7 @@ public class CombatFlow : MonoBehaviour
                 }
                 else
                 {
-                    button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObjectS2(pl); });
+                    button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObjectInBattle(pl); });
                 }
 
                 button.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -360,7 +360,7 @@ public class CombatFlow : MonoBehaviour
             button.name = "PlayerDefeated (" + playerDefeated.name + ")";
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name;
 
-            button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObjectS2(playerDefeated); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObjectInBattle(playerDefeated); });
 
             button.transform.localScale = new Vector3(1f, 1f, 1f);
             enemyBT.Add(button);

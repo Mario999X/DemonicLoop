@@ -3,7 +3,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 
@@ -11,31 +10,27 @@ public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 public class ObjectData : ScriptableObject
 {
     private FloatingTextCombat floatingText;
-    [SerializeField] public Sprite icon;
+    [SerializeField] private Sprite icon;
 
     [TextArea]
-    [SerializeField] public string description;
-    [SerializeField] public float cost;
-    [SerializeField] public ObjectTypes objectType;
-    [SerializeField] public float baseNum;
-    [SerializeField] public StateData stateAsociated;
-    [SerializeField] bool alliesTargets = false;
-    [SerializeField] Types type;
-    [SerializeField] GameObject buttonPrefab;
+    [SerializeField] private string description;
+    [SerializeField] private float cost;
+    [SerializeField] private ObjectTypes objectType;
+    [SerializeField] private float baseNum;
+    [SerializeField] private StateData stateAsociated;
+    [SerializeField] private bool alliesTargets = false;
+    [SerializeField] private Types type;
+    [SerializeField] private GameObject buttonPrefab;
 
-    float baseDamage = 1.5f;
+    private EnterBattle enterBattle;
+    private PlayerInventory inventory;
 
-    EnterBattle enterBattle;
-    PlayerInventory inventory;
-
-    public Sprite Icon { get { return icon; } set { icon = value; } }
+    public Sprite Icon { get { return icon; } }
     public string Description { get { return description; } }
     public float Cost { get { return cost; } set { cost = value; } }
     public ObjectTypes ObjectType { get { return objectType; } }
     public Types Type { get { return type; } }
     public float BaseNum { get { return baseNum; } }
-
-    public float BaseDamage { get { return baseDamage; } }
 
     // Cuando se hace click en este objeto.
     public void Click(PlayerInventory inventory)
@@ -91,7 +86,7 @@ public class ObjectData : ScriptableObject
                 bt.transform.SetParent(spawnMoveBT.transform);
                 bt.name = "Ally " + stats.name;//Nombre de los botones que se van a generar
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = stats.name.Substring(stats.name.IndexOf("_") + 1);
-                bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectSP(stats); });
+                bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectInOverworld(stats); });
             }
         }
         else
@@ -106,7 +101,7 @@ public class ObjectData : ScriptableObject
                 bt.transform.SetParent(spawnMoveBT.transform);
                 bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(pl.name.IndexOf("_") + 1);
-                bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectS2(pl); });
+                bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectInBattle(pl); });
             }
         }
     }
@@ -121,23 +116,25 @@ public class ObjectData : ScriptableObject
             bt.transform.SetParent(spawnMoveBT.transform);
             bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
             bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(pl.name.IndexOf("_") + 1);
-            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectS2(pl); });
+            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectInBattle(pl); });
         }
     }
 
-    public void UserObjectSP(StatsPersistenceData target)
+    public void UserObjectInOverworld(StatsPersistenceData target)
     {
         AudioManager.Instance.PlaySoundButtons();
         switch (ObjectType)
         {
             case ObjectTypes.Health:
-                //Debug.Log("Pocion de Cura");
-                target.Health += BaseNum;
+                if(baseNum == 0) target.Health = target.MaxHealth;
+                else target.Health += BaseNum;
+
                 break;
 
             case ObjectTypes.Mana:
-                //Debug.Log("Pocion de Mana");
-                target.Mana += BaseNum;
+                if(baseNum == 0) target.Mana = target.MaxMana;
+                else target.Mana += BaseNum;
+
                 break;
 
             case ObjectTypes.HealState:
@@ -152,7 +149,7 @@ public class ObjectData : ScriptableObject
         inventory.RemoveObjectFromInventory(name.Substring(4, name.Length - 4));
     }//Fin de UserObjectSP
 
-    public void UserObjectS2(GameObject @character)
+    public void UserObjectInBattle(GameObject @character)
     {
         if (enterBattle.OneTime)
             GameObject.Find("System").GetComponent<CombatFlow>().InventoryTurn();
@@ -164,15 +161,29 @@ public class ObjectData : ScriptableObject
         switch (ObjectType)
         {
             case ObjectTypes.Health:
-                //Debug.Log("Pocion de Cura");
-                floatingText.ShowFloatingTextNumbers(@character, BaseNum, Color.green);
-                target.Health += BaseNum;
+                if(baseNum == 0)
+                {
+                    target.Health = target.MaxHealth;
+
+                    floatingText.ShowFloatingTextNumbers(@character, target.MaxHealth, Color.green); 
+                } else
+                {
+                    target.Health += BaseNum;
+                    floatingText.ShowFloatingTextNumbers(@character, BaseNum, Color.green);
+                }
                 break;
 
             case ObjectTypes.Mana:
-                //Debug.Log("Pocion de Mana");
-                floatingText.ShowFloatingTextNumbers(@character, BaseNum, Color.blue);
-                target.Mana += BaseNum;
+                if(baseNum == 0)
+                {
+                    target.Mana = target.MaxMana;
+
+                    floatingText.ShowFloatingTextNumbers(@character, target.MaxMana, Color.blue); 
+                } else
+                {
+                    target.Mana += BaseNum;
+                    floatingText.ShowFloatingTextNumbers(@character, BaseNum, Color.blue);
+                }
                 break;
 
             case ObjectTypes.HealState:
@@ -193,35 +204,35 @@ public class ObjectData : ScriptableObject
                     case Types.Fire:
                         if (target.Type == Types.Plant)
                         {
-                            target.Health -= BaseNum * baseDamage;
+                            target.Health -= BaseNum;
                         }
                         break;
 
                     case Types.Plant:
                         if (target.Type == Types.Water)
                         {
-                            target.Health -= BaseNum * baseDamage;
+                            target.Health -= BaseNum;
                         }
                         break;
 
                     case Types.Water:
                         if (target.Type == Types.Fire)
                         {
-                            target.Health -= BaseNum * baseDamage;
+                            target.Health -= BaseNum;
                         }
                         break;
 
                     case Types.Light:
                         if (target.Type == Types.Darkness)
                         {
-                            target.Health -= BaseNum * baseDamage;
+                            target.Health -= BaseNum;
                         }
                         break;
 
                     case Types.Darkness:
                         if (target.Type == Types.Light)
                         {
-                            target.Health -= BaseNum * baseDamage;
+                            target.Health -= BaseNum;
                         }
                         break;
                 }

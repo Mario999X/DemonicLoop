@@ -717,7 +717,7 @@ MonoBehaviour:
   absorbsDamageOfSameType: 0
   type: 3
   typeIcon: {fileID: 21300000, guid: 1f75a6a48c721480d9b5cb9b55bd7d2a, type: 3}
-  atkSpecial: {fileID: 11400000, guid: 6be63b96c4096cf4b9d8ada19337f902, type: 2}
+  atkSpecial: {fileID: 11400000, guid: e3823d62eb0ab43b78fd70a5c806e148, type: 2}
   moneyDrop: 1.1
   dropXP: 0
   moneyRefinedDrop: 0

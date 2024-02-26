@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d111c54a102216a45bb13fb913c68cab, type: 3}
+  m_Name: OBJ_PapyrusWaterV2
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: ce4c608d9aee84739a9f476a31923cd8, type: 3}
+  description: Papyrus thath deals moderate damage to the enemy. Water Type Damage.
+  cost: 45
+  objectType: 3
+  baseNum: 50
+  stateAsociated: {fileID: 0}
+  alliesTargets: 0
+  type: 1
+  buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
+    type: 3}

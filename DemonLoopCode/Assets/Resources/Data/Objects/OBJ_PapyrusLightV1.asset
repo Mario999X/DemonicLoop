@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: OBJ_PapyrusLightV1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: b794d5e018e75451b8377fa2cfb0095f, type: 3}
-  description: 'Think fast chakelnuts!!!
-
-    Original price: 32'
-  cost: 32
+  description: Papyrus thath deals small damage to the enemy. Light Type Damage.
+  cost: 25
   objectType: 3
-  baseNum: 45
+  baseNum: 25
   stateAsociated: {fileID: 0}
   alliesTargets: 0
   type: 3

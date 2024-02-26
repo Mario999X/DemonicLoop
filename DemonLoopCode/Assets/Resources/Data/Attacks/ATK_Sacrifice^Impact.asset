@@ -22,7 +22,7 @@ MonoBehaviour:
   stateAsociated: {fileID: 11400000, guid: ac1f8b668c0d0264e8029f8d9fde2681, type: 2}
   probabilityOfState: 60
   type: 4
-  lifeTheft: 0
+  lifeTheft: 1
   manaTheft: 0
   levelRequired: 30
   battleModifierAsociated: {fileID: 11400000, guid: cb007449e9c8c4fdc8fbcf0938fd008b,

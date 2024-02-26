@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private CharacterController controller;
 
     [Header("Player stats")]
+    [SerializeField] float RotationSpeed = 100f;
     [SerializeField] private float speed = 10f;
     [SerializeField] private float Wspeed = 10f;
     [SerializeField] private float Rspeed = 12f;
@@ -40,9 +41,15 @@ public class PlayerMove : MonoBehaviour
         set 
         { 
             if (value == true)
+            {
                 speed = Rspeed;
+                animator.SetFloat("Speed", 3);
+            }
             else
+            {
                 speed = Wspeed;
+                animator.SetFloat("Speed", 2);
+            }
         } 
     }
     public bool OnFloor { get { return onFloor; } }
@@ -62,17 +69,25 @@ public class PlayerMove : MonoBehaviour
         Z = -Input.GetAxis("Horizontal");
         X = Input.GetAxis("Vertical");
 
-        animator.SetFloat("X", X);
-        animator.SetFloat("Z", Z);
-
-        // Capacidad de moverse a trav�s de los ejes X y Z
+        // Capacidad de moverse a traves de los ejes X y Z
         Vector3 move = transform.right * X + transform.forward * Z;
         controller.Move(move * speed * Time.deltaTime);
+
+        // Actualiza la interpolacion del valor para una rotacion limpia.
+        if (X != 0 || Z != 0)  transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).rotation, Quaternion.LookRotation(move), Time.deltaTime * RotationSpeed);
+
+        if (!OnFloor) animator.SetInteger("State", 2); // Si ha saltado o esta cayendo
+        else
+        {
+            if (X != 0 || Z != 0) animator.SetInteger("State", 1); // Si esta en movimiento.
+            else animator.SetInteger("State", 0); // Si esta en tierra sin moverse
+        }
 
         // Efecto gravitatorio en el objeto
         speedV.y += gravity * Time.deltaTime;
         controller.Move(speedV * Time.deltaTime);
 
+        // Creamos una colision para detectar si el jugador se encuantra sobre el suelo o no.
         Vector3 spherePosition = new Vector3(transform.position.x, (transform.position.y - altitude), transform.position.z);
         RaycastHit hit;
 
@@ -82,10 +97,9 @@ public class PlayerMove : MonoBehaviour
             this.onFloor = true; 
             speedV.y = 0;
         }
-        else
-            this.onFloor = false;
+        else this.onFloor = false;
 
-        // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de t�tulo.
+        // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de titulo.
         if (Input.GetKeyDown(KeyCode.M)) { SceneManager.Instance.LoadScene(0); }
         if (Input.GetKeyDown(KeyCode.R)) { SceneManager.Instance.LoadScene(1); }
     }

@@ -12,16 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
   m_Name: ATK_Fire^Ball
   m_EditorClassIdentifier: 
-  baseDamage: 33
+  baseDamage: 50
   phyAttack: 0
   magicAttack: 1
   isAoeAttack: 0
-  manaCost: 60
+  manaCost: 40
   berserker: 0
-  generateAState: 0
-  stateAsociated: {fileID: 0}
-  probabilityOfState: 0
+  generateAState: 2
+  stateAsociated: {fileID: 11400000, guid: 37c0e8e9573b2ce4f950a0296d6b9f74, type: 2}
+  probabilityOfState: 70
   type: 0
   lifeTheft: 0
   manaTheft: 0
-  levelRequired: 3
+  levelRequired: 5
+  battleModifierAsociated: {fileID: 11400000, guid: 32f201ffaea72455ca1c0e0aa03d714b,
+    type: 2}
+  isSpecial: 0
+  pointSpecial: 0

@@ -18,19 +18,18 @@ public class LoserReset : MonoBehaviour
         playerCharacters = Data.Instance.CharactersTeamStats.ToArray();
     }
 
+    // Cuando entren aqui se mostrara la imagen de que han perdido
+    // y hara un reinicio de los datos a el inicial
     public IEnumerator ShowImage()
     {
         imageLose.GetComponent<Image>().enabled = true;
 
-
         ResetPersistence();
-
         ResetInventory();
 
         ResetMoney();
         ResetTeam();
         yield return new WaitForSeconds(3);
-
 
         MoveSceneInitial();
     }
@@ -51,7 +50,6 @@ public class LoserReset : MonoBehaviour
         {
             Data.Instance.CharactersTeamStats[i].Level = 0;
         }
-
     }
 
     public void ResetInventory()
@@ -59,7 +57,6 @@ public class LoserReset : MonoBehaviour
         if (playerInventory != null)
         {
             playerInventory.ResetInventario();
-
         }
     }
 
@@ -78,9 +75,7 @@ public class LoserReset : MonoBehaviour
                 Data.Instance.CharactersTeamStats.Remove(member);
 
             }
-
         }
-
     }
 
 

@@ -189,7 +189,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    // Cargar partida
+    // Cargar partida a lo mejor no hace falta
     public void LoadResetData()
     {
         string fileName = "newResetPlay.json";

@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5821472713078801326}
+  - component: {fileID: 3411979391469414630}
+  - component: {fileID: -7691404119385558097}
   m_Layer: 0
   m_Name: Muck
-  m_TagString: Untagged
+  m_TagString: Enemy3D
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +34,40 @@ Transform:
   - {fileID: 839790363449031668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3411979391469414630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835815716094981213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disasterLevel: 1
+--- !u!95 &-7691404119385558097
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835815716094981213}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41d2a38486b734a4aa93bc91f1becac6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &877412064154459167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,6 +156,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 00858fcf1b24f6f45b79fe5945f0585d, type: 2}
+    - target: {fileID: 5328319537722980502, guid: 0f80bf7769b708e4e84f8c1ad6c86fe8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8925502
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328319537722980502, guid: 0f80bf7769b708e4e84f8c1ad6c86fe8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.74
+      objectReference: {fileID: 0}
     - target: {fileID: 8193786338602205645, guid: 0f80bf7769b708e4e84f8c1ad6c86fe8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

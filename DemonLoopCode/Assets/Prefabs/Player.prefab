@@ -2042,7 +2042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7065565732122186890}
-  RotationSpeed: 100
+  RotationSpeed: 5
   speed: 10
   Wspeed: 10
   Rspeed: 15

@@ -22,6 +22,8 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 speedV;
 
+    Animator animator;
+
     public bool Movement
     {
         get
@@ -50,7 +52,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -59,6 +61,9 @@ public class PlayerMove : MonoBehaviour
         // Captura del los ejes X y Z
         Z = -Input.GetAxis("Horizontal");
         X = Input.GetAxis("Vertical");
+
+        animator.SetFloat("X", X);
+        animator.SetFloat("Z", Z);
 
         // Capacidad de moverse a trav�s de los ejes X y Z
         Vector3 move = transform.right * X + transform.forward * Z;
@@ -79,18 +84,6 @@ public class PlayerMove : MonoBehaviour
         }
         else
             this.onFloor = false;
-
-        if (X > 0 && Z > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, -45, 0); }
-        else if (X < 0 && Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 135, 0); }
-        else if (X < 0 && Z > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, -135, 0); }
-        else if (X > 0 && Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 45, 0); }
-        else
-        {
-            if (X > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0); }
-            if (X < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 180, 0); }
-            if (Z > 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, -90, 0); }
-            if (Z < 0) { transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 90, 0); }
-        }
 
         // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de t�tulo.
         if (Input.GetKeyDown(KeyCode.M)) { SceneManager.Instance.LoadScene(0); }

@@ -278,7 +278,7 @@ public class PlayerInventory : MonoBehaviour
             Debug.Log("realName " + realName);
             Destroy(item.ButtonINV3D);
             inventory.Remove(item.Data.name.ToUpper());
-            inventory[realName].Count = 0;
+            //inventory[realName].Count = 0;
             EliminateINVButtons();
         }
 

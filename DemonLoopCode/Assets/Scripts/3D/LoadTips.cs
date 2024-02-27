@@ -12,7 +12,7 @@ public class LoadTips : MonoBehaviour
     TextMeshProUGUI tipsLoad;
     List<string> tipsList=new List<string>();
 
-    void Start()
+    void Awake()
     {
         // Primer GetChild(0) = LoadingScreen,
         // Segundo GetChild(0) = Fondo
@@ -21,7 +21,17 @@ public class LoadTips : MonoBehaviour
         tipsLoad = loadingScreen.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         Debug.Log("tipsLoad " + tipsLoad.name);
         // Directorio donde esta el Csv
-        
+
+        LoadTipsFile();
+        UpdateTextTips();
+
+
+    }
+
+
+
+    public void LoadTipsFile()
+    {
         string fileName = "Tips.csv";
         string folderName = "Csv";
         string folderPath = Path.Combine(Application.persistentDataPath, folderName);
@@ -38,12 +48,15 @@ public class LoadTips : MonoBehaviour
         {
             string[] row = line.Split(separador);
             string text = row[0];
-            Debug.Log("text "+ text);
+            Debug.Log("text " + text);
             tipsList.Add(text);
         }
 
-        fileRead.Close();
+        //fileRead.Close();
+    }
 
+    public void UpdateTextTips()
+    {
         if (tipsList.Count > 0)
         {
             string random = tipsList[UnityEngine.Random.Range(0, tipsList.Count)];
@@ -51,7 +64,7 @@ public class LoadTips : MonoBehaviour
         }
         else
         {
-            Debug.Log("loadingScreen "+ loadingScreen.name);
+            Debug.Log("loadingScreen " + loadingScreen.name);
         }
 
     }

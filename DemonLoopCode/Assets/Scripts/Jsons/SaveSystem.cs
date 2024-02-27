@@ -48,12 +48,16 @@ public class SaveSystem : MonoBehaviour
     public GameObject player;
     MoneyPlayer money;
     PlayerInventory playerInventory;
+    LoserReset loserReset;
+    StatsPersistenceData[] playerCharacters;
 
     private void Start()
     {
         player = GetComponent<GameObject>();
         money = GetComponent<MoneyPlayer>();
+        loserReset = GetComponent<LoserReset>();
         playerInventory = GetComponent<PlayerInventory>();
+        playerCharacters = Data.Instance.CharactersTeamStats.ToArray();
         if (playerInventory == null)
         {
             Debug.LogError("No se encontro el PlayerInventory");
@@ -192,89 +196,103 @@ public class SaveSystem : MonoBehaviour
     // Cargar partida a lo mejor no hace falta
     public void LoadResetData()
     {
-        string fileName = "newResetPlay.json";
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-        if (File.Exists(filePath))
+        SceneManager.Instance.LoadScene(2);
+        ResetPersistence();
+        
+
+        /* string fileName = "newResetPlay.json";
+         string filePath = Path.Combine(Application.persistentDataPath, fileName);
+         if (File.Exists(filePath))
+         {
+
+             string jsonContent;
+             using (StreamReader reader = new StreamReader(filePath))
+             {
+                 jsonContent = reader.ReadToEnd();
+             }
+             StatsPersistenceContainer loadedStats = JsonUtility.FromJson<StatsPersistenceContainer>(jsonContent);
+
+             if (loadedStats != null)
+                 {
+                     // Carga la escena guardada
+                     UnityEngine.SceneManagement.SceneManager.LoadScene(loadedStats.sceneName);
+
+
+                     // Dinero
+                     MoneyPlayer money = GetComponent<MoneyPlayer>();
+                     money.Money = loadedStats.money;
+                     money.MoneyRefined = loadedStats.moneyRefined;
+
+                     // Team y Stats
+                     Data.Instance.CharactersTeamStats.Clear();
+                     foreach (var characterData in loadedStats.teamCharacterStats)
+                     {
+                         Data.Instance.CharactersTeamStats.Add(characterData);
+                     }
+                     Debug.Log("Buscar loadedStats.inventory " + loadedStats.inventory);
+                     Debug.Log("playerInventory.inventory.Values " + playerInventory.inventory.Values);
+                     Debug.Log("loadedStats.inventoryDictionary " + loadedStats.inventoryDictionary);
+
+                     // Inventario 
+                     playerInventory.inventory.Clear();
+
+                     if (loadedStats.inventoryDictionary != null)
+                     {
+                         loadedStats.inventoryDictionary.Clear();
+                     }
+
+                     ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
+
+                     int i = 0;
+                     foreach (var item in loadedStats.inventory)
+                     {
+                         Debug.Log("objects[i].name " + objects[i].name + " i " + i);
+                         if (objects[i] = item.objData)
+                         {
+                             playerInventory.AddObjectToInventory(objects[i].name, item.objData, item.count);
+                             i++;
+
+                         }
+                     }
+                     int c = 0;
+                     if (loadedStats.inventoryDictionary != null)
+                     {
+                         foreach (var objName in loadedStats.inventoryDictionary)
+                         {
+                             Debug.Log("objects[c].name " + objects[c].name + " c " + c);
+                             var realObjName = objects[c].name.Substring(4, objects[c].name.Length - 4).ToUpper();
+                             if (objects[i] = objName.Value)
+                             {
+                                 playerInventory.AddObjectToInventory(objects[i].name, objects[i], loadedStats.inventoryDictionary.Count);
+                                 c++;
+                             }
+                         }
+                     }
+
+
+                     // Ruta del Json donde esta guardado 
+                     string ruta = Path.Combine(Application.dataPath + "/SaveGame/", "newResetPlay.json");
+                     loadedStats = LoadController.LoadStats(ruta);
+                     Debug.Log("Datos cargados exitosamente.");
+                 }
+                 else
+                 {
+                     Debug.LogWarning("No se pudo cargar el archivo de datos.");
+                 }
+         }
+         else
+         {
+             Debug.Log("No hay datos guardados.");
+         }*/
+    }
+
+    public void ResetPersistence()
+    {
+        // Cuando morimos se reinicia los StatsPersistenceData
+        // al que tenia cuando se inicio el juego
+        for (var i = 0; i < Data.Instance.CharactersTeamStats.Count; i++)
         {
-
-            string jsonContent;
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                jsonContent = reader.ReadToEnd();
-            }
-            StatsPersistenceContainer loadedStats = JsonUtility.FromJson<StatsPersistenceContainer>(jsonContent);
-
-            if (loadedStats != null)
-                {
-                    // Carga la escena guardada
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(loadedStats.sceneName);
-
-
-                    // Dinero
-                    MoneyPlayer money = GetComponent<MoneyPlayer>();
-                    money.Money = loadedStats.money;
-                    money.MoneyRefined = loadedStats.moneyRefined;
-
-                    // Team y Stats
-                    Data.Instance.CharactersTeamStats.Clear();
-                    foreach (var characterData in loadedStats.teamCharacterStats)
-                    {
-                        Data.Instance.CharactersTeamStats.Add(characterData);
-                    }
-                    Debug.Log("Buscar loadedStats.inventory " + loadedStats.inventory);
-                    Debug.Log("playerInventory.inventory.Values " + playerInventory.inventory.Values);
-                    Debug.Log("loadedStats.inventoryDictionary " + loadedStats.inventoryDictionary);
-
-                    // Inventario 
-                    playerInventory.inventory.Clear();
-
-                    if (loadedStats.inventoryDictionary != null)
-                    {
-                        loadedStats.inventoryDictionary.Clear();
-                    }
-
-                    ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
-
-                    int i = 0;
-                    foreach (var item in loadedStats.inventory)
-                    {
-                        Debug.Log("objects[i].name " + objects[i].name + " i " + i);
-                        if (objects[i] = item.objData)
-                        {
-                            playerInventory.AddObjectToInventory(objects[i].name, item.objData, item.count);
-                            i++;
-
-                        }
-                    }
-                    int c = 0;
-                    if (loadedStats.inventoryDictionary != null)
-                    {
-                        foreach (var objName in loadedStats.inventoryDictionary)
-                        {
-                            Debug.Log("objects[c].name " + objects[c].name + " c " + c);
-                            var realObjName = objects[c].name.Substring(4, objects[c].name.Length - 4).ToUpper();
-                            if (objects[i] = objName.Value)
-                            {
-                                playerInventory.AddObjectToInventory(objects[i].name, objects[i], loadedStats.inventoryDictionary.Count);
-                                c++;
-                            }
-                        }
-                    }
-
-
-                    // Ruta del Json donde esta guardado 
-                    string ruta = Path.Combine(Application.dataPath + "/SaveGame/", "newResetPlay.json");
-                    loadedStats = LoadController.LoadStats(ruta);
-                    Debug.Log("Datos cargados exitosamente.");
-                }
-                else
-                {
-                    Debug.LogWarning("No se pudo cargar el archivo de datos.");
-                }
-        }
-        else
-        {
-            Debug.Log("No hay datos guardados.");
+            Data.Instance.CharactersTeamStats[i].Level = 0;
         }
     }
 }

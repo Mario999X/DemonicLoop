@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -33384,7 +33384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00091552734}
+  m_AnchoredPosition: {x: 0, y: -7.0870423}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!23 &1377124704024392409
@@ -35010,6 +35010,7 @@ GameObject:
   - component: {fileID: 6538131749202498483}
   - component: {fileID: 9032227878694807418}
   - component: {fileID: 9032227878694807419}
+  - component: {fileID: 9032227878694807420}
   m_Layer: 7
   m_Name: Altar_DemonicLoop
   m_TagString: Untagged
@@ -37178,6 +37179,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0344f80f0cac42b488c2bfb1feaa9708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &9032227878694807420
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4736907607842009702}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.01043977, y: 0.013271165, z: 0.001011818}
+  m_Center: {x: 0.002978533, y: -0.0002106328, z: 0.0005059093}
 --- !u!1 &9034395674053379923
 GameObject:
   m_ObjectHideFlags: 0

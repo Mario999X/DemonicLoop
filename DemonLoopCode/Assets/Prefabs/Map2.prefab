@@ -866,8 +866,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 2583640321701453291}
-  puntoB: {fileID: 2128559749829318998}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &158180911403122620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,8 +3051,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 4134520181935087882}
-  puntoB: {fileID: 273159907222663146}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &406595921496837793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3590,8 +3590,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 2639883391210157708}
-  puntoB: {fileID: 4549696108394917403}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &466624862730092803
 GameObject:
   m_ObjectHideFlags: 0
@@ -4632,8 +4632,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 8148558240357421100}
-  puntoB: {fileID: 1114741803173670643}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &620417619450541646
 GameObject:
   m_ObjectHideFlags: 0
@@ -7941,8 +7941,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 7286583091779290574}
-  puntoB: {fileID: 1363885286709287881}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &1004874356073917931
 GameObject:
   m_ObjectHideFlags: 0
@@ -8115,8 +8115,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 5636799537668830435}
-  puntoB: {fileID: 1853864471416392583}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &1064625487965257429
 GameObject:
   m_ObjectHideFlags: 0
@@ -14062,8 +14062,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 6433119337067860978}
-  puntoB: {fileID: 1232800100612889259}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &1788343572117104708
 GameObject:
   m_ObjectHideFlags: 0
@@ -15712,8 +15712,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 2628059288686997725}
-  puntoB: {fileID: 322413864575615244}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &2080972053251609064
 GameObject:
   m_ObjectHideFlags: 0
@@ -19493,8 +19493,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 1111832418117231467}
-  puntoB: {fileID: 5044540835325319518}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &2576380161825376873
 GameObject:
   m_ObjectHideFlags: 0
@@ -23240,8 +23240,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 6941982140114592036}
-  puntoB: {fileID: 813268972670194843}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &2966446636591236645
 GameObject:
   m_ObjectHideFlags: 0
@@ -24746,8 +24746,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 1249063670403470411}
-  puntoB: {fileID: 7935703058078649375}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3098926045015964551
 GameObject:
   m_ObjectHideFlags: 0
@@ -25723,8 +25723,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 7374935579634222409}
-  puntoB: {fileID: 7956500574863854396}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3180995890777105530
 GameObject:
   m_ObjectHideFlags: 0
@@ -27704,8 +27704,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 9118262222941370923}
-  puntoB: {fileID: 7578055363196312961}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3533964080867402984
 GameObject:
   m_ObjectHideFlags: 0
@@ -28839,8 +28839,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 5254311579960700564}
-  puntoB: {fileID: 871811988371957151}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3718856677258177865
 GameObject:
   m_ObjectHideFlags: 0
@@ -28964,9 +28964,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 10
   patrol: 0
-  speed: 10
-  puntoA: {fileID: 423553590865028741}
-  puntoB: {fileID: 6182020093022551985}
+  speed: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3730979085625160867
 GameObject:
   m_ObjectHideFlags: 0
@@ -29711,8 +29711,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 8364328558787242663}
-  puntoB: {fileID: 7847223157214557387}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3805726750207810956
 GameObject:
   m_ObjectHideFlags: 0
@@ -29837,8 +29837,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 8313941097931406101}
-  puntoB: {fileID: 5961770803314047995}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3808448324219062830
 GameObject:
   m_ObjectHideFlags: 0
@@ -31116,8 +31116,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 5493905875745937984}
-  puntoB: {fileID: 6609387078396246612}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &3933303132853704958
 GameObject:
   m_ObjectHideFlags: 0
@@ -34047,8 +34047,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 7955330860873317455}
-  puntoB: {fileID: 4573932554510511347}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &4401528711211136019
 GameObject:
   m_ObjectHideFlags: 0
@@ -35055,8 +35055,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 1788343572117104708}
-  puntoB: {fileID: 3404047625730346969}
+  pointA: {fileID: 1788343572117104708}
+  pointB: {fileID: 3404047625730346969}
 --- !u!1 &4503927034376647703
 GameObject:
   m_ObjectHideFlags: 0
@@ -35816,8 +35816,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 6280473758050716355}
-  puntoB: {fileID: 6109532908781418788}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &4573932554510511347
 GameObject:
   m_ObjectHideFlags: 0
@@ -37663,8 +37663,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 2269746100322626872}
-  puntoB: {fileID: 4271108992362949232}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &4896454652885213753
 GameObject:
   m_ObjectHideFlags: 0
@@ -38125,8 +38125,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 7991257597691779594}
-  puntoB: {fileID: 1479145363573996881}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &5030581702393315798
 GameObject:
   m_ObjectHideFlags: 0
@@ -38435,9 +38435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 10
   patrol: 0
-  speed: 10
-  puntoA: {fileID: 1081114085188080635}
-  puntoB: {fileID: 7211634953440452962}
+  speed: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &5050216384701799016
 GameObject:
   m_ObjectHideFlags: 0
@@ -38562,8 +38562,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 1265414213946022762}
-  puntoB: {fileID: 4653386462376087806}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &5050468240524610785
 GameObject:
   m_ObjectHideFlags: 0
@@ -41244,8 +41244,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 9038679582269795505}
-  puntoB: {fileID: 5893919157458608549}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &5496650726834772288
 GameObject:
   m_ObjectHideFlags: 0
@@ -41964,9 +41964,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 10
   patrol: 0
-  speed: 10
-  puntoA: {fileID: 3745025054229790880}
-  puntoB: {fileID: 7753361601951040204}
+  speed: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &5569977988174903037
 GameObject:
   m_ObjectHideFlags: 0
@@ -43825,9 +43825,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 10
   patrol: 1
-  speed: 10
-  puntoA: {fileID: 745669405776339077}
-  puntoB: {fileID: 553824533565721354}
+  speed: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &5687283459815540274
 GameObject:
   m_ObjectHideFlags: 0
@@ -46943,8 +46943,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 7913878185490338169}
-  puntoB: {fileID: 9205285214628857900}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &6109532908781418788
 GameObject:
   m_ObjectHideFlags: 0
@@ -47427,8 +47427,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 3275537147444790704}
-  puntoB: {fileID: 6885382978023494322}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &6145976472835521129
 GameObject:
   m_ObjectHideFlags: 0
@@ -49630,8 +49630,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 8317687887013601007}
-  puntoB: {fileID: 2817551791869622643}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &6395010469947839858
 GameObject:
   m_ObjectHideFlags: 0
@@ -51875,8 +51875,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 6994794143379166324}
-  puntoB: {fileID: 7940380515747679027}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &6606983290073889111
 GameObject:
   m_ObjectHideFlags: 0
@@ -52177,8 +52177,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 1301510344545306423}
-  puntoB: {fileID: 1909750007060104313}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &6612923182275012225
 GameObject:
   m_ObjectHideFlags: 0
@@ -52745,8 +52745,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 6091878064122416279}
-  puntoB: {fileID: 6605655747835280215}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &6784525150859294033
 GameObject:
   m_ObjectHideFlags: 0
@@ -55113,8 +55113,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 4100689143639102085}
-  puntoB: {fileID: 7349206787118228166}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &7053909619653449756
 GameObject:
   m_ObjectHideFlags: 0
@@ -56751,9 +56751,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 10
   patrol: 1
-  speed: 10
-  puntoA: {fileID: 1711633334509844106}
-  puntoB: {fileID: 6193325292698072774}
+  speed: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &7371347869543328319
 GameObject:
   m_ObjectHideFlags: 0
@@ -59628,8 +59628,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 3116030201579131372}
-  puntoB: {fileID: 7901398200073593866}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &7727627427703948962
 GameObject:
   m_ObjectHideFlags: 0
@@ -61724,8 +61724,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 7916179499945491239}
-  puntoB: {fileID: 3007304082185943389}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &7990586047427574629
 GameObject:
   m_ObjectHideFlags: 0
@@ -62314,8 +62314,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 6982188963016585013}
-  puntoB: {fileID: 3356683529074532328}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &8035695089949038344
 GameObject:
   m_ObjectHideFlags: 0
@@ -67186,8 +67186,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 967251436667849397}
-  puntoB: {fileID: 731150372219612515}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &8675334002163698094
 GameObject:
   m_ObjectHideFlags: 0
@@ -67343,8 +67343,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 595903081885966836}
-  puntoB: {fileID: 2339491455320009970}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &8702084745921169494
 GameObject:
   m_ObjectHideFlags: 0
@@ -67468,9 +67468,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 10
   patrol: 0
-  speed: 10
-  puntoA: {fileID: 3687436558072827761}
-  puntoB: {fileID: 8675334002163698094}
+  speed: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &8708690256231129704
 GameObject:
   m_ObjectHideFlags: 0
@@ -69314,8 +69314,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  puntoA: {fileID: 2832607288566046950}
-  puntoB: {fileID: 5833947710456750}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &8975978443690636498
 GameObject:
   m_ObjectHideFlags: 0
@@ -71132,8 +71132,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 4269103047705559079}
-  puntoB: {fileID: 5893985136261998421}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1001 &3195141860958962895
 PrefabInstance:
   m_ObjectHideFlags: 0

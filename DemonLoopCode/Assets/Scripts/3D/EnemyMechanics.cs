@@ -9,15 +9,22 @@ public class EnemyMechanics : MonoBehaviour
     [Header("Enemy patrol")]
     [SerializeField] bool patrol = false;
     [SerializeField] float speed = 10f;
-    [SerializeField] GameObject puntoA;
-    [SerializeField] GameObject puntoB;
+    [SerializeField] GameObject pointA;
+    [SerializeField] GameObject pointB;
 
     bool change = false;
     bool attack = false;
+    bool yietError = false;
 
     Vector3 direction = -Vector3.forward;
 
     EnterBattle _Battle;
+
+    private void Start()
+    {
+        pointA = transform.parent.GetChild(1).gameObject;
+        pointB = transform.parent.GetChild(0).gameObject;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -45,6 +52,7 @@ public class EnemyMechanics : MonoBehaviour
                     Debug.DrawLine(transform.position, hit.transform.position, Color.green);
 
                     attack = true;
+                    yietError = true;
 
                     hit.transform.GetComponent<PlayerMove>().enabled = false; // Desactiva el movimiento del jugador.
 
@@ -68,7 +76,10 @@ public class EnemyMechanics : MonoBehaviour
                 else { Debug.DrawRay(transform.position, direction * distance, Color.red); }
             }
             else
-            { Debug.DrawRay(transform.position, direction * distance, Color.red); }
+            { 
+                Debug.DrawRay(transform.position, direction * distance, Color.red); 
+                if (yietError) { _Battle.StartBattle(transform.parent.gameObject, false); }
+            }
         }
     }
 
@@ -80,23 +91,23 @@ public class EnemyMechanics : MonoBehaviour
             {
                 if (change)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, puntoB.transform.position, speed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, pointB.transform.position, speed * Time.deltaTime);
                 }
                 else
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, puntoA.transform.position, speed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, pointA.transform.position, speed * Time.deltaTime);
                 }
 
-                if (Vector3.Distance(transform.position, puntoA.transform.position) < 0.0001f)
+                if (Vector3.Distance(transform.position, pointA.transform.position) < 0.0001f)
                 {
-                    transform.rotation = Quaternion.Euler(0, Mathf.Atan2(puntoB.transform.position.z - puntoA.transform.position.z, puntoB.transform.position.x - puntoA.transform.position.x) * -180 / Mathf.PI, 0);
+                    transform.rotation = Quaternion.Euler(0, Mathf.Atan2(pointB.transform.position.z - pointA.transform.position.z, pointB.transform.position.x - pointA.transform.position.x) * -180 / Mathf.PI, 0);
                     
                     change = true;
                 }
 
-                if (Vector3.Distance(transform.position, puntoB.transform.position) < 0.0001f)
+                if (Vector3.Distance(transform.position, pointB.transform.position) < 0.0001f)
                 {
-                    transform.rotation = Quaternion.Euler(0, Mathf.Atan2(puntoA.transform.position.z - puntoB.transform.position.z, puntoA.transform.position.x - puntoB.transform.position.x) * -180 / Mathf.PI, 0);
+                    transform.rotation = Quaternion.Euler(0, Mathf.Atan2(pointA.transform.position.z - pointB.transform.position.z, pointA.transform.position.x - pointB.transform.position.x) * -180 / Mathf.PI, 0);
                     
                     change = false;
                 }

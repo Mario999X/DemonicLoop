@@ -6342,7 +6342,7 @@ MonoBehaviour:
   - {fileID: 4503541210712415587, guid: 5382e09f34213904d9eb2a4699ceffde, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarity: 00000000000000000000000000000000000000006400000064000000
+  rarity: 00000000000000000000000000000000640000000000000064000000
   actualroom: 0
   boosRoom: 10
 --- !u!4 &1525719001
@@ -8122,7 +8122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 144622.62}
+  m_AnchoredPosition: {x: 0, y: 144637.55}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1660057539 &9223372036854775807

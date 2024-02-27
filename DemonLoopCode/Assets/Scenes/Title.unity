@@ -1980,6 +1980,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2947455626451855950, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1525.3755
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947455626451855950, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 160.448
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947455626451855950, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.3469
+      objectReference: {fileID: 0}
+    - target: {fileID: 2947455626451855950, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55.22403
+      objectReference: {fileID: 0}
     - target: {fileID: 3018350226461469532, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: m_Enabled

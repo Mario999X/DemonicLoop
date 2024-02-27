@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722644, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8164,7 +8164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85878e1d0bffe7b43861014190e10645, type: 2}
+  - {fileID: 2100000, guid: 00858fcf1b24f6f45b79fe5945f0585d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20223,7 +20223,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85878e1d0bffe7b43861014190e10645, type: 2}
+  - {fileID: 2100000, guid: 00858fcf1b24f6f45b79fe5945f0585d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32560,7 +32560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -116.02133}
+  m_AnchoredPosition: {x: 0, y: -119.41876}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!23 &1377124704024392409
@@ -34872,7 +34872,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85878e1d0bffe7b43861014190e10645, type: 2}
+  - {fileID: 2100000, guid: 00858fcf1b24f6f45b79fe5945f0585d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

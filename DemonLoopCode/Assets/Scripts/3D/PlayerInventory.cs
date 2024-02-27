@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Linq;
 
 public class ObjectStock
 {
@@ -19,21 +18,23 @@ public class ObjectStock
 
     public ObjectStock(ObjectData scriptableObject, int count)
     {
-        this.data = scriptableObject;
+        data = scriptableObject;
         this.count = count;
     }
 }
 public class PlayerInventory : MonoBehaviour
 {
-    [Header("Referencia de boton")]
+    [Header("Buttons References")]
     [SerializeField] GameObject buttonRef3D;
     [SerializeField] GameObject buttonRef2D;
 
-    [Header("UI grid de inventario")]
+    [Header("UI grid")]
     [SerializeField] GameObject inventoryUI3D;
     [SerializeField] GameObject inventoryUI2D;
 
     [SerializeField] ObjectData[] data;
+
+    GameObject objectPanel;
 
     bool inventoryState = false;
     bool done = false;
@@ -61,10 +62,16 @@ public class PlayerInventory : MonoBehaviour
             inventoryUI3D = GameObject.Find("Inventory").transform.GetChild(0).GetChild(0).gameObject;
             inventoryUI2D = GameObject.Find("MoveButtons");
 
+            objectPanel = GameObject.Find("Inventory").transform.GetChild(2).gameObject;
+
             enterBattle = GetComponent<EnterBattle>();
 
             foreach (ObjectData data in data)
                 AddObjectToInventory(data.name, data, 1);
+
+            GameObject.Find("Inventory").transform.GetChild(2).GetChild(0).gameObject.GetComponent<Button>().onClick.AddListener(() => HideCharacterAndObjectPanel());
+            GameObject.Find("Inventory").transform.GetChild(0).GetChild(1).gameObject.GetComponent<Button>().onClick.AddListener(() => OpenCloseInventory());
+            GameObject.Find("InventoryBtn").GetComponent<Button>().onClick.AddListener(() => OpenCloseInventory());
 
             done = true;
         }
@@ -99,7 +106,7 @@ public class PlayerInventory : MonoBehaviour
 
                     GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = false;
 
-                    GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+                    HideCharacterAndObjectPanel();
 
                     Time.timeScale = 1f;
 
@@ -139,6 +146,13 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void HideCharacterAndObjectPanel()
+    {
+        GameObject.Find("Inventory").transform.GetChild(2).gameObject.SetActive(false);
+
+        GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+    }
+
     // Elimina o disminuye la cantidad de objetos del inventario segun la situacion.
     public void RemoveObjectFromInventory(string name)
     {
@@ -146,7 +160,6 @@ public class PlayerInventory : MonoBehaviour
 
         if (inventory.ContainsKey(name.ToUpper())) // Comprueba que exista el objeto dado en el inventario.
         {
-            Debug.Log("He entrao");
             if (inventory[name.ToUpper()].Count > 1) // Si objeto es mayor a uno disminuye su cantidad
             {
 
@@ -165,13 +178,13 @@ public class PlayerInventory : MonoBehaviour
             }
             else // En el caso contrario se remueve del diccionario.
             {
-                Debug.Log("He entrao x2");
                 Debug.Log(name.ToUpper() + " was eliminated from dictionary");
 
-                if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un bot�n.
+                if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un boton.
                 {
                     Destroy(inventory[name.ToUpper()].ButtonINV3D);
-                    GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
+                    
+                    HideCharacterAndObjectPanel();
                 }
                 else
                 {

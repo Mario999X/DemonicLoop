@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OBJ_PapyrusWaterV1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 0f8701f14e9464109b4d93c9131fbd4f, type: 3}
-  description: Papyrus thath deals small damage to the enemy. Water Type Damage.
+  description: Papyrus that deals small damage to the enemy. Water Type Damage.
   cost: 25
   objectType: 3
   baseNum: 25

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OBJ_PapyrusPlantV1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: e1b92d61312ea406a8a1d61b72dfdd29, type: 3}
-  description: Papyrus thath deals small damage to the enemy. Plant Type Damage.
+  description: Papyrus that deals small damage to the enemy. Plant Type Damage.
   cost: 25
   objectType: 3
   baseNum: 25

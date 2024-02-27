@@ -53,6 +53,8 @@ public class ObjectData : ScriptableObject
             {
                 GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(true);
 
+                SetObjectInfoInPanel();
+
                 GameObject[] buttons = GameObject.FindGameObjectsWithTag("Buttons");
 
                 if (buttons.Length > 0)
@@ -70,6 +72,19 @@ public class ObjectData : ScriptableObject
                 else if (objectType != ObjectTypes.Throwable) CreateButtons(GameObject.Find("PartyButtons"));
             }
         }
+    }
+
+    private void SetObjectInfoInPanel()
+    {
+        var objectPanel = GameObject.Find("Inventory").transform.GetChild(2).gameObject;
+
+        objectPanel.SetActive(true);
+
+        objectPanel.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = icon;
+
+        objectPanel.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = name;
+
+        objectPanel.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = description;
     }
 
     void CreateButtons(GameObject spawnMoveBT)

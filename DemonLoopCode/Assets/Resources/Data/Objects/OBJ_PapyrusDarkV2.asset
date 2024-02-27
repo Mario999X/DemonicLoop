@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OBJ_PapyrusDarkV2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 8c49a268d6e0c4f3bbec2309f89b8deb, type: 3}
-  description: Papyrus thath deals moderate damage to the enemy. Darkness Type Damage.
+  description: Papyrus that deals moderate damage to the enemy. Darkness Type Damage.
   cost: 45
   objectType: 3
   baseNum: 50

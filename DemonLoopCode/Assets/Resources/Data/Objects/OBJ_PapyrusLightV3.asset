@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OBJ_PapyrusLightV3
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: a7e29e65496cc4ae187ad97aa955d83c, type: 3}
-  description: Papyrus thath deals high damage to the enemy. Light Type Damage.
+  description: Papyrus that deals high damage to the enemy. Light Type Damage.
   cost: 80
   objectType: 3
   baseNum: 110

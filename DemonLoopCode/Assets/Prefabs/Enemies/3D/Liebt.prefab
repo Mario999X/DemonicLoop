@@ -1572,7 +1572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7877892571115234135}
   - component: {fileID: 7498816377500509841}
-  - component: {fileID: 2504369214945089564}
+  - component: {fileID: 2899190411211160481}
   m_Layer: 0
   m_Name: Liebt
   m_TagString: Enemy3D
@@ -1619,8 +1619,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!64 &2504369214945089564
-MeshCollider:
+--- !u!136 &2899190411211160481
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1637,10 +1637,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8697284205239347609, guid: 7f41ccb32810d7c4390dd196e2014068, type: 3}
+  serializedVersion: 2
+  m_Radius: 1.8200002
+  m_Height: 10.934564
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0593624, z: 2.4}
 --- !u!1 &7940027753364289747
 GameObject:
   m_ObjectHideFlags: 0

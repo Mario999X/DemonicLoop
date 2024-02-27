@@ -35055,8 +35055,8 @@ MonoBehaviour:
   distance: 10
   patrol: 1
   speed: 10
-  pointA: {fileID: 1788343572117104708}
-  pointB: {fileID: 3404047625730346969}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &4503927034376647703
 GameObject:
   m_ObjectHideFlags: 0

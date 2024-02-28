@@ -703,10 +703,10 @@ MonoBehaviour:
   sp: 0
   maxSP: 100
   canYouLaunchAnSpecialAtk: 1
-  strength: 15
-  physicalDef: 5
-  magicAtk: 5
-  magicDef: 5
+  strength: 5
+  physicalDef: 2
+  magicAtk: 2
+  magicDef: 2
   criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: 0273a104d5353478fbc96bbe3a467c87, type: 2}

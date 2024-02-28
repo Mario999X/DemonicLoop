@@ -56,8 +56,6 @@ public class LibraryBattleModifiers : MonoBehaviour
 
         foreach (BattleModifiers bm in battleModifiers)
         {
-            //string modifierName = bm.name.Substring(4, bm.name.Length - 4).Replace("^", " ").ToUpper();
-
             battleModifiersCache.Add(bm.name, bm);
         }
     }

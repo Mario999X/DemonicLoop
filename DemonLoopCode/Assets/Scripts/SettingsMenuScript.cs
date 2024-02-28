@@ -108,5 +108,6 @@ public class SettingsMenuScript : MonoBehaviour
     public void HideSettingsView()
     {
         GetComponent<Canvas>().enabled = false;
+        Time.timeScale = 1f;
     }
 }

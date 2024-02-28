@@ -330,7 +330,6 @@ public class CombatFlow : MonoBehaviour
         button.transform.SetParent(spawnPlayerBT.transform);
         button.name = "PlayerButton (" + playerDefeated.name + ")";
 
-        //button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
         button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name.Remove(playerDefeated.name.IndexOf("("));
 
         button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(playerDefeated); });
@@ -338,8 +337,6 @@ public class CombatFlow : MonoBehaviour
 
         button.transform.localScale = new Vector3(1f, 1f, 1f); // Al cambiar de resolucion, el boton aparecia con una escala distinta (?) asi que asi nos aseguramos que se mantenga.
         playerBT.Add(button);//Listado de botones generados
-
-        //Debug.Log("1- playerBT "+playerBT.Count);
 
     }//Fin de GeneratePlayersButtons
 
@@ -757,11 +754,6 @@ public class CombatFlow : MonoBehaviour
                 }
             }
 
-            //StartCoroutine(CharacterDead(characterTarget, false));
-            //Debug.Log("enemys " + characterMove.Character);
-
-            //StartCoroutine(CharacterDead(characterMove.Character, true));
-
             // Una vez terminado el turno de los enemigos vuelve a activar los botones de los jugadores.
             playerBT.ForEach(bt =>
             {
@@ -819,7 +811,7 @@ public class CombatFlow : MonoBehaviour
 
         moves++;
 
-        this.character = null; 
+        character = null; 
         this.movement = null;
 
         wait = false;
@@ -977,8 +969,6 @@ public class CombatFlow : MonoBehaviour
 
             postBattleTeam.ActivatePanel();
 
-            battleModifiersLibrary.RemoveAllBattleModifiers();
-
             foreach (Transform child in panelGameObject.transform)
             {
                 panelPlayers.Add(child.gameObject);
@@ -1002,11 +992,8 @@ public class CombatFlow : MonoBehaviour
                 var i = 0;
 
                 AttackData possibleAttack = null;
-                if (LevelTemp[i] > p.GetComponent<Stats>().Level)
-                {
-                    //Debug.Log("No se subio de nivel, no ataque nuevo");
-                }
-                else if (p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
+                
+                if (p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
                 {
                     possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
 
@@ -1063,6 +1050,9 @@ public class CombatFlow : MonoBehaviour
         }
 
         // Se resetea la información del combate para el proximo encuentro
+
+        battleModifiersLibrary.RemoveAllBattleModifiers();
+        
         actualTurn = 0;
         moves = 0;
     }
@@ -1096,7 +1086,7 @@ public class CombatFlow : MonoBehaviour
             while (!isManaEnough && listAtkEnemy.Count > 0)
             {
                 //Int 1 lista de ataques del enemigo
-                int i = UnityEngine.Random.Range(0, listAtkEnemy.Count);
+                int i = Random.Range(0, listAtkEnemy.Count);
 
                 //Chequeamos si tiene mana o no
                 isManaEnough = library.CheckIfManaIsEnough(enemy, listAtkEnemy[i]);
@@ -1218,14 +1208,14 @@ public class CombatFlow : MonoBehaviour
     {
         if (!AllyActionBarText.transform.parent.gameObject.activeSelf) AllyActionBarText.transform.parent.gameObject.SetActive(true);
 
-        AllyActionBarText.text = $"{Character.name} | HP: {Character.GetComponent<Stats>().Health}/{Character.GetComponent<Stats>().MaxHealth} | Mana: {Character.GetComponent<Stats>().Mana}/{Character.GetComponent<Stats>().MaxMana} | SP: {Character.GetComponent<Stats>().SP}/{Character.GetComponent<Stats>().MaxSP}";
+        AllyActionBarText.text = $"{Character.name.Remove(Character.name.IndexOf("("))} | HP: {Character.GetComponent<Stats>().Health}/{Character.GetComponent<Stats>().MaxHealth} | Mana: {Character.GetComponent<Stats>().Mana}/{Character.GetComponent<Stats>().MaxMana} | SP: {Character.GetComponent<Stats>().SP}/{Character.GetComponent<Stats>().MaxSP}";
     }
 
     private void SetTextInEnemyActionBar(string enemyName, string attackName)
     {
         if (!EnemyActionBarText.transform.parent.gameObject.activeSelf) EnemyActionBarText.transform.parent.gameObject.SetActive(true);
 
-        EnemyActionBarText.text = $"{enemyName} | Attack: {attackName}";
+        EnemyActionBarText.text = $"{enemyName.Remove(enemyName.IndexOf("("))} | Attack: {attackName}";
     }
 
     private void SetAllyActionBarInactive()

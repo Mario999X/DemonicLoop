@@ -320,7 +320,7 @@ MonoBehaviour:
   sp: 0
   maxSP: 100
   canYouLaunchAnSpecialAtk: 0
-  strength: 15
+  strength: 5
   physicalDef: 5
   magicAtk: 5
   magicDef: 5

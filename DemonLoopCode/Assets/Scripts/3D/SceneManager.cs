@@ -106,6 +106,7 @@ public class SceneManager : MonoBehaviour
     public void ShowSettingsView()
     {
         GameObject.Find("SettingsView").GetComponent<Canvas>().enabled = true;
+        Time.timeScale = 0f;
     }
 
     void FixedUpdate()
@@ -123,6 +124,7 @@ public class SceneManager : MonoBehaviour
         }
         else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
+            GameObject.Find("SettingsBtn").GetComponent<Button>().onClick.AddListener(() => ShowSettingsView());
             done = false;
         }
     }

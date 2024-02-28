@@ -34,8 +34,6 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] ObjectData[] data;
 
-    GameObject objectPanel;
-
     bool inventoryState = false;
     bool done = false;
     bool dontOpenInventory = false;
@@ -61,8 +59,6 @@ public class PlayerInventory : MonoBehaviour
         {
             inventoryUI3D = GameObject.Find("Inventory").transform.GetChild(0).GetChild(0).gameObject;
             inventoryUI2D = GameObject.Find("MoveButtons");
-
-            objectPanel = GameObject.Find("Inventory").transform.GetChild(2).gameObject;
 
             enterBattle = GetComponent<EnterBattle>();
 

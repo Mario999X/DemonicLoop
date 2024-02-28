@@ -29,7 +29,6 @@ public class StatsPersistenceContainer
     public Dictionary<string, ObjectData> inventoryDictionary;
     public ScriptableObject dataScriptableObject;
 
-
     public StatsPersistenceContainer(string sceneName)
     {
         this.sceneName = sceneName;
@@ -64,11 +63,10 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-
+    // Guardaremos todas las cosas que tengamos en ese momento
     public void SaveData()
     {
         StatsPersistenceContainer savedController = new StatsPersistenceContainer(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-
 
         Debug.Log("SaveSystem.sceneName " + savedController.sceneName);
 
@@ -84,7 +82,6 @@ public class SaveSystem : MonoBehaviour
         {
             savedController.inventory.Add(new ObjectStockData(obj.Data, obj.Count));
             savedController.inventoryDictionary.Add(obj.Data.name, obj.Data);
-
         }
 
         // Directorio donde se guarda la partida
@@ -95,7 +92,7 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.Save();
 
 
-        // Convierte el objeto statsContainer a JSON y lo guardas en un archivo
+        // Convertir el objeto statsContainer a JSON y lo guardas en un archivo
         string json = JsonUtility.ToJson(savedController);
         File.WriteAllText(filePath, json);
 
@@ -157,7 +154,6 @@ public class SaveSystem : MonoBehaviour
                     {
                         playerInventory.AddObjectToInventory(objects[i].name, item.objData, item.count);
                         i++;
-
                     }
                 }
                 int c = 0;
@@ -175,7 +171,6 @@ public class SaveSystem : MonoBehaviour
                     }
                 }
 
-
                 // Ruta del Json donde esta guardado 
                 string fileNameLoad = "newStatsPersistenceData.json";
                 string filePathLoad = Path.Combine(Application.persistentDataPath, fileNameLoad);
@@ -184,106 +179,21 @@ public class SaveSystem : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("No se pudo cargar el archivo de datos.");
+                Debug.LogWarning("No se pudo cargar el archivo de datos");
             }
         }
         else
         {
-            Debug.Log("No hay datos guardados.");
+            Debug.Log("No hay datos guardados");
         }
     }
 
-    // Cargar partida a lo mejor no hace falta
+    // Cuando creemos una nueva partida empezaremos de 0
     public void LoadResetData()
     {
         SceneManager.Instance.LoadScene(2);
         ResetPersistence();
         
-
-        /* string fileName = "newResetPlay.json";
-         string filePath = Path.Combine(Application.persistentDataPath, fileName);
-         if (File.Exists(filePath))
-         {
-
-             string jsonContent;
-             using (StreamReader reader = new StreamReader(filePath))
-             {
-                 jsonContent = reader.ReadToEnd();
-             }
-             StatsPersistenceContainer loadedStats = JsonUtility.FromJson<StatsPersistenceContainer>(jsonContent);
-
-             if (loadedStats != null)
-                 {
-                     // Carga la escena guardada
-                     UnityEngine.SceneManagement.SceneManager.LoadScene(loadedStats.sceneName);
-
-
-                     // Dinero
-                     MoneyPlayer money = GetComponent<MoneyPlayer>();
-                     money.Money = loadedStats.money;
-                     money.MoneyRefined = loadedStats.moneyRefined;
-
-                     // Team y Stats
-                     Data.Instance.CharactersTeamStats.Clear();
-                     foreach (var characterData in loadedStats.teamCharacterStats)
-                     {
-                         Data.Instance.CharactersTeamStats.Add(characterData);
-                     }
-                     Debug.Log("Buscar loadedStats.inventory " + loadedStats.inventory);
-                     Debug.Log("playerInventory.inventory.Values " + playerInventory.inventory.Values);
-                     Debug.Log("loadedStats.inventoryDictionary " + loadedStats.inventoryDictionary);
-
-                     // Inventario 
-                     playerInventory.inventory.Clear();
-
-                     if (loadedStats.inventoryDictionary != null)
-                     {
-                         loadedStats.inventoryDictionary.Clear();
-                     }
-
-                     ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
-
-                     int i = 0;
-                     foreach (var item in loadedStats.inventory)
-                     {
-                         Debug.Log("objects[i].name " + objects[i].name + " i " + i);
-                         if (objects[i] = item.objData)
-                         {
-                             playerInventory.AddObjectToInventory(objects[i].name, item.objData, item.count);
-                             i++;
-
-                         }
-                     }
-                     int c = 0;
-                     if (loadedStats.inventoryDictionary != null)
-                     {
-                         foreach (var objName in loadedStats.inventoryDictionary)
-                         {
-                             Debug.Log("objects[c].name " + objects[c].name + " c " + c);
-                             var realObjName = objects[c].name.Substring(4, objects[c].name.Length - 4).ToUpper();
-                             if (objects[i] = objName.Value)
-                             {
-                                 playerInventory.AddObjectToInventory(objects[i].name, objects[i], loadedStats.inventoryDictionary.Count);
-                                 c++;
-                             }
-                         }
-                     }
-
-
-                     // Ruta del Json donde esta guardado 
-                     string ruta = Path.Combine(Application.dataPath + "/SaveGame/", "newResetPlay.json");
-                     loadedStats = LoadController.LoadStats(ruta);
-                     Debug.Log("Datos cargados exitosamente.");
-                 }
-                 else
-                 {
-                     Debug.LogWarning("No se pudo cargar el archivo de datos.");
-                 }
-         }
-         else
-         {
-             Debug.Log("No hay datos guardados.");
-         }*/
     }
 
     public void ResetPersistence()

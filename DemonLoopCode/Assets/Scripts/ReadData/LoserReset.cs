@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class LoserReset : MonoBehaviour
 {
-
     [SerializeField] Image imageLose;
     MoneyPlayer moneyPlayer;
     PlayerInventory playerInventory;
@@ -63,7 +62,6 @@ public class LoserReset : MonoBehaviour
     public void ResetMoney()
     {
         moneyPlayer.mara = 0f;
-        moneyPlayer.maraRefined = 0f;
     }
 
     public void ResetTeam()

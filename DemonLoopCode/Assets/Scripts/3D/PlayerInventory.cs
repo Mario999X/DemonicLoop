@@ -218,7 +218,6 @@ public class PlayerInventory : MonoBehaviour
     }
 
 
-
     // Crea y devuelve el boton 3D
     private GameObject CreateButtonINV3D(ObjectStock stock)
     {
@@ -281,7 +280,6 @@ public class PlayerInventory : MonoBehaviour
             //inventory[realName].Count = 0;
             EliminateINVButtons();
         }
-
 
         GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = false;
 

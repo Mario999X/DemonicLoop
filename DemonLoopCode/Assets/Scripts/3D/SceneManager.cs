@@ -109,9 +109,9 @@ public class SceneManager : MonoBehaviour
     }
 
     void FixedUpdate()
-    {//LoadScene(2)
+    {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
-        {//SaveSystem.LoadResetData()
+        {
             GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { SaveSystem.LoadResetData(); });
             GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { ExitGame(); });
             GameObject.Find("Settings").GetComponent<Button>().onClick.AddListener(() => { ShowSettingsView(); });

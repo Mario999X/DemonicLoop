@@ -9,52 +9,37 @@ using UnityEngine.UI;
 public class LoadTips : MonoBehaviour
 {
     GameObject loadingScreen;
-    TextMeshProUGUI tipsLoad;
-    List<string> tipsList=new List<string>();
+    public TextMeshProUGUI tipsLoad;
+    List<string> tipsList = new List<string>();
 
     void Awake()
     {
-        // Primer GetChild(0) = LoadingScreen,
-        // Segundo GetChild(0) = Fondo
-        // Tercer GetChild(0) = Text
+        // [Primer GetChild(0) = LoadingScreen], [Segundo GetChild(0) = Fondo] y [Tercer GetChild(1) = Text Tips]
         loadingScreen = GameObject.Find("System").transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
-        tipsLoad = loadingScreen.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        tipsLoad = loadingScreen.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         Debug.Log("tipsLoad " + tipsLoad.name);
-        // Directorio donde esta el Csv
-
         LoadTipsFile();
         UpdateTextTips();
-
-
     }
 
-
-
+    // Vamos a guardar todo lo que hay en la ruta del csv en tipsList
     public void LoadTipsFile()
     {
-        string fileName = "Tips.csv";
-        string folderName = "Csv";
-        string folderPath = Path.Combine(Application.persistentDataPath, folderName);
-        Debug.Log("folderPath " + folderPath);
-        string filePath = Path.Combine(folderPath, fileName);
-        Debug.Log("filePath " + filePath);
+        // importante para usar Application.streamingAssetsPath tenemos que 
+        // crear la carpeta antes en Assets
+        string filePath = Path.Combine(Application.streamingAssetsPath, "Csv/Tips.csv");
+        string[] lines = File.ReadAllLines(filePath);
 
-        StreamReader fileRead = new StreamReader(filePath);
-        string separador = ",";
-        string line;
-        fileRead.ReadLine();
-
-        while ((line = fileRead.ReadLine()) != null)
+        foreach (string line in lines)
         {
-            string[] row = line.Split(separador);
-            string text = row[0];
-            Debug.Log("text " + text);
-            tipsList.Add(text);
+            Debug.Log(line);
+            tipsList.Add(line);
         }
 
-        //fileRead.Close();
+        UpdateTextTips();
     }
 
+    // Pillara una de las lineas del tipsList de forma aleatoria y lo muestra
     public void UpdateTextTips()
     {
         if (tipsList.Count > 0)
@@ -66,7 +51,5 @@ public class LoadTips : MonoBehaviour
         {
             Debug.Log("loadingScreen " + loadingScreen.name);
         }
-
     }
-
 }

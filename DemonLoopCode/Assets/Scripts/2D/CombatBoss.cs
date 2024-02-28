@@ -11,7 +11,6 @@ public class CombatBoss : MonoBehaviour
     const int numHealth = 50;
     private CombatFlow combatFlow;
 
-    // Start is called before the first frame update
     void Start()
     {
         floatingText = GameObject.Find("System").GetComponent<FloatingTextCombat>();
@@ -19,20 +18,20 @@ public class CombatBoss : MonoBehaviour
         combatFlow = GameObject.Find("System").GetComponent<CombatFlow>();
     }
 
-
-
     public void CheckAtkEnemyBoss(GameObject targetSelected, LibraryBattleModifiers libraryBattleModifiers)
     {
         switch(bossNumber)
         {
             case 1:
-
+                // Si el turno actual es divisible por 2 y de 0 se curara
                 if (combatFlow.ActualTurn % 2 == 0)
                 {
                     floatingText.ShowFloatingTextNumbers(gameObject, numHealth, Color.green);
 
                     GetComponent<Stats>().Health += numHealth;
                 }
+                // Si el turno actual es divisible por 5 y de 0 generara un enemigo
+                // aleatorio pero si son 4 enemigos ya en el combate no lo hara
                 else if (combatFlow.ActualTurn % 5 == 0)
                 {
                     int newEnemy = Random.Range(0, enemyPrefabsLevel.Length);
@@ -42,10 +41,10 @@ public class CombatBoss : MonoBehaviour
                         Instantiate(enemyPrefabsLevel[newEnemy], GameObject.Find("EnemyBattleZone").transform);
                         StartCoroutine(combatFlow.CreateButtons());
                     }
-                
                 }
                 else
                 {
+                    // Se le aumentara el daño critico de forma aleatoria
                     int c = Random.Range(0, 50);
                     GetComponent<Stats>().CriticalChance += c;
                 }
@@ -89,11 +88,7 @@ public class CombatBoss : MonoBehaviour
                     randomCharacter.GetComponent<Stats>().Health = 1;
                 }
                 
-                break;
+           break;
         }
-
-
     }//Fin de CheckAtkEnemyBoos
-
-
 }

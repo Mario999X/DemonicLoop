@@ -55,6 +55,10 @@ public class SpecialMiniGame : MonoBehaviour
         Clear();
         timeLeft = timeInitial;
 
+        // Lo que hacemos es un contador que cuando se acabe el tiempo pillara la cantidad
+        // de veces que hemos pulsado la tecla y lo sumara al ataque aunque
+        // si llega a pulsar lo suficiente para rellenarlo se realizara antes el ataque con
+        // el potenciador total
         while (timeLeft > 0)
         {
             timeLeft -= Mathf.CeilToInt(Time.deltaTime);
@@ -85,6 +89,8 @@ public class SpecialMiniGame : MonoBehaviour
 
     }
 
+    // Sino hacemos una limpieza se quedara con los datos 
+    // de la anterior vez que lo hemos usado
     public void Clear()
     {
         totalPress = 0;

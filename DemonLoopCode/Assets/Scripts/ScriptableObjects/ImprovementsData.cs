@@ -59,8 +59,6 @@ public class ImprovementsData : ScriptableObject
     public ImprovementsTypes ImprovementsType { get { return improvementsType; } }
 
 
-
-
     void CreateButtons(GameObject spawnMoveBT)
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Shop")
@@ -274,7 +272,5 @@ public class ImprovementsData : ScriptableObject
 
         }
     }//Fin de DiscountSlaves
-
-
 
 }

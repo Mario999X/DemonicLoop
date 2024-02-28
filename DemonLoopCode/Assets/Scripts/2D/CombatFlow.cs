@@ -250,7 +250,7 @@ public class CombatFlow : MonoBehaviour
             button.name = "PlayerButton (" + pl.name + ")";
 
             //button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
-            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name;
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Remove(pl.name.IndexOf("("));
 
             button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(pl); });
 
@@ -284,7 +284,7 @@ public class CombatFlow : MonoBehaviour
                 GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
                 button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "EnemyButton (" + enemy.name + ")";
-                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name;
+                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enemy.name.Remove(enemy.name.IndexOf("("));
                 if (itemOrAtk == null)
                 {
                     button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(enemy); });
@@ -307,7 +307,7 @@ public class CombatFlow : MonoBehaviour
                 button.transform.SetParent(spawnEnemyBT.transform);
                 button.name = "PlayerButton (" + pl.name + ")";
 
-                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name;
+                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Remove(pl.name.IndexOf("("));
                 if (itemOrAtk == null)
                 {
                     button.GetComponent<Button>().onClick.AddListener(delegate { EnemyButton(pl); });
@@ -331,7 +331,7 @@ public class CombatFlow : MonoBehaviour
         button.name = "PlayerButton (" + playerDefeated.name + ")";
 
         //button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(1, pl.name.Length - 1); // Quitamos la posición del jugador.
-        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name;
+        button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name.Remove(playerDefeated.name.IndexOf("("));
 
         button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(playerDefeated); });
 
@@ -358,7 +358,7 @@ public class CombatFlow : MonoBehaviour
             GameObject button = Instantiate(buttonRef, spawnEnemyBT.transform.position, Quaternion.identity);
             button.transform.SetParent(spawnEnemyBT.transform);
             button.name = "PlayerDefeated (" + playerDefeated.name + ")";
-            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name;
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerDefeated.name.Remove(playerDefeated.name.IndexOf("("));
 
             button.GetComponent<Button>().onClick.AddListener(delegate { itemOrAtk.UserObjectInBattle(playerDefeated); });
 
@@ -565,7 +565,6 @@ public class CombatFlow : MonoBehaviour
             foreach (Transform child in panelMiniGame.transform)
             {
                 panelSpMini.Add(child.gameObject);
-
             }
             
             ActivatePanelSpMini();
@@ -581,7 +580,6 @@ public class CombatFlow : MonoBehaviour
         }
 
         DisablePanelSpMini();
-
 
         Debug.Log("character " + character + " SpCountBar " + SpCountBar);
         bool dontStop = true, change = true;
@@ -651,7 +649,6 @@ public class CombatFlow : MonoBehaviour
         wait = true;
 
         float SpCountBar = 0f;
-
 
         //Chequea que ataque tiene el enemigo y puede usar
         CheckAtkEnemy();
@@ -765,7 +762,6 @@ public class CombatFlow : MonoBehaviour
 
             //StartCoroutine(CharacterDead(characterMove.Character, true));
 
-
             // Una vez terminado el turno de los enemigos vuelve a activar los botones de los jugadores.
             playerBT.ForEach(bt =>
             {
@@ -817,14 +813,14 @@ public class CombatFlow : MonoBehaviour
         AudioManager.Instance.PlaySoundButtons();
 
         DesactivatePlayerButton();
-
         DesactivateAllButtons();
 
         library.PassTurn(character, movement.ToUpper());
 
         moves++;
 
-        this.character = null; this.movement = null;
+        this.character = null; 
+        this.movement = null;
 
         wait = false;
         CheckIfIsEnemyTurn();
@@ -843,12 +839,12 @@ public class CombatFlow : MonoBehaviour
         wait = true;
 
         DesactivatePlayerButton();
-
         DesactivateAllButtons();
 
         moves++;
 
-        character = null; movement = null;
+        character = null; 
+        movement = null;
 
         wait = false;
 
@@ -901,9 +897,6 @@ public class CombatFlow : MonoBehaviour
                     bt.GetComponent<Button>().interactable = false;
                 }
             }
-
-
-
         }
     }//Fin de SpecialAttackTurn
 
@@ -933,9 +926,7 @@ public class CombatFlow : MonoBehaviour
         Debug.Log("players.Length " + players.Length);
 
         if (moves >= players.Length && !wait)
-        {
             StartCoroutine(GoEnemy());
-        }
     }//fin de CheckIfIsEnemyTurn
 
     private void NextTurn()
@@ -952,7 +943,6 @@ public class CombatFlow : MonoBehaviour
         battleModifiersLibrary.PassTurnOfModifiers();
 
         BattleStatus();
-
     }//fin de NextTurn
 
     private void DesactivatePlayerButton()
@@ -974,7 +964,6 @@ public class CombatFlow : MonoBehaviour
         await Task.Delay(600); // Entre tanta corrutina, esto es necesario para que al programa le de tiempo a actualizar bien las listas del combate.
 
         CheckBattleStatus();
-
     }//Fin de BattleStatus
 
     private void CheckBattleStatus()
@@ -993,7 +982,6 @@ public class CombatFlow : MonoBehaviour
             foreach (Transform child in panelGameObject.transform)
             {
                 panelPlayers.Add(child.gameObject);
-
             }
 
             int[] LevelTemp = new int[players.Length];
@@ -1064,7 +1052,6 @@ public class CombatFlow : MonoBehaviour
             enterBattle.FinishBattle();
             DisablePanel();
             ClearPanel();
-            
         }
         if (players.Length == 0)
         {
@@ -1073,7 +1060,6 @@ public class CombatFlow : MonoBehaviour
             AudioManager.Instance.StopSoundCombat();
 
             yield return new WaitForSeconds(3);
-
         }
 
         // Se resetea la información del combate para el proximo encuentro
@@ -1116,19 +1102,13 @@ public class CombatFlow : MonoBehaviour
                 isManaEnough = library.CheckIfManaIsEnough(enemy, listAtkEnemy[i]);
 
                 if (isManaEnough)
-                {
                     nameAtkEnemy = listAtkEnemy[i];
-                }
                 else
-                {
                     listAtkEnemy.Remove(listAtkEnemy[i]);
-                }
             }
 
             if (listAtkEnemy.Count <= 0)
-            {
                 library.PassTurn(enemy, "PASS TURN");
-            }
             else
             {
                 bool healOrNot = library.CheckAttackOrHeal(nameAtkEnemy);
@@ -1153,10 +1133,7 @@ public class CombatFlow : MonoBehaviour
             }
 
             if (enemy.GetComponent<Stats>().Boss)
-            {
                 enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoss(target, battleModifiersLibrary);
-            }
-
         }//Fin del foreach
 
     }//Fin de CheckAtkEnemy
@@ -1167,10 +1144,9 @@ public class CombatFlow : MonoBehaviour
     {
         enemys.Remove(enemy);
         moneyPlayer.Money += enemy.GetComponent<Stats>().MoneyDrop;
+
         if (enemy.GetComponent<Stats>().Boss)
-        {
             moneyPlayer.MoneyRefined += enemy.GetComponent<Stats>().MoneyRefinedDrop;
-        }
     }
 
     public void DeleteAllieFromArray(GameObject ally)
@@ -1224,7 +1200,6 @@ public class CombatFlow : MonoBehaviour
 
             character = null;
         }
-
     }
 
     //Añade puntos para hacer el ATK Special

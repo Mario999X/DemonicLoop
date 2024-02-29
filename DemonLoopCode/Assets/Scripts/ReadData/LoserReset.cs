@@ -1,15 +1,18 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LoserReset : MonoBehaviour
 {
     [SerializeField] Image imageLose;
+    [SerializeField] TextMeshProUGUI textInfo;
     PlayerInventory playerInventory;
 
     void Start()
     {
         imageLose.GetComponent<Image>().enabled = false;
+        textInfo.GetComponent<TextMeshProUGUI>().enabled = false;
         playerInventory = GameObject.Find("System").GetComponent<PlayerInventory>();
     }
 
@@ -18,6 +21,7 @@ public class LoserReset : MonoBehaviour
     public IEnumerator ShowImage()
     {
         imageLose.GetComponent<Image>().enabled = true;
+        textInfo.GetComponent<TextMeshProUGUI>().enabled = true;
 
         bool saveRoom = false;
 
@@ -30,7 +34,7 @@ public class LoserReset : MonoBehaviour
         Data.Instance.CharactersBackupStats.RemoveAll(x => !x.Protagonist);
 
         // Resetea el nivel de jugador a 0.
-        Data.Instance.CharactersTeamStats.ForEach(x => x.Level = 0);
+        Data.Instance.CharactersTeamStats.ForEach(x => x.Level = 1);
 
         // Vacia el inventario del jugador.
         if (playerInventory != null)

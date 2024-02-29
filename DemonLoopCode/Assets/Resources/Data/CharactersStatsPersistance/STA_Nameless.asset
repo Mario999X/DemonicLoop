@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "Es un ser humano, alrededor de los 20 a\xF1os. Cuenta con un tatuaje
     de color rojo sangre que le recorre medio cuerpo debido al suceso inicial de
     la historia. Y sus ojos son amarillentos."
-  level: 0
+  level: 1
   currentXP: 4
   health: 310
   maxHealth: 310

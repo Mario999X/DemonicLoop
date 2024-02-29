@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
-  m_Name: STA_Ivan
+  m_Name: STA_MuckTeam
   m_EditorClassIdentifier: 
-  characterPB: {fileID: 1984689945073004903, guid: 7687434dc4851435ba2c0680978a4108,
+  characterPB: {fileID: 7486560601053180396, guid: 2087ebe9c3855844bb67295812fe4a0a,
     type: 3}
-  description: Otro que programa en el proyecto de DemonicLoop
+  description: 
   level: 1
   currentXP: 363
   health: 330

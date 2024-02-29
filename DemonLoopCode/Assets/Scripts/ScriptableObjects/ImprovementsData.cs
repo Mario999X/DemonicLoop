@@ -1,10 +1,7 @@
-using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using static UnityEngine.GraphicsBuffer;
 
 public enum ImprovementsTypes { Health, Mana, CriticalChance, Discount }
 

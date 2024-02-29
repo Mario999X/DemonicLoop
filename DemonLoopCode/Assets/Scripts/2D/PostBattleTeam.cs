@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -84,14 +83,14 @@ public class PostBattleTeam : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             LocateInterface();
             HideInterfacePostBattle();
             
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
         {
             done = false;
         }
@@ -171,11 +170,6 @@ public class PostBattleTeam : MonoBehaviour
         criticalChance4Text = infoNewStatsPanel4.transform.GetChild(9).gameObject.GetComponent<TextMeshProUGUI>();
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        /* actualAttacksPanel = postBattleTeamPanel.transform.GetChild(6).gameObject;
-         dontLearnAttackBtn = postBattleTeamPanel.transform.GetChild(4).gameObject;
-         learnAttackBtn = postBattleTeamPanel.transform.GetChild(5).gameObject;*/
     }
 
 
@@ -196,7 +190,7 @@ public class PostBattleTeam : MonoBehaviour
                    
                     character = players[0];
                     var spriteGoPlayers1 = Instantiate(playerPrefab, unit1.transform.position, Quaternion.identity, unit1.transform);
-                    unit1Text.text = "Name: " + character.GetComponent<Stats>().name;
+                    unit1Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL1Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp1Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;
                     mana1Text.text = "Max Mana: " + character.GetComponent<Stats>().MaxMana;
@@ -214,7 +208,7 @@ public class PostBattleTeam : MonoBehaviour
 
                     character = players[1];
                     var spriteGoPlayers2 = Instantiate(playerPrefab, unit2.transform.position, Quaternion.identity, unit2.transform);
-                    unit2Text.text = "Name: " + character.GetComponent<Stats>().name;
+                    unit2Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL2Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp2Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;
                     mana2Text.text = "Max Mana: " + character.GetComponent<Stats>().MaxMana;
@@ -232,7 +226,7 @@ public class PostBattleTeam : MonoBehaviour
 
                     character = players[2];
                     var spriteGoPlayers3 = Instantiate(playerPrefab, unit3.transform.position, Quaternion.identity, unit3.transform);
-                    unit3Text.text = "Name: " + character.GetComponent<Stats>().name;
+                    unit3Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL3Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp3Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;
                     mana3Text.text = "Max Mana: " + character.GetComponent<Stats>().MaxMana;
@@ -250,7 +244,7 @@ public class PostBattleTeam : MonoBehaviour
 
                     character = players[3];
                     var spriteGoPlayers4 = Instantiate(playerPrefab, unit4.transform.position, Quaternion.identity, unit4.transform);
-                    unit4Text.text = "Name: " + character.GetComponent<Stats>().name;
+                    unit4Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL4Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp4Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;
                     mana4Text.text = "Max Mana: " + character.GetComponent<Stats>().MaxMana;

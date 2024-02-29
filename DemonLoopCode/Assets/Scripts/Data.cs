@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Data : MonoBehaviour
@@ -56,7 +55,7 @@ public class Data : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             if (player == null)
             {

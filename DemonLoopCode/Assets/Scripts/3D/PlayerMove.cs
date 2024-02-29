@@ -100,8 +100,8 @@ public class PlayerMove : MonoBehaviour
         else this.onFloor = false;
 
         // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de titulo.
-        if (Input.GetKeyDown(KeyCode.M)) { SceneManager.Instance.LoadScene(0); }
-        if (Input.GetKeyDown(KeyCode.R)) { SceneManager.Instance.LoadScene(1); }
+        if (Input.GetKeyDown(KeyCode.M)) { SceneManager.Instance.LoadSceneName("Title"); }
+        if (Input.GetKeyDown(KeyCode.R)) { SceneManager.Instance.LoadSceneName("Scene 2"); }
     }
 
     private void OnDrawGizmos()

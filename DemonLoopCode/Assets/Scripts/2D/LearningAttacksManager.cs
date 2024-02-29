@@ -58,7 +58,7 @@ public class LearningAttacksManager : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             library = GetComponent<LibraryMove>();
 
@@ -67,7 +67,7 @@ public class LearningAttacksManager : MonoBehaviour
             
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
         {
             done = false;
         }
@@ -119,11 +119,6 @@ public class LearningAttacksManager : MonoBehaviour
         learningAttacksPanel.SetActive(false);
         learnAttackBtn.GetComponent<Button>().interactable = false;
 
-        // Parecia necesario, pero no lo es y evita un bug de null reference
-        
-        //character = null;
-        //newAttack = null;
-        //oldAttackSelected = null; 
     }
 
     public void FinishOperationNoNewAttack()
@@ -203,7 +198,7 @@ public class LearningAttacksManager : MonoBehaviour
         character = characterAsociated;
         newAttack = newAttackAsociated;
 
-        unitNameText.text = character.name;
+        unitNameText.text = character.name.Remove(character.name.IndexOf("("));;
         newAttackNameText.text = newAttackAsociated.name.Substring(4, newAttackAsociated.name.Length - 4).Replace("^", " ").ToUpper();
 
         baseDamageTextNA.text = "Base Damage: " + newAttackAsociated.BaseDamage;

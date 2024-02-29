@@ -22,14 +22,14 @@ public class EnemyGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             enemyManagerGenerator = GameObject.Find("System").GetComponent<EnemyManagerGenerator>();
 
             SpawnEnemies();
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
         {
             done = false;
         }

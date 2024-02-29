@@ -130,7 +130,7 @@ public class CombatFlow : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             Debug.Log("Vuelta a cargar los componentes.");
 
@@ -179,7 +179,7 @@ public class CombatFlow : MonoBehaviour
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
         {
             done = false;
         }
@@ -224,7 +224,6 @@ public class CombatFlow : MonoBehaviour
 
     private void GeneratePlayersButtons()
     {
-        Debug.Log("Turno Actual: " + ActualTurn);
 
         if (playerBT.Count > 0)
         {
@@ -240,7 +239,6 @@ public class CombatFlow : MonoBehaviour
         // Creamos un boton por todos los jugadores existentes.
         foreach (GameObject pl in players)
         {
-            //panelPlayers.Add(pl);//Listado de jugadores
 
             //Comprobamos si el player que tiene asignado el boton esta muerto o no
             StartCoroutine(CharacterDead(pl, false));
@@ -1036,7 +1034,7 @@ public class CombatFlow : MonoBehaviour
           
             yield return new WaitForSeconds(3);
             
-            enterBattle.FinishBattle();
+            enterBattle.FinishBattleAndEnterOverworld();
             DisablePanel();
             ClearPanel();
         }

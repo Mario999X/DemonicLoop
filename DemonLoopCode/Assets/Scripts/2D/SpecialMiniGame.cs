@@ -32,7 +32,7 @@ public class SpecialMiniGame : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
             Debug.Log("Vuelta a cargar los componentes.");
 
@@ -44,7 +44,7 @@ public class SpecialMiniGame : MonoBehaviour
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
         {
             done = false;
         }

@@ -10,7 +10,7 @@ public class PlatformController : SaveSystem
     {
         if (other.gameObject.layer == 3 && !done)
         {
-            Debug.Log("El jugador entró en la plataforma.");
+            Debug.Log("El jugador entro en la plataforma.");
             SaveData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, true);
             done = true;
         }

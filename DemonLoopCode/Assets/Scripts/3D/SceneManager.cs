@@ -32,7 +32,7 @@ public class SceneManager : MonoBehaviour
         _loadingCanvas.enabled = false;
     }
 
-    // Carga la escena por el n�mero de posici�n.
+    // Carga la escena por el numero de posicion.
     public async void LoadScene(int scene)
     {
         if (slider.value != 0)
@@ -118,7 +118,7 @@ public class SceneManager : MonoBehaviour
             if (!Data.Instance.OnRun)
             {
                 play.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "New Game";
-                play.GetComponent<Button>().onClick.AddListener(() => { LoadScene(2); });
+                play.GetComponent<Button>().onClick.AddListener(() => { LoadSceneName("Shop"); });
             }
             else
             {

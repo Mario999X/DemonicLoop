@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoserReset : SaveSystem
+public class LoserReset : MonoBehaviour
 {
     [SerializeField] Image imageLose;
     PlayerInventory playerInventory;
@@ -44,10 +44,10 @@ public class LoserReset : SaveSystem
         Data.Instance.SaveRoom = 0;
         Data.Instance.Floor = 0;
 
-         SaveData("Shop", false);
+        GameObject.Find("System").GetComponent<SaveSystem>().SaveData("Shop", false);
 
         yield return new WaitForSeconds(3);
 
-        SceneManager.Instance.LoadScene(0);
+        SceneManager.Instance.LoadSceneName("Title");
     }
 }

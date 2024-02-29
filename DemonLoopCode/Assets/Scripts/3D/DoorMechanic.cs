@@ -15,19 +15,19 @@ public class DoorMechanic : MonoBehaviour
         {
             if (!goToShop && !killAll)
             {
-                SceneManager.Instance.LoadScene(1);
+                SceneManager.Instance.LoadSceneName("Scene 2");
                 done = true;
             }
             else
             {
                 if (!GameObject.Find("Boss") && goToShop)
                 {
-                    SceneManager.Instance.LoadScene(2);
+                    SceneManager.Instance.LoadSceneName("Shop");
                     done = true;
                 }
                 else if (GameObject.FindGameObjectsWithTag("Enemy3D").Length <= 0 && killAll)
                 {
-                    SceneManager.Instance.LoadScene(1);
+                    SceneManager.Instance.LoadSceneName("Scene 2");
                     done = true;
                 }
             }

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnterBattle : CombatFlow
+public class EnterBattle : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject player;
@@ -29,7 +29,7 @@ public class EnterBattle : CombatFlow
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2") // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2") // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
 
@@ -41,7 +41,7 @@ public class EnterBattle : CombatFlow
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
         {
             player = null;
             fight = null;
@@ -55,7 +55,7 @@ public class EnterBattle : CombatFlow
     {
         if (Input.GetKeyDown(KeyCode.Space) && enemy != null) // Atajo para terminar la batalla.
         {
-            FinishBattle();
+            FinishBattleAndEnterOverworld();
         }
     }
 
@@ -150,7 +150,7 @@ public class EnterBattle : CombatFlow
 
             StartCoroutine(CrossfadeAnimation());
 
-            StartCoroutine(CreateButtons());
+            StartCoroutine(GetComponent<CombatFlow>().CreateButtons());
 
             //Cuando entremos en combate suena la musica
             AudioManager.Instance.PlaySoundCombat();
@@ -195,7 +195,7 @@ public class EnterBattle : CombatFlow
     }
 
     // Funcion para finalizar batalla.
-    public void FinishBattle()
+    public void FinishBattleAndEnterOverworld()
     {
         StartCoroutine(CrossfadeAnimation());
 

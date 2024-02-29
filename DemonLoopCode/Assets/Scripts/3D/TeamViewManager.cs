@@ -61,7 +61,7 @@ public class TeamViewManager : MonoBehaviour
             done = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2" && !enterBattle.OneTime)
+        if(Input.GetKeyDown(KeyCode.E) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2" && !enterBattle.OneTime)
         {
             if(teamViewScreen.GetComponent<Canvas>().enabled == false)
             {

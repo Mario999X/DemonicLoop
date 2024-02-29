@@ -943,7 +943,7 @@ public class CombatFlow : MonoBehaviour
         playerBT.ForEach(bt =>
         {
             // Si el texto coincide con el nombre del jugador aplica los cambios a dicho boton.
-            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name) // character.name.Substring(1, character.name.Length - 1)
+            if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == character.name.Remove(character.name.IndexOf("("))) // character.name.Substring(1, character.name.Length - 1)
             {
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.grey;
                 bt.GetComponent<Button>().interactable = false;

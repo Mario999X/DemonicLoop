@@ -25,4 +25,6 @@ Videojuego desarrollado por estudiantes del Curso de Especialización de Videoju
 - <a href="https://www.flaticon.com/free-icons/pentagram" title="pentagram icons">Pentagram icons created by Freepik - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/settings" title="settings icons">Settings icons created by Md Tanvirul Haque - Flaticon</a>
 - <a href="https://www.iconfinder.com/iconsets/tutor-icon-set" title="backpack icons">Backpack icons by Boca Tutor - Icon Finder</a>
-
+- <a href="https://freesound.org/people/The%20Baron/sounds/98382/" title="17 Evil laugh.wav">17 Evil laugh.wav by The Baron - FreeSound</a>
+- <a href="https://freesound.org/people/burning-mir/sounds/149066/" title="ambient sounds 006">ambient sounds 006 by burning-mir - FreeSound</a>
+- <a href="https://freesound.org/people/Sandra.th/sounds/581099/" title="CreepyElectricGuitar.wav">CreepyElectricGuitar.wav by Sandra.th - FreeSound</a>

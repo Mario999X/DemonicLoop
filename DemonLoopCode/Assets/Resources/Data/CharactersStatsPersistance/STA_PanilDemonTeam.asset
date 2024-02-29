@@ -10,29 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
-  m_Name: STA_Dani
+  m_Name: STA_PanilDemonTeam
   m_EditorClassIdentifier: 
-  characterPB: {fileID: 6806864167824992199, guid: 51b2790600c1647798c560609ca0911b,
+  characterPB: {fileID: 9014782617563343838, guid: 35f7815fd92c53b4bb167f7624e14642,
     type: 3}
-  description: 'Programador de DemonicLoop.
-
-    No sabe como a llegado aqui.'
+  description: 
   level: 1
-  currentXP: 4
-  health: 305
-  maxHealth: 305
-  mana: 160
-  maxMana: 160
-  sp: 0
-  strength: 20
-  physicalDef: 17
-  magicAtk: 25
-  magicDef: 25
-  criticalChance: 28
+  currentXP: 363
+  health: 330
+  maxHealth: 340
+  mana: 165
+  maxMana: 170
+  sp: 30
+  strength: 35
+  physicalDef: 52
+  magicAtk: 35
+  magicDef: 55
+  criticalChance: 47
   listAtk:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  cost: 0
+  cost: 2000
   protagonist: 0

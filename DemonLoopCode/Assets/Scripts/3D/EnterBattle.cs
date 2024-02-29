@@ -148,7 +148,7 @@ public class EnterBattle : CombatFlow
         {
             var playerMaxLevel = ObtainMaxLevelPlayer();
 
-            //StartCoroutine(CrossfadeAnimation());
+            StartCoroutine(CrossfadeAnimation());
 
             StartCoroutine(CreateButtons());
 

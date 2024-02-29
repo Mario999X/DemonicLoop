@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnterBattle : MonoBehaviour
+public class EnterBattle : CombatFlow
 {
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject player;
@@ -29,7 +29,7 @@ public class EnterBattle : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2") // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2") // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
 
@@ -41,7 +41,7 @@ public class EnterBattle : MonoBehaviour
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
         {
             player = null;
             fight = null;
@@ -148,9 +148,9 @@ public class EnterBattle : MonoBehaviour
         {
             var playerMaxLevel = ObtainMaxLevelPlayer();
 
-            StartCoroutine(CrossfadeAnimation());
+            //StartCoroutine(CrossfadeAnimation());
 
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons());
+            StartCoroutine(CreateButtons());
 
             //Cuando entremos en combate suena la musica
             AudioManager.Instance.PlaySoundCombat();
@@ -180,7 +180,7 @@ public class EnterBattle : MonoBehaviour
             foreach (GameObject character in GameObject.FindGameObjectsWithTag("Player"))
                 libraryStates.IconState(character); // Busca todos las entidades que sufran algun efecto de estado.
 
-            fight.enabled = true;
+            GameObject.Find("Fight").GetComponent<Canvas>().enabled = true;
 
             if (sneak)
             {

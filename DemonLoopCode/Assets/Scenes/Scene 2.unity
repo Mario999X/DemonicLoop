@@ -3745,7 +3745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -301.0755}
+  m_AnchoredPosition: {x: 0, y: -303.85745}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &698224850
@@ -7335,15 +7335,15 @@ MonoBehaviour:
   - {fileID: 4503541210712415587, guid: f2369b58f9e1a5c42879b6794e62d751, type: 3}
   - {fileID: 2409840099089020148, guid: df87ced23a93534459896769d3954bbc, type: 3}
   - {fileID: 372789990257220145, guid: 55a5bad925203b14783c5ef46ae2166f, type: 3}
-  - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
   - {fileID: 4769843965479357696, guid: 4956cbf0f935ba5488f68a5a231cd3a1, type: 3}
   - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
+  bossRooms:
   - {fileID: 4503541210712415587, guid: 5382e09f34213904d9eb2a4699ceffde, type: 3}
+  - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarity: 00000000000000000000000000000000640000000000000064000000
+  rarity: 0000000000000000000000000000000064000000
   actualroom: 0
-  boosRoom: 10
 --- !u!4 &1525719001
 Transform:
   m_ObjectHideFlags: 0
@@ -8109,7 +8109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000028381273, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749773893

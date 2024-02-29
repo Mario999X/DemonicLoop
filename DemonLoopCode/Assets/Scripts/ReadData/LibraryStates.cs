@@ -53,7 +53,7 @@ public class LibraryStates : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
         {
             damageVisualEffect = GameObject.Find("Global Volume").GetComponent<DamageVisualEffect>();
 

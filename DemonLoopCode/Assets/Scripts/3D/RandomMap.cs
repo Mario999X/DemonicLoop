@@ -1,9 +1,12 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RandomMap : MonoBehaviour
 {
     [Header("Map Collection")]
     [SerializeField] GameObject[] maps;
+    [SerializeField] List<GameObject> bossRooms;
 
     [Header("Required maps")]
     [SerializeField] GameObject[] oblMaps;
@@ -12,15 +15,13 @@ public class RandomMap : MonoBehaviour
     [SerializeField] int[] rarity;
 
     [SerializeField] int actualroom;
-    [SerializeField] int boosRoom;
 
     bool done = false;
 
     int room = 0;
     int saveRoom = 0;
     int floor = 0;
-
-
+    int bossRoom;
 
     // Start is called before the first frame update
     void Update()
@@ -30,10 +31,17 @@ public class RandomMap : MonoBehaviour
             room = Data.Instance.Room;
             saveRoom = Data.Instance.SaveRoom;
             floor = Data.Instance.Floor;
+            bossRoom = Data.Instance.BossRoom;
 
-            if (room == boosRoom)
+            actualroom = room;
+
+            Debug.Log(bossRoom);
+
+            if (room == bossRoom)
             {
-                // Instantiate(oblMaps[1], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
+                Instantiate(bossRooms[floor], transform.position, Quaternion.identity);
+
+                bossRoom += 4;
 
                 floor++;
                 saveRoom = 0;
@@ -41,7 +49,7 @@ public class RandomMap : MonoBehaviour
             }
             else
             {
-                if (saveRoom == 5)
+                if (saveRoom == 4)
                 {
                     Instantiate(oblMaps[0], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
                     saveRoom = 0;
@@ -68,6 +76,7 @@ public class RandomMap : MonoBehaviour
             Data.Instance.Room = room;
             Data.Instance.SaveRoom = saveRoom;
             Data.Instance.Floor = floor;
+            Data.Instance.BossRoom = bossRoom;
 
             done = true;
         }

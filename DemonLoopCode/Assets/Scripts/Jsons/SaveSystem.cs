@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.IO;
-using TMPro;
 
 [System.Serializable]
 public class ObjectStockData
@@ -24,10 +22,15 @@ public class StatsPersistenceContainer
     public List<ObjectStockData> inventory;
     public float money;
     public float moneyRefined;
+    public int bossRoom;
+    public int room;
+    public int floor;
+    public int saveRoom;
     public string sceneName;
     public List<StatsPersistenceData> teamCharacterStats;
     public Dictionary<string, ObjectData> inventoryDictionary;
     public ScriptableObject dataScriptableObject;
+    public bool onRun;
 
     public StatsPersistenceContainer(string sceneName)
     {
@@ -37,64 +40,61 @@ public class StatsPersistenceContainer
         teamCharacterStats = new List<StatsPersistenceData>();
         inventoryDictionary = new Dictionary<string, ObjectData>();
         dataScriptableObject = ScriptableObject.CreateInstance<ScriptableObject>();
-
     }
 }
 
 
 public class SaveSystem : MonoBehaviour
 {
-    public GameObject player;
-    MoneyPlayer money;
+    [SerializeField] GameObject player;
     PlayerInventory playerInventory;
-    LoserReset loserReset;
-    StatsPersistenceData[] playerCharacters;
 
     private void Start()
     {
         player = GetComponent<GameObject>();
-        money = GetComponent<MoneyPlayer>();
-        loserReset = GetComponent<LoserReset>();
         playerInventory = GetComponent<PlayerInventory>();
-        playerCharacters = Data.Instance.CharactersTeamStats.ToArray();
-        if (playerInventory == null)
-        {
-            Debug.LogError("No se encontro el PlayerInventory");
-        }
     }
 
     // Guardaremos todas las cosas que tengamos en ese momento
-    public void SaveData()
+    public void SaveData(string sceneName, bool runState)
     {
-        StatsPersistenceContainer savedController = new StatsPersistenceContainer(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        // Directorio donde se guarda la partida
+        string fileName = "newStatsPersistenceData.json";
+        string filePath = Path.Combine(Application.persistentDataPath, fileName);
+
+        StreamWriter file = new StreamWriter(File.Open(filePath, FileMode.OpenOrCreate)); // Si el archivo no existe lo crea.
+
+        StatsPersistenceContainer savedController = new StatsPersistenceContainer(sceneName);
 
         Debug.Log("SaveSystem.sceneName " + savedController.sceneName);
 
+        savedController.onRun = runState;
+
         // Dinero
-        savedController.money = money.Money;
-        savedController.moneyRefined = money.MoneyRefined;
+        savedController.money = Data.Instance.MoneyPlayer.Money;
+        savedController.moneyRefined = Data.Instance.MoneyPlayer.MoneyRefined;
+
+        // Salas
+        savedController.bossRoom = Data.Instance.BossRoom;
+        savedController.room = Data.Instance.Room;
+        savedController.floor = Data.Instance.Floor;
+        savedController.saveRoom = Data.Instance.SaveRoom;
 
         // Equipo mas Stats
         savedController.teamCharacterStats.AddRange(Data.Instance.CharactersTeamStats);
 
-        // Inventario 
-        foreach (var obj in playerInventory.inventory.Values)
+        // Inventario
+        foreach (var obj in Data.Instance.PlayerInventory.Inventory.Values)
         {
             savedController.inventory.Add(new ObjectStockData(obj.Data, obj.Count));
             savedController.inventoryDictionary.Add(obj.Data.name, obj.Data);
         }
 
-        // Directorio donde se guarda la partida
-        string fileName = "newStatsPersistenceData.json";
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-
-        PlayerPrefs.SetString("SavedSceneName", savedController.sceneName);
-        PlayerPrefs.Save();
-
-
         // Convertir el objeto statsContainer a JSON y lo guardas en un archivo
         string json = JsonUtility.ToJson(savedController);
-        File.WriteAllText(filePath, json);
+        file.WriteLine(json);
+
+        file.Close();
 
         Debug.Log("Ruta guardado" + filePath);
     }
@@ -117,27 +117,32 @@ public class SaveSystem : MonoBehaviour
 
             if (loadedStats != null)
             {
-                // Carga la escena guardada
-                UnityEngine.SceneManagement.SceneManager.LoadScene(loadedStats.sceneName);
+                Data.Instance.SceneName = loadedStats.sceneName;
 
+                Data.Instance.OnRun = loadedStats.onRun;
 
                 // Dinero
                 MoneyPlayer money = GetComponent<MoneyPlayer>();
                 money.Money = loadedStats.money;
                 money.MoneyRefined = loadedStats.moneyRefined;
 
+                // Salas
+                Data.Instance.BossRoom = loadedStats.bossRoom;
+                Data.Instance.Room = loadedStats.room;
+                Data.Instance.Floor = loadedStats.floor;
+                Data.Instance.SaveRoom = loadedStats.saveRoom;
+
                 // Team y Stats
                 Data.Instance.CharactersTeamStats.Clear();
                 foreach (var characterData in loadedStats.teamCharacterStats)
-                {
                     Data.Instance.CharactersTeamStats.Add(characterData);
-                }
+
                 Debug.Log("Buscar loadedStats.inventory " + loadedStats.inventory);
-                Debug.Log("playerInventory.inventory.Values " + playerInventory.inventory.Values);
+                Debug.Log("playerInventory.inventory.Values " + playerInventory.Inventory.Values);
                 Debug.Log("loadedStats.inventoryDictionary " + loadedStats.inventoryDictionary);
 
                 // Inventario 
-                playerInventory.inventory.Clear();
+                playerInventory.Inventory.Clear();
 
                 if (loadedStats.inventoryDictionary != null)
                 {
@@ -185,24 +190,6 @@ public class SaveSystem : MonoBehaviour
         else
         {
             Debug.Log("No hay datos guardados");
-        }
-    }
-
-    // Cuando creemos una nueva partida empezaremos de 0
-    public void LoadResetData()
-    {
-        SceneManager.Instance.LoadScene(2);
-        ResetPersistence();
-        
-    }
-
-    public void ResetPersistence()
-    {
-        // Cuando morimos se reinicia los StatsPersistenceData
-        // al que tenia cuando se inicio el juego
-        for (var i = 0; i < Data.Instance.CharactersTeamStats.Count; i++)
-        {
-            Data.Instance.CharactersTeamStats[i].Level = 0;
         }
     }
 }

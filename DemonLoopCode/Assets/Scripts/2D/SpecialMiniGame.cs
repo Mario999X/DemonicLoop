@@ -32,7 +32,7 @@ public class SpecialMiniGame : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
         {
             Debug.Log("Vuelta a cargar los componentes.");
 
@@ -44,7 +44,7 @@ public class SpecialMiniGame : MonoBehaviour
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SceneName 2")
         {
             done = false;
         }
@@ -55,10 +55,6 @@ public class SpecialMiniGame : MonoBehaviour
         Clear();
         timeLeft = timeInitial;
 
-        // Lo que hacemos es un contador que cuando se acabe el tiempo pillara la cantidad
-        // de veces que hemos pulsado la tecla y lo sumara al ataque aunque
-        // si llega a pulsar lo suficiente para rellenarlo se realizara antes el ataque con
-        // el potenciador total
         while (timeLeft > 0)
         {
             timeLeft -= Mathf.CeilToInt(Time.deltaTime);
@@ -89,8 +85,6 @@ public class SpecialMiniGame : MonoBehaviour
 
     }
 
-    // Sino hacemos una limpieza se quedara con los datos 
-    // de la anterior vez que lo hemos usado
     public void Clear()
     {
         totalPress = 0;

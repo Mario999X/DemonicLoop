@@ -1,21 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformController : MonoBehaviour
+public class PlatformController : SaveSystem
 {
     SaveSystem controller;
-    void Start()
-    {
-        controller = GameObject.Find("System").GetComponent<SaveSystem>();
-    }
+
+    bool done = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3)
+        if (other.gameObject.layer == 3 && !done)
         {
             Debug.Log("El jugador entró en la plataforma.");
-            controller.SaveData();
+            SaveData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, true);
+            done = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 3)
+            done = false;
     }
 
 }

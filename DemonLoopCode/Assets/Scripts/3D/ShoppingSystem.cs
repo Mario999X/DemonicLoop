@@ -281,6 +281,8 @@ public class ShoppingSystem : MonoBehaviour
                         stock.Remove(slave.name.Substring(slave.name.IndexOf("_") + 1));
 
                         Destroy(GameObject.Find(slave.name.Substring(slave.name.IndexOf("_") + 1).ToUpper()));
+                        
+                        GameObject.Find("System").GetComponent<TeamViewManager>().SetActiveTeamData();
 
                         displayzone.SetActive(false);
                     }

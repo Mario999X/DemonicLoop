@@ -62,7 +62,6 @@ public class SceneManager : MonoBehaviour
         await System.Threading.Tasks.Task.Delay(1000);
 
         _loadingCanvas.enabled = false;
-
     }
 
     // Carga la escena por su nombre.
@@ -113,10 +112,22 @@ public class SceneManager : MonoBehaviour
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
         {
-            GameObject.Find("Start").GetComponent<Button>().onClick.AddListener(() => { SaveSystem.LoadResetData(); });
+            SaveSystem.LoadData();
+            GameObject play = GameObject.Find("Start");
+
+            if (!Data.Instance.OnRun)
+            {
+                play.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "New Game";
+                play.GetComponent<Button>().onClick.AddListener(() => { LoadScene(2); });
+            }
+            else
+            {
+                play.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continue";
+                play.GetComponent<Button>().onClick.AddListener(() => { LoadSceneName(Data.Instance.SceneName); });
+            }
+
             GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { ExitGame(); });
             GameObject.Find("Settings").GetComponent<Button>().onClick.AddListener(() => { ShowSettingsView(); });
-            GameObject.Find("Continue").GetComponent<Button>().onClick.AddListener(() => { SaveSystem.LoadData(); });
             GameObject.Find("AppVerText").GetComponent<TextMeshProUGUI>().text = "App ver. " + Application.version;
             Debug.Log("Done");
 

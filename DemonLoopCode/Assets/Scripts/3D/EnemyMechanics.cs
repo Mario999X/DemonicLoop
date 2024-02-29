@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyMechanics : MonoBehaviour
+public class EnemyMechanics : EnterBattle
 {
     [Header("View conditions")]
     [SerializeField] private float distance = 100f;
@@ -24,62 +24,55 @@ public class EnemyMechanics : MonoBehaviour
     {
         pointA = transform.parent.GetChild(1).gameObject;
         pointB = transform.parent.GetChild(0).gameObject;
+        
+        if (patrol)
+        {
+            StartCoroutine(Enemy_patrol());
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // En el caso que no haya guardado el script Lo busca  hasta encontrarlo (Esto se debe aque si por error coge el 'System' el cual va a ser destruido este se volvera de nuevo null y si se hace una vez no ira a por el nuevo 'System').
-        if (_Battle == null)
-        {
-            _Battle = GameObject.Find("System").GetComponent<EnterBattle>();
+        RaycastHit hit;
+        direction = transform.right;
 
-            if (patrol)
+        // Crea una linea invisible de una determinada distancia el cual actua como un trigger y solo detecta los objetos que se encuentran en las capas selecionadas.
+        if (Physics.Raycast(transform.position, direction, out hit, distance) && !OneTime)
+        {
+            if (hit.transform.gameObject.layer == 3)
             {
-                StartCoroutine(Enemy_patrol());
+                Debug.DrawLine(transform.position, hit.transform.position, Color.green);
+
+                attack = true;
+                yietError = true;
+
+                hit.transform.GetComponent<PlayerMove>().enabled = false; // Desactiva el movimiento del jugador.
+
+                // Si encuentra alguno de los dos componentes en el objeto jugador los desactiva antes de iniciar la pelea.
+                if (hit.transform.GetComponent<KeyBoardControls>())
+                    hit.transform.GetComponent<KeyBoardControls>().enabled = false;
+                if (hit.transform.GetComponent<ControllerControls>())
+                    hit.transform.GetComponent<ControllerControls>().enabled = false;
+
+
+                // Antes de activar la pelea el enemigo se acerca al jugador.
+                if (Vector3.Distance(transform.position, hit.transform.position) < 1.5f) // Inicia el combate.
+                {
+                    StartBattle(this.transform.parent.gameObject, false);
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
+                }
             }
+            else { Debug.DrawRay(transform.position, direction * distance, Color.red); }
         }
         else
-        {
-            RaycastHit hit;
-            direction = transform.right;
-
-            // Crea una linea invisible de una determinada distancia el cual actua como un trigger y solo detecta los objetos que se encuentran en las capas selecionadas.
-            if (Physics.Raycast(transform.position, direction, out hit, distance) && !_Battle.OneTime)
-            {
-                if (hit.transform.gameObject.layer == 3)
-                {
-                    Debug.DrawLine(transform.position, hit.transform.position, Color.green);
-
-                    attack = true;
-                    yietError = true;
-
-                    hit.transform.GetComponent<PlayerMove>().enabled = false; // Desactiva el movimiento del jugador.
-
-                    // Si encuentra alguno de los dos componentes en el objeto jugador los desactiva antes de iniciar la pelea.
-                    if (hit.transform.GetComponent<KeyBoardControls>())
-                        hit.transform.GetComponent<KeyBoardControls>().enabled = false;
-                    if (hit.transform.GetComponent<ControllerControls>())
-                        hit.transform.GetComponent<ControllerControls>().enabled = false;
-
-
-                    // Antes de activar la pelea el enemigo se acerca al jugador.
-                    if (Vector3.Distance(transform.position, hit.transform.position) < 1.5f) // Inicia el combate.
-                    {
-                        _Battle.StartBattle(transform.parent.gameObject, false);
-                    }
-                    else
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
-                    }
-                }
-                else { Debug.DrawRay(transform.position, direction * distance, Color.red); }
-            }
-            else
-            { 
-                Debug.DrawRay(transform.position, direction * distance, Color.red); 
-                if (yietError) { _Battle.StartBattle(transform.parent.gameObject, false); }
-            }
+        { 
+            Debug.DrawRay(transform.position, direction * distance, Color.red); 
+            if (yietError) { StartBattle(transform.parent.gameObject, false); }
         }
     }
 
@@ -87,7 +80,7 @@ public class EnemyMechanics : MonoBehaviour
     {
         while (true)
         {
-            if (!attack && !_Battle.OneTime) // Cuando detecta al jugador este deja de estar en modo patrulla
+            if (!attack && !OneTime) // Cuando detecta al jugador este deja de estar en modo patrulla
             {
                 if (change)
                 {
@@ -121,7 +114,7 @@ public class EnemyMechanics : MonoBehaviour
     {
         if (other.transform.name == "Player")
         {
-            _Battle.StartBattle(transform.parent.gameObject, true);
+            StartBattle(transform.parent.gameObject, true);
         }
     }
 }

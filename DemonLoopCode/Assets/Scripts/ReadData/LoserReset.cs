@@ -2,19 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoserReset : MonoBehaviour
+public class LoserReset : SaveSystem
 {
     [SerializeField] Image imageLose;
-    MoneyPlayer moneyPlayer;
     PlayerInventory playerInventory;
-    StatsPersistenceData[] playerCharacters;
 
     void Start()
     {
         imageLose.GetComponent<Image>().enabled = false;
-        moneyPlayer = GameObject.Find("System").GetComponent<MoneyPlayer>();
         playerInventory = GameObject.Find("System").GetComponent<PlayerInventory>();
-        playerCharacters = Data.Instance.CharactersTeamStats.ToArray();
     }
 
     // Cuando entren aqui se mostrara la imagen de que han perdido
@@ -23,60 +19,35 @@ public class LoserReset : MonoBehaviour
     {
         imageLose.GetComponent<Image>().enabled = true;
 
-        ResetPersistence();
-        ResetInventory();
+        bool saveRoom = false;
 
-        ResetMoney();
-        ResetTeam();
-        yield return new WaitForSeconds(3);
+        if (Data.Instance.Room > 4) saveRoom = true;
 
-        MoveSceneInitial();
-    }
-
-    public void MoveSceneInitial()
-    {
-        // ID 0 es el titulo
-        // ID 1 es el Scene 2
-        // ID 3 es el Shop
-        SceneManager.Instance.LoadScene(0);
-    }
-
-    public void ResetPersistence()
-    {
         // Cuando morimos se reinicia los StatsPersistenceData
         // al que tenia cuando se inicio el juego
-        for (var i = 0; i < Data.Instance.CharactersTeamStats.Count; i++)
-        {
-            Data.Instance.CharactersTeamStats[i].Level = 0;
-        }
-    }
+        // Remueve todos los aliados del jugador.
+        Data.Instance.CharactersTeamStats.RemoveAll(x => !x.Protagonist);
+        Data.Instance.CharactersBackupStats.RemoveAll(x => !x.Protagonist);
 
-    public void ResetInventory()
-    {
+        // Resetea el nivel de jugador a 0.
+        Data.Instance.CharactersTeamStats.ForEach(x => x.Level = 0);
+
+        // Vacia el inventario del jugador.
         if (playerInventory != null)
         {
             playerInventory.ResetInventario();
         }
+
+        // Reinicia los datos de generacion de salas.
+        Data.Instance.BossRoom = 4;
+        Data.Instance.Room = 0;
+        Data.Instance.SaveRoom = 0;
+        Data.Instance.Floor = 0;
+
+         SaveData("Shop", false);
+
+        yield return new WaitForSeconds(3);
+
+        SceneManager.Instance.LoadScene(0);
     }
-
-    public void ResetMoney()
-    {
-        moneyPlayer.mara = 0f;
-    }
-
-    public void ResetTeam()
-    {
-        foreach (StatsPersistenceData member in playerCharacters)
-        {
-            if (member.Protagonist!=true)
-            {
-                Data.Instance.CharactersTeamStats.Remove(member);
-
-            }
-        }
-    }
-
-    
-
-
 }

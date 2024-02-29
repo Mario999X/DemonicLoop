@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class ObjectStock
 {
-    public ObjectData data;
-    public GameObject buttonINV3D;
-    public GameObject buttonINV2D;
-    public int count = 1;
+    ObjectData data;
+    GameObject buttonINV3D;
+    GameObject buttonINV2D;
+    int count = 1;
 
     public ObjectData Data { get { return data; } set { this.data = value; } }
     public int Count { get { return count; } set { this.count = value; } }
@@ -38,12 +38,13 @@ public class PlayerInventory : MonoBehaviour
     bool done = false;
     bool dontOpenInventory = false;
 
+    Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
+    
     Scene scene;
 
     public bool InventoryState { get { return inventoryState; } }
     public bool DontOpenInventory { get { return dontOpenInventory; } set { dontOpenInventory = value; } }
-
-    public Dictionary<string, ObjectStock> inventory = new Dictionary<string, ObjectStock>();
+    public Dictionary<string, ObjectStock> Inventory { get {  return inventory; } set { inventory = value; } }
 
     EnterBattle enterBattle;
 

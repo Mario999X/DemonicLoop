@@ -108,7 +108,7 @@ public class SceneManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title" && !done)
         {

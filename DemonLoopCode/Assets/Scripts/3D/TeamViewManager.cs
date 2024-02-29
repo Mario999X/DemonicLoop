@@ -58,42 +58,60 @@ public class TeamViewManager : MonoBehaviour
 
             characterDetailsView.SetActive(false);
 
+            GameObject.Find("TeamBtn").GetComponent<Button>().onClick.AddListener(() =>
+            {
+                if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2") ShowOnlyActiveTeamView();
+                else ShowCompleteTeamView();
+            });
+
+            teamViewScreen.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => ShowCompleteTeamView());
+
             done = true;
         }
 
         if(Input.GetKeyDown(KeyCode.E) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2" && !enterBattle.OneTime)
         {
-            if(teamViewScreen.GetComponent<Canvas>().enabled == false)
-            {
-                teamViewScreen.GetComponent<Canvas>().enabled = true;
-                controlPanelBacklogTeamPods.transform.parent.gameObject.SetActive(false);
-
-                Time.timeScale = 0f;
-
-            } else
-            {
-                teamViewScreen.GetComponent<Canvas>().enabled = false;
-                HideCharacterDetails();
-
-                Time.timeScale = 1f;
-            } 
+            ShowOnlyActiveTeamView();
         }
 
         if(Input.GetKeyDown(KeyCode.E) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Shop")
         {
-            if(teamViewScreen.GetComponent<Canvas>().enabled == false)
-            {
-                teamViewScreen.GetComponent<Canvas>().enabled = true;
+             ShowCompleteTeamView();
+        }
+    }
 
-                Time.timeScale = 0f;
+    private void ShowOnlyActiveTeamView()
+    {
+        if(teamViewScreen.GetComponent<Canvas>().enabled == false)
+        {
+            teamViewScreen.GetComponent<Canvas>().enabled = true;
+            controlPanelBacklogTeamPods.transform.parent.gameObject.SetActive(false);
 
-            } else
-            {
-                teamViewScreen.GetComponent<Canvas>().enabled = false;
-                HideCharacterDetails();
+            Time.timeScale = 0f;
 
-                Time.timeScale = 1f;
-            } 
+        } else
+        {
+            teamViewScreen.GetComponent<Canvas>().enabled = false;
+            HideCharacterDetails();
+
+            Time.timeScale = 1f;
+        } 
+    }
+
+    private void ShowCompleteTeamView()
+    {
+        if(teamViewScreen.GetComponent<Canvas>().enabled == false)
+        {
+            teamViewScreen.GetComponent<Canvas>().enabled = true;
+
+            Time.timeScale = 0f;
+
+        } else
+        {
+            teamViewScreen.GetComponent<Canvas>().enabled = false;
+            HideCharacterDetails();
+
+            Time.timeScale = 1f;
         }
     }
 

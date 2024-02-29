@@ -5,6 +5,7 @@ using UnityEngine;
 public class StatsPersistenceData : ScriptableObject
 {
     [SerializeField] private GameObject characterPB;
+    [SerializeField] [TextArea] string description;
     [SerializeField] private int level;
     [SerializeField] private float currentXP;
     [SerializeField] private float health;
@@ -23,6 +24,7 @@ public class StatsPersistenceData : ScriptableObject
     private List<ActualStateData> actualStates = new List<ActualStateData>();
     float time = 0;
 
+    public string Description { get { return description; } }
     public float Time { get { return time; } set { time = value; } }
     public float Cost { get { return cost; } set { cost = value; } }
     public GameObject CharacterPB { get { return characterPB; } }

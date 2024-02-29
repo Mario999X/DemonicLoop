@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPB: {fileID: 7374620420556713923, guid: f81330ec4b1c5403a87cd789cd80adeb,
     type: 3}
+  description: "Es un ser humano, alrededor de los 20 a\xF1os. Cuenta con un tatuaje
+    de color rojo sangre que le recorre medio cuerpo debido al suceso inicial de
+    la historia. Y sus ojos son amarillentos."
   level: 0
   currentXP: 4
   health: 310

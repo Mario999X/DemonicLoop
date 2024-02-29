@@ -100,12 +100,13 @@ public class SaveSystem : MonoBehaviour
     }
 
 
-    // Cargar partida
+    // Cargar los datos de la partida
     public void LoadData()
     {
         string fileName = "newStatsPersistenceData.json";
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
 
+        // En caso de que exista el archivo.
         if (File.Exists(filePath))
         {
             string jsonContent;

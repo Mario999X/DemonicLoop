@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPB: {fileID: 6806864167824992199, guid: 51b2790600c1647798c560609ca0911b,
     type: 3}
+  description: 'Programador de DemonicLoop.
+
+    No sabe como a llegado aqui.'
   level: 0
   currentXP: 4
   health: 305

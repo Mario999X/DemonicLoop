@@ -214,6 +214,7 @@ public class ShoppingSystem : MonoBehaviour
 
         quantity = 1;
 
+        // Dependiendo del tipo de tienda tiene que mostrar unas cosas o otras.
         switch (gameObject.tag)
         {
             case "Normal Shop":
@@ -229,6 +230,7 @@ public class ShoppingSystem : MonoBehaviour
                 StatsPersistenceData slave = @object as StatsPersistenceData;
 
                 icon.sprite = slave.CharacterPB.transform.GetChild(3).GetComponent<Image>().sprite;
+                description.text = slave.Description;
                 buy.text = $"Cost: {slave.Cost}Ma";
                 break;
 
@@ -251,6 +253,7 @@ public class ShoppingSystem : MonoBehaviour
 
         float totalCost;
 
+        // Dependiendo del tipo de tienda tiene que mostrar unas cosas o otras.
         switch (gameObject.tag)
         {
             case "Normal Shop":
@@ -269,7 +272,6 @@ public class ShoppingSystem : MonoBehaviour
 
                 if ((money.Money - totalCost) >= 0)
                 {
-
                     // En el caso de que el grupo este lleno se le dara la opcion al jugador de si quiere incorporarlo al grupo o almacenarlo.
                     // En el caso contrario se incluira automaticamente al grupo.
                     if (party.CharactersTeamStats.Count < 4)
@@ -376,13 +378,10 @@ public class ShoppingSystem : MonoBehaviour
                             mejoras[z].DiscountSlaves(slaves);
                         }
 
-
                         mejoras[i + 1].idDiscount = mejoras[i].idDiscount;
                         mejoras[i + 1].DiscountV = mejoras[i].DiscountV;
                         break;
                 }
-
-
             }
             else
             {
@@ -395,7 +394,6 @@ public class ShoppingSystem : MonoBehaviour
 
     void OcultarButtons(string mejoraName)
     {
-
         Transform button = canvas.transform.GetChild(0).GetChild(0).GetChild(0).Find(mejoraName);
         // Debug.Log("button "+ button);
         if (button != null)
@@ -437,7 +435,6 @@ public class ShoppingSystem : MonoBehaviour
 
             GameObject.Find("System").GetComponent<TeamViewManager>().SetBackupTeamData();
         });
-
     }
 
     // Guarda el esclavo que vamos a sustituir he incorpora el nuevo.

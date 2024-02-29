@@ -11,9 +11,9 @@ public class LevelSystem : MonoBehaviour
     [SerializeField][Range(2f, 4f)] private float powerMultiplier = 2;
     [SerializeField][Range(7f, 14f)] private float divisionMultiplier = 7;
 
-    private const float NormalStatUpgrade = 5;
+    private const float NormalStatUpgrade = 2;
 
-    private const float EffectiveStatUpgrade = 10;
+    private const float EffectiveStatUpgrade = 4;
 
     private const float CriticalStatUpgrade = 3;
 

@@ -710,7 +710,7 @@ MonoBehaviour:
   physicalDef: 12
   magicAtk: 15
   magicDef: 15
-  criticalChance: 30
+  criticalChance: 15
   listAtk:
   - {fileID: 11400000, guid: 8650a099b9cb04ea8ae048e1380cad52, type: 2}
   - {fileID: 11400000, guid: 01308935cd98346e8a552d97513ef003, type: 2}

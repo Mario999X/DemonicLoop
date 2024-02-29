@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 2766495910402441774}
   - component: {fileID: 2639664326087891210}
   m_Layer: 0
-  m_Name: Boss2
+  m_Name: ShadowOfHell3DModel
   m_TagString: Enemy3D
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -719,6 +719,7 @@ MonoBehaviour:
   dropXP: 100
   moneyRefinedDrop: 0
   boss: 0
+  actualStates: []
 --- !u!114 &-1995760961937033985
 MonoBehaviour:
   m_ObjectHideFlags: 0

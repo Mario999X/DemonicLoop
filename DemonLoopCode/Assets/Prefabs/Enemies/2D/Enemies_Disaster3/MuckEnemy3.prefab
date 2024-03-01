@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 1034579314653077739}
   - component: {fileID: 2432755144658699597}
   m_Layer: 5
-  m_Name: MuckEnemy
+  m_Name: MuckEnemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 230
+  maxHealth: 190
   mana: 0
   maxMana: 100
   sp: 0
@@ -326,8 +326,10 @@ MonoBehaviour:
   magicDef: 5
   criticalChance: 10
   listAtk:
-  - {fileID: 11400000, guid: 5010e5fe204d1451790b554b2611313a, type: 2}
   - {fileID: 11400000, guid: 4c5ea8b2c908543dca34e4176a36f8d2, type: 2}
+  - {fileID: 11400000, guid: 116afbc48b1b2434ea1957ba9a54c0a4, type: 2}
+  - {fileID: 11400000, guid: 107ea18027e5f4906b48e4cd125af8f4, type: 2}
+  - {fileID: 11400000, guid: 5010e5fe204d1451790b554b2611313a, type: 2}
   absorbsDamageOfSameType: 1
   type: 2
   typeIcon: {fileID: 0}
@@ -336,6 +338,7 @@ MonoBehaviour:
   dropXP: 100
   moneyRefinedDrop: 0
   boss: 0
+  actualStates: []
 --- !u!114 &1034579314653077739
 MonoBehaviour:
   m_ObjectHideFlags: 0

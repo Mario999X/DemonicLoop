@@ -15,6 +15,7 @@ public class EnemyManagerGenerator : MonoBehaviour
 
     [SerializeField] GameObject boss1;
     [SerializeField] GameObject boss2;
+    [SerializeField] GameObject boss3;
 
     // Funcion para generar los demonios segun el nivel de amenaza que se indique.
     public GameObject GenerateDemon(int disasterLevel)
@@ -55,6 +56,7 @@ public class EnemyManagerGenerator : MonoBehaviour
             case 5:
                 demon = boss2;
                 break;
+                
         }
 
         return demon;

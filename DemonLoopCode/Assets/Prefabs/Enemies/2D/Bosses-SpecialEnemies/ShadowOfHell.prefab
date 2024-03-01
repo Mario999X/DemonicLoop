@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rol: 3
-  rolIcon: {fileID: 21300000, guid: 59b01fd652c104c4aa2122c18f1b22ac, type: 3}
+  rolIcon: {fileID: 0}
   level: 1
   currentXP: 0
   health: 0
@@ -491,6 +491,7 @@ MonoBehaviour:
   dropXP: 1000
   moneyRefinedDrop: 3
   boss: 1
+  actualStates: []
 --- !u!114 &-1995760961937033985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,12 +522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossNumber: 2
   enemyPrefabsLevel: []
-  battleModifiers:
-  - {fileID: 11400000, guid: cb007449e9c8c4fdc8fbcf0938fd008b, type: 2}
-  - {fileID: 11400000, guid: 90eef16dcb1384bceb87cf63a586fa3c, type: 2}
-  - {fileID: 11400000, guid: 13b017e11a360488a84ad2767c7af6ee, type: 2}
-  - {fileID: 11400000, guid: 70def9b9d4c9c467ebb61193bf9cc1bd, type: 2}
-  - {fileID: 11400000, guid: 6163f32d4ba5247c39339c21d8a1b6b7, type: 2}
+  battleModifiersDebuffs: []
+  battleModifiersBuffs: []
 --- !u!95 &5134182831197875097
 Animator:
   serializedVersion: 5

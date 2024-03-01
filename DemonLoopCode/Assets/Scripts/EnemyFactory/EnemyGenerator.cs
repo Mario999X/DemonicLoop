@@ -37,18 +37,27 @@ public class EnemyGenerator : MonoBehaviour
         } else
         {
             enemiesGenerated = Random.Range(MinNumEnemies, MaxNumEnemies);
-            var gameObjectBody = transform.GetChild(2);
+            GameObject gameObjectBody = transform.GetChild(2).gameObject;
 
             switch(disasterLevel)
             {
                 case 1:
-                    Instantiate(enemyModels[disasterLevel - 1], gameObjectBody.transform.position, Quaternion.identity, gameObjectBody.transform);
-                break;
+                    GameObject demon1 = Instantiate(enemyModels[disasterLevel - 1]);
+                    demon1.transform.SetParent(gameObjectBody.transform);
+                    demon1.transform.localRotation = Quaternion.Euler(0, -90f, 0);
+                    demon1.transform.localPosition = demon1.transform.position + new Vector3(0,0.6f,0);
+                    break;
                 case 2:
-                    Instantiate(enemyModels[disasterLevel - 1], gameObjectBody.transform.position, Quaternion.identity, gameObjectBody.transform);
-                break;
+                    GameObject demon2 = Instantiate(enemyModels[disasterLevel - 1]);
+                    demon2.transform.SetParent(gameObjectBody.transform);
+                    demon2.transform.localRotation = Quaternion.Euler(0, 0.3f, 0);
+                    demon2.transform.localPosition = demon2.transform.position + new Vector3(0, -1.45f, 0);
+                    break;
                 case 3:
-                    Instantiate(enemyModels[disasterLevel - 1], gameObjectBody.transform.position, Quaternion.identity, gameObjectBody.transform);
+                    GameObject demon3 = Instantiate(enemyModels[disasterLevel - 1]);
+                    demon3.transform.SetParent(gameObjectBody.transform);
+                    demon3.transform.localRotation = Quaternion.Euler(0, 90, 0);
+                    demon3.transform.localPosition = Vector3.zero;
                 break;
             }
         } 

@@ -20,6 +20,8 @@ public class EnemyMechanics : MonoBehaviour
 
     EnterBattle _Battle;
 
+    public bool Patrol { get { return patrol; }}
+
     private void Start()
     {
         pointA = transform.parent.GetChild(1).gameObject;
@@ -53,6 +55,8 @@ public class EnemyMechanics : MonoBehaviour
 
                     attack = true;
                     yietError = true;
+
+                    if(!patrol) transform.GetChild(1).GetComponent<EnemyAnimationController>().WalkingAnimation();
 
                     hit.transform.GetComponent<PlayerMove>().enabled = false; // Desactiva el movimiento del jugador.
 

@@ -1573,6 +1573,7 @@ GameObject:
   - component: {fileID: 7877892571115234135}
   - component: {fileID: 7498816377500509841}
   - component: {fileID: 2504369214945089564}
+  - component: {fileID: -5933553478522958141}
   m_Layer: 0
   m_Name: Liebt
   m_TagString: Untagged
@@ -1641,6 +1642,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8697284205239347609, guid: 7f41ccb32810d7c4390dd196e2014068, type: 3}
+--- !u!114 &-5933553478522958141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7142255528544838443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84dccfa04805342e7ad685277035ba6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7940027753364289747
 GameObject:
   m_ObjectHideFlags: 0

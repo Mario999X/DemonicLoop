@@ -14,22 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPB: {fileID: 7374620420556713923, guid: f81330ec4b1c5403a87cd789cd80adeb,
     type: 3}
-  description: "Es un ser humano, alrededor de los 20 a\xF1os. Cuenta con un tatuaje
-    de color rojo sangre que le recorre medio cuerpo debido al suceso inicial de
-    la historia. Y sus ojos son amarillentos."
+  description: He is a human being, around 20 years old. He has a blood red tattoo
+    that runs across half his body due to the initial event of the story. And his
+    eyes are yellowish.
   level: 1
-  currentXP: 4
-  health: 310
-  maxHealth: 310
-  mana: 175
-  maxMana: 175
-  sp: 20
-  strength: 25
-  physicalDef: 22
+  currentXP: 0
+  health: 700
+  maxHealth: 700
+  mana: 150
+  maxMana: 150
+  sp: 0
+  strength: 20
+  physicalDef: 20
   magicAtk: 20
   magicDef: 20
-  criticalChance: 33
+  criticalChance: 20
   listAtk:
+  - {fileID: 11400000, guid: 8650a099b9cb04ea8ae048e1380cad52, type: 2}
+  - {fileID: 11400000, guid: 01308935cd98346e8a552d97513ef003, type: 2}
   - {fileID: 11400000, guid: 6e560b74f89ce4d58bf14b36f9c431d5, type: 2}
+  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
   cost: 0
   protagonist: 1

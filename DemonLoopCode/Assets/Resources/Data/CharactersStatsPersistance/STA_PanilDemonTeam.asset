@@ -28,9 +28,6 @@ MonoBehaviour:
   magicDef: 55
   criticalChance: 47
   listAtk:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: af7a6f60c02e740018fc899403742db4, type: 2}
   cost: 2000
   protagonist: 0

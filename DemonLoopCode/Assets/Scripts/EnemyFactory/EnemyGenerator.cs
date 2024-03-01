@@ -7,7 +7,8 @@ public class EnemyGenerator : MonoBehaviour
     [Header("Enemy Difficulty Level")]
     [SerializeField] int disasterLevel = 1;
 
-    //[SerializeField] // Comentar o descomentar si se quiere ver la generacion de enemigos en el inspector.
+    [SerializeField] private GameObject[] enemyModels;
+
     private List<GameObject> listEnemies = new(); // Lista de enemigos que apareceran en batalla.
 
     public int DisasterLevel { get { return disasterLevel; } }
@@ -17,22 +18,11 @@ public class EnemyGenerator : MonoBehaviour
     private const int MinNumEnemies = 1;
     private const int MaxNumEnemies = 4;
 
-    bool done = false;
-
-    // Start is called before the first frame update
-    void Update()
+    void Start()
     {
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
-        {
-            enemyManagerGenerator = GameObject.Find("System").GetComponent<EnemyManagerGenerator>();
+        enemyManagerGenerator = GameObject.Find("System").GetComponent<EnemyManagerGenerator>();
 
-            SpawnEnemies();
-            done = true;
-        }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
-        {
-            done = false;
-        }
+        SpawnEnemies();
     }
 
     // Funcion para generar enemigos y agregarlos al listado.
@@ -44,7 +34,24 @@ public class EnemyGenerator : MonoBehaviour
         {
             enemiesGenerated = 1;
 
-        } else enemiesGenerated = Random.Range(MinNumEnemies, MaxNumEnemies);
+        } else
+        {
+            enemiesGenerated = Random.Range(MinNumEnemies, MaxNumEnemies);
+            var gameObjectBody = transform.GetChild(2);
+
+            switch(disasterLevel)
+            {
+                case 1:
+                    Instantiate(enemyModels[disasterLevel - 1], gameObjectBody.transform.position, Quaternion.identity, gameObjectBody.transform);
+                break;
+                case 2:
+                    Instantiate(enemyModels[disasterLevel - 1], gameObjectBody.transform.position, Quaternion.identity, gameObjectBody.transform);
+                break;
+                case 3:
+                    Instantiate(enemyModels[disasterLevel - 1], gameObjectBody.transform.position, Quaternion.identity, gameObjectBody.transform);
+                break;
+            }
+        } 
 
         for(int i = 1; i <= enemiesGenerated; i++ ){
 

@@ -657,8 +657,8 @@ Transform:
   m_GameObject: {fileID: 8155798499687908998}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 886.7141, y: 182.4859, z: -90.48908}
-  m_LocalScale: {x: 2.36, y: 2.03, z: 1.67}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4480602446718332244}
@@ -677,6 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels: []
 --- !u!95 &2960970362685873173
 Animator:
   serializedVersion: 5

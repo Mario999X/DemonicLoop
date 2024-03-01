@@ -163,6 +163,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &7057558848840165991
 MonoBehaviour:
   m_ObjectHideFlags: 0

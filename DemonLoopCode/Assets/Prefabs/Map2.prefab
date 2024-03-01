@@ -793,7 +793,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152895781377343242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1209,6 +1209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &5823445398483282608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2978,7 +2982,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405680467137286515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3517,7 +3521,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461280142106845454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4109,6 +4113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &7036289418454834094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4559,7 +4567,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595910180128354162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7868,7 +7876,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999844593407163419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8042,7 +8050,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040736015002711013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9677,6 +9685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &2166404651176370452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11599,6 +11611,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &2501224806533175477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13273,6 +13289,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &8429636211954045322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13989,7 +14009,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780364731664289645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15343,6 +15363,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &5400214427451527127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15405,6 +15429,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &2527714779309421225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15639,7 +15667,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076300829142779781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -16396,6 +16424,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &1484673715992776260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18640,6 +18672,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6843693544973556326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19420,7 +19456,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542523824383794059}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20643,6 +20679,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6257772752020893035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20788,6 +20828,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &8833124991737741693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20933,6 +20977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &8685865252425282417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21165,6 +21213,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &3969584738206409128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21766,6 +21818,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &1113033876665493464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23167,7 +23223,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2953922022639935383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -24673,7 +24729,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3089694860338301120}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -25650,7 +25706,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3167674877623408958}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -27196,6 +27252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &4221416761590869916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27631,7 +27691,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3515023116466434871}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28464,6 +28524,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &1267949708188679774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28526,6 +28590,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &753920395557590454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28588,6 +28656,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &4525892585693671909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28766,7 +28838,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3718614253256397023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28892,7 +28964,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3718856677258177865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -29638,7 +29710,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3803652318260175757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -29764,7 +29836,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3805726750207810956}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -31043,7 +31115,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3933169976241710921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -33556,6 +33628,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6378634699384078957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33618,6 +33694,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &218396646804860804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33974,7 +34054,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4386927730347704400}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -34229,6 +34309,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &1997747771750351271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34982,7 +35066,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4500500943280751809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -35743,7 +35827,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4573753307542338008}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -36776,6 +36860,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &3975048089932128356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36941,6 +37029,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &2396722861706061600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37633,7 +37725,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890185350740524996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -38095,7 +38187,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5013194235753839658}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -38406,7 +38498,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5048970459566377363}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -38532,7 +38624,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5050216384701799016}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -39791,6 +39883,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &3014496861048620201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41214,7 +41310,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5494727789861432589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -41935,7 +42031,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5560267796156336156}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -42207,6 +42303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 0
+  enemyModels: []
 --- !u!114 &7368880109569444755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42644,6 +42741,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &5149857667628244798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43796,7 +43897,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5685901466088544466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -46307,6 +46408,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &5230582573960974956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46913,7 +47018,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6109035343066063423}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -47397,7 +47502,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6134497486779626855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -47569,6 +47674,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &3029590528880336635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49600,7 +49709,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6392373011331025981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -51845,7 +51954,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6606034199621029039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -52052,6 +52161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6403404769968286617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52147,7 +52260,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6612722848268558101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -52715,7 +52828,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6772252430751028968}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -53140,6 +53253,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &1243275120418953555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55083,7 +55200,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7025129475829976153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -56422,6 +56539,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6924501712543627432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56722,7 +56843,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7351604063362865117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -57636,6 +57757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &4411325629929308750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57746,6 +57871,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &2853085649669964072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59053,6 +59182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &2603589073875480705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59681,7 +59814,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7724441801647364703}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -60164,6 +60297,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &1154130471913184306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60967,6 +61104,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &9022137575545733789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61777,7 +61918,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7985589642745806406}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -62367,7 +62508,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8028718485687344691}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -62704,6 +62845,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6763773881856866309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64541,6 +64686,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &5335922546847339065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64854,6 +65003,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &1917018481032442869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67069,6 +67222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6386391228422648507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67239,7 +67396,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8656123044464591064}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -67396,7 +67553,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8680811854840802969}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -67522,7 +67679,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8702084745921169494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -67768,6 +67925,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &516660539478816564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67830,6 +67991,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &4904365470603853066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68058,6 +68223,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &6711206411633625801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69367,7 +69536,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8967220346237453917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -69910,6 +70079,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &3602841331133769749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71090,6 +71263,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 1
+  enemyModels:
+  - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
+  - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
+  - {fileID: 7142255528544838443, guid: 656697528ad8baa419f4265e49acee85, type: 3}
 --- !u!114 &3755073634938166102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71185,7 +71362,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9217488784943823060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

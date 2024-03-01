@@ -2401,17 +2401,18 @@ MonoBehaviour:
   - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
   - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
   enemyPrefabsLevel2:
-  - {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57, type: 3}
-  - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
-  - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
+  - {fileID: 9014782617563343838, guid: 8e6fb476fd4ce47d2881ca06beb348a8, type: 3}
+  - {fileID: 7486560601053180396, guid: a4fa19ef85a68447aad2c81f6ba9e0c0, type: 3}
+  - {fileID: 7486560601053180396, guid: e22ec25839ce64c0a857c3d0784c3735, type: 3}
   enemyPrefabsLevel3:
-  - {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57, type: 3}
-  - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
-  - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
+  - {fileID: 9014782617563343838, guid: ec39efa780b9f41eca9c75f95fa88b17, type: 3}
+  - {fileID: 7486560601053180396, guid: a4fa19ef85a68447aad2c81f6ba9e0c0, type: 3}
+  - {fileID: 7486560601053180396, guid: ec9bdb8a6eb044ce59150eba9a372678, type: 3}
   mimicEnemy: {fileID: 7486560601053180396, guid: 6de951144b3734acfaab363510a99ca6,
     type: 3}
-  boss1: {fileID: 9014782617563343838, guid: 01645ddc0a66d47bda65fbfd7690020c, type: 3}
+  boss1: {fileID: 9014782617563343838, guid: 5644c94beb0beba4fa78221247de9525, type: 3}
   boss2: {fileID: 9014782617563343838, guid: 01645ddc0a66d47bda65fbfd7690020c, type: 3}
+  boss3: {fileID: 9014782617563343838, guid: 833884e557e7447b18cbafe8425c9da9, type: 3}
 --- !u!114 &8020943997931809745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2496,7 +2497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66b5f93a0d199948bf4b92567300c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5301153487084853827, guid: 47d4764c9fddafd4ea2e9838a0257b50, type: 3}
 --- !u!114 &-3709795154824267883
 MonoBehaviour:
   m_ObjectHideFlags: 0

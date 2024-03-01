@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -4112,7 +4112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -9684,7 +9684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -11610,7 +11610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -13288,7 +13288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -15362,7 +15362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -15428,7 +15428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -16423,7 +16423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -18671,7 +18671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -20678,7 +20678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -20827,7 +20827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -20976,7 +20976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -21212,7 +21212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -21817,7 +21817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -27251,7 +27251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -28523,7 +28523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -28589,7 +28589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -28655,7 +28655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -33627,7 +33627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -33693,7 +33693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -34308,7 +34308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -36859,7 +36859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -37028,7 +37028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -39882,7 +39882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -42740,7 +42740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -46407,7 +46407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -47673,7 +47673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -52160,7 +52160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -53230,7 +53230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6817630065754630872}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9465367, z: -0, w: -0.32259613}
+  m_LocalRotation: {x: -0, y: 0.5325723, z: -0, w: -0.8463845}
   m_LocalPosition: {x: 179.92, y: 1, z: -56.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -53239,7 +53239,7 @@ Transform:
   - {fileID: 7742847325960328776}
   - {fileID: 5815186528333753758}
   m_Father: {fileID: 4056049230996908648}
-  m_LocalEulerAnglesHint: {x: 0, y: 217.64, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 295.641, z: 0}
 --- !u!114 &2772168112152613640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53252,7 +53252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -55177,14 +55177,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7025129475829976153}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6601966495710037793}
   m_Father: {fileID: 5571035724551090739}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5198604116668096959
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -56538,7 +56538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -57756,7 +57756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -57870,7 +57870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -59181,7 +59181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -60296,7 +60296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -61103,7 +61103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -62844,7 +62844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -64685,7 +64685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -65002,7 +65002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -67221,7 +67221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -67924,7 +67924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -67990,7 +67990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -68222,7 +68222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -70078,7 +70078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}
@@ -71262,7 +71262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c649f32ad654e9182109344c33c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disasterLevel: 1
+  disasterLevel: 3
   enemyModels:
   - {fileID: 8155798499687908998, guid: f3522900d1622114f9cb1a3d5c8a02b4, type: 3}
   - {fileID: 770917622034124793, guid: 17305e454f3203e4caa3d54b877ba091, type: 3}

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using Unity.VisualScripting;
 
 [Serializable]
 public class ObjectStockData
@@ -324,6 +325,7 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
+            Data.Instance.CharactersTeamStats.ForEach(c => { c.ActualStates.Clear(); });
             Debug.Log("No hay datos guardados");
         }
     }

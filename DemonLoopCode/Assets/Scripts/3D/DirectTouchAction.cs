@@ -37,7 +37,7 @@ public class DirectTouchAction : MonoBehaviour
     {
         wait = true;
 
-        visualEffect.Auch();
+        //visualEffect.Auch();
 
         LibraryStates states = GameObject.Find("System").GetComponent<LibraryStates>();
 

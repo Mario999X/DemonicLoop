@@ -410,6 +410,7 @@ GameObject:
   - component: {fileID: 20303386563592010}
   - component: {fileID: -1995760961937033985}
   - component: {fileID: -3864443435617867179}
+  - component: {fileID: 1337915641078915131}
   m_Layer: 5
   m_Name: Lucifer
   m_TagString: Enemy
@@ -532,6 +533,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 679fb3cbaf517453ba59b127eeba8011, type: 2}
   - {fileID: 11400000, guid: 921f9909827444daebf1e6a2924b3e63, type: 2}
   - {fileID: 11400000, guid: 3793dc42191fc46b0981379bda7a96b1, type: 2}
+--- !u!95 &1337915641078915131
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014782617563343838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4418d905b34d5d2488efd73cd6910ea6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9210135791650458550
 GameObject:
   m_ObjectHideFlags: 0

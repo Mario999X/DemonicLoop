@@ -6,10 +6,12 @@ public class CombatBoss : MonoBehaviour
     [SerializeField] int bossNumber = 0;
     private FloatingTextCombat floatingText;
     [SerializeField] GameObject[] enemyPrefabsLevel;
-    [SerializeField] BattleModifiers[] battleModifiers;
+    [SerializeField] BattleModifiers[] battleModifiersDebuffs;
+    [SerializeField] BattleModifiers[] battleModifiersBuffs;
 
     const int numHealth = 50;
     private CombatFlow combatFlow;
+    private bool actionDone = false;
 
     void Start()
     {
@@ -44,7 +46,7 @@ public class CombatBoss : MonoBehaviour
                 }
                 else
                 {
-                    // Se le aumentara el daño critico de forma aleatoria
+                    // Se le aumentara el daï¿½o critico de forma aleatoria
                     int c = Random.Range(0, 50);
                     GetComponent<Stats>().CriticalChance += c;
                 }
@@ -57,13 +59,7 @@ public class CombatBoss : MonoBehaviour
 
                     floatingText.ShowFloatingText(gameObject, "Plague released", Color.yellow);
 
-                    var players = combatFlow.Players;
-
-                    int numPlayerRandom = Random.Range(0, players.Length);
-
-                    int numModifierRandom = Random.Range(0, battleModifiers.Length);
-
-                    libraryBattleModifiers.ActiveBattleModifier(players[numPlayerRandom], battleModifiers[numModifierRandom]);
+                    AddBattleModifierToRandomPlayer(libraryBattleModifiers);
 
                 }
                 
@@ -89,6 +85,45 @@ public class CombatBoss : MonoBehaviour
                 }
                 
            break;
+
+           case 3:
+
+            GetComponent<Stats>().Type = (Types)Random.Range(0,5);
+            floatingText.ShowFloatingText(gameObject, "Type changed: " + GetComponent<Stats>().Type, Color.yellow);
+
+            if(combatFlow.ActualTurn % 2 == 0)
+            {
+                AddBattleModifierToRandomPlayer(libraryBattleModifiers);
+            }
+
+            if(combatFlow.ActualTurn % 3 == 0)
+            {
+                int numModifierRandom = Random.Range(0, battleModifiersBuffs.Length);
+                libraryBattleModifiers.ActiveBattleModifier(gameObject, battleModifiersBuffs[numModifierRandom]);
+            }
+
+            if(!actionDone && GetComponent<Stats>().Health <= GetComponent<Stats>().MaxHealth * 0.5f)
+            {
+                floatingText.ShowFloatingText(gameObject, "You can't defeat me!", Color.yellow);
+
+                GetComponent<Stats>().Health = GetComponent<Stats>().MaxHealth;
+                GetComponent<Stats>().Mana = GetComponent<Stats>().MaxMana;
+
+                actionDone = true;
+            }
+
+           break;
         }
     }//Fin de CheckAtkEnemyBoos
+
+    private void AddBattleModifierToRandomPlayer(LibraryBattleModifiers libraryBattleModifiers)
+    {
+        var players = combatFlow.Players;
+
+        int numPlayerRandom = Random.Range(0, players.Length);
+
+        int numModifierRandom = Random.Range(0, battleModifiersDebuffs.Length);
+
+        libraryBattleModifiers.ActiveBattleModifier(players[numPlayerRandom], battleModifiersDebuffs[numModifierRandom]);
+    }
 }

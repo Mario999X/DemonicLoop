@@ -82,7 +82,7 @@ public class Stats : MonoBehaviour
     public GameObject CharFloatingTextSpaceNumbers { get { return charFloatingTextSpaceNumbers; } }
     public GameObject CharFloatingBattleModifierIconSpace { get { return charFloatingBattleModifierIconSpace; } }
     public bool AbsorbsDamageOfSameType { get { return absorbsDamageOfSameType; } }
-    public Types Type { get { return type; } }
+    public Types Type { get { return type; } set { type = value; } }
     public Sprite TypeIcon { get { return typeIcon; }}
     public List<ActualStateData> ActualStates { get { return actualStates; } set { actualStates = value; } }
     public float MoneyDrop { get { return moneyDrop; } set { moneyDrop = value; } }

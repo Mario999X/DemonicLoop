@@ -179,17 +179,18 @@ public class PostBattleTeam : MonoBehaviour
         for (int i = 0; i < players.Length; i++)
         {
             GameObject playerPrefab=alliesBattleZone.transform.GetChild(i).gameObject.transform.GetChild(3).gameObject;
-            Image imagePlayer = playerPrefab.GetComponent<Image>();
 
             Debug.Log("id: " + i+" nombre: " + players[i].name);
             switch (i)
             {
                 case 0:
                     infoNewStatsPanel1.SetActive(true);
-                    unit1.gameObject.SetActive(true);
+                    unit1.SetActive(true);
                    
                     character = players[0];
                     var spriteGoPlayers1 = Instantiate(playerPrefab, unit1.transform.position, Quaternion.identity, unit1.transform);
+                    spriteGoPlayers1.transform.localPosition = Vector3.zero;
+                    
                     unit1Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL1Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp1Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;
@@ -204,10 +205,12 @@ public class PostBattleTeam : MonoBehaviour
 
                 case 1:
                     infoNewStatsPanel2.SetActive(true);
-                    unit2.gameObject.SetActive(true);
+                    unit2.SetActive(true);
 
                     character = players[1];
                     var spriteGoPlayers2 = Instantiate(playerPrefab, unit2.transform.position, Quaternion.identity, unit2.transform);
+                    spriteGoPlayers2.transform.localPosition = Vector3.zero;
+                    
                     unit2Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL2Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp2Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;
@@ -222,10 +225,12 @@ public class PostBattleTeam : MonoBehaviour
 
                 case 2:
                     infoNewStatsPanel3.SetActive(true);
-                    unit3.gameObject.SetActive(true);
+                    unit3.SetActive(true);
 
                     character = players[2];
                     var spriteGoPlayers3 = Instantiate(playerPrefab, unit3.transform.position, Quaternion.identity, unit3.transform);
+                    spriteGoPlayers3.transform.localPosition = Vector3.zero;
+
                     unit3Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL3Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp3Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;
@@ -240,10 +245,12 @@ public class PostBattleTeam : MonoBehaviour
 
                 case 3:
                     infoNewStatsPanel4.SetActive(true);
-                    unit4.gameObject.SetActive(true);
+                    unit4.SetActive(true);
 
                     character = players[3];
                     var spriteGoPlayers4 = Instantiate(playerPrefab, unit4.transform.position, Quaternion.identity, unit4.transform);
+                    spriteGoPlayers4.transform.localPosition = Vector3.zero;
+                    
                     unit4Text.text = "Name: " + character.name.Remove(character.name.IndexOf("("));
                     lvL4Text.text = "Lvl: " + character.GetComponent<Stats>().Level;
                     hp4Text.text = "Max HP: " + character.GetComponent<Stats>().MaxHealth;

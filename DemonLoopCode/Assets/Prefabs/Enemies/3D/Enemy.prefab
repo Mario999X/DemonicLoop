@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208366468168111586}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -227,7 +227,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5862220882609411174}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -300,8 +300,8 @@ MonoBehaviour:
   distance: 10
   patrol: 0
   speed: 10
-  puntoA: {fileID: 9193951163087599198}
-  puntoB: {fileID: 1175963332842710781}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &9193951163087599198
 GameObject:
   m_ObjectHideFlags: 0

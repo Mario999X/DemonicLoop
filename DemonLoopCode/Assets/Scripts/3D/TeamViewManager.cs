@@ -94,6 +94,8 @@ public class TeamViewManager : MonoBehaviour
             teamViewScreen.GetComponent<Canvas>().enabled = false;
             HideCharacterDetails();
 
+            ResetBothCharacterSelected();
+
             Time.timeScale = 1f;
         } 
     }
@@ -110,6 +112,8 @@ public class TeamViewManager : MonoBehaviour
         {
             teamViewScreen.GetComponent<Canvas>().enabled = false;
             HideCharacterDetails();
+
+            ResetBothCharacterSelected();
 
             Time.timeScale = 1f;
         }
@@ -133,6 +137,7 @@ public class TeamViewManager : MonoBehaviour
             var spritePod = pod.GetChild(0);
         
             var spriteGo = Instantiate(sprite, spritePod.transform.position, Quaternion.identity, spritePod.transform);
+            spriteGo.transform.localScale = new Vector3(25f, 15f, 1f);
             spriteGo.transform.localPosition = Vector3.zero;
 
             pod.GetChild(1).GetComponent<TextMeshProUGUI>().text = x.CharacterPB.name;
@@ -161,6 +166,7 @@ public class TeamViewManager : MonoBehaviour
             var spritePod = pod.GetChild(0);
         
             var spriteGo = Instantiate(sprite, spritePod.transform.position, Quaternion.identity, spritePod.transform);
+            spriteGo.transform.localScale = new Vector3(25f, 10f, 1f);
             spriteGo.transform.localPosition = Vector3.zero;
 
             pod.GetChild(1).GetComponent<TextMeshProUGUI>().text = x.CharacterPB.name;
@@ -247,6 +253,11 @@ public class TeamViewManager : MonoBehaviour
             SetBackupTeamData();
         }
 
+        ResetBothCharacterSelected();
+    }
+
+    private void ResetBothCharacterSelected()
+    {
         firstCharacterSelected = null;
         secondCharacterSelected = null;
     }
@@ -257,7 +268,8 @@ public class TeamViewManager : MonoBehaviour
         var spriteImage = characterDetailsView.transform.GetChild(0);
         
         var spriteGo = Instantiate(sprite, spriteImage.transform.position, Quaternion.identity, spriteImage.transform);
-        spriteGo.transform.localPosition = Vector3.zero;
+        spriteGo.transform.localScale = new Vector3(20f, 15f, 1f);
+        spriteGo.transform.localPosition = new Vector3(0f, -150f, 0f);
 
         characterDetailsView.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = character.CharacterPB.name;
         characterDetailsView.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "LVL: " + character.Level;

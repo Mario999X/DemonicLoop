@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class ActualStateData
 {
-    private string state;
-    private int turn = 0;
+    public string state;
+    public int turn = 0;
 
     public string State {  get { return state; } }
     public int Turn { get { return turn; } set { turn = value; Debug.Log(turn); } }

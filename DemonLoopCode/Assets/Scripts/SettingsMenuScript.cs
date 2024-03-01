@@ -30,6 +30,13 @@ public class SettingsMenuScript : MonoBehaviour
         SetDefaultValuesOnVolumeSliders();
 
         returnToTitleBtn = GameObject.Find("ReturnToTitleBtn").GetComponent<Button>();
+
+        returnToTitleBtn.onClick.AddListener(() =>
+        {
+            Time.timeScale = 1f;
+            SceneManager.Instance.LoadSceneName("Title");
+            gameObject.GetComponent<Canvas>().enabled = false;
+        });
     }
 
     private void Update()
@@ -48,12 +55,6 @@ public class SettingsMenuScript : MonoBehaviour
         } else if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
             returnToTitleBtn.gameObject.SetActive(true);
-
-            returnToTitleBtn.onClick.AddListener(() =>
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
-                gameObject.GetComponent<Canvas>().enabled = false;
-            });
 
             done = true;
         }

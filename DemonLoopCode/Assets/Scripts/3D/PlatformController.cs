@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlatformController : SaveSystem
@@ -12,6 +13,7 @@ public class PlatformController : SaveSystem
         {
             Debug.Log("El jugador entro en la plataforma.");
             SaveData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, true);
+            StartCoroutine(saving());
             done = true;
         }
     }
@@ -22,4 +24,13 @@ public class PlatformController : SaveSystem
             done = false;
     }
 
+    IEnumerator saving()
+    {
+        Canvas canvas = GameObject.Find("Guardando").GetComponent<Canvas>();
+        canvas.enabled = true;
+
+        yield return new WaitForSeconds(1f);
+
+        canvas.enabled = false;
+    }
 }

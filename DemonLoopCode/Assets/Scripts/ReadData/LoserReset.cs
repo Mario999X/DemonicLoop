@@ -23,10 +23,6 @@ public class LoserReset : MonoBehaviour
         imageLose.GetComponent<Image>().enabled = true;
         textInfo.GetComponent<TextMeshProUGUI>().enabled = true;
 
-        bool saveRoom = false;
-
-        if (Data.Instance.Room > 4) saveRoom = true;
-
         // Cuando morimos se reinicia los StatsPersistenceData
         // al que tenia cuando se inicio el juego
         // Remueve todos los aliados del jugador.

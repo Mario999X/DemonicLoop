@@ -269,7 +269,7 @@ public class LibraryMove : MonoBehaviour
         //Es que el ataque es tan fuerte que te quita hasta vida
         if (attack.Berserker)
         {
-            character_ST.Health -= attack.BaseDamage;
+            character_ST.Health -= attack.BaseDamage / 2;
             floatingText.ShowFloatingTextNumbers(character, attack.BaseDamage, Color.red);
         }
 

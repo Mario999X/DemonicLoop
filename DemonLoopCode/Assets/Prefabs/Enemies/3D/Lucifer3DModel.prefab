@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2766495910402441774}
   - component: {fileID: 2639664326087891210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lucifer3DModel
   m_TagString: Enemy3D
   m_Icon: {fileID: 0}

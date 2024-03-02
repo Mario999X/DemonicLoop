@@ -51,7 +51,8 @@ public class RandomMap : MonoBehaviour
             {
                 if (saveRoom == 4)
                 {
-                    Instantiate(oblMaps[0], transform.position, Quaternion.Euler(new Vector3(0, 90, 0)));
+                    Instantiate(oblMaps[0], transform.position, Quaternion.identity);
+                    Data.Instance.SaveRoom = saveRoom;
                     saveRoom = 0;
                 }
                 else
@@ -74,7 +75,6 @@ public class RandomMap : MonoBehaviour
             }
 
             Data.Instance.Room = room;
-            Data.Instance.SaveRoom = saveRoom;
             Data.Instance.Floor = floor;
             Data.Instance.BossRoom = bossRoom;
 

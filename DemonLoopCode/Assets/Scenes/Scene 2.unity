@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3770,7 +3770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -691.543}
+  m_AnchoredPosition: {x: 0, y: -1269.8909}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &698224850
@@ -7509,12 +7509,14 @@ MonoBehaviour:
   - {fileID: 4503541210712415587, guid: f2369b58f9e1a5c42879b6794e62d751, type: 3}
   - {fileID: 4769843965479357696, guid: 4956cbf0f935ba5488f68a5a231cd3a1, type: 3}
   - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
+  - {fileID: 4503541210712415587, guid: 33fda9d6041fcbe43846fa9583937efc, type: 3}
+  - {fileID: 4503541210712415587, guid: 2a796b1878926b64ab9bb7f1e65e2d41, type: 3}
   bossRooms:
   - {fileID: 4503541210712415587, guid: 5382e09f34213904d9eb2a4699ceffde, type: 3}
   - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
   oblMaps:
   - {fileID: 331532861135313876, guid: 41fea737d9a37a94c89d1cb9691305c6, type: 3}
-  rarity: 000000006400000064000000
+  rarity: 6400000000000000000000000000000000000000
   actualroom: 0
 --- !u!4 &1525719001
 Transform:

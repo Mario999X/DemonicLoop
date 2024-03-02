@@ -34,11 +34,13 @@ public class EnemyMechanics : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // En el caso que no haya guardado el script Lo busca  hasta encontrarlo (Esto se debe aque si por error coge el 'System' el cual va a ser destruido este se volvera de nuevo null y si se hace una vez no ira a por el nuevo 'System').
+        // En el caso que no haya guardado el script Lo busca  hasta encontrarlo (Esto se debe aque si por error coge el 'System' el cual va a ser destruido
+        // este se volvera de nuevo null y si se hace una vez no ira a por el nuevo 'System').
         if (_Battle == null)
         {
             _Battle = GameObject.Find("System").GetComponent<EnterBattle>();
 
+            // Inicia el modo patrulla si esta activado.
             if (patrol)
             {
                 StartCoroutine(Enemy_patrol());
@@ -54,11 +56,10 @@ public class EnemyMechanics : MonoBehaviour
             {
                 if (hit.transform.gameObject.layer == 3)
                 {
-                    Debug.DrawLine(transform.position, hit.transform.position, Color.green);
-
                     attack = true;
                     yietError = true;
 
+                    // Inicia la animacion de caminar.
                     if(!patrol) transform.GetChild(1).GetComponent<EnemyAnimationController>().WalkingAnimation();
 
                     hit.transform.GetComponent<PlayerMove>().enabled = false; // Desactiva el movimiento del jugador.
@@ -68,7 +69,6 @@ public class EnemyMechanics : MonoBehaviour
                         hit.transform.GetComponent<KeyBoardControls>().enabled = false;
                     if (hit.transform.GetComponent<ControllerControls>())
                         hit.transform.GetComponent<ControllerControls>().enabled = false;
-
 
                     // Antes de activar la pelea el enemigo se acerca al jugador.
                     if (Vector3.Distance(transform.position, hit.transform.position) < 1.5f) // Inicia el combate.
@@ -80,22 +80,23 @@ public class EnemyMechanics : MonoBehaviour
                         transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
                     }
                 }
-                else { Debug.DrawRay(transform.position, direction * distance, Color.red); }
             }
             else
             { 
-                Debug.DrawRay(transform.position, direction * distance, Color.red); 
+                // Si por alguna razon detecto al jugado pero lo perdio de repente este activara al instante la pelea.
                 if (yietError) { _Battle.StartBattle(transform.parent.gameObject, false); }
             }
         }
     }
 
+    // Estado de patrulla del enemigo.
     IEnumerator Enemy_patrol()
     {
         while (true)
         {
-            if (!attack && !_Battle.OneTime) // Cuando detecta al jugador este deja de estar en modo patrulla
+            if (!attack && !_Battle.OneTime) // Cuando detecta al jugador o que se a iniciado una pelea este deja de estar en modo patrulla
             {
+                // Recorrido de la patrulla.
                 if (change)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, pointB.transform.position, speed * Time.deltaTime);
@@ -105,6 +106,7 @@ public class EnemyMechanics : MonoBehaviour
                     transform.position = Vector3.MoveTowards(transform.position, pointA.transform.position, speed * Time.deltaTime);
                 }
 
+                // Rotacion del enemigo.
                 if (Vector3.Distance(transform.position, pointA.transform.position) < 0.0001f)
                 {
                     transform.rotation = Quaternion.Euler(0, Mathf.Atan2(pointB.transform.position.z - pointA.transform.position.z, pointB.transform.position.x - pointA.transform.position.x) * -180 / Mathf.PI, 0);
@@ -112,6 +114,7 @@ public class EnemyMechanics : MonoBehaviour
                     change = true;
                 }
 
+                // Rotacion del enemigo.
                 if (Vector3.Distance(transform.position, pointB.transform.position) < 0.0001f)
                 {
                     transform.rotation = Quaternion.Euler(0, Mathf.Atan2(pointA.transform.position.z - pointB.transform.position.z, pointA.transform.position.x - pointB.transform.position.x) * -180 / Mathf.PI, 0);
@@ -124,11 +127,13 @@ public class EnemyMechanics : MonoBehaviour
         }
     }
 
+    // Al empezar el combate los enemigos perderan un porcentaje de vida.
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.name == "Player")
-        {
+        // El ataque sigiloso no sele aplica a los bosses.
+        if (other.transform.name == "Player" && transform.parent.gameObject.layer != 9)
             _Battle.StartBattle(transform.parent.gameObject, true);
-        }
+        else if (other.transform.name == "Player" && transform.parent.gameObject.layer == 9)
+            _Battle.StartBattle(transform.parent.gameObject, false);
     }
 }

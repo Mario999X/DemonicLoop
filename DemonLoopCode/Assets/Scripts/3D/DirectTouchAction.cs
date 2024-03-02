@@ -22,12 +22,13 @@ public class DirectTouchAction : MonoBehaviour
 
     private string ObtainStateName()
     {
-        return state.name.Substring(4, state.name.Length - 4).ToUpper();
+        return state.name.Substring(4, state.name.Length - 4).ToUpper(); 
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == 3 && !wait)
+        // No se recibe dano mientras esta en combate.
+        if (other.gameObject.layer == 3 && !wait && !GameObject.Find("System").GetComponent<EnterBattle>().OneTime)
         {
             StartCoroutine(TrupAction()); // Inicia la trampa y espera aque se vuelva a activar.
         }
@@ -37,7 +38,7 @@ public class DirectTouchAction : MonoBehaviour
     {
         wait = true;
 
-        //visualEffect.Auch();
+        visualEffect.Auch(); // Animacion de parpadeo.
 
         LibraryStates states = GameObject.Find("System").GetComponent<LibraryStates>();
 

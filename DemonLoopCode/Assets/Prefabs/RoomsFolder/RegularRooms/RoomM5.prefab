@@ -572,7 +572,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 533633431781466578}
-  - component: {fileID: 3040042352640247646}
   m_Layer: 0
   m_Name: Pincho (34)
   m_TagString: Untagged
@@ -596,21 +595,6 @@ Transform:
   - {fileID: 5360956291517684792}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3040042352640247646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97948001478004626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &107903505714380002
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +687,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8406568344461907011}
-  - component: {fileID: 219875098632970666}
   m_Layer: 0
   m_Name: Pincho (93)
   m_TagString: Untagged
@@ -727,21 +710,6 @@ Transform:
   - {fileID: 8731953401809674800}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &219875098632970666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137935416431547559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &152895781377343242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1089,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2839405705292804933}
-  - component: {fileID: 8363717549989425646}
   m_Layer: 0
   m_Name: Pincho (53)
   m_TagString: Untagged
@@ -1145,21 +1112,6 @@ Transform:
   - {fileID: 1593190112794859434}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8363717549989425646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178128942528292514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &197389961428088928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1187,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8484960958332929040}
-  - component: {fileID: 7791164183684919418}
   m_Layer: 0
   m_Name: Pincho (25)
   m_TagString: Untagged
@@ -1259,21 +1210,6 @@ Transform:
   - {fileID: 5127861482230976680}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7791164183684919418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198856331090525643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &202962049610346648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1463,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3258753949034906574}
-  - component: {fileID: 6822147910952755253}
   m_Layer: 0
   m_Name: Pincho (120)
   m_TagString: Untagged
@@ -1551,21 +1486,6 @@ Transform:
   - {fileID: 8895006479975525143}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &6822147910952755253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232658383723887877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &235515820607809568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1495,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6581977514822587983}
-  - component: {fileID: 5275601686551051724}
   m_Layer: 0
   m_Name: Pincho (60)
   m_TagString: Untagged
@@ -1599,21 +1518,6 @@ Transform:
   - {fileID: 1373098422582885437}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &5275601686551051724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235515820607809568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &237769826653458041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,7 +2004,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7857341272960905987}
-  - component: {fileID: 8282191415782258780}
   m_Layer: 0
   m_Name: Pincho (166)
   m_TagString: Untagged
@@ -2124,21 +2027,6 @@ Transform:
   - {fileID: 5919098713796852743}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8282191415782258780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258846203250656816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &273159907222663146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,7 +2591,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3226051735851493672}
-  - component: {fileID: 6607461581601517139}
   m_Layer: 0
   m_Name: Pincho (36)
   m_TagString: Untagged
@@ -2727,21 +2614,6 @@ Transform:
   - {fileID: 5157192754431756815}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6607461581601517139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331301370406109564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &351833347075694316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3066,7 +2938,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 282111293699210798}
-  - component: {fileID: 992253544016098629}
   m_Layer: 0
   m_Name: Pincho (12)
   m_TagString: Untagged
@@ -3090,21 +2961,6 @@ Transform:
   - {fileID: 8866310185891317538}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &992253544016098629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406595921496837793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &418920099776218968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,7 +3583,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5531214766221814475}
-  - component: {fileID: 5014569833878367279}
   m_Layer: 0
   m_Name: Pincho (127)
   m_TagString: Untagged
@@ -3751,21 +3606,6 @@ Transform:
   - {fileID: 858107544380334663}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5014569833878367279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470418454699579271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &477355829749468093
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,7 +3865,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1962439920047447795}
-  - component: {fileID: 2908651043626995795}
   m_Layer: 0
   m_Name: Pincho (97)
   m_TagString: Untagged
@@ -4049,21 +3888,6 @@ Transform:
   - {fileID: 6268979826976923930}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &2908651043626995795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547205444562033842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &550601305176131590
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,7 +4222,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2553120837550465731}
-  - component: {fileID: 9155151720096774739}
   m_Layer: 0
   m_Name: Pincho (21)
   m_TagString: Untagged
@@ -4422,21 +4245,6 @@ Transform:
   - {fileID: 4999288793412479294}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &9155151720096774739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577949307050576646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &592100363336968415
 GameObject:
   m_ObjectHideFlags: 0
@@ -4446,7 +4254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 140230969490633536}
-  - component: {fileID: 4783920435836781985}
   m_Layer: 0
   m_Name: Pincho (113)
   m_TagString: Untagged
@@ -4470,21 +4277,6 @@ Transform:
   - {fileID: 5890817015148216022}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4783920435836781985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 592100363336968415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &595903081885966836
 GameObject:
   m_ObjectHideFlags: 0
@@ -4651,7 +4443,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4255900964189912945}
-  - component: {fileID: 3790121554747992990}
   m_Layer: 0
   m_Name: Pincho (121)
   m_TagString: Untagged
@@ -4675,21 +4466,6 @@ Transform:
   - {fileID: 2742627846113215865}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3790121554747992990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620417619450541646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &621114071301114855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4699,7 +4475,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3692024230784634667}
-  - component: {fileID: 1405294596604569631}
   m_Layer: 0
   m_Name: Pincho (80)
   m_TagString: Untagged
@@ -4723,21 +4498,6 @@ Transform:
   - {fileID: 1383505929040921301}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1405294596604569631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621114071301114855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &621868016946322912
 GameObject:
   m_ObjectHideFlags: 0
@@ -5087,7 +4847,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 155549136345322330}
-  - component: {fileID: 7189172502545798301}
   m_Layer: 0
   m_Name: Pincho (163)
   m_TagString: Untagged
@@ -5111,21 +4870,6 @@ Transform:
   - {fileID: 5636134101661804805}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7189172502545798301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640890913446004234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &642412954729754083
 GameObject:
   m_ObjectHideFlags: 0
@@ -5379,7 +5123,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7071958091481727157}
-  - component: {fileID: 8115334670144695954}
   m_Layer: 0
   m_Name: Pincho (112)
   m_TagString: Untagged
@@ -5403,21 +5146,6 @@ Transform:
   - {fileID: 759671416547425964}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8115334670144695954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675412025787809664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &689745816863331037
 GameObject:
   m_ObjectHideFlags: 0
@@ -6558,6 +6286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goToShop: 0
   killAll: 0
+  theEnd: 0
 --- !u!1 &850284171039193601
 GameObject:
   m_ObjectHideFlags: 0
@@ -7960,7 +7689,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2663433189973162747}
-  - component: {fileID: 4317593155252874055}
   m_Layer: 0
   m_Name: Pincho (90)
   m_TagString: Untagged
@@ -7984,21 +7712,6 @@ Transform:
   - {fileID: 2274557019007380133}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4317593155252874055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004874356073917931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1040736015002711013
 GameObject:
   m_ObjectHideFlags: 0
@@ -8287,7 +8000,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7398374797411008760}
-  - component: {fileID: 7589712559544925954}
   m_Layer: 0
   m_Name: Pincho (128)
   m_TagString: Untagged
@@ -8311,21 +8023,6 @@ Transform:
   - {fileID: 1343952568598354449}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7589712559544925954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086232154699332876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1091826329376410849
 GameObject:
   m_ObjectHideFlags: 0
@@ -9427,7 +9124,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3120407219561059832}
-  - component: {fileID: 8655704818001299044}
   m_Layer: 0
   m_Name: Pincho (105)
   m_TagString: Untagged
@@ -9451,21 +9147,6 @@ Transform:
   - {fileID: 6393334517250133668}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8655704818001299044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170727473872849450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1176433266227479280
 GameObject:
   m_ObjectHideFlags: 0
@@ -9597,7 +9278,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8592528272245142403}
-  - component: {fileID: 3062877524462258307}
   m_Layer: 0
   m_Name: Pincho (171)
   m_TagString: Untagged
@@ -9621,21 +9301,6 @@ Transform:
   - {fileID: 731661211615849234}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3062877524462258307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180136883893350169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1220976076907179237
 GameObject:
   m_ObjectHideFlags: 0
@@ -9864,7 +9529,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7840459012887487396}
-  - component: {fileID: 469201843066537509}
   m_Layer: 0
   m_Name: Pincho (81)
   m_TagString: Untagged
@@ -9888,21 +9552,6 @@ Transform:
   - {fileID: 9196200772993506741}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &469201843066537509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233160485677869179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1248334167554763648
 GameObject:
   m_ObjectHideFlags: 0
@@ -9912,7 +9561,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3615361279301881106}
-  - component: {fileID: 6011993438813988148}
   m_Layer: 0
   m_Name: Pincho (33)
   m_TagString: Untagged
@@ -9936,21 +9584,6 @@ Transform:
   - {fileID: 8286287556060170481}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6011993438813988148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248334167554763648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1249063670403470411
 GameObject:
   m_ObjectHideFlags: 0
@@ -10538,7 +10171,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1851163593769496813}
-  - component: {fileID: 4910470279580464614}
   m_Layer: 0
   m_Name: Pincho (176)
   m_TagString: Untagged
@@ -10562,21 +10194,6 @@ Transform:
   - {fileID: 8316093077190195023}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4910470279580464614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291815111264639365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1295425252810141179
 GameObject:
   m_ObjectHideFlags: 0
@@ -11637,7 +11254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4252061616701623908}
-  - component: {fileID: 5429398362149580779}
   m_Layer: 0
   m_Name: Pincho (83)
   m_TagString: Untagged
@@ -11661,21 +11277,6 @@ Transform:
   - {fileID: 9091086657495435114}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &5429398362149580779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422690253888925967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1424046051153238612
 GameObject:
   m_ObjectHideFlags: 0
@@ -12087,7 +11688,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034655208951569423}
-  - component: {fileID: 6848762834299746107}
   m_Layer: 0
   m_Name: Pincho (57)
   m_TagString: Untagged
@@ -12111,21 +11711,6 @@ Transform:
   - {fileID: 4235437659829538799}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6848762834299746107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535075010573670018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1538911240709111881
 GameObject:
   m_ObjectHideFlags: 0
@@ -12695,7 +12280,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5353975808005696533}
-  - component: {fileID: 2438069331875727482}
   m_Layer: 0
   m_Name: Pincho (11)
   m_TagString: Untagged
@@ -12719,21 +12303,6 @@ Transform:
   - {fileID: 8543041790047152062}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2438069331875727482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613995152597491531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1629657488472119136
 GameObject:
   m_ObjectHideFlags: 0
@@ -13315,7 +12884,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1262419944129816843}
-  - component: {fileID: 3939626359296032837}
   m_Layer: 0
   m_Name: Pincho (85)
   m_TagString: Untagged
@@ -13339,21 +12907,6 @@ Transform:
   - {fileID: 5074992142958732800}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3939626359296032837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659330543414699241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1674422196357795793
 GameObject:
   m_ObjectHideFlags: 0
@@ -13363,7 +12916,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3819935516575785122}
-  - component: {fileID: 8040654236999117919}
   m_Layer: 0
   m_Name: Pincho (96)
   m_TagString: Untagged
@@ -13387,21 +12939,6 @@ Transform:
   - {fileID: 1240782444575963002}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8040654236999117919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674422196357795793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1684523260236556465
 GameObject:
   m_ObjectHideFlags: 0
@@ -13411,7 +12948,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2426536500138136435}
-  - component: {fileID: 108353127921148852}
   m_Layer: 0
   m_Name: Pincho (189)
   m_TagString: Untagged
@@ -13435,21 +12971,6 @@ Transform:
   - {fileID: 6138045454704590156}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &108353127921148852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684523260236556465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1691062554618632231
 GameObject:
   m_ObjectHideFlags: 0
@@ -14541,7 +14062,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5748416392309337437}
-  - component: {fileID: 7171854450359957924}
   m_Layer: 0
   m_Name: Pincho (139)
   m_TagString: Untagged
@@ -14565,21 +14085,6 @@ Transform:
   - {fileID: 5885639410567981361}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7171854450359957924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824053182153352053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1850594295627553219
 GameObject:
   m_ObjectHideFlags: 0
@@ -14742,7 +14247,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3465018034701886012}
-  - component: {fileID: 5053105382486986599}
   m_Layer: 0
   m_Name: Pincho (138)
   m_TagString: Untagged
@@ -14766,21 +14270,6 @@ Transform:
   - {fileID: 8749875677469076226}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5053105382486986599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892531016456787266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1901671882027466416
 GameObject:
   m_ObjectHideFlags: 0
@@ -14790,7 +14279,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2634600911964781173}
-  - component: {fileID: 3046582839983771955}
   m_Layer: 0
   m_Name: Pincho (94)
   m_TagString: Untagged
@@ -14814,21 +14302,6 @@ Transform:
   - {fileID: 8640080655673192463}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3046582839983771955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901671882027466416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &1909750007060104313
 GameObject:
   m_ObjectHideFlags: 0
@@ -15455,7 +14928,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3326577052693658380}
-  - component: {fileID: 5164356397077167969}
   m_Layer: 0
   m_Name: Pincho (173)
   m_TagString: Untagged
@@ -15479,21 +14951,6 @@ Transform:
   - {fileID: 1943051390491692984}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5164356397077167969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054434675942318733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2071429817461478447
 GameObject:
   m_ObjectHideFlags: 0
@@ -15917,7 +15374,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4814333554037855115}
-  - component: {fileID: 4878885314283843647}
   m_Layer: 0
   m_Name: Pincho (62)
   m_TagString: Untagged
@@ -15941,21 +15397,6 @@ Transform:
   - {fileID: 6307987542491242382}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4878885314283843647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105205488780196025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2124807130416141352
 GameObject:
   m_ObjectHideFlags: 0
@@ -15965,7 +15406,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4665346358218151460}
-  - component: {fileID: 3012825811983121049}
   m_Layer: 0
   m_Name: Pincho (122)
   m_TagString: Untagged
@@ -15989,21 +15429,6 @@ Transform:
   - {fileID: 3706773241901615779}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3012825811983121049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2124807130416141352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2128302943273054730
 GameObject:
   m_ObjectHideFlags: 0
@@ -16013,7 +15438,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2240220454206784547}
-  - component: {fileID: 2104031133713503862}
   m_Layer: 0
   m_Name: Pincho (129)
   m_TagString: Untagged
@@ -16037,21 +15461,6 @@ Transform:
   - {fileID: 4479726412495379146}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &2104031133713503862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128302943273054730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2128410410421573754
 GameObject:
   m_ObjectHideFlags: 0
@@ -16061,7 +15470,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7672323214867134489}
-  - component: {fileID: 5220754297343814077}
   m_Layer: 0
   m_Name: Pincho (114)
   m_TagString: Untagged
@@ -16085,21 +15493,6 @@ Transform:
   - {fileID: 650746501866170615}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5220754297343814077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128410410421573754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2128559749829318998
 GameObject:
   m_ObjectHideFlags: 0
@@ -16533,7 +15926,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 675420840105096936}
-  - component: {fileID: 6415238527798487222}
   m_Layer: 0
   m_Name: Pincho (38)
   m_TagString: Untagged
@@ -16557,21 +15949,6 @@ Transform:
   - {fileID: 6444190217994029679}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6415238527798487222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2179305284482459870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2179319381472375570
 GameObject:
   m_ObjectHideFlags: 0
@@ -16581,7 +15958,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3006686748920170001}
-  - component: {fileID: 2477202281717061519}
   m_Layer: 0
   m_Name: Pincho (51)
   m_TagString: Untagged
@@ -16605,21 +15981,6 @@ Transform:
   - {fileID: 1792173680378198835}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2477202281717061519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2179319381472375570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2184106319367244742
 GameObject:
   m_ObjectHideFlags: 0
@@ -17632,7 +16993,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5531882079712928378}
-  - component: {fileID: 4510573921716375861}
   m_Layer: 0
   m_Name: Pincho (157)
   m_TagString: Untagged
@@ -17656,21 +17016,6 @@ Transform:
   - {fileID: 2169079285695717141}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4510573921716375861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2290286733306833279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2316629003462197592
 GameObject:
   m_ObjectHideFlags: 0
@@ -18781,7 +18126,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 541007912778378595}
-  - component: {fileID: 8016379543841697960}
   m_Layer: 0
   m_Name: Pincho (64)
   m_TagString: Untagged
@@ -18805,21 +18149,6 @@ Transform:
   - {fileID: 2316515988057814486}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8016379543841697960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2458343324406230129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2469226671549529515
 GameObject:
   m_ObjectHideFlags: 0
@@ -19117,7 +18446,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6942316135358009868}
-  - component: {fileID: 3875703004701863372}
   m_Layer: 0
   m_Name: Pincho (115)
   m_TagString: Untagged
@@ -19141,21 +18469,6 @@ Transform:
   - {fileID: 872516274899342608}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3875703004701863372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2490992289878497924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2509113800915277210
 GameObject:
   m_ObjectHideFlags: 0
@@ -19540,7 +18853,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8935227826714089135}
-  - component: {fileID: 7213399703720247851}
   m_Layer: 0
   m_Name: Pincho (145)
   m_TagString: Untagged
@@ -19564,21 +18876,6 @@ Transform:
   - {fileID: 2737836336327395930}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7213399703720247851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2576380161825376873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2578406780058582141
 GameObject:
   m_ObjectHideFlags: 0
@@ -19588,7 +18885,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9028023405727543000}
-  - component: {fileID: 6568518472556256783}
   m_Layer: 0
   m_Name: Pincho (65)
   m_TagString: Untagged
@@ -19612,21 +18908,6 @@ Transform:
   - {fileID: 6285490328108532663}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6568518472556256783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2578406780058582141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2583640321701453291
 GameObject:
   m_ObjectHideFlags: 0
@@ -21003,7 +20284,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3329482801589192541}
-  - component: {fileID: 4912023642824379369}
   m_Layer: 0
   m_Name: Pincho (47)
   m_TagString: Untagged
@@ -21027,21 +20307,6 @@ Transform:
   - {fileID: 357560740161381813}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4912023642824379369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2730628370090471734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2735531564066711734
 GameObject:
   m_ObjectHideFlags: 0
@@ -22134,7 +21399,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 165912733919101777}
-  - component: {fileID: 4702128105891234100}
   m_Layer: 0
   m_Name: Pincho (56)
   m_TagString: Untagged
@@ -22158,21 +21422,6 @@ Transform:
   - {fileID: 601884502421435477}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4702128105891234100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2837476100505256024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2848367713219327092
 GameObject:
   m_ObjectHideFlags: 0
@@ -22304,7 +21553,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2244123023733540922}
-  - component: {fileID: 1733367976139822894}
   m_Layer: 0
   m_Name: Pincho (19)
   m_TagString: Untagged
@@ -22328,21 +21576,6 @@ Transform:
   - {fileID: 2473222610842358452}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1733367976139822894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2848699178934324142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2856822253415031189
 GameObject:
   m_ObjectHideFlags: 0
@@ -23133,7 +22366,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6314286050119576152}
-  - component: {fileID: 6300325640728546727}
   m_Layer: 0
   m_Name: Pincho (78)
   m_TagString: Untagged
@@ -23157,21 +22389,6 @@ Transform:
   - {fileID: 4415360872246175883}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6300325640728546727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2921777640917116319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2953922022639935383
 GameObject:
   m_ObjectHideFlags: 0
@@ -23307,7 +22524,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6922396811637311226}
-  - component: {fileID: 5034686552549552550}
   m_Layer: 0
   m_Name: Pincho (143)
   m_TagString: Untagged
@@ -23331,21 +22547,6 @@ Transform:
   - {fileID: 8269071443963411358}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5034686552549552550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2966446636591236645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2971943942666731160
 GameObject:
   m_ObjectHideFlags: 0
@@ -23355,7 +22556,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8486462137580838914}
-  - component: {fileID: 5973650504699082439}
   m_Layer: 0
   m_Name: Pincho (39)
   m_TagString: Untagged
@@ -23379,21 +22579,6 @@ Transform:
   - {fileID: 8366877236450737909}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &5973650504699082439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971943942666731160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &2981840780909143502
 GameObject:
   m_ObjectHideFlags: 0
@@ -23631,7 +22816,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5102378259283081359}
-  - component: {fileID: 8142661324057657730}
   m_Layer: 0
   m_Name: Pincho (191)
   m_TagString: Untagged
@@ -23655,21 +22839,6 @@ Transform:
   - {fileID: 6115926772072567533}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8142661324057657730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2999539921327355392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3007304082185943389
 GameObject:
   m_ObjectHideFlags: 0
@@ -25222,7 +24391,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5893951398356214390}
-  - component: {fileID: 3554385078092138940}
   m_Layer: 0
   m_Name: Pincho (63)
   m_TagString: Untagged
@@ -25246,21 +24414,6 @@ Transform:
   - {fileID: 7353930240823973362}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3554385078092138940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3124974301596400759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3126659613334564696
 GameObject:
   m_ObjectHideFlags: 0
@@ -25790,7 +24943,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4937070985166291988}
-  - component: {fileID: 4895581405893707468}
   m_Layer: 0
   m_Name: Pincho (124)
   m_TagString: Untagged
@@ -25814,21 +24966,6 @@ Transform:
   - {fileID: 3438851350515018194}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4895581405893707468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3180995890777105530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3209429984614668605
 GameObject:
   m_ObjectHideFlags: 0
@@ -26551,7 +25688,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4214868107460350007}
-  - component: {fileID: 7196046425113947279}
   m_Layer: 0
   m_Name: Pincho (188)
   m_TagString: Untagged
@@ -26575,21 +25711,6 @@ Transform:
   - {fileID: 5895101670366573594}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7196046425113947279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3277072092052279972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3279909897554498987
 GameObject:
   m_ObjectHideFlags: 0
@@ -26599,7 +25720,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1203416162831313287}
-  - component: {fileID: 1560010841011978264}
   m_Layer: 0
   m_Name: Pincho (148)
   m_TagString: Untagged
@@ -26623,21 +25743,6 @@ Transform:
   - {fileID: 7438290219809884922}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &1560010841011978264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279909897554498987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3280182983916748887
 GameObject:
   m_ObjectHideFlags: 0
@@ -26836,7 +25941,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6956473085070899244}
-  - component: {fileID: 7695050798349381102}
   m_Layer: 0
   m_Name: Pincho (155)
   m_TagString: Untagged
@@ -26860,21 +25964,6 @@ Transform:
   - {fileID: 3867030661647993700}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7695050798349381102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3332748956744310174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3339951527546152805
 GameObject:
   m_ObjectHideFlags: 0
@@ -26998,7 +26087,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7802789006788413767}
-  - component: {fileID: 1397848781001986297}
   m_Layer: 0
   m_Name: Pincho (27)
   m_TagString: Untagged
@@ -27022,21 +26110,6 @@ Transform:
   - {fileID: 45539474556649675}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1397848781001986297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3358754813544872664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3380712902114193075
 GameObject:
   m_ObjectHideFlags: 0
@@ -27400,7 +26473,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4724116273840455434}
-  - component: {fileID: 2435786014533840912}
   m_Layer: 0
   m_Name: Pincho (37)
   m_TagString: Untagged
@@ -27424,21 +26496,6 @@ Transform:
   - {fileID: 8614864794012129974}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2435786014533840912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401428885062794665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3404047625730346969
 GameObject:
   m_ObjectHideFlags: 0
@@ -27479,7 +26536,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7668722147300719283}
-  - component: {fileID: 1910876534836760047}
   m_Layer: 0
   m_Name: Pincho (49)
   m_TagString: Untagged
@@ -27503,21 +26559,6 @@ Transform:
   - {fileID: 6781877338582739667}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1910876534836760047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3471431370106543182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3490131769120620864
 GameObject:
   m_ObjectHideFlags: 0
@@ -28314,7 +27355,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2248366857033483391}
-  - component: {fileID: 4442920904422641612}
   m_Layer: 0
   m_Name: Pincho (110)
   m_TagString: Untagged
@@ -28338,21 +27378,6 @@ Transform:
   - {fileID: 8034704904051424761}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4442920904422641612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3581672716480897379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3582429610482307106
 GameObject:
   m_ObjectHideFlags: 0
@@ -29048,7 +28073,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 954983349250919834}
-  - component: {fileID: 1250869643428972566}
   m_Layer: 0
   m_Name: Pincho (87)
   m_TagString: Untagged
@@ -29072,21 +28096,6 @@ Transform:
   - {fileID: 6776632428465931852}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1250869643428972566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3730979085625160867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3745025054229790880
 GameObject:
   m_ObjectHideFlags: 0
@@ -29620,7 +28629,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8833549986393692391}
-  - component: {fileID: 5066763165051212923}
   m_Layer: 0
   m_Name: Pincho (91)
   m_TagString: Untagged
@@ -29644,21 +28652,6 @@ Transform:
   - {fileID: 7780972383400615056}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &5066763165051212923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3792791138152061672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3803652318260175757
 GameObject:
   m_ObjectHideFlags: 0
@@ -30436,7 +29429,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3639650502208499623}
-  - component: {fileID: 5247807025750061623}
   m_Layer: 0
   m_Name: Pincho (107)
   m_TagString: Untagged
@@ -30460,21 +29452,6 @@ Transform:
   - {fileID: 862537626425952041}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5247807025750061623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870184180495973921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3878607062391502195
 GameObject:
   m_ObjectHideFlags: 0
@@ -30689,7 +29666,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4089821744748224374}
-  - component: {fileID: 2974112239587299254}
   m_Layer: 0
   m_Name: Pincho (70)
   m_TagString: Untagged
@@ -30713,21 +29689,6 @@ Transform:
   - {fileID: 6630026992191237109}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2974112239587299254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3890848590169372412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3893593696232487693
 GameObject:
   m_ObjectHideFlags: 0
@@ -30903,7 +29864,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973174222601900907}
-  - component: {fileID: 2553498844743142422}
   m_Layer: 0
   m_Name: Pincho (10)
   m_TagString: Untagged
@@ -30927,21 +29887,6 @@ Transform:
   - {fileID: 6762453856942698671}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2553498844743142422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3906366209043130433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &3906504881772357519
 GameObject:
   m_ObjectHideFlags: 0
@@ -31731,7 +30676,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2364228319358487176}
-  - component: {fileID: 1704624059433113672}
   m_Layer: 0
   m_Name: Pincho (35)
   m_TagString: Untagged
@@ -31755,21 +30699,6 @@ Transform:
   - {fileID: 5103938732765973284}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1704624059433113672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4001648324967053270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4008450503413616144
 GameObject:
   m_ObjectHideFlags: 0
@@ -31779,7 +30708,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5874337555434417370}
-  - component: {fileID: 3168033764840905401}
   m_Layer: 0
   m_Name: Pincho (73)
   m_TagString: Untagged
@@ -31803,21 +30731,6 @@ Transform:
   - {fileID: 4367628756327761155}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3168033764840905401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4008450503413616144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4017971450468520587
 GameObject:
   m_ObjectHideFlags: 0
@@ -31993,7 +30906,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5318010764880816314}
-  - component: {fileID: 8746781610238858364}
   m_Layer: 0
   m_Name: Pincho (14)
   m_TagString: Untagged
@@ -32017,21 +30929,6 @@ Transform:
   - {fileID: 3190344683202164188}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8746781610238858364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4056288533370204671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4057350884447675558
 GameObject:
   m_ObjectHideFlags: 0
@@ -32285,7 +31182,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7396631907875005667}
-  - component: {fileID: 318968734955544210}
   m_Layer: 0
   m_Name: Pincho (187)
   m_TagString: Untagged
@@ -32309,21 +31205,6 @@ Transform:
   - {fileID: 2769972808635404550}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &318968734955544210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4087299925816011521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4093988690009323056
 GameObject:
   m_ObjectHideFlags: 0
@@ -32333,7 +31214,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3488399827654467991}
-  - component: {fileID: 9060323354599157455}
   m_Layer: 0
   m_Name: Pincho (24)
   m_TagString: Untagged
@@ -32357,21 +31237,6 @@ Transform:
   - {fileID: 8952150099671566172}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &9060323354599157455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4093988690009323056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4100689143639102085
 GameObject:
   m_ObjectHideFlags: 0
@@ -32687,7 +31552,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3543246608976219274}
-  - component: {fileID: 7100239235367286335}
   m_Layer: 0
   m_Name: Pincho (32)
   m_TagString: Untagged
@@ -32711,21 +31575,6 @@ Transform:
   - {fileID: 1466221169313843391}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7100239235367286335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4170077607321044945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4183975120001846983
 GameObject:
   m_ObjectHideFlags: 0
@@ -32735,7 +31584,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3995174036932041289}
-  - component: {fileID: 83153014265471664}
   m_Layer: 0
   m_Name: Pincho (17)
   m_TagString: Untagged
@@ -32759,21 +31607,6 @@ Transform:
   - {fileID: 9079726883254474277}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &83153014265471664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4183975120001846983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4186414568748218329
 GameObject:
   m_ObjectHideFlags: 0
@@ -32783,7 +31616,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1479831578410093698}
-  - component: {fileID: 5630878307470595823}
   m_Layer: 0
   m_Name: Pincho (179)
   m_TagString: Untagged
@@ -32807,21 +31639,6 @@ Transform:
   - {fileID: 7042476982887717161}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5630878307470595823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4186414568748218329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4214255615107979189
 GameObject:
   m_ObjectHideFlags: 0
@@ -33225,7 +32042,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8312183677020884804}
-  - component: {fileID: 7843985022117111355}
   m_Layer: 0
   m_Name: Pincho (54)
   m_TagString: Untagged
@@ -33249,21 +32065,6 @@ Transform:
   - {fileID: 532392995153167452}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7843985022117111355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4256394196148959483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4256801307919642684
 GameObject:
   m_ObjectHideFlags: 0
@@ -33273,7 +32074,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2732891351626339451}
-  - component: {fileID: 6371645724638500960}
   m_Layer: 0
   m_Name: Pincho (167)
   m_TagString: Untagged
@@ -33297,21 +32097,6 @@ Transform:
   - {fileID: 6032826490578419386}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &6371645724638500960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4256801307919642684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4269103047705559079
 GameObject:
   m_ObjectHideFlags: 0
@@ -33842,7 +32627,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2041321959589685119}
-  - component: {fileID: 628438332078972045}
   m_Layer: 0
   m_Name: Pincho (82)
   m_TagString: Untagged
@@ -33866,21 +32650,6 @@ Transform:
   - {fileID: 579092863554297925}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &628438332078972045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335673280568534027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4373427929757149242
 GameObject:
   m_ObjectHideFlags: 0
@@ -34138,7 +32907,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 382444819660176864}
-  - component: {fileID: 2648027718302943913}
   m_Layer: 0
   m_Name: Pincho (71)
   m_TagString: Untagged
@@ -34162,21 +32930,6 @@ Transform:
   - {fileID: 7258098648919798862}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2648027718302943913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4401528711211136019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4404611658165007911
 GameObject:
   m_ObjectHideFlags: 0
@@ -34335,7 +33088,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3361676250810680389}
-  - component: {fileID: 7478197974376528649}
   m_Layer: 0
   m_Name: Pincho (7)
   m_TagString: Untagged
@@ -34359,21 +33111,6 @@ Transform:
   - {fileID: 1848830651663458546}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7478197974376528649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4424702831797156818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4433566933035644039
 GameObject:
   m_ObjectHideFlags: 0
@@ -34383,7 +33120,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6206592770612858306}
-  - component: {fileID: 6748328566340839489}
   m_Layer: 0
   m_Name: Pincho (160)
   m_TagString: Untagged
@@ -34407,21 +33143,6 @@ Transform:
   - {fileID: 5938209205223705437}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &6748328566340839489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4433566933035644039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4436611530124087113
 GameObject:
   m_ObjectHideFlags: 0
@@ -34431,7 +33152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051312349377268721}
-  - component: {fileID: 599373833516354128}
   m_Layer: 0
   m_Name: Pincho (72)
   m_TagString: Untagged
@@ -34455,21 +33175,6 @@ Transform:
   - {fileID: 4765906630354513890}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &599373833516354128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4436611530124087113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4443325523457346154
 GameObject:
   m_ObjectHideFlags: 0
@@ -34479,7 +33184,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5583370649734890588}
-  - component: {fileID: 1792969635958026989}
   m_Layer: 0
   m_Name: Pincho (31)
   m_TagString: Untagged
@@ -34503,21 +33207,6 @@ Transform:
   - {fileID: 4311999885576443534}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1792969635958026989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443325523457346154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4463724133645843551
 GameObject:
   m_ObjectHideFlags: 0
@@ -34976,7 +33665,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6544612241325835633}
-  - component: {fileID: 4666528852528277068}
   m_Layer: 0
   m_Name: Pincho (2)
   m_TagString: Untagged
@@ -35000,21 +33688,6 @@ Transform:
   - {fileID: 1997220626964761981}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4666528852528277068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4495811355224362410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4500500943280751809
 GameObject:
   m_ObjectHideFlags: 0
@@ -35540,7 +34213,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5386866784264200898}
-  - component: {fileID: 4565379298049776348}
   m_Layer: 0
   m_Name: Pincho (142)
   m_TagString: Untagged
@@ -35564,21 +34236,6 @@ Transform:
   - {fileID: 6073467901200109465}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4565379298049776348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4536856511267415408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4537400568023264785
 GameObject:
   m_ObjectHideFlags: 0
@@ -36650,7 +35307,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8226994154329850961}
-  - component: {fileID: 8700505551169368545}
   m_Layer: 0
   m_Name: Pincho (123)
   m_TagString: Untagged
@@ -36674,21 +35330,6 @@ Transform:
   - {fileID: 7942473035146341886}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8700505551169368545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4699606058590002656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4707645868762630790
 GameObject:
   m_ObjectHideFlags: 0
@@ -37055,7 +35696,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1335648452463378877}
-  - component: {fileID: 6461669602462554623}
   m_Layer: 0
   m_Name: Pincho (50)
   m_TagString: Untagged
@@ -37079,21 +35719,6 @@ Transform:
   - {fileID: 6868266187425817931}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6461669602462554623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4795677497595913788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4802090027136114150
 GameObject:
   m_ObjectHideFlags: 0
@@ -37103,7 +35728,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4258707618189211648}
-  - component: {fileID: 6258126907864599830}
   m_Layer: 0
   m_Name: Pincho (156)
   m_TagString: Untagged
@@ -37127,21 +35751,6 @@ Transform:
   - {fileID: 3878188170769028058}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &6258126907864599830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4802090027136114150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4804067994886349632
 GameObject:
   m_ObjectHideFlags: 0
@@ -37809,7 +36418,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1887929726255438149}
-  - component: {fileID: 318621048365488280}
   m_Layer: 0
   m_Name: Pincho (86)
   m_TagString: Untagged
@@ -37833,21 +36441,6 @@ Transform:
   - {fileID: 4415031357422104700}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &318621048365488280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4896454652885213753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &4900107524902379583
 GameObject:
   m_ObjectHideFlags: 0
@@ -38271,7 +36864,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1507483122516380902}
-  - component: {fileID: 3877511904381932400}
   m_Layer: 0
   m_Name: Pincho (181)
   m_TagString: Untagged
@@ -38295,21 +36887,6 @@ Transform:
   - {fileID: 6709744671147602179}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3877511904381932400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5030581702393315798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5044540835325319518
 GameObject:
   m_ObjectHideFlags: 0
@@ -38874,7 +37451,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6205336827240305997}
-  - component: {fileID: 4845827919850650034}
   m_Layer: 0
   m_Name: Pincho (168)
   m_TagString: Untagged
@@ -38898,21 +37474,6 @@ Transform:
   - {fileID: 1819540803723265120}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4845827919850650034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5067037889412040390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5075288466608795055
 GameObject:
   m_ObjectHideFlags: 0
@@ -38922,7 +37483,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7487063978444440796}
-  - component: {fileID: 1469357486076894720}
   m_Layer: 0
   m_Name: Pincho (5)
   m_TagString: Untagged
@@ -38946,21 +37506,6 @@ Transform:
   - {fileID: 8240124717205429366}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1469357486076894720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5075288466608795055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5093648824873098721
 GameObject:
   m_ObjectHideFlags: 0
@@ -38970,7 +37515,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2451981493981091130}
-  - component: {fileID: 6889241784656719174}
   m_Layer: 0
   m_Name: Pincho
   m_TagString: Untagged
@@ -38994,21 +37538,6 @@ Transform:
   - {fileID: 7161743281798520118}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6889241784656719174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093648824873098721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5099670541543080686
 GameObject:
   m_ObjectHideFlags: 0
@@ -39184,7 +37713,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2785193743392715226}
-  - component: {fileID: 8087658050779635374}
   m_Layer: 0
   m_Name: Pincho (76)
   m_TagString: Untagged
@@ -39208,21 +37736,6 @@ Transform:
   - {fileID: 7012164601604658588}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8087658050779635374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5196642242325237468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5205926330542333326
 GameObject:
   m_ObjectHideFlags: 0
@@ -39315,7 +37828,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8008767743351721991}
-  - component: {fileID: 1141433445454926114}
   m_Layer: 0
   m_Name: Pincho (43)
   m_TagString: Untagged
@@ -39339,21 +37851,6 @@ Transform:
   - {fileID: 8362629633881389046}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1141433445454926114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223884235745447999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5240754312808225419
 GameObject:
   m_ObjectHideFlags: 0
@@ -39992,7 +38489,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6945343145943774220}
-  - component: {fileID: 6718221064661116439}
   m_Layer: 0
   m_Name: Pincho (154)
   m_TagString: Untagged
@@ -40016,21 +38512,6 @@ Transform:
   - {fileID: 6405224444484075254}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &6718221064661116439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5316651926814775696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5335717557943609690
 GameObject:
   m_ObjectHideFlags: 0
@@ -40040,7 +38521,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1183627641368960934}
-  - component: {fileID: 5311833054543797840}
   m_Layer: 0
   m_Name: Pincho (178)
   m_TagString: Untagged
@@ -40064,21 +38544,6 @@ Transform:
   - {fileID: 4636750283028410386}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5311833054543797840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5335717557943609690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5345094291588859783
 GameObject:
   m_ObjectHideFlags: 0
@@ -40747,7 +39212,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3876648545289488612}
-  - component: {fileID: 7837795287645123519}
   m_Layer: 0
   m_Name: Pincho (146)
   m_TagString: Untagged
@@ -40771,21 +39235,6 @@ Transform:
   - {fileID: 406707953622275586}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7837795287645123519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5442396292227772456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5444446742152428276
 GameObject:
   m_ObjectHideFlags: 0
@@ -40795,7 +39244,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4308718645601562783}
-  - component: {fileID: 606823096090833798}
   m_Layer: 0
   m_Name: Pincho (133)
   m_TagString: Untagged
@@ -40819,21 +39267,6 @@ Transform:
   - {fileID: 2654474269712396357}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &606823096090833798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5444446742152428276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5465468228661448102
 GameObject:
   m_ObjectHideFlags: 0
@@ -42464,7 +40897,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1459326065069196721}
-  - component: {fileID: 7882593635239564386}
   m_Layer: 0
   m_Name: Pincho (158)
   m_TagString: Untagged
@@ -42488,21 +40920,6 @@ Transform:
   - {fileID: 8003110004968756475}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7882593635239564386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5597353543741752815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5605349205379877505
 GameObject:
   m_ObjectHideFlags: 0
@@ -42889,7 +41306,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8335738907330273102}
-  - component: {fileID: 3340909869745847965}
   m_Layer: 0
   m_Name: Pincho (137)
   m_TagString: Untagged
@@ -42913,21 +41329,6 @@ Transform:
   - {fileID: 7766139052866618571}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3340909869745847965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5621867998534429895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5627232809494257856
 GameObject:
   m_ObjectHideFlags: 0
@@ -44064,7 +42465,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4299833392844570194}
-  - component: {fileID: 578382450200473234}
   m_Layer: 0
   m_Name: Pincho (186)
   m_TagString: Untagged
@@ -44088,21 +42488,6 @@ Transform:
   - {fileID: 1532297649623892492}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &578382450200473234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5688777361524904047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5714688457439067422
 GameObject:
   m_ObjectHideFlags: 0
@@ -44195,7 +42580,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5270244473902551424}
-  - component: {fileID: 7123373327151858831}
   m_Layer: 0
   m_Name: Pincho (61)
   m_TagString: Untagged
@@ -44219,21 +42603,6 @@ Transform:
   - {fileID: 2773645952423316562}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7123373327151858831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5718856577648595255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5741424238390921329
 GameObject:
   m_ObjectHideFlags: 0
@@ -44609,7 +42978,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8073189707338368332}
-  - component: {fileID: 6540814888652183745}
   m_Layer: 0
   m_Name: Pincho (9)
   m_TagString: Untagged
@@ -44633,21 +43001,6 @@ Transform:
   - {fileID: 7620955745537961614}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6540814888652183745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5760609683231618995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5762931699808744826
 GameObject:
   m_ObjectHideFlags: 0
@@ -44657,7 +43010,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1157004429079598863}
-  - component: {fileID: 1755179056512671517}
   m_Layer: 0
   m_Name: Pincho (170)
   m_TagString: Untagged
@@ -44681,21 +43033,6 @@ Transform:
   - {fileID: 7721624222297449876}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &1755179056512671517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5762931699808744826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5782066664434580424
 GameObject:
   m_ObjectHideFlags: 0
@@ -45700,7 +44037,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3792214854433658601}
-  - component: {fileID: 6954961847436234442}
   m_Layer: 0
   m_Name: Pincho (184)
   m_TagString: Untagged
@@ -45724,21 +44060,6 @@ Transform:
   - {fileID: 3832844225448327893}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &6954961847436234442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920433877737817959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5926722936913928412
 GameObject:
   m_ObjectHideFlags: 0
@@ -45831,7 +44152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5411586520050403723}
-  - component: {fileID: 3102265501525445937}
   m_Layer: 0
   m_Name: Pincho (26)
   m_TagString: Untagged
@@ -45855,21 +44175,6 @@ Transform:
   - {fileID: 1243891959674719063}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3102265501525445937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928023099917653403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5937927452863923277
 GameObject:
   m_ObjectHideFlags: 0
@@ -46237,7 +44542,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5286375491808060354}
-  - component: {fileID: 8161327013458108190}
   m_Layer: 0
   m_Name: Pincho (16)
   m_TagString: Untagged
@@ -46261,21 +44565,6 @@ Transform:
   - {fileID: 2827440154666496001}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8161327013458108190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5972069057408772070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &5988004223907024356
 GameObject:
   m_ObjectHideFlags: 0
@@ -46434,7 +44723,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 150873358491070580}
-  - component: {fileID: 3666770943032545105}
   m_Layer: 0
   m_Name: Pincho (45)
   m_TagString: Untagged
@@ -46458,21 +44746,6 @@ Transform:
   - {fileID: 1651304406372348834}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3666770943032545105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6007974479196889845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6008092976986050843
 GameObject:
   m_ObjectHideFlags: 0
@@ -46565,7 +44838,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3635013678095951759}
-  - component: {fileID: 4205011922319154382}
   m_Layer: 0
   m_Name: Pincho (58)
   m_TagString: Untagged
@@ -46589,21 +44861,6 @@ Transform:
   - {fileID: 5033367884758367815}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4205011922319154382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6014627786246626845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6016977108853574749
 GameObject:
   m_ObjectHideFlags: 0
@@ -47586,7 +45843,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6798395170197485747}
-  - component: {fileID: 4174066365696765711}
   m_Layer: 0
   m_Name: Pincho (159)
   m_TagString: Untagged
@@ -47610,21 +45866,6 @@ Transform:
   - {fileID: 8846271919188636987}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4174066365696765711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6145976472835521129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6155720102473606673
 GameObject:
   m_ObjectHideFlags: 0
@@ -48369,7 +46610,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5985205315198148933}
-  - component: {fileID: 8466243456989136643}
   m_Layer: 0
   m_Name: Pincho (109)
   m_TagString: Untagged
@@ -48393,21 +46633,6 @@ Transform:
   - {fileID: 3120515917202399444}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8466243456989136643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6257752161672259810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6266121179420857200
 GameObject:
   m_ObjectHideFlags: 0
@@ -48692,7 +46917,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2239766158141054225}
-  - component: {fileID: 7317340774942245834}
   m_Layer: 0
   m_Name: Pincho (30)
   m_TagString: Untagged
@@ -48716,21 +46940,6 @@ Transform:
   - {fileID: 2402039640576232381}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7317340774942245834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6297604917064424657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6300823552686803055
 GameObject:
   m_ObjectHideFlags: 0
@@ -49295,7 +47504,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5459632743708213806}
-  - component: {fileID: 3436045002363912057}
   m_Layer: 0
   m_Name: Pincho (48)
   m_TagString: Untagged
@@ -49319,21 +47527,6 @@ Transform:
   - {fileID: 987590888948421508}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3436045002363912057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6343425020529372467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6357968626234884423
 GameObject:
   m_ObjectHideFlags: 0
@@ -49343,7 +47536,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6804261962720449597}
-  - component: {fileID: 1347755101130498602}
   m_Layer: 0
   m_Name: Pincho (183)
   m_TagString: Untagged
@@ -49367,21 +47559,6 @@ Transform:
   - {fileID: 4559245961806864290}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &1347755101130498602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357968626234884423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6371029463310096288
 GameObject:
   m_ObjectHideFlags: 0
@@ -49391,7 +47568,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6810943142378505752}
-  - component: {fileID: 3922975530570268940}
   m_Layer: 0
   m_Name: Pincho (6)
   m_TagString: Untagged
@@ -49415,21 +47591,6 @@ Transform:
   - {fileID: 4719602960944578962}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3922975530570268940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6371029463310096288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6377773406333276456
 GameObject:
   m_ObjectHideFlags: 0
@@ -49982,7 +48143,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9193743057692792301}
-  - component: {fileID: 3582441721553444511}
   m_Layer: 0
   m_Name: Pincho (172)
   m_TagString: Untagged
@@ -50006,21 +48166,6 @@ Transform:
   - {fileID: 8040441806917288539}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3582441721553444511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6406055483013294915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6410429883331469264
 GameObject:
   m_ObjectHideFlags: 0
@@ -50196,7 +48341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2943110283721279572}
-  - component: {fileID: 1801732639877485946}
   m_Layer: 0
   m_Name: Pincho (140)
   m_TagString: Untagged
@@ -50220,21 +48364,6 @@ Transform:
   - {fileID: 3581313399948582106}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &1801732639877485946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6432903285340857484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6433119337067860978
 GameObject:
   m_ObjectHideFlags: 0
@@ -50397,7 +48526,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7998201366871945062}
-  - component: {fileID: 1693394396349706207}
   m_Layer: 0
   m_Name: Pincho (92)
   m_TagString: Untagged
@@ -50421,21 +48549,6 @@ Transform:
   - {fileID: 8872387980395480257}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1693394396349706207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6484262402516433306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6484499788665520286
 GameObject:
   m_ObjectHideFlags: 0
@@ -50763,7 +48876,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 781494927274780585}
-  - component: {fileID: 2126539809637590574}
   m_Layer: 0
   m_Name: Pincho (40)
   m_TagString: Untagged
@@ -50787,21 +48899,6 @@ Transform:
   - {fileID: 2279268537666612250}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2126539809637590574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6492185999448985040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6518474312553702683
 GameObject:
   m_ObjectHideFlags: 0
@@ -51327,7 +49424,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6538271858004094127}
-  - component: {fileID: 3972825399618144041}
   m_Layer: 0
   m_Name: Pincho (75)
   m_TagString: Untagged
@@ -51351,21 +49447,6 @@ Transform:
   - {fileID: 7359812075942864745}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3972825399618144041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573997233106872769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6580259066156562664
 GameObject:
   m_ObjectHideFlags: 0
@@ -51580,7 +49661,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8730572925466975682}
-  - component: {fileID: 4707573019095163146}
   m_Layer: 0
   m_Name: Pincho (66)
   m_TagString: Untagged
@@ -51604,21 +49684,6 @@ Transform:
   - {fileID: 8704891172417247920}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4707573019095163146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6603404536750267408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6604067322661588759
 GameObject:
   m_ObjectHideFlags: 0
@@ -51750,7 +49815,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6427028969340037256}
-  - component: {fileID: 5744644153490166439}
   m_Layer: 0
   m_Name: Pincho (68)
   m_TagString: Untagged
@@ -51774,21 +49838,6 @@ Transform:
   - {fileID: 5774550596287368584}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &5744644153490166439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6604327280223938162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6604425109191208270
 GameObject:
   m_ObjectHideFlags: 0
@@ -52450,7 +50499,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4225284515162890655}
-  - component: {fileID: 7141435865520763019}
   m_Layer: 0
   m_Name: Pincho (141)
   m_TagString: Untagged
@@ -52474,21 +50522,6 @@ Transform:
   - {fileID: 479556348299526759}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7141435865520763019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6648153956300938836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6677226056227928883
 GameObject:
   m_ObjectHideFlags: 0
@@ -53117,7 +51150,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4873141163057522644}
-  - component: {fileID: 8567205653790905307}
   m_Layer: 0
   m_Name: Pincho (8)
   m_TagString: Untagged
@@ -53141,21 +51173,6 @@ Transform:
   - {fileID: 2993834210349510840}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8567205653790905307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6808214656696097833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6813732137881062083
 GameObject:
   m_ObjectHideFlags: 0
@@ -53165,7 +51182,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152950279525118307}
-  - component: {fileID: 6769096037497373415}
   m_Layer: 0
   m_Name: Pincho (13)
   m_TagString: Untagged
@@ -53189,21 +51205,6 @@ Transform:
   - {fileID: 164093263426306038}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6769096037497373415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6813732137881062083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6817630065754630872
 GameObject:
   m_ObjectHideFlags: 0
@@ -53401,7 +51402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6753621216425142693}
-  - component: {fileID: 6437897992496065781}
   m_Layer: 0
   m_Name: Pincho (89)
   m_TagString: Untagged
@@ -53425,21 +51425,6 @@ Transform:
   - {fileID: 5980614714790670430}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6437897992496065781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6834238026069987410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6853569011227674413
 GameObject:
   m_ObjectHideFlags: 0
@@ -53804,7 +51789,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1687692328414441643}
-  - component: {fileID: 6384222912125969908}
   m_Layer: 0
   m_Name: Pincho (180)
   m_TagString: Untagged
@@ -53828,21 +51812,6 @@ Transform:
   - {fileID: 8782175591918499732}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &6384222912125969908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866426664672960279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6866631110486136977
 GameObject:
   m_ObjectHideFlags: 0
@@ -53989,7 +51958,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4982949946452059708}
-  - component: {fileID: 7287416688061051238}
   m_Layer: 0
   m_Name: Pincho (111)
   m_TagString: Untagged
@@ -54013,21 +51981,6 @@ Transform:
   - {fileID: 8813215238777372579}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7287416688061051238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887670274583209059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6888832777448900310
 GameObject:
   m_ObjectHideFlags: 0
@@ -54143,7 +52096,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2222008245377669684}
-  - component: {fileID: 8642181669997757876}
   m_Layer: 0
   m_Name: Pincho (174)
   m_TagString: Untagged
@@ -54167,21 +52119,6 @@ Transform:
   - {fileID: 8261592321330142763}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8642181669997757876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6892045081296094759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6897016827981472829
 GameObject:
   m_ObjectHideFlags: 0
@@ -54313,7 +52250,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4254093010095711520}
-  - component: {fileID: 2706449213727568297}
   m_Layer: 0
   m_Name: Pincho (1)
   m_TagString: Untagged
@@ -54337,21 +52273,6 @@ Transform:
   - {fileID: 8821773976810106156}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2706449213727568297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6899204286564838907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6900090670657192452
 GameObject:
   m_ObjectHideFlags: 0
@@ -54361,7 +52282,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6287926658510918785}
-  - component: {fileID: 3878481945673518501}
   m_Layer: 0
   m_Name: Pincho (185)
   m_TagString: Untagged
@@ -54385,21 +52305,6 @@ Transform:
   - {fileID: 3107061597157780849}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3878481945673518501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6900090670657192452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6900422917599531797
 GameObject:
   m_ObjectHideFlags: 0
@@ -54614,7 +52519,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8693450174544315202}
-  - component: {fileID: 972404654822715556}
   m_Layer: 0
   m_Name: Pincho (126)
   m_TagString: Untagged
@@ -54638,21 +52542,6 @@ Transform:
   - {fileID: 4096701450738967433}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &972404654822715556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6927422709094920216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6941982140114592036
 GameObject:
   m_ObjectHideFlags: 0
@@ -54965,7 +52854,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2398717335900602573}
-  - component: {fileID: 7263385865320234899}
   m_Layer: 0
   m_Name: Pincho (119)
   m_TagString: Untagged
@@ -54989,21 +52877,6 @@ Transform:
   - {fileID: 6373898264210008664}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7263385865320234899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6973613661519159431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &6982188963016585013
 GameObject:
   m_ObjectHideFlags: 0
@@ -55284,7 +53157,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7729742401497022593}
-  - component: {fileID: 1344661551592140833}
   m_Layer: 0
   m_Name: Pincho (153)
   m_TagString: Untagged
@@ -55308,21 +53180,6 @@ Transform:
   - {fileID: 2677757025055179967}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &1344661551592140833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7053909619653449756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7059613463023904706
 GameObject:
   m_ObjectHideFlags: 0
@@ -55438,7 +53295,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7991225238686340216}
-  - component: {fileID: 3392980163037778847}
   m_Layer: 0
   m_Name: Pincho (164)
   m_TagString: Untagged
@@ -55462,21 +53318,6 @@ Transform:
   - {fileID: 5025448276631456911}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3392980163037778847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064618778644247163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7080403713116900212
 GameObject:
   m_ObjectHideFlags: 0
@@ -55486,7 +53327,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1828390286870851743}
-  - component: {fileID: 5041283230432278484}
   m_Layer: 0
   m_Name: Pincho (41)
   m_TagString: Untagged
@@ -55510,21 +53350,6 @@ Transform:
   - {fileID: 1934948484076447848}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &5041283230432278484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7080403713116900212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7121159173529245633
 GameObject:
   m_ObjectHideFlags: 0
@@ -55534,7 +53359,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5991373984296875997}
-  - component: {fileID: 597983496714092602}
   m_Layer: 0
   m_Name: Pincho (165)
   m_TagString: Untagged
@@ -55558,21 +53382,6 @@ Transform:
   - {fileID: 490602607561867683}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &597983496714092602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7121159173529245633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7170054284816463309
 GameObject:
   m_ObjectHideFlags: 0
@@ -55870,7 +53679,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5526396233619084424}
-  - component: {fileID: 972647689676841278}
   m_Layer: 0
   m_Name: Pincho (18)
   m_TagString: Untagged
@@ -55894,21 +53702,6 @@ Transform:
   - {fileID: 8866449243117446945}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &972647689676841278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7203918913116879880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7211634953440452962
 GameObject:
   m_ObjectHideFlags: 0
@@ -55949,7 +53742,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8334520427165788538}
-  - component: {fileID: 2350822400593978671}
   m_Layer: 0
   m_Name: Pincho (169)
   m_TagString: Untagged
@@ -55973,21 +53765,6 @@ Transform:
   - {fileID: 4865621720545032159}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &2350822400593978671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7212050520888788614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7235178597984804711
 GameObject:
   m_ObjectHideFlags: 0
@@ -56119,7 +53896,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3530518059517012961}
-  - component: {fileID: 5864174241515593345}
   m_Layer: 0
   m_Name: Pincho (177)
   m_TagString: Untagged
@@ -56143,21 +53919,6 @@ Transform:
   - {fileID: 6529067197397324631}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5864174241515593345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7241319550397735902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7254525228527745731
 GameObject:
   m_ObjectHideFlags: 0
@@ -56250,7 +54011,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5558075361627744624}
-  - component: {fileID: 4104588808888676158}
   m_Layer: 0
   m_Name: Pincho (77)
   m_TagString: Untagged
@@ -56274,21 +54034,6 @@ Transform:
   - {fileID: 354500641504181808}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4104588808888676158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7259940939769494696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7260963860715237974
 GameObject:
   m_ObjectHideFlags: 0
@@ -56298,7 +54043,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1242658523372532180}
-  - component: {fileID: 6604151124353993425}
   m_Layer: 0
   m_Name: Pincho (29)
   m_TagString: Untagged
@@ -56322,21 +54066,6 @@ Transform:
   - {fileID: 4853756829700111920}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &6604151124353993425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7260963860715237974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7286583091779290574
 GameObject:
   m_ObjectHideFlags: 0
@@ -56927,7 +54656,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8833707612730250617}
-  - component: {fileID: 7711458477620039729}
   m_Layer: 0
   m_Name: Pincho (182)
   m_TagString: Untagged
@@ -56951,21 +54679,6 @@ Transform:
   - {fileID: 3291165829256495539}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7711458477620039729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7371347869543328319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7374935579634222409
 GameObject:
   m_ObjectHideFlags: 0
@@ -57250,7 +54963,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 610266775599024806}
-  - component: {fileID: 7168246025034078256}
   m_Layer: 0
   m_Name: Pincho (161)
   m_TagString: Untagged
@@ -57274,21 +54986,6 @@ Transform:
   - {fileID: 320653291529573098}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7168246025034078256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7389641033256643778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7409622413078593399
 GameObject:
   m_ObjectHideFlags: 0
@@ -57503,7 +55200,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5927429894407399972}
-  - component: {fileID: 1450478327149527958}
   m_Layer: 0
   m_Name: Pincho (44)
   m_TagString: Untagged
@@ -57527,21 +55223,6 @@ Transform:
   - {fileID: 2557139051903494186}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1450478327149527958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432214345433387128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7441694675984962622
 GameObject:
   m_ObjectHideFlags: 0
@@ -57783,7 +55464,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4935963436679572004}
-  - component: {fileID: 2556581283295983087}
   m_Layer: 0
   m_Name: Pincho (79)
   m_TagString: Untagged
@@ -57807,21 +55487,6 @@ Transform:
   - {fileID: 7307570998884198552}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2556581283295983087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7485530212833698051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7485567459173129396
 GameObject:
   m_ObjectHideFlags: 0
@@ -57897,7 +55562,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 623983964456143411}
-  - component: {fileID: 4970673089581136303}
   m_Layer: 0
   m_Name: Pincho (144)
   m_TagString: Untagged
@@ -57921,21 +55585,6 @@ Transform:
   - {fileID: 3068177564480814862}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4970673089581136303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7495105373647201679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7505335904145524620
 GameObject:
   m_ObjectHideFlags: 0
@@ -58067,7 +55716,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 898318672669285676}
-  - component: {fileID: 5837535364982047993}
   m_Layer: 0
   m_Name: Pincho (46)
   m_TagString: Untagged
@@ -58091,21 +55739,6 @@ Transform:
   - {fileID: 1431656877306269682}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &5837535364982047993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506691321640841669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7533398803914472257
 GameObject:
   m_ObjectHideFlags: 0
@@ -58198,7 +55831,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6527951179075465631}
-  - component: {fileID: 2106724475826248609}
   m_Layer: 0
   m_Name: Pincho (84)
   m_TagString: Untagged
@@ -58222,21 +55854,6 @@ Transform:
   - {fileID: 6422743783176804227}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2106724475826248609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7567103306984646797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7576190881060586655
 GameObject:
   m_ObjectHideFlags: 0
@@ -58671,7 +56288,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3466489770738581537}
-  - component: {fileID: 3112787512250261578}
   m_Layer: 0
   m_Name: Pincho (150)
   m_TagString: Untagged
@@ -58695,21 +56311,6 @@ Transform:
   - {fileID: 2030688614403475493}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3112787512250261578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7598423443811614087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7599907641228582935
 GameObject:
   m_ObjectHideFlags: 0
@@ -58719,7 +56320,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506265027239380182}
-  - component: {fileID: 4667176073715502761}
   m_Layer: 0
   m_Name: Pincho (125)
   m_TagString: Untagged
@@ -58743,21 +56343,6 @@ Transform:
   - {fileID: 2895072558593385664}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &4667176073715502761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7599907641228582935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7602686188780185393
 GameObject:
   m_ObjectHideFlags: 0
@@ -59094,7 +56679,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1291904984785278995}
-  - component: {fileID: 2004390897595066797}
   m_Layer: 0
   m_Name: Pincho (147)
   m_TagString: Untagged
@@ -59118,21 +56702,6 @@ Transform:
   - {fileID: 8223262872887875091}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &2004390897595066797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7614859779204347536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7621534312788743148
 GameObject:
   m_ObjectHideFlags: 0
@@ -59314,7 +56883,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2249186727519368692}
-  - component: {fileID: 119635824381515569}
   m_Layer: 0
   m_Name: Pincho (22)
   m_TagString: Untagged
@@ -59338,21 +56906,6 @@ Transform:
   - {fileID: 2406627905727361433}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &119635824381515569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7659927924325323752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7675880476322933820
 GameObject:
   m_ObjectHideFlags: 0
@@ -60209,7 +57762,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8050757402974892539}
-  - component: {fileID: 8596728927334113867}
   m_Layer: 0
   m_Name: Pincho (135)
   m_TagString: Untagged
@@ -60233,21 +57785,6 @@ Transform:
   - {fileID: 4716074309927278757}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8596728927334113867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7746047801382353934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7750928245720958350
 GameObject:
   m_ObjectHideFlags: 0
@@ -60696,7 +58233,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4366670994190745526}
-  - component: {fileID: 3413709040660278394}
   m_Layer: 0
   m_Name: Pincho (152)
   m_TagString: Untagged
@@ -60720,21 +58256,6 @@ Transform:
   - {fileID: 7918835765201275177}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &3413709040660278394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7852039432382277808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7859503624077873974
 GameObject:
   m_ObjectHideFlags: 0
@@ -61016,7 +58537,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5764494636947879047}
-  - component: {fileID: 1630756805395693218}
   m_Layer: 0
   m_Name: Pincho (74)
   m_TagString: Untagged
@@ -61040,21 +58560,6 @@ Transform:
   - {fileID: 5101345421805667056}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1630756805395693218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7881500071543768993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7890253280198116000
 GameObject:
   m_ObjectHideFlags: 0
@@ -61130,7 +58635,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8723130727096146129}
-  - component: {fileID: 7141552664599149059}
   m_Layer: 0
   m_Name: Pincho (20)
   m_TagString: Untagged
@@ -61154,21 +58658,6 @@ Transform:
   - {fileID: 9050832090613859943}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7141552664599149059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7893957137833437881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7896289299142890603
 GameObject:
   m_ObjectHideFlags: 0
@@ -61178,7 +58667,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8129943414830387920}
-  - component: {fileID: 8669591851516412417}
   m_Layer: 0
   m_Name: Pincho (132)
   m_TagString: Untagged
@@ -61202,21 +58690,6 @@ Transform:
   - {fileID: 8973558746062604849}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &8669591851516412417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896289299142890603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &7901398200073593866
 GameObject:
   m_ObjectHideFlags: 0
@@ -62871,7 +60344,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3260458964683017352}
-  - component: {fileID: 7577272516408761833}
   m_Layer: 0
   m_Name: Pincho (108)
   m_TagString: Untagged
@@ -62895,21 +60367,6 @@ Transform:
   - {fileID: 3044425486885203482}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7577272516408761833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8067877057080339836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8071343229006962506
 GameObject:
   m_ObjectHideFlags: 0
@@ -63246,7 +60703,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7826075600674037395}
-  - component: {fileID: 913115049970093703}
   m_Layer: 0
   m_Name: Pincho (52)
   m_TagString: Untagged
@@ -63270,21 +60726,6 @@ Transform:
   - {fileID: 8988874732339597171}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &913115049970093703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8124374975859222747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8140366356401599120
 GameObject:
   m_ObjectHideFlags: 0
@@ -65137,7 +62578,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5276485443299013390}
-  - component: {fileID: 3604896457848407920}
   m_Layer: 0
   m_Name: Pincho (4)
   m_TagString: Untagged
@@ -65161,21 +62601,6 @@ Transform:
   - {fileID: 3866235992121898911}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &3604896457848407920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343850067437070025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8364290017099890209
 GameObject:
   m_ObjectHideFlags: 0
@@ -66142,7 +63567,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6568462573976557389}
-  - component: {fileID: 7951972871475080231}
   m_Layer: 0
   m_Name: Pincho (15)
   m_TagString: Untagged
@@ -66166,21 +63590,6 @@ Transform:
   - {fileID: 7519647695842688388}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7951972871475080231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8506494994086480089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8509743638898608230
 GameObject:
   m_ObjectHideFlags: 0
@@ -66190,7 +63599,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7209944856795869412}
-  - component: {fileID: 5835226553391757611}
   m_Layer: 0
   m_Name: Pincho (175)
   m_TagString: Untagged
@@ -66214,21 +63622,6 @@ Transform:
   - {fileID: 6408737373403700357}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5835226553391757611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8509743638898608230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8510772880481731784
 GameObject:
   m_ObjectHideFlags: 0
@@ -66526,7 +63919,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2566092746303997661}
-  - component: {fileID: 7392947692229580735}
   m_Layer: 0
   m_Name: Pincho (69)
   m_TagString: Untagged
@@ -66550,21 +63942,6 @@ Transform:
   - {fileID: 5308997146475733440}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7392947692229580735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8524749804498351532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8562747991993570132
 GameObject:
   m_ObjectHideFlags: 0
@@ -66657,7 +64034,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336809632816730018}
-  - component: {fileID: 1305852485684878227}
   m_Layer: 0
   m_Name: Pincho (42)
   m_TagString: Untagged
@@ -66681,21 +64057,6 @@ Transform:
   - {fileID: 5065954361047572562}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1305852485684878227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8580304296244620336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8605676922283429512
 GameObject:
   m_ObjectHideFlags: 0
@@ -68371,7 +65732,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2230675866863355334}
-  - component: {fileID: 4248866918324873500}
   m_Layer: 0
   m_Name: Pincho (3)
   m_TagString: Untagged
@@ -68395,21 +65755,6 @@ Transform:
   - {fileID: 6886105386258681290}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &4248866918324873500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8810031886871809309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8810058222555792135
 GameObject:
   m_ObjectHideFlags: 0
@@ -69101,7 +66446,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3776839075925001318}
-  - component: {fileID: 878026638843093773}
   m_Layer: 0
   m_Name: Pincho (190)
   m_TagString: Untagged
@@ -69125,21 +66469,6 @@ Transform:
   - {fileID: 2862108338774475003}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &878026638843093773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8903125195386075631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8903288776104161488
 GameObject:
   m_ObjectHideFlags: 0
@@ -69232,7 +66561,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 529908664363027253}
-  - component: {fileID: 8722000418816333157}
   m_Layer: 0
   m_Name: Pincho (55)
   m_TagString: Untagged
@@ -69256,21 +66584,6 @@ Transform:
   - {fileID: 8815518223131653186}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8722000418816333157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8911170721417566763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8913163912273916869
 GameObject:
   m_ObjectHideFlags: 0
@@ -69446,7 +66759,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4936528317688540197}
-  - component: {fileID: 9103587157856496536}
   m_Layer: 0
   m_Name: Pincho (95)
   m_TagString: Untagged
@@ -69470,21 +66782,6 @@ Transform:
   - {fileID: 7632412786352817569}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &9103587157856496536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8956208595097988221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8967220346237453917
 GameObject:
   m_ObjectHideFlags: 0
@@ -69620,7 +66917,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4975218015312777506}
-  - component: {fileID: 7557497954575660797}
   m_Layer: 0
   m_Name: Pincho (88)
   m_TagString: Untagged
@@ -69644,21 +66940,6 @@ Transform:
   - {fileID: 4299013661287637747}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7557497954575660797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8975978443690636498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &8977673364093213132
 GameObject:
   m_ObjectHideFlags: 0
@@ -70136,7 +67417,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 69846610835758267}
-  - component: {fileID: 7799024433412006544}
   m_Layer: 0
   m_Name: Pincho (23)
   m_TagString: Untagged
@@ -70160,21 +67440,6 @@ Transform:
   - {fileID: 8405875566606185953}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &7799024433412006544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9056118124795902986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &9061782583712111027
 GameObject:
   m_ObjectHideFlags: 0
@@ -70184,7 +67449,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7482965568892550103}
-  - component: {fileID: 1069366255935061954}
   m_Layer: 0
   m_Name: Pincho (67)
   m_TagString: Untagged
@@ -70208,21 +67472,6 @@ Transform:
   - {fileID: 5521199260651333694}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &1069366255935061954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9061782583712111027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &9061936683683134181
 GameObject:
   m_ObjectHideFlags: 0
@@ -70315,7 +67564,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2011604599122199072}
-  - component: {fileID: 2966639485206444277}
   m_Layer: 0
   m_Name: Pincho (28)
   m_TagString: Untagged
@@ -70339,21 +67587,6 @@ Transform:
   - {fileID: 166760168282577045}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &2966639485206444277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064224534702993257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &9065129113948911230
 GameObject:
   m_ObjectHideFlags: 0
@@ -70585,7 +67818,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6788835970902184946}
-  - component: {fileID: 5284522586789663354}
   m_Layer: 0
   m_Name: Pincho (106)
   m_TagString: Untagged
@@ -70609,21 +67841,6 @@ Transform:
   - {fileID: 505987987867990325}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &5284522586789663354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9095136646124217000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &9096774877260539714
 GameObject:
   m_ObjectHideFlags: 0
@@ -70913,7 +68130,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 479745266804791894}
-  - component: {fileID: 8113433388832979241}
   m_Layer: 0
   m_Name: Pincho (59)
   m_TagString: Untagged
@@ -70937,21 +68153,6 @@ Transform:
   - {fileID: 7844305749664036067}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: -3.149, z: 0}
---- !u!114 &8113433388832979241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9147994835284795109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &9150540573496002717
 GameObject:
   m_ObjectHideFlags: 0
@@ -70961,7 +68162,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6186477708070018222}
-  - component: {fileID: 758807344095636915}
   m_Layer: 0
   m_Name: Pincho (162)
   m_TagString: Untagged
@@ -70985,21 +68185,6 @@ Transform:
   - {fileID: 1688036604872238518}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &758807344095636915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9150540573496002717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &9158476827516385961
 GameObject:
   m_ObjectHideFlags: 0
@@ -71175,7 +68360,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1507002970463595200}
-  - component: {fileID: 7555966995499305732}
   m_Layer: 0
   m_Name: Pincho (131)
   m_TagString: Untagged
@@ -71199,21 +68383,6 @@ Transform:
   - {fileID: 1152088783752349552}
   m_Father: {fileID: 2088291392440060204}
   m_LocalEulerAnglesHint: {x: 0, y: 177.43, z: 0}
---- !u!114 &7555966995499305732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170654034462287013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72393f1f9e6bff469057e2626a55aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  damage: 20.5
-  timeSleep: 10
 --- !u!1 &9196671798974262905
 GameObject:
   m_ObjectHideFlags: 0

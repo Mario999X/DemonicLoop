@@ -1572,7 +1572,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7877892571115234135}
   - component: {fileID: 7498816377500509841}
-  - component: {fileID: 2504369214945089564}
   - component: {fileID: -5933553478522958141}
   m_Layer: 0
   m_Name: Liebt
@@ -1620,28 +1619,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!64 &2504369214945089564
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7142255528544838443}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8697284205239347609, guid: 7f41ccb32810d7c4390dd196e2014068, type: 3}
 --- !u!114 &-5933553478522958141
 MonoBehaviour:
   m_ObjectHideFlags: 0

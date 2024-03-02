@@ -56,6 +56,10 @@ public class EnemyManagerGenerator : MonoBehaviour
             case 5:
                 demon = boss2;
                 break;
+
+            case 6:
+                demon = boss3;
+                break;
                 
         }
 

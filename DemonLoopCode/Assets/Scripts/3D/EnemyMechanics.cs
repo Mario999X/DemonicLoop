@@ -24,8 +24,11 @@ public class EnemyMechanics : MonoBehaviour
 
     private void Start()
     {
-        pointA = transform.parent.GetChild(1).gameObject;
-        pointB = transform.parent.GetChild(0).gameObject;
+        if(patrol)
+        {
+            pointA = transform.parent.GetChild(1).gameObject;
+            pointB = transform.parent.GetChild(0).gameObject;
+        }
     }
 
     // Update is called once per frame

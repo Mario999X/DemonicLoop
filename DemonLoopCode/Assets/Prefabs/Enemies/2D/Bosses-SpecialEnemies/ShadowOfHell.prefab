@@ -522,7 +522,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossNumber: 2
   enemyPrefabsLevel: []
-  battleModifiersDebuffs: []
+  battleModifiersDebuffs:
+  - {fileID: 11400000, guid: f0b71471023b041179efb51aa6bf7584, type: 2}
+  - {fileID: 11400000, guid: d4e09d3c62a524e5fb5a25ce56c5cedb, type: 2}
+  - {fileID: 11400000, guid: 3f0fd852153ea4ef19fbd95ebb5d58e1, type: 2}
   battleModifiersBuffs: []
 --- !u!95 &5134182831197875097
 Animator:

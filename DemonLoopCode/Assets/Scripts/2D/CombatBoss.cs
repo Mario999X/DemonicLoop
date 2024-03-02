@@ -104,7 +104,7 @@ public class CombatBoss : MonoBehaviour
 
             if(!actionDone && GetComponent<Stats>().Health <= GetComponent<Stats>().MaxHealth * 0.5f)
             {
-                floatingText.ShowFloatingText(gameObject, "You can't defeat me!", Color.yellow);
+                floatingText.ShowFloatingText(gameObject, "\nYou can't defeat me!", Color.yellow);
 
                 GetComponent<Stats>().Health = GetComponent<Stats>().MaxHealth;
                 GetComponent<Stats>().Mana = GetComponent<Stats>().MaxMana;

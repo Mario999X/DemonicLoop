@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 7836870215435610333}
   - component: {fileID: 7525133577392803732}
   m_Layer: 8
-  m_Name: MIMIC
+  m_Name: Mimic
   m_TagString: Mimic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

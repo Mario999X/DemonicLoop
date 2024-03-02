@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 2960970362685873173}
   - component: {fileID: -447953322684517403}
   m_Layer: 0
-  m_Name: Demonio1I3DH
+  m_Name: PanilDemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

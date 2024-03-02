@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterLevel: 5
+  enemyModels: []
 --- !u!1 &2671052834466175770
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,11 +843,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c549f493f209c8941b6028ba98ee7d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 100
+  distance: 0
   patrol: 0
   speed: 10
-  puntoA: {fileID: 0}
-  puntoB: {fileID: 0}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &8485337438549725610
 GameObject:
   m_ObjectHideFlags: 0

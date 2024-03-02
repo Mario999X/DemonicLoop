@@ -39,7 +39,7 @@ public class TeamViewManager : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "VideoScene")
         {
             teamViewScreen = GameObject.Find("TeamViewScreen");
             controlPanelActiveTeamPods = GameObject.Find("ControlPanelActiveTeamPods");

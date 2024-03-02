@@ -10,29 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
-  m_Name: STA_Dani
+  m_Name: STA_Liebt
   m_EditorClassIdentifier: 
-  characterPB: {fileID: 6806864167824992199, guid: 51b2790600c1647798c560609ca0911b,
+  characterPB: {fileID: 7486560601053180396, guid: 152f02c6fd5ee0f4da9269a0ff11bf27,
     type: 3}
-  description: 'Programador de DemonicLoop.
-
-    No sabe como a llegado aqui.'
+  description: He has the strength of a gorilla and his belly doesn't stop growling.
+    A stench of blood emanates. In the rare moments when they are not fighting, they
+    can be heard crying and screaming desperately.
   level: 1
   currentXP: 4
-  health: 305
-  maxHealth: 305
+  health: 230
+  maxHealth: 230
   mana: 160
   maxMana: 160
-  sp: 0
+  sp: 100
   strength: 20
   physicalDef: 17
   magicAtk: 25
   magicDef: 25
   criticalChance: 28
   listAtk:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  cost: 0
+  - {fileID: 11400000, guid: 116afbc48b1b2434ea1957ba9a54c0a4, type: 2}
+  cost: 5000
   protagonist: 0

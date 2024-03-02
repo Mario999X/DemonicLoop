@@ -487,9 +487,9 @@ MonoBehaviour:
   type: 4
   typeIcon: {fileID: 21300000, guid: f1586e864bb174dd79ef7756a2672197, type: 3}
   atkSpecial: {fileID: 0}
-  moneyDrop: 500
+  moneyDrop: 1000
   dropXP: 1000
-  moneyRefinedDrop: 3
+  moneyRefinedDrop: 10
   boss: 1
   actualStates: []
 --- !u!114 &-1995760961937033985

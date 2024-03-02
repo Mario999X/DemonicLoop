@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
-  m_Name: STA_PanilDemonTeam
+  m_Name: STA_Muck
   m_EditorClassIdentifier: 
-  characterPB: {fileID: 9014782617563343838, guid: 35f7815fd92c53b4bb167f7624e14642,
+  characterPB: {fileID: 7486560601053180396, guid: 2087ebe9c3855844bb67295812fe4a0a,
     type: 3}
-  description: 
+  description: It is the most basic way of life in hell. They only care about feeding
+    themselves at all costs.
   level: 1
   currentXP: 363
   health: 330
@@ -28,6 +29,7 @@ MonoBehaviour:
   magicDef: 55
   criticalChance: 47
   listAtk:
-  - {fileID: 11400000, guid: af7a6f60c02e740018fc899403742db4, type: 2}
-  cost: 2000
+  - {fileID: 11400000, guid: 5010e5fe204d1451790b554b2611313a, type: 2}
+  - {fileID: 11400000, guid: 107ea18027e5f4906b48e4cd125af8f4, type: 2}
+  cost: 1000
   protagonist: 0

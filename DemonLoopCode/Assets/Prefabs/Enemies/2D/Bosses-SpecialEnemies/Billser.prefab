@@ -680,9 +680,10 @@ MonoBehaviour:
   typeIcon: {fileID: 0}
   atkSpecial: {fileID: 0}
   moneyDrop: 500
-  dropXP: 1000
-  moneyRefinedDrop: 3
+  dropXP: 500
+  moneyRefinedDrop: 5
   boss: 1
+  actualStates: []
 --- !u!114 &-1995760961937033985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,7 +717,8 @@ MonoBehaviour:
   - {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57, type: 3}
   - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
   - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
-  battleModifiers: []
+  battleModifiersDebuffs: []
+  battleModifiersBuffs: []
 --- !u!95 &7187217983403485639
 Animator:
   serializedVersion: 5

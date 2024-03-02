@@ -13,6 +13,7 @@ public class ShoppingSystem : MonoBehaviour
     int quantity = 1;
 
     Image icon;
+    GameObject iconSlave;
 
     TextMeshProUGUI description;
     TextMeshProUGUI buy;
@@ -42,7 +43,6 @@ public class ShoppingSystem : MonoBehaviour
         {
             case "Normal Shop": // En el caso de la tienda normal este tiene que cargar todos los objetos y guardar los componentes.
                 ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
-                Debug.Log("Normal Shop gameObject.tag " + gameObject.tag);
                 foreach (ObjectData obj in objects)
                 {
                     string objName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
@@ -61,8 +61,7 @@ public class ShoppingSystem : MonoBehaviour
                 displayzone.SetActive(false);
                 break;
 
-            case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los compa�eros y guardar los componentes que se van a utilizar.
-                Debug.Log(gameObject.tag);
+            case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los aliados y guardar los componentes que se van a utilizar.
                 List<StatsPersistenceData> slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
 
                 List<StatsPersistenceData> group = party.CharactersTeamStats;
@@ -74,7 +73,7 @@ public class ShoppingSystem : MonoBehaviour
                 slaves.ForEach(s => stock.Add(s.name.Substring(s.name.IndexOf("_") + 1), s));
 
                 displayzone = GameObject.Find("Slave display");
-                icon = displayzone.transform.GetChild(0).GetComponent<Image>();
+                iconSlave = displayzone.transform.GetChild(0).gameObject;
 
                 description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
@@ -84,7 +83,7 @@ public class ShoppingSystem : MonoBehaviour
                 displayzone.SetActive(false);
                 break;
 
-            case "Special Shop": // En el caso de la tienda normal este tiene que cargar todos los objetos y guardar los componentes.
+            case "Special Shop": // En el caso de la tienda especial este tiene que cargar todos los objetos de mejora permanente.
                 ImprovementsData[] mejoras = Resources.LoadAll<ImprovementsData>("Data/Improvements");
 
                 foreach (ImprovementsData obj in mejoras)
@@ -96,13 +95,13 @@ public class ShoppingSystem : MonoBehaviour
 
 
                 displayzone = GameObject.Find("Special display");
-                icon = displayzone.transform.GetChild(0).GetComponent<Image>();
 
-                description = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
-                buy = displayzone.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
+                description = displayzone.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+                buy = displayzone.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
-                displayzone.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => Buy());
+                displayzone.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => Buy());
                 displayzone.SetActive(false);
+
                 break;
         }
     }
@@ -119,9 +118,6 @@ public class ShoppingSystem : MonoBehaviour
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Shop")
         {
             canvas = GameObject.Find("Shop").GetComponent<Canvas>();
-
-            canvas.transform.GetChild(0).GetChild(5).GetComponent<Button>().onClick.RemoveAllListeners();
-            canvas.transform.GetChild(0).GetChild(5).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
 
             done = true;
         }
@@ -144,6 +140,9 @@ public class ShoppingSystem : MonoBehaviour
     {
         if (canvas != null)
         {
+            canvas.transform.GetChild(0).GetChild(5).GetComponent<Button>().onClick.RemoveAllListeners();
+            canvas.transform.GetChild(0).GetChild(5).GetComponent<Button>().onClick.AddListener(() => OpenCloseShop());
+
             canvas.enabled = !canvas.enabled;
             inventory.DontOpenInventory = !inventory.DontOpenInventory;
 
@@ -151,6 +150,9 @@ public class ShoppingSystem : MonoBehaviour
             foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
                 Destroy(child.gameObject);
 
+            var iconSlaveGO = GameObject.Find("IconSlave");
+            if(iconSlaveGO) Destroy(iconSlaveGO);
+            
             if (displayzone.activeSelf)
                 displayzone.SetActive(false);
 
@@ -227,9 +229,17 @@ public class ShoppingSystem : MonoBehaviour
                 buy.text = $"Cost: {data.Cost}Ma";
                 break;
             case "Slave Shop":
+                var iconSlaveGO = GameObject.Find("IconSlave");
+                if(iconSlaveGO) Destroy(iconSlaveGO);
+
                 StatsPersistenceData slave = @object as StatsPersistenceData;
 
-                icon.sprite = slave.CharacterPB.transform.GetChild(3).GetComponent<Image>().sprite;
+                var sprite = slave.CharacterPB.transform.GetChild(3).gameObject;
+
+                var spriteGo = Instantiate(sprite, iconSlave.transform.position, Quaternion.identity, iconSlave.transform);
+                spriteGo.name = "IconSlave";
+                spriteGo.transform.localPosition = Vector3.zero;
+
                 description.text = slave.Description;
                 buy.text = $"Cost: {slave.Cost}Ma";
                 break;
@@ -237,7 +247,6 @@ public class ShoppingSystem : MonoBehaviour
             case "Special Shop":
                 ImprovementsData improvement = @object as ImprovementsData;
 
-                icon.sprite = improvement.Icon;
                 description.text = improvement.Description;
                 buy.text = $"Cost: {improvement.CostRefined}MaraRef";
 

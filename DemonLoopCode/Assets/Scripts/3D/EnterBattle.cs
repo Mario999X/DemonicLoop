@@ -83,26 +83,23 @@ public class EnterBattle : MonoBehaviour
 
                 Debug.Log("Character: " + x.name);
 
-                if (x.Level != 0)
-                {
-                    var statsChar = go.GetComponent<Stats>();
+                var statsChar = go.GetComponent<Stats>();
 
-                    statsChar.Level = x.Level;
-                    statsChar.CurrentXP = x.CurrentXP;
-                    statsChar.Health = x.Health;
-                    statsChar.MaxHealth = x.MaxHealth;
-                    statsChar.Mana = x.Mana;
-                    statsChar.MaxMana = x.MaxMana;
-                    statsChar.SP = x.SP;
-                    statsChar.Strenght = x.Strenght;
-                    statsChar.PhysicalDefense = x.PhysicalDefense;
-                    statsChar.MagicAtk = x.MagicAtk;
-                    statsChar.MagicDef = x.MagicDef;
-                    statsChar.CriticalChance = x.CriticalChance;
-                    statsChar.ActualStates = x.ActualStates;
+                statsChar.Level = x.Level;
+                statsChar.CurrentXP = x.CurrentXP;
+                statsChar.Health = x.Health;
+                statsChar.MaxHealth = x.MaxHealth;
+                statsChar.Mana = x.Mana;
+                statsChar.MaxMana = x.MaxMana;
+                statsChar.SP = x.SP;
+                statsChar.Strenght = x.Strenght;
+                statsChar.PhysicalDefense = x.PhysicalDefense;
+                statsChar.MagicAtk = x.MagicAtk;
+                statsChar.MagicDef = x.MagicDef;
+                statsChar.CriticalChance = x.CriticalChance;
+                statsChar.ActualStates = x.ActualStates;
 
-                    statsChar.ListAtk = x.ListAtk;
-                }
+                statsChar.ListAtk = x.ListAtk;
             });
         }
 
@@ -211,9 +208,9 @@ public class EnterBattle : MonoBehaviour
             }
         }
 
-        Destroy(enemy);
-
         SavePlayerCharacterStats();
+
+        Destroy(enemy);
 
         player.GetComponent<PlayerMove>().enabled = true; // Activa el movimiento del jugador.
 

@@ -56,7 +56,7 @@ public class PlayerInventory : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "VideoScene")
         {
             inventoryUI3D = GameObject.Find("Inventory").transform.GetChild(0).GetChild(0).gameObject;
             inventoryUI2D = GameObject.Find("MoveButtons");

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -17,7 +15,7 @@ public class DoorMechanic : MonoBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Shop")
         {
             if (killAll) // El objetivo de matar a todos los enemigos de una sala.
-                GameObject.Find("Objective").GetComponent<TextMeshProUGUI>().text = $"Objective:\nEnemys remaening: {GameObject.FindGameObjectsWithTag("Enemy3D").Length}";
+                GameObject.Find("Objective").GetComponent<TextMeshProUGUI>().text = $"Objective:\nEnemies remaining: {GameObject.FindGameObjectsWithTag("Enemy3D").Length}";
             else if (goToShop) // El objetivo de matar al boss de la sala.
                 GameObject.Find("Objective").GetComponent<TextMeshProUGUI>().text = "Objective:\nKill the boss";
             else // El objetivo de buscar el portal.

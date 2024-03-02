@@ -640,8 +640,8 @@ MonoBehaviour:
   type: 4
   typeIcon: {fileID: 21300000, guid: f1586e864bb174dd79ef7756a2672197, type: 3}
   atkSpecial: {fileID: 0}
-  moneyDrop: 100
-  dropXP: 100
+  moneyDrop: 1000
+  dropXP: 200
   moneyRefinedDrop: 0
   boss: 0
   actualStates: []

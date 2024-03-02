@@ -133,7 +133,7 @@ public class SceneManager : MonoBehaviour
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
+        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "VideoScene")
         {
             GameObject.Find("SettingsBtn").GetComponent<Button>().onClick.AddListener(() => ShowSettingsView());
             done = false;

@@ -6,6 +6,7 @@ public class DoorMechanic : MonoBehaviour
 {
     [SerializeField] bool goToShop = false;
     [SerializeField] bool killAll = false;
+    [SerializeField] bool theEnd = false;
 
     bool done = false;
 
@@ -22,7 +23,8 @@ public class DoorMechanic : MonoBehaviour
             {
                 if (!GameObject.Find("Boss") && goToShop)
                 {
-                    SceneManager.Instance.LoadSceneName("Shop");
+                    if (!theEnd) SceneManager.Instance.LoadSceneName("Shop");
+                    else SceneManager.Instance.LoadSceneName("VideoScene");
                     done = true;
                 }
                 else if (GameObject.FindGameObjectsWithTag("Enemy3D").Length <= 0 && killAll)

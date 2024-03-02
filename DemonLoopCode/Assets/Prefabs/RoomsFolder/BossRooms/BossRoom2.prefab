@@ -890,6 +890,11 @@ PrefabInstance:
     - target: {fileID: 1917441389606159994, guid: ea5c5a1b2b5c7d54aa1030e0c02ca44e,
         type: 3}
       propertyPath: killAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917441389606159994, guid: ea5c5a1b2b5c7d54aa1030e0c02ca44e,
+        type: 3}
+      propertyPath: goToShop
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3088495733858957217, guid: ea5c5a1b2b5c7d54aa1030e0c02ca44e,

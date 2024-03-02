@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722644, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3770,7 +3770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1339.0999}
+  m_AnchoredPosition: {x: 0, y: -1375.4578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &698224850
@@ -7506,15 +7506,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maps:
-  - {fileID: 4503541210712415587, guid: f2369b58f9e1a5c42879b6794e62d751, type: 3}
-  - {fileID: 4769843965479357696, guid: 4956cbf0f935ba5488f68a5a231cd3a1, type: 3}
-  - {fileID: 4503541210712415587, guid: 6bdc493751851544e8151b577435d6f3, type: 3}
-  - {fileID: 4503541210712415587, guid: 33fda9d6041fcbe43846fa9583937efc, type: 3}
-  - {fileID: 4503541210712415587, guid: 2a796b1878926b64ab9bb7f1e65e2d41, type: 3}
+  - {fileID: 4503541210712415587, guid: f28d421c9b62dde4bad8cf48ff196eb9, type: 3}
+  - {fileID: 4503541210712415587, guid: b6f87e68c3ec9ea46a35e331a01306d0, type: 3}
+  - {fileID: 4503541210712415587, guid: 5da7d105e4108554d99c7b6b44708fbe, type: 3}
+  - {fileID: 4503541210712415587, guid: 90b85b870a73e464fbb5b0c264d90ae5, type: 3}
+  - {fileID: 4769843965479357696, guid: 57c8b08487a64bc479338553df5c746d, type: 3}
   bossRooms:
+  - {fileID: 4503541210712415587, guid: 3d7dcf39ac52f544ea0fcc2d9f0f54b8, type: 3}
+  - {fileID: 1378641251075338131, guid: 6f69c2434377df147b8802e6b9f7e3d6, type: 3}
   - {fileID: 1378641251075338131, guid: 8865c8b0442744426a386a0eb1ef07c4, type: 3}
-  - {fileID: 4503541210712415587, guid: 5382e09f34213904d9eb2a4699ceffde, type: 3}
-  - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
   oblMaps:
   - {fileID: 2393160550813801538, guid: b225c443054d8de4f902164a7d166c7d, type: 3}
   rarity: 300000003c000000400000003700000064000000

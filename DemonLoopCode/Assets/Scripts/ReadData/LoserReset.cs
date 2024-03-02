@@ -11,8 +11,8 @@ public class LoserReset : MonoBehaviour
 
     void Start()
     {
-        imageLose.GetComponent<Image>().enabled = false;
-        textInfo.GetComponent<TextMeshProUGUI>().enabled = false;
+        if (imageLose != null) imageLose.GetComponent<Image>().enabled = false;
+        if (textInfo != null) textInfo.GetComponent<TextMeshProUGUI>().enabled = false;
         playerInventory = GameObject.Find("System").GetComponent<PlayerInventory>();
     }
 
@@ -20,8 +20,8 @@ public class LoserReset : MonoBehaviour
     // y hara un reinicio de los datos a el inicial
     public IEnumerator ShowImage()
     {
-        imageLose.GetComponent<Image>().enabled = true;
-        textInfo.GetComponent<TextMeshProUGUI>().enabled = true;
+        if (imageLose != null) imageLose.GetComponent<Image>().enabled = true;
+        if (textInfo != null) textInfo.GetComponent<TextMeshProUGUI>().enabled = true;
 
         // Cuando morimos se reinicia los StatsPersistenceData
         // al que tenia cuando se inicio el juego
@@ -48,6 +48,6 @@ public class LoserReset : MonoBehaviour
 
         yield return new WaitForSeconds(3);
 
-        SceneManager.Instance.LoadSceneName("Title");
+        if (textInfo != null) SceneManager.Instance.LoadSceneName("Title");
     }
 }

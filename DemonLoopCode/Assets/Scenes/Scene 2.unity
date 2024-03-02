@@ -3770,7 +3770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1337.1753}
+  m_AnchoredPosition: {x: 0, y: -1339.0999}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &698224850
@@ -7512,9 +7512,9 @@ MonoBehaviour:
   - {fileID: 4503541210712415587, guid: 33fda9d6041fcbe43846fa9583937efc, type: 3}
   - {fileID: 4503541210712415587, guid: 2a796b1878926b64ab9bb7f1e65e2d41, type: 3}
   bossRooms:
+  - {fileID: 1378641251075338131, guid: 8865c8b0442744426a386a0eb1ef07c4, type: 3}
   - {fileID: 4503541210712415587, guid: 5382e09f34213904d9eb2a4699ceffde, type: 3}
   - {fileID: 1378641251075338131, guid: 2213f01c626bd4742bbfda97c374219b, type: 3}
-  - {fileID: 1378641251075338131, guid: 8865c8b0442744426a386a0eb1ef07c4, type: 3}
   oblMaps:
   - {fileID: 2393160550813801538, guid: b225c443054d8de4f902164a7d166c7d, type: 3}
   rarity: 300000003c000000400000003700000064000000
@@ -8284,7 +8284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000028381273, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749773893

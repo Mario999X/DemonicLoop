@@ -21,9 +21,9 @@ public class StatsPersistenceData : ScriptableObject
     [SerializeField] private List<AttackData> listAtk;
     [SerializeField] float cost;
     [SerializeField] bool protagonist = false;
+
     private List<ActualStateData> actualStates = new List<ActualStateData>();
     float time = 0;
-
     public string Description { get { return description; } }
     public float Time { get { return time; } set { time = value; } }
     public float Cost { get { return cost; } set { cost = value; } }
@@ -69,5 +69,5 @@ public class StatsPersistenceData : ScriptableObject
             health = 0;
         }
 
-    }//Fin de OnAttackReceived
+    }//Fin de OnHealthChanged
 }

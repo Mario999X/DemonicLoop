@@ -6,21 +6,17 @@ public class LibraryMove : MonoBehaviour
 {
     // Tipos de daño por tipo posibles
     private const float SuperEffective = 1.5F;
-
     private const float NotVeryEffective = 0.5f;
-
     private const float NormalEffective = 1f;
 
     // Daño al tener similitud de tipo respecto ataque y atacante
     private const float SameTypeDamage = 2.5f;
-
     private const float CriticalDamageMultiplier = 2f;
 
     private GameObject character;
     private GameObject target;
 
     private Dictionary<string, AttackData> attackCache = new();
-
     private FloatingTextCombat floatingText;
 
     private void Start()
@@ -28,7 +24,6 @@ public class LibraryMove : MonoBehaviour
         LoadAttacks();
         floatingText = GetComponent<FloatingTextCombat>();
     }
-
 
     // Funcion que realiza un ataque.
     public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary, LibraryBattleModifiers battleModifiersLibrary)
@@ -40,7 +35,6 @@ public class LibraryMove : MonoBehaviour
         Stats character_ST = character.GetComponent<Stats>();
 
         var attack = CheckAttack(movement);
-
         var healOrAttack = CheckAttackOrHeal(movement);
 
         if (!healOrAttack)
@@ -133,14 +127,12 @@ public class LibraryMove : MonoBehaviour
     public bool CheckSpeacialAttack(string movementName)
     {
         bool isSpecial = false;
-
         var attackInfo = CheckAttack(movementName);
 
         if (attackInfo.IsSpecial)
         {
             isSpecial = true;
         }
-
         return isSpecial;
     }
 
@@ -148,7 +140,6 @@ public class LibraryMove : MonoBehaviour
     public bool CheckIfAtkSpecialPoints(GameObject characterST, string movementName)
     {
         bool pointSp = false;
-
         var attackInfo = CheckAttack(movementName);
 
         if (characterST.GetComponent<Stats>().SP >= attackInfo.PointSpecial)
@@ -162,14 +153,12 @@ public class LibraryMove : MonoBehaviour
     public bool CheckIfManaIsEnough(GameObject characterST, string movementName)
     {
         bool manaEnough = false;
-
         var attackInfo = CheckAttack(movementName);
 
         if (characterST.GetComponent<Stats>().Mana >= attackInfo.ManaCost)
         {
             manaEnough = true;
         }
-
         return manaEnough;
     }
 
@@ -177,7 +166,6 @@ public class LibraryMove : MonoBehaviour
     public void PassTurn(GameObject characterST, string movementName)
     {
         var attackData = CheckAttack(movementName);
-
         ManaManager(attackData, characterST.GetComponent<Stats>());
     }
 
@@ -191,9 +179,7 @@ public class LibraryMove : MonoBehaviour
         float defensePhy = (target_ST.PhysicalDefense * attack.PhyAttack);
 
         float damageType = DamageType(target_ST, attack);
-
         float damageTypeEnhancer = TypeEnhancer(character_ST, attack);
-
         float criticalDamage = CriticalDamage(character_ST.CriticalChance);
 
         damage = attack.BaseDamage + damagePhyAttack + damageMagic - defenseMagic - defensePhy;
@@ -228,8 +214,15 @@ public class LibraryMove : MonoBehaviour
         // Se consumen los puntos de los ataques especiales del personaje y implementa un bono de daño
         if(attack.IsSpecial)
         {
-            character_ST.SP -= attack.PointSpecial; 
-            damage += GetComponent<SpecialMiniGame>().TotalPress/5;
+            character_ST.SP -= attack.PointSpecial;
+            if (GetComponent<SpecialMiniGame>().TotalPress == 0)
+            {
+                damage += 0;
+            }
+            else
+            {
+                damage += GetComponent<SpecialMiniGame>().TotalPress/5;
+            }
         }
 
         // Si el ataque es berserker le quita vida tambien a el personaje que lo use

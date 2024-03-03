@@ -22,7 +22,6 @@ public class SpecialMiniGame : MonoBehaviour
     public float IncreaseBar { get { return increaseBar; } set { increaseBar = value; } }
     public int TotalPress { get { return totalPress; }}
 
-
     private void Update()
     {
         if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())

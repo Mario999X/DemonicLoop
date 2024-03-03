@@ -239,7 +239,6 @@ public class Stats : MonoBehaviour
         });
 
         return already;
-
     }
 
     public void Revive(float healthToRevive)

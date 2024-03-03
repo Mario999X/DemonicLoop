@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722638, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722644, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3264,6 +3264,17 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 861103637}
+    - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: charactersTeamStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: charactersTeamStats.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 30d6f2f78a82ce54884ca73cdaa88684,
+        type: 2}
     - target: {fileID: 9065169977769756238, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3770,7 +3781,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1455.0873}
+  m_AnchoredPosition: {x: 0, y: -1475.6552}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &698224850
@@ -6014,8 +6025,8 @@ RectTransform:
   - {fileID: 1191903474}
   - {fileID: 86939681}
   - {fileID: 1387818206}
-  - {fileID: 566707828}
   - {fileID: 1078238121}
+  - {fileID: 566707828}
   m_Father: {fileID: 1274006328}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

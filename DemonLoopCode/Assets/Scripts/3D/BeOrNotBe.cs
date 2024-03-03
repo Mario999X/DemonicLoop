@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExistoNoExisto : MonoBehaviour
+public class BeOrNotBe : MonoBehaviour
 {
     [Header("Porcentaje para que el objeto para aparecer")]
     [Range(1, 100)]

@@ -890,8 +890,6 @@ public class CombatFlow : MonoBehaviour
         }
     }//Fin de SpecialAttackTurn
 
-
-
     // Funcion para desactivar todos los botones activos, a excepcion de los aliados del jugador.
     private void DesactivateAllButtons()
     {
@@ -910,7 +908,7 @@ public class CombatFlow : MonoBehaviour
     {
         SetAllyActionBarInactive();
 
-        BattleStatus();
+        CheckBattleStatus();
         // Espera a que todos los jugadores hagan sus movimientos.
         Debug.Log("moves " + moves);
         Debug.Log("players.Length " + players.Length);
@@ -931,8 +929,6 @@ public class CombatFlow : MonoBehaviour
         statesLibrary.CheckStates(allCharacters);
 
         battleModifiersLibrary.PassTurnOfModifiers();
-
-        BattleStatus();
     }//fin de NextTurn
 
     private void DesactivatePlayerButton()
@@ -948,13 +944,6 @@ public class CombatFlow : MonoBehaviour
             }
         });
     }
-
-    private async void BattleStatus()
-    {
-        await Task.Delay(600); // Entre tanta corrutina, esto es necesario para que al programa le de tiempo a actualizar bien las listas del combate.
-
-        CheckBattleStatus();
-    }//Fin de BattleStatus
 
     private void CheckBattleStatus()
     {
@@ -1004,7 +993,7 @@ public class CombatFlow : MonoBehaviour
 
                 i++;
             });
-            
+
             if (charactersWhoCanLearnAnAttack.Count > 0) ProcessingNewAttacks();
             else StartCoroutine(FinishBattle());
 

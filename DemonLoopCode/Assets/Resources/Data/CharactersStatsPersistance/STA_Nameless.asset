@@ -19,20 +19,17 @@ MonoBehaviour:
     eyes are yellowish.
   level: 1
   currentXP: 0
-  health: 700
-  maxHealth: 700
-  mana: 150
-  maxMana: 150
-  sp: 0
-  strength: 20
-  physicalDef: 20
-  magicAtk: 20
-  magicDef: 20
-  criticalChance: 20
+  health: 796
+  maxHealth: 796
+  mana: 246
+  maxMana: 246
+  sp: 100
+  strength: 68
+  physicalDef: 68
+  magicAtk: 68
+  magicDef: 116
+  criticalChance: 92
   listAtk:
   - {fileID: 11400000, guid: 8650a099b9cb04ea8ae048e1380cad52, type: 2}
-  - {fileID: 11400000, guid: 01308935cd98346e8a552d97513ef003, type: 2}
-  - {fileID: 11400000, guid: 6e560b74f89ce4d58bf14b36f9c431d5, type: 2}
-  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
   cost: 0
   protagonist: 1

@@ -906,33 +906,30 @@ public class CombatFlow : MonoBehaviour
     // Funcion para terminar la batalla.
     public IEnumerator FinishBattle()
     {
-        if (!GameObject.Find("LearningAttacksPanel"))
+        if (GameObject.FindGameObjectsWithTag("Enemy").ToArray().Length == 0)
         {
-            if (GameObject.FindGameObjectsWithTag("Enemy").ToArray().Length == 0)
-            {
-                AudioManager.Instance.StopSoundCombat();
-
-                yield return new WaitForSeconds(3);
-
-                enterBattle.FinishBattleAndEnterOverworld();
-            }
-            if (players.Length == 0)
-            {
-                SetEnemyActionBarInactive();
-
-                StartCoroutine(loserReset.ShowImage());
-
-                AudioManager.Instance.StopSoundCombat();
-
-                yield return new WaitForSeconds(3);
-            }
-
-            // Se resetea la información del combate para el proximo encuentro
-            battleModifiersLibrary.RemoveAllBattleModifiers();
-
-            actualTurn = 0;
-            moves = 0;
+            AudioManager.Instance.StopSoundCombat();
+          
+            yield return new WaitForSeconds(3);
+            
+            enterBattle.FinishBattleAndEnterOverworld();
         }
+        if (players.Length == 0)
+        {
+            SetEnemyActionBarInactive();
+            
+            StartCoroutine(loserReset.ShowImage());
+
+            AudioManager.Instance.StopSoundCombat();
+
+            yield return new WaitForSeconds(3);
+        }
+
+        // Se resetea la información del combate para el proximo encuentro
+        battleModifiersLibrary.RemoveAllBattleModifiers();
+        
+        actualTurn = 0;
+        moves = 0;
     }
 
     // Funcion para enviar la informacion al panel de aprendizaje de ataques.

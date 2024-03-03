@@ -912,6 +912,8 @@ public class CombatFlow : MonoBehaviour
         }
         if (players.Length == 0)
         {
+            SetEnemyActionBarInactive();
+            
             StartCoroutine(loserReset.ShowImage());
 
             AudioManager.Instance.StopSoundCombat();

@@ -95,17 +95,11 @@ public class CombatFlow : MonoBehaviour
     private string movement = null;
 
     private LibraryMove library;
-
     private MoneyPlayer moneyPlayer;
-
     private PlayerInventory playerInventory;
-
     private LibraryStates statesLibrary;
-
     private LibraryBattleModifiers battleModifiersLibrary;
-
     private EnterBattle enterBattle;
-
     private SpecialMiniGame specialMiniGame;
 
     GameObject panelMiniGame;
@@ -114,7 +108,6 @@ public class CombatFlow : MonoBehaviour
     Scene scene;
 
     private LearningAttacksManager learningAttacksManager;
-
     private PostBattleTeam postBattleTeam;
 
     LoserReset loserReset;
@@ -159,22 +152,16 @@ public class CombatFlow : MonoBehaviour
             GameObject.Find("AttackButton").GetComponent<Button>().onClick.AddListener(() => { PlayerButtonAttacks(); });
             GameObject.Find("InventoryButton").GetComponent<Button>().onClick.AddListener(() => { LoadInventoryButtons(); });
             GameObject.Find("SpecialAttackButton").GetComponent<Button>().onClick.AddListener(() => { SpecialAttackTurn(); });
-
             GameObject.Find("PassTurnButton").SetActive(false);
             GameObject.Find("AttackButton").SetActive(false);
             GameObject.Find("InventoryButton").SetActive(false);
             GameObject.Find("SpecialAttackButton").SetActive(false);
 
-           
             panelMiniGame.SetActive(false);
 
             LoadCombatOptionsButtons();
 
             done = true;
-        }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2")
-        {
-            done = false;
         }
     }
 
@@ -183,7 +170,6 @@ public class CombatFlow : MonoBehaviour
     {
         if (combatOptionsBT.Count > 0)
             combatOptionsBT.Clear();
-
 
         if (moveBT.Count > 0)
         {
@@ -198,9 +184,7 @@ public class CombatFlow : MonoBehaviour
         }
 
         foreach (Transform bt in spawnCombatOptionsBT.transform)
-        {
             combatOptionsBT.Add(bt.gameObject);
-        }
     }
 
     // Funcion para el boton de inventario en combate. Mostramos el inventario del jugador.
@@ -239,10 +223,8 @@ public class CombatFlow : MonoBehaviour
 
             button.GetComponent<Button>().onClick.AddListener(delegate { GenerateOptionsButtons(pl); });
 
-
             button.transform.localScale = new Vector3(1f, 1f, 1f); // Al cambiar de resolucion, el boton aparecia con una escala distinta (?) asi que asi nos aseguramos que se mantenga.
             playerBT.Add(button);//Listado de botones generados
-
         }
     }
 
@@ -304,7 +286,6 @@ public class CombatFlow : MonoBehaviour
 
         button.transform.localScale = new Vector3(1f, 1f, 1f); // Al cambiar de resolucion, el boton aparecia con una escala distinta (?) asi que asi nos aseguramos que se mantenga.
         playerBT.Add(button);
-
     }
 
     // Funcion para generar los botones de los personajes que hayan sido derrotados.
@@ -336,9 +317,7 @@ public class CombatFlow : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player").ToArray();
 
         foreach (Transform child in GameObject.Find("AlliesBattleZone").transform)
-        {
             if (!child.gameObject.activeSelf) playersDefeated.Add(child.gameObject);
-        }
     }
 
     // Funcion para resetear a los personajes del jugador del array de Players.
@@ -394,14 +373,11 @@ public class CombatFlow : MonoBehaviour
             }
 
             if (playerInventory.InventoryState)
-            {
                 playerInventory.OpenCloseInventory();
-            }
 
             foreach (GameObject moveBT in moveBT)
-            {
                 Destroy(moveBT);
-            }
+
             moveBT.Clear();
 
             AudioManager.Instance.PlaySoundButtons();
@@ -410,9 +386,9 @@ public class CombatFlow : MonoBehaviour
             {
                 // Creamos un boton de movimiento.
                 GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                
                 bt.transform.SetParent(spawnMoveBT.transform);
                 bt.name = "NameAtk " + listAtk;
-
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = listAtk;
                 bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(listAtk); });
                 bt.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -440,10 +416,7 @@ public class CombatFlow : MonoBehaviour
         if (isAOE)
         {
             // Ataca o cura AOE, segun la segunda comprobacion
-            if (!targetsToLoad)
-            {
-                GoPlayerMultiTarget(character, enemys, movement, targetsToLoad);
-            }
+            if (!targetsToLoad) GoPlayerMultiTarget(character, enemys, movement, targetsToLoad);
             else GoPlayerMultiTarget(character, players.ToList(), movement, targetsToLoad);
         }
         else
@@ -459,7 +432,6 @@ public class CombatFlow : MonoBehaviour
         if (character != null && movement != null && !wait)
         {
             DesactivatePlayerButton();
-
             DesactivateAllButtons();
 
             AudioManager.Instance.PlaySoundButtons();
@@ -479,9 +451,7 @@ public class CombatFlow : MonoBehaviour
         enemyBT.ForEach(bt =>
         {
             if (bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == @object.name.Substring(1, character.name.Length - 1))
-            {
                 Destroy(bt);
-            }
         });
     }
 
@@ -489,7 +459,6 @@ public class CombatFlow : MonoBehaviour
     private void GoPlayerMultiTarget(GameObject character, List<GameObject> targets, string movement, bool targetsAliesOrEnemies)
     {
         DesactivatePlayerButton();
-
         DesactivateAllButtons();
 
         wait = true;
@@ -499,9 +468,7 @@ public class CombatFlow : MonoBehaviour
         targets.ForEach(t => { library.Library(character, t, movement, statesLibrary, battleModifiersLibrary); });//Aqui realiza el ataque
 
         foreach (GameObject t in targets.ToArray())
-        {
             StartCoroutine(CharacterDead(t, !targetsAliesOrEnemies));
-        }
 
         moves++;
 
@@ -510,7 +477,6 @@ public class CombatFlow : MonoBehaviour
         wait = false;
 
         CheckIfIsEnemyTurn();
-
     }
 
     // Funcion para personajes aliados. Ataque Single Target.
@@ -524,19 +490,14 @@ public class CombatFlow : MonoBehaviour
         if (SpMiniGame)
         {
             foreach (Transform child in panelMiniGame.transform)
-            {
                 panelSpMini.Add(child.gameObject);
-            }
             
             ActivatePanelSpMini();
             yield return new WaitForSeconds(0.2f);
             yield return StartCoroutine(specialMiniGame.ChargeSpecialAtk());
-
         }
         else
-        {
             AddSPValue(character.GetComponent<Stats>());
-        }
 
         DisablePanelSpMini();
 
@@ -551,13 +512,9 @@ public class CombatFlow : MonoBehaviour
             animator.SetInteger("State", 1);
 
             if (change)
-            {
                 character.transform.position = Vector2.MoveTowards(character.transform.position, target.transform.position, speed * Time.deltaTime);
-            }
             else
-            {
                 character.transform.position = Vector2.MoveTowards(character.transform.position, v, speed * Time.deltaTime);
-            }
 
             if (Vector2.Distance(character.transform.position, target.transform.position) < 100f && change)
             {
@@ -588,7 +545,6 @@ public class CombatFlow : MonoBehaviour
         moves++;
 
         StartCoroutine(CharacterDead(target, true));
-
         StartCoroutine(CharacterDead(character, false));
 
         this.character = null; this.movement = null;
@@ -616,19 +572,14 @@ public class CombatFlow : MonoBehaviour
             if (characterTarget.GetComponent<Stats>().Health == 0)
             {
                 if (players.Length != 0)
-                {
                     characterTarget = players[Random.Range(0, players.Length)];
-                }
                 else
-                {
                     characterMove.Execute = false;
-                }
             }
 
             if (characterMove.Execute)
             {
                 SetTextInEnemyActionBar(characterMove.Character.name, characterMove.Movement);
-
                 AddSPValue(characterMove.Character.GetComponent<Stats>());
 
                 bool isAOE = library.CheckAoeAttack(characterMove.Movement);
@@ -637,23 +588,16 @@ public class CombatFlow : MonoBehaviour
                     var healOrNot = library.CheckAttackOrHeal(characterMove.Movement);
 
                     if (healOrNot)
-                    {
                         enemys.ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary); });
-                    }
                     else
-                    {
                         players.ToList().ForEach(t => { library.Library(characterMove.Character, t, characterMove.Movement, statesLibrary, battleModifiersLibrary); });
-                    }
 
 
                     foreach (GameObject t in players.ToArray())
-                    {
                         StartCoroutine(CharacterDead(t, false));
-                    }
                 }
                 else
                 {
-
                     bool dontStop = true, change = true, onAttack = false;
 
                     Vector2 v = characterMove.Character.transform.position;
@@ -665,13 +609,9 @@ public class CombatFlow : MonoBehaviour
                     do
                     {
                         if (change && !onAttack)
-                        {
                             characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, characterTarget.transform.position, speed * Time.deltaTime);
-                        }
                         else if (!change && !onAttack)
-                        {
                             characterMove.Character.transform.position = Vector2.MoveTowards(characterMove.Character.transform.position, v, speed * Time.deltaTime);
-                        }
 
                         if (Vector2.Distance(characterMove.Character.transform.position, characterTarget.transform.position) < 100f && change)
                         {
@@ -715,7 +655,6 @@ public class CombatFlow : MonoBehaviour
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
                 bt.GetComponent<Button>().interactable = true;
             });
-
         }
 
         movements.Clear();
@@ -736,9 +675,7 @@ public class CombatFlow : MonoBehaviour
         if (targetST.Health == 0)
         {
             if (enemy)
-            {
                 DeleteEnemyFromList(target);
-            }
             else
             {
                 DeleteAllieFromArray(target);
@@ -774,9 +711,8 @@ public class CombatFlow : MonoBehaviour
     public void InventoryTurn()
     {
         if (moveBT.Count > 0)
-        {
             moveBT.ForEach(bt => Destroy(bt));
-        }
+
         moveBT.Clear();
 
         wait = true;
@@ -805,14 +741,11 @@ public class CombatFlow : MonoBehaviour
             }
 
             if (playerInventory.InventoryState)
-            {
                 playerInventory.OpenCloseInventory();
-            }
 
             foreach (GameObject moveBT in moveBT)
-            {
                 Destroy(moveBT);
-            }
+
             moveBT.Clear();
 
             AudioManager.Instance.PlaySoundButtons();
@@ -820,25 +753,21 @@ public class CombatFlow : MonoBehaviour
             //Si el ATK es Special saldra
             if (library.CheckSpeacialAttack(character.GetComponent<Stats>().AtkSpecial.ToUpper()))
             {
-                //Es ATK Special
-                Debug.Log("listAtk.ToUpper() " + character.GetComponent<Stats>().AtkSpecial.ToUpper());
-
                 // Creamos un boton de movimiento.
                 GameObject bt = Instantiate(buttonRef, spawnMoveBT.transform.position, Quaternion.identity);
+                
                 bt.transform.SetParent(spawnMoveBT.transform);
                 bt.name = "NameAtk " + character.GetComponent<Stats>().AtkSpecial;//Nombre de los botones que se van a generar
                 bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = character.GetComponent<Stats>().AtkSpecial;
                 bt.GetComponent<Button>().onClick.AddListener(delegate { MovementButton(character.GetComponent<Stats>().AtkSpecial); });
-
                 bt.transform.localScale = new Vector3(1f, 1f, 1f);
+                
                 moveBT.Add(bt);
 
                 // Comprobamos si tiene suficiente puntos especiales, si no lo es, desactivamos el boton.
                 var isPointSpEnough = library.CheckIfAtkSpecialPoints(character, character.GetComponent<Stats>().AtkSpecial.ToUpper());
                 if (!isPointSpEnough)
-                {
                     bt.GetComponent<Button>().interactable = false;
-                }
             }
         }
     }
@@ -860,7 +789,6 @@ public class CombatFlow : MonoBehaviour
     private void CheckIfIsEnemyTurn()
     {
         SetAllyActionBarInactive();
-
         CheckBattleStatus();
 
         // Espera a que todos los jugadores hagan sus movimientos.
@@ -871,16 +799,21 @@ public class CombatFlow : MonoBehaviour
     // Funcion para pasar al siguiente turno. Se comprueba el estado de los modificadores de batalla y de los estados.
     private void NextTurn()
     {
-        SetEnemyActionBarInactive();
+        if (players.Length == 0)
+            CheckBattleStatus();
+        else
+        {
+            SetEnemyActionBarInactive();
 
-        ActualTurn++;
+            ActualTurn++;
 
-        // Paso de turno para los estados
-        GameObject[] allCharacters = GameObject.FindGameObjectsWithTag("Player").ToArray().Concat(GameObject.FindGameObjectsWithTag("Enemy").ToArray()).ToArray();
+            // Paso de turno para los estados
+            GameObject[] allCharacters = GameObject.FindGameObjectsWithTag("Player").ToArray().Concat(GameObject.FindGameObjectsWithTag("Enemy").ToArray()).ToArray();
 
-        statesLibrary.CheckStates(allCharacters);
+            statesLibrary.CheckStates(allCharacters);
 
-        battleModifiersLibrary.PassTurnOfModifiers();
+            battleModifiersLibrary.PassTurnOfModifiers();
+        }
     }//fin de NextTurn
 
     // Funcion para desactivar al jugador que haya realizado una accion durante el turno.

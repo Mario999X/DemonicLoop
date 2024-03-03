@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using Unity.VisualScripting;
 
+// Clase de almacenamiento para objetos.
 [Serializable]
 public class ObjectStockData
 {
@@ -12,11 +12,12 @@ public class ObjectStockData
 
     public ObjectStockData(ObjectData scriptableObject, int count)
     {
-        this.objData = scriptableObject;
+        objData = scriptableObject;
         this.count = count;
     }
 }
 
+// Clase de almacenamiento para estadisticas de personajes.
 [Serializable]
 public class StatsPersistenceContainer
 {
@@ -50,6 +51,7 @@ public class StatsPersistenceContainer
     }
 }
 
+// CLase de almacenamiento para estadisticas de personajes individuales
 [Serializable]
 public class StatsIndividual
 {
@@ -89,6 +91,7 @@ public class StatsIndividual
     }
 }
 
+// Clase encargada del almacenamiento de datos.
 public class SaveSystem : MonoBehaviour
 {
     PlayerInventory playerInventory;
@@ -107,23 +110,22 @@ public class SaveSystem : MonoBehaviour
 
         if (File.Exists(filePath)) File.Delete(filePath);
 
-        StreamWriter file = new StreamWriter(File.Open(filePath, FileMode.OpenOrCreate)); // Si el archivo no existe lo crea.
+        StreamWriter file = new(File.Open(filePath, FileMode.OpenOrCreate)); // Si el archivo no existe lo crea.
 
-        StatsPersistenceContainer savedController = new StatsPersistenceContainer(sceneName);
+        StatsPersistenceContainer savedController = new(sceneName)
+        {
+            onRun = runState,
 
-        Debug.Log("SaveSystem.sceneName " + savedController.sceneName);
+            // Dinero
+            money = Data.Instance.MoneyPlayer.Money,
+            moneyRefined = Data.Instance.MoneyPlayer.MoneyRefined,
 
-        savedController.onRun = runState;
-
-        // Dinero
-        savedController.money = Data.Instance.MoneyPlayer.Money;
-        savedController.moneyRefined = Data.Instance.MoneyPlayer.MoneyRefined;
-
-        // Salas
-        savedController.bossRoom = Data.Instance.BossRoom;
-        savedController.room = Data.Instance.Room;
-        savedController.floor = Data.Instance.Floor;
-        savedController.saveRoom = Data.Instance.SaveRoom;
+            // Salas
+            bossRoom = Data.Instance.BossRoom,
+            room = Data.Instance.Room,
+            floor = Data.Instance.Floor,
+            saveRoom = Data.Instance.SaveRoom
+        };
 
         // Equipo mas Stats
         if (Data.Instance.CharactersTeamStats.Count > 0)
@@ -190,8 +192,6 @@ public class SaveSystem : MonoBehaviour
         file.WriteLine(json);
 
         file.Close();
-
-        Debug.Log("Ruta guardado" + filePath);
     }
 
 
@@ -277,24 +277,16 @@ public class SaveSystem : MonoBehaviour
                         Data.Instance.CharactersBackupStats[x].ActualStates = loadedStats.Backupstats[x].actualStates;
                     }
 
-                Debug.Log("Buscar loadedStats.inventory " + loadedStats.inventory);
-                Debug.Log("playerInventory.inventory.Values " + playerInventory.Inventory.Values);
-                Debug.Log("loadedStats.inventoryDictionary " + loadedStats.inventoryDictionary);
-
                 // Inventario 
                 playerInventory.Inventory.Clear();
 
-                if (loadedStats.inventoryDictionary != null)
-                {
-                    loadedStats.inventoryDictionary.Clear();
-                }
+                loadedStats.inventoryDictionary?.Clear();
 
                 ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
 
                 int i = 0;
                 foreach (var item in loadedStats.inventory)
                 {
-                    Debug.Log("objects[i].name " + objects[i].name + " i " + i);
                     if (objects[i] = item.objData)
                     {
                         playerInventory.AddObjectToInventory(objects[i].name, item.objData, item.count);
@@ -306,7 +298,6 @@ public class SaveSystem : MonoBehaviour
                 {
                     foreach (var objName in loadedStats.inventoryDictionary)
                     {
-                        Debug.Log("objects[c].name " + objects[c].name + " c " + c);
                         var realObjName = objects[c].name.Substring(4, objects[c].name.Length - 4).ToUpper();
                         if (objects[i] = objName.Value)
                         {
@@ -315,18 +306,11 @@ public class SaveSystem : MonoBehaviour
                         }
                     }
                 }
-
-                Debug.Log("Datos cargados exitosamente.");
-            }
-            else
-            {
-                Debug.LogWarning("No se pudo cargar el archivo de datos");
             }
         }
         else
         {
             Data.Instance.CharactersTeamStats.ForEach(c => { c.ActualStates.Clear(); });
-            Debug.Log("No hay datos guardados");
         }
     }
 }

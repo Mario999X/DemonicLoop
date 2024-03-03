@@ -948,9 +948,10 @@ public class CombatFlow : MonoBehaviour
             List<string> listAtkEnemy = enemy.GetComponent<Stats>().ListNameAtk;
             string nameAtkEnemy = "";
 
-            GameObject target = null;
+            GameObject target;
 
             bool isManaEnough = false;
+            
             // Comprobamos si el mana es suficiente, si no lo es, desactivamos el boton.
             while (!isManaEnough && listAtkEnemy.Count > 0)
             {
@@ -988,12 +989,11 @@ public class CombatFlow : MonoBehaviour
                     target = players[z];
                     AddMovement(enemy, target, nameAtkEnemy);
                 }
-
             }
 
             // Comprobacion de accion de jefe final
             if (enemy.GetComponent<Stats>().Boss)
-                enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoss(target, battleModifiersLibrary);
+                enemy.GetComponent<CombatBoss>().CheckAtkEnemyBoss(battleModifiersLibrary);
         }
     }
 

@@ -22,19 +22,12 @@ public class CombatBoss : MonoBehaviour
     }
 
     // Funcion para aplicar el comportamiento de un jefe final.
-    public void CheckAtkEnemyBoss(GameObject targetSelected, LibraryBattleModifiers libraryBattleModifiers)
+    public void CheckAtkEnemyBoss(LibraryBattleModifiers libraryBattleModifiers)
     {
         switch(bossNumber)
         {
             case 1:
-                if (combatFlow.ActualTurn % 2 == 0)
-                {
-                    floatingText.ShowFloatingTextNumbers(gameObject, numHealth, Color.green);
-
-                    GetComponent<Stats>().Health += numHealth;
-                }
-                
-                if (combatFlow.ActualTurn % 5 == 0)
+                if (combatFlow.ActualTurn % 3 == 0)
                 {
                     int newEnemy = Random.Range(0, enemyPrefabsLevel.Length);
                     if (combatFlow.NumEnemy() < 3)
@@ -42,12 +35,9 @@ public class CombatBoss : MonoBehaviour
                         floatingText.ShowFloatingText(gameObject, "Invader summoned", Color.magenta);
                         Instantiate(enemyPrefabsLevel[newEnemy], GameObject.Find("EnemyBattleZone").transform);
                         StartCoroutine(combatFlow.FindEnemiesAndCreateAlliesButtons());
-                        
+
                     } else floatingText.ShowFloatingText(gameObject, "Hahaha", Color.magenta);
                 }
-
-                int c = Random.Range(0, 50);
-                GetComponent<Stats>().CriticalChance += c;
                 break;
             
             case 2:

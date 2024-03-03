@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -68,7 +67,7 @@ public class LibraryStates : MonoBehaviour
         }
     }
 
-    // Añadimos los estados a los al personaje que se lo aplique 
+    // Aï¿½adimos los estados a los al personaje que se lo aplique 
     // ya sea alguno de los aliados o enemigos
     public void AddState(GameObject target, string state)
     {
@@ -104,7 +103,7 @@ public class LibraryStates : MonoBehaviour
             Stats targetStats = target.GetComponent<Stats>();
             StateData statedata = states[state.ToUpper()];
 
-            // Comprobamos la vida y calcula el daño que le aplicara
+            // Comprobamos la vida y calcula el daï¿½o que le aplicara
             if (targetStats.Health > (targetStats.Health - statedata.BaseDamage))
             {
                 targetStats.Health -= statedata.BaseDamage;
@@ -112,7 +111,7 @@ public class LibraryStates : MonoBehaviour
             }
             else
             {
-                // Calcula el daño y si se excede la salud del personaje se estable a 1
+                // Calcula el daï¿½o y si se excede la salud del personaje se estable a 1
                 float damageDone = (1 - targetStats.Health);
                 targetStats.Health = 1;
                 floatingText.ShowFloatingTextNumbers(target, damageDone, Color.magenta);

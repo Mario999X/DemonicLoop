@@ -18,16 +18,16 @@ MonoBehaviour:
     themselves at all costs.
   level: 1
   currentXP: 0
-  health: 368
-  maxHealth: 368
-  mana: 198
-  maxMana: 198
-  sp: 30
-  strength: 49
-  physicalDef: 66
-  magicAtk: 49
-  magicDef: 83
-  criticalChance: 68
+  health: 250
+  maxHealth: 250
+  mana: 200
+  maxMana: 200
+  sp: 0
+  strength: 20
+  physicalDef: 20
+  magicAtk: 20
+  magicDef: 20
+  criticalChance: 20
   listAtk:
   - {fileID: 11400000, guid: 5010e5fe204d1451790b554b2611313a, type: 2}
   cost: 1000

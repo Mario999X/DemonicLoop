@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
 
 public class CharacterMove
 {
@@ -108,9 +107,6 @@ public class CombatFlow : MonoBehaviour
 
     private SpecialMiniGame specialMiniGame;
 
-    GameObject panelGameObject;
-    private List<GameObject> panelPlayers = new();
-
     GameObject panelMiniGame;
     private List<GameObject> panelSpMini = new();
 
@@ -151,7 +147,6 @@ public class CombatFlow : MonoBehaviour
             AllyActionBarText = GameObject.Find("AllyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             EnemyActionBarText = GameObject.Find("EnemyActionBar").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
-            panelGameObject = GameObject.Find("PanelPlayers");
             panelMiniGame = GameObject.Find("PanelMiniGame");
 
             learningAttacksManager = GetComponent<LearningAttacksManager>();
@@ -172,7 +167,6 @@ public class CombatFlow : MonoBehaviour
             GameObject.Find("SpecialAttackButton").SetActive(false);
 
            
-            panelGameObject.SetActive(false);
             panelMiniGame.SetActive(false);
 
             LoadCombatOptionsButtons();
@@ -403,7 +397,7 @@ public class CombatFlow : MonoBehaviour
 
         if (!wait)
         {
-            this.character = player;
+            character = player;
 
             SetTextInAllyActionBar();
 
@@ -947,19 +941,11 @@ public class CombatFlow : MonoBehaviour
 
     private void CheckBattleStatus()
     {
-        
         if (enemys.Count == 0)
         {
             var experience = totalEXP / players.LongLength; // Reparto de experiencia
 
-            ActivatePanel();
-
             postBattleTeam.ActivatePanel();
-
-            foreach (Transform child in panelGameObject.transform)
-            {
-                panelPlayers.Add(child.gameObject);
-            }
 
             int[] LevelTemp = new int[players.Length];
 
@@ -986,7 +972,7 @@ public class CombatFlow : MonoBehaviour
 
                     if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax())
                     {
-                        Debug.Log("Tratando de aprender un ataque");
+                        //Debug.Log("Tratando de aprender un ataque");
                         charactersWhoCanLearnAnAttack.Add(new(p, possibleAttack));
                     }
                 }
@@ -1013,8 +999,6 @@ public class CombatFlow : MonoBehaviour
         else StartCoroutine(FinishBattle());
     }
 
-
-
     public IEnumerator FinishBattle()
     {
         if (enemys.Count == 0)
@@ -1024,8 +1008,6 @@ public class CombatFlow : MonoBehaviour
             yield return new WaitForSeconds(3);
             
             enterBattle.FinishBattleAndEnterOverworld();
-            DisablePanel();
-            ClearPanel();
         }
         if (players.Length == 0)
         {
@@ -1043,14 +1025,6 @@ public class CombatFlow : MonoBehaviour
         actualTurn = 0;
         moves = 0;
     }
-
-    public void ClearPanel()
-    {
-        for (int i = 0; i < players.Length; i++)
-        {
-            panelPlayers[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
-        }
-    }//Fin de ClearPanel
 
     public void ProcessingNewAttacks()
     {
@@ -1116,7 +1090,6 @@ public class CombatFlow : MonoBehaviour
     }//Fin de CheckAtkEnemy
 
 
-
     public void DeleteEnemyFromList(GameObject enemy)
     {
         enemys.Remove(enemy);
@@ -1165,10 +1138,6 @@ public class CombatFlow : MonoBehaviour
 
             someoneHasRevived.transform.SetAsLastSibling();
 
-            //GeneratePlayerDefeatedButton(someoneHasRevived); // Si queremos que el personaje revivido pueda atacar durante el turno
-
-            // Si NO queremos que el personaje revivido pueda atacar durante el turno
-
             character = someoneHasRevived;
             GeneratePlayerDefeatedButton(someoneHasRevived);
 
@@ -1215,15 +1184,6 @@ public class CombatFlow : MonoBehaviour
         EnemyActionBarText.transform.parent.gameObject.SetActive(false);
     }
 
-    private void ActivatePanel()
-    {
-        panelGameObject.SetActive(true);
-    }
-    private void DisablePanel()
-    {
-        panelGameObject.SetActive(false);
-        AudioManager.Instance.PlaySoundButtons();
-    }
     private void ActivatePanelSpMini()
     {
         panelMiniGame.SetActive(true);

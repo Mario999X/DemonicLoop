@@ -1086,10 +1086,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4980899908976841439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.019464076, y: 0.03868324}
-  m_AnchorMax: {x: 0.23753594, y: 0.13679191}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 210, y: 147}
+  m_SizeDelta: {x: 419, y: 106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4439762589885612947
 CanvasRenderer:
@@ -1121,8 +1121,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Saving...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2b282b313ae1e4962adbc9a9a1fd70dc, type: 2}
+  m_sharedMaterial: {fileID: -4594004755094400795, guid: 2b282b313ae1e4962adbc9a9a1fd70dc,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1146,17 +1147,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 20
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1201,7 +1202,7 @@ GameObject:
   - component: {fileID: 7255925403829870101}
   - component: {fileID: 1532063309171167002}
   m_Layer: 5
-  m_Name: Guardando
+  m_Name: SavingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2641,10 +2642,16 @@ MonoBehaviour:
   - {fileID: 9014782617563343838, guid: 8e6fb476fd4ce47d2881ca06beb348a8, type: 3}
   - {fileID: 7486560601053180396, guid: a4fa19ef85a68447aad2c81f6ba9e0c0, type: 3}
   - {fileID: 7486560601053180396, guid: e22ec25839ce64c0a857c3d0784c3735, type: 3}
+  - {fileID: 7486560601053180396, guid: e84a6fc945a4e471a8e5da577fdf105a, type: 3}
+  - {fileID: 7486560601053180396, guid: 717144eab23ae4d389086b7b3f15f7c1, type: 3}
+  - {fileID: 9014782617563343838, guid: dea072dff22c246879d3505750f02b57, type: 3}
   enemyPrefabsLevel3:
   - {fileID: 9014782617563343838, guid: ec39efa780b9f41eca9c75f95fa88b17, type: 3}
-  - {fileID: 7486560601053180396, guid: a4fa19ef85a68447aad2c81f6ba9e0c0, type: 3}
+  - {fileID: 7486560601053180396, guid: 79832e4872e0c450399686c7ef56347b, type: 3}
   - {fileID: 7486560601053180396, guid: ec9bdb8a6eb044ce59150eba9a372678, type: 3}
+  - {fileID: 7486560601053180396, guid: e22ec25839ce64c0a857c3d0784c3735, type: 3}
+  - {fileID: 7486560601053180396, guid: a4fa19ef85a68447aad2c81f6ba9e0c0, type: 3}
+  - {fileID: 9014782617563343838, guid: 8e6fb476fd4ce47d2881ca06beb348a8, type: 3}
   mimicEnemy: {fileID: 7486560601053180396, guid: 6de951144b3734acfaab363510a99ca6,
     type: 3}
   boss1: {fileID: 9014782617563343838, guid: 5644c94beb0beba4fa78221247de9525, type: 3}

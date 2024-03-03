@@ -702,11 +702,11 @@ MonoBehaviour:
   maxMana: 100
   sp: 0
   maxSP: 100
-  canYouLaunchAnSpecialAtk: 1
+  canYouLaunchAnSpecialAtk: 0
   strength: 5
-  physicalDef: 2
-  magicAtk: 2
-  magicDef: 2
+  physicalDef: 5
+  magicAtk: 5
+  magicDef: 5
   criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: 704a0b26cca6b4f709360cb24ed98f9a, type: 2}

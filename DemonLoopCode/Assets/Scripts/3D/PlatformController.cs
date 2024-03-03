@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlatformController : SaveSystem
 {
-    SaveSystem controller;
-
     bool done = false;
 
     // Cuando el jugador se ponga encima del pedestal de guardado este guardara la partida.
@@ -12,9 +10,9 @@ public class PlatformController : SaveSystem
     {
         if (other.gameObject.layer == 3 && !done)
         {
-            Debug.Log("El jugador entro en la plataforma.");
+            //Debug.Log("El jugador entro en la plataforma.");
             SaveData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, true);
-            StartCoroutine(saving());
+            StartCoroutine(Saving());
             done = true;
         }
     }
@@ -27,9 +25,9 @@ public class PlatformController : SaveSystem
     }
 
     // Muestra un texto al jugador para que sepa que la partida se ha guardado.
-    IEnumerator saving()
+    IEnumerator Saving()
     {
-        Canvas canvas = GameObject.Find("Guardando").GetComponent<Canvas>();
+        Canvas canvas = GameObject.Find("SavingText").GetComponent<Canvas>();
         canvas.enabled = true;
 
         yield return new WaitForSeconds(1f);

@@ -702,7 +702,7 @@ MonoBehaviour:
   maxMana: 100
   sp: 0
   maxSP: 100
-  canYouLaunchAnSpecialAtk: 1
+  canYouLaunchAnSpecialAtk: 0
   strength: 5
   physicalDef: 2
   magicAtk: 2
@@ -715,8 +715,8 @@ MonoBehaviour:
   type: 0
   typeIcon: {fileID: 0}
   atkSpecial: {fileID: 0}
-  moneyDrop: 50
-  dropXP: 100
+  moneyDrop: 25
+  dropXP: 130
   moneyRefinedDrop: 0
   boss: 0
   actualStates: []

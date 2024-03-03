@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Clase encargada de manejar el panel de aprendizaje de ataques. 
 public class LearningAttacksManager : MonoBehaviour
 {
     [SerializeField] private GameObject buttonRef;
@@ -72,8 +73,6 @@ public class LearningAttacksManager : MonoBehaviour
             done = false;
         }
 
-        //Debug.Log(character + " " + oldAttackSelected);
-
     }
 
     private void LocateInterface()
@@ -139,6 +138,8 @@ public class LearningAttacksManager : MonoBehaviour
         learningAttacksPanel.SetActive(true);
     }
 
+    // Funcion para poner la informacion del ataque que se quiera olvidar sobre el panel correspondiente. 
+    // Activamos el boton de olvidar y aprender con el ataque antiguo seleccionado. 
     private void SetOldAttackToForget(string movement)
     {
         oldAttackSelected = library.CheckAttack(movement);
@@ -193,6 +194,7 @@ public class LearningAttacksManager : MonoBehaviour
         learnAttackBtn.GetComponent<Button>().onClick.AddListener(delegate { ForgetOldAttackAndLearnNewAttack(); });
     }
 
+    // Funcion para poner la informacion del ataque nuevo que se este tratando de aprender.
     public void SetNewAttackInfo(GameObject characterAsociated, AttackData newAttackAsociated)
     {
         character = characterAsociated;

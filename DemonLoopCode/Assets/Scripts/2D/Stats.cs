@@ -3,11 +3,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Posibles roles de los personajes
 public enum CharacterRol
 {
     Tank, Priest, Wizard, Knight
 }
 
+// Clase de estadisticas para los personajes.
 public class Stats : MonoBehaviour
 {
     private Image barHP;
@@ -58,7 +60,7 @@ public class Stats : MonoBehaviour
 
     bool attacking = false;
 
-    [SerializeField] List<ActualStateData> actualStates = new List<ActualStateData>();
+    [SerializeField] List<ActualStateData> actualStates = new();
 
     public bool Attacking { get { return attacking; } }
     public CharacterRol Rol { get { return rol; } }
@@ -91,6 +93,7 @@ public class Stats : MonoBehaviour
     public string AtkSpecial { get { return ObtainNameAttackSpecial(); } }
     public bool Boss { get { return boss; } }
 
+    // Funcion usada para las animaciones de combate
     private void AnimationAttack()
     {
         attacking = !attacking;
@@ -121,20 +124,18 @@ public class Stats : MonoBehaviour
     }
 
     // Si en el caso de de que el jugador tenga mas ataques no podra usarlo
-    // Solo puede usar 4 ataques que son los espacios acordados
+    // Solo puede aprender 4 ataques.
     public bool CheckListAtkMax()
     {
-        var space = true;
+        var canILearn = true;
 
         if (listAtk.Count >= 4)
         {
-            space = false;
-
-            Debug.Log(gameObject.name + " Ya tiene 4 ataques, no es posible agregar mas");
+            canILearn = false;
         }
 
-        return space;
-    }//Fin de CheckListAtk
+        return canILearn;
+    }
 
     private void OnAttackReceived()
     {
@@ -154,7 +155,7 @@ public class Stats : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-    }//Fin de OnAttackReceived
+    }
 
     private void OnManaChanged()
     {

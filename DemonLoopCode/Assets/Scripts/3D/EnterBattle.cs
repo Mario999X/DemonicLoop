@@ -137,7 +137,7 @@ public class EnterBattle : MonoBehaviour
 
             StartCoroutine(CrossfadeAnimation());
 
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); // Genera los botones.
+            StartCoroutine(GetComponent<CombatFlow>().FindEnemiesAndCreateAlliesButtons()); // Genera los botones.
 
             //Cuando entremos en combate suena la musica
             AudioManager.Instance.PlaySoundCombat();

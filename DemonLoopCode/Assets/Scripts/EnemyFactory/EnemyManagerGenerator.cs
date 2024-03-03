@@ -4,18 +4,18 @@ using UnityEngine;
 public class EnemyManagerGenerator : MonoBehaviour
 {
     [Header("Normal Enemies")]
-    [SerializeField] GameObject[] enemyPrefabsLevel1;
+    [SerializeField] GameObject[] enemyPrefabsLevel1; // 1
 
-    [SerializeField] GameObject[] enemyPrefabsLevel2;
+    [SerializeField] GameObject[] enemyPrefabsLevel2; // 2
 
-    [SerializeField] GameObject[] enemyPrefabsLevel3;
+    [SerializeField] GameObject[] enemyPrefabsLevel3; // 3
 
     [Header("Special Enemies")]
-    [SerializeField] GameObject mimicEnemy;
+    [SerializeField] GameObject mimicEnemy; // 0
 
-    [SerializeField] GameObject boss1;
-    [SerializeField] GameObject boss2;
-    [SerializeField] GameObject boss3;
+    [SerializeField] GameObject boss1; // 4
+    [SerializeField] GameObject boss2; // 5
+    [SerializeField] GameObject boss3; // 6
 
     // Funcion para generar los demonios segun el nivel de amenaza que se indique.
     public GameObject GenerateDemon(int disasterLevel)
@@ -24,8 +24,8 @@ public class EnemyManagerGenerator : MonoBehaviour
         int randomDemon;
 
         switch (disasterLevel)
-        {
-            case 0: // Mimic Enemy
+        {   
+            case 0:
                 demon = mimicEnemy;
                 break;
 
@@ -48,7 +48,6 @@ public class EnemyManagerGenerator : MonoBehaviour
                 demon = enemyPrefabsLevel3[randomDemon];
                 break;
 
-            // Bosses Enemies
             case 4: 
                 demon = boss1;
                 break;
@@ -62,8 +61,6 @@ public class EnemyManagerGenerator : MonoBehaviour
                 break;
                 
         }
-
         return demon;
     }
-
 }

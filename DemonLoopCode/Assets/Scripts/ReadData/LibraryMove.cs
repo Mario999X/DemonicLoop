@@ -23,8 +23,6 @@ public class LibraryMove : MonoBehaviour
 
     private FloatingTextCombat floatingText;
 
-    private float spCountBar;
-
     private void Start()
     {
         LoadAttacks();
@@ -33,8 +31,8 @@ public class LibraryMove : MonoBehaviour
     }
 
 
-    // Función que realiza un movimiento a un solo objetivo.
-    public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary, LibraryBattleModifiers battleModifiersLibrary,float spCountBar)
+    // Funcion que realiza un ataque.
+    public void Library(GameObject character, GameObject target, string movement, LibraryStates statesLibrary, LibraryBattleModifiers battleModifiersLibrary)
     {
         this.character = character;
         this.target = target;
@@ -42,14 +40,9 @@ public class LibraryMove : MonoBehaviour
         Stats target_ST = target.GetComponent<Stats>();
         Stats character_ST = character.GetComponent<Stats>();
 
-        this.spCountBar = spCountBar;
-
         var attack = CheckAttack(movement);
 
         var healOrAttack = CheckAttackOrHeal(movement);
-
-        var atkSp=CheckSpeacialAttack(movement);
-
 
         if (!healOrAttack)
         {
@@ -63,14 +56,8 @@ public class LibraryMove : MonoBehaviour
             else
             {
                 float damage = DamageFull(target_ST, character_ST, attack);
-                if (atkSp)
-                {
-                    target_ST.Health -= damage*spCountBar;
-                }
-                else
-                {
-                    target_ST.Health -= damage;
-                }
+                
+                target_ST.Health -= damage;
             }
 
         }
@@ -78,16 +65,9 @@ public class LibraryMove : MonoBehaviour
         {
             if (attack.BaseDamage != 0)
             {
-                if (atkSp)
-                {
-                    target_ST.Health += attack.BaseDamage*spCountBar;
-                }
-                else
-                {
-                    target_ST.Health += attack.BaseDamage;
-                }
+                target_ST.Health += attack.BaseDamage;
 
-                    floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
+                floatingText.ShowFloatingTextNumbers(target, attack.BaseDamage, Color.green);
             }
 
         }
@@ -99,7 +79,7 @@ public class LibraryMove : MonoBehaviour
         if (attack.ManaCost != 0) ManaManager(attack, character_ST);
 
         character = null; target = null;
-    }//Fin de Library
+    }
 
 
     // Carga inicial de ataques a la "cache"
@@ -112,10 +92,8 @@ public class LibraryMove : MonoBehaviour
             string atkName = attackData.name.Substring(4, attackData.name.Length - 4).Replace("^", " ").ToUpper();
 
             attackCache.Add(atkName, attackData);
-
-            //Debug.Log("Ataque " + atkName + " | danno base " + (@object as AttackData).BaseDamage + " | LOADED TO CACHE");
         }
-    }//Fin de LoadAttacks
+    }
 
 
     // Se llama para recibir la clase base de ataques. Se obtiene su informacion esencial.
@@ -127,16 +105,14 @@ public class LibraryMove : MonoBehaviour
         {
             attackData = attackCache[movement.ToUpper()];
 
-            //Debug.Log("Ataque " + movement.ToUpper() + " | danno base " + attackData.BaseDamage.ToString() + " | CACHE");
         }
         else
         {
-            Debug.Log("ATAQUE NO ENCONTRADO, RECURRIENDO A PUNCH");
 
             attackData = attackCache["PUNCH"];
         }
         return attackData;
-    }//Fin de CheckAttack
+    }
 
     // Comprobamos si el ataque es para hacer daño o para curar.
     public bool CheckAttackOrHeal(string movementName)
@@ -151,7 +127,7 @@ public class LibraryMove : MonoBehaviour
         }
 
         return healing;
-    }//Fin de CheckAttackOrHeal
+    }
 
     // Comprobamos si el ataque es AOE o single-target
     public bool CheckAoeAttack(string movementName)
@@ -166,7 +142,7 @@ public class LibraryMove : MonoBehaviour
         }
 
         return isAOE;
-    }//Fin de CheckAoeAttack
+    }
 
 
     //Comprueba si es un ATK Special
@@ -182,7 +158,7 @@ public class LibraryMove : MonoBehaviour
         }
 
         return isSpecial;
-    }//Fin de CheckSpeacialAttack
+    }
 
     public bool CheckIfAtkSpecialPoints(GameObject characterST, string movementName)
     {
@@ -234,8 +210,7 @@ public class LibraryMove : MonoBehaviour
 
         float criticalDamage = CriticalDamage(character_ST.CriticalChance);
 
-        //Lo hemos hecho asi para que se vea mejor
-        damage = (attack.BaseDamage + damagePhyAttack + damageMagic - defenseMagic - defensePhy);
+        damage = attack.BaseDamage + damagePhyAttack + damageMagic - defenseMagic - defensePhy;
         damage = (damageType * damage) + (damageTypeEnhancer * damage);
         damage *= criticalDamage;
 
@@ -247,9 +222,6 @@ public class LibraryMove : MonoBehaviour
 
         }
         else floatingText.ShowFloatingTextNumbers(target, damage, Color.white);
-
-
-        Debug.Log(character_ST.name + " ataca a " + target_ST.name + " con ataque: " + attack.name + " con un daño de: " + damage);
 
         if (attack.LifeTheft)
         {
@@ -265,18 +237,20 @@ public class LibraryMove : MonoBehaviour
             floatingText.ShowFloatingTextNumbers(target, -damage, Color.blue);
         }
 
-        //En el caso de que sea attack.Special (El Special nombre provisional) 
-        //Es que el ataque es tan fuerte que te quita hasta vida
+        if(attack.IsSpecial)
+        {
+            character_ST.SP -= attack.PointSpecial; 
+            damage += GetComponent<SpecialMiniGame>().TotalPress/5;
+        }
+
         if (attack.Berserker)
         {
             character_ST.Health -= attack.BaseDamage / 2;
             floatingText.ShowFloatingTextNumbers(character, attack.BaseDamage, Color.red);
         }
 
-
-
         return damage;
-    }//Fin de DamageFull
+    }
 
     private float DamageType(Stats target_ST, AttackData attack)
     {
@@ -362,31 +336,25 @@ public class LibraryMove : MonoBehaviour
         {
             case ActionStates.Inflict:
                 if (Random.Range(0, 100) < attack.ProbabilityOfState)
-                {
                     statesLibrary.AddState(targetToApplyState, attack.StateGenerated);
-                }
 
                 break;
 
             case ActionStates.Heal:
-                Debug.Log("targetToApplyState " + targetToApplyState);
-                Debug.Log("attack " + attack.StateGenerated);
                 statesLibrary.RemoveCharacterWithState(targetToApplyState, attack.StateGenerated);
 
                 break;
         }
 
         yield return new WaitForSeconds(0.001f);
-
     }
 
     private void ManaManager(AttackData attack, Stats characterStats)
     {
         characterStats.Mana -= attack.ManaCost;
 
-        // Para hacerlo más facil de ver visualmente, los ataques fisicos cuentan con un -, asi esos se vuelven positivos y los "positivos reales" se muestran negativos.
+        // Para hacerlo mas facil de ver visualmente, los ataques fisicos cuentan con un -, asi esos se vuelven positivos y los "positivos reales" se muestran negativos.
         floatingText.ShowFloatingTextNumbers(characterStats.gameObject, -attack.ManaCost, Color.blue);
     }
-
 
 }

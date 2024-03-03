@@ -31,6 +31,6 @@ MonoBehaviour:
   criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: 8650a099b9cb04ea8ae048e1380cad52, type: 2}
-  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
+  - {fileID: 11400000, guid: 01308935cd98346e8a552d97513ef003, type: 2}
   cost: 0
   protagonist: 1

@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Clase encargada de la vista de ajustes.
 public class SettingsMenuScript : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
@@ -49,7 +50,7 @@ public class SettingsMenuScript : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title")
         {
-            returnToTitleBtn.gameObject.SetActive(false);
+            returnToTitleBtn.gameObject.SetActive(false); // Si estamos en el titulo, este boton no se muestra.
 
             done = true;
         } else if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
@@ -60,6 +61,7 @@ public class SettingsMenuScript : MonoBehaviour
         }
     }
 
+    // Recogemos las resoluciones posibles del equipo y las mostramos en el dropdown de resoluciones.
     private void SetResolutionsInArrayAndDropdown()
     {
         resolutions = Screen.resolutions;
@@ -84,6 +86,7 @@ public class SettingsMenuScript : MonoBehaviour
         resolutionsDropdown.RefreshShownValue();
     }
 
+    // Funcion para manejar el volumen general del juego.
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("MainVolume", volume);
@@ -91,6 +94,7 @@ public class SettingsMenuScript : MonoBehaviour
         PlayerPrefs.SetFloat("MainVolume", volume);
     }
 
+    // Funcion para manejar el volumen de los efectos sonoros del juego.
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFXVolume", volume);
@@ -98,6 +102,7 @@ public class SettingsMenuScript : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
+    // Funcion para manejar el volumen de la musica del juego.
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("MusicVolume", volume);
@@ -105,6 +110,7 @@ public class SettingsMenuScript : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 
+    // Funcion para poner los valores almacenados en PlayerPreferences.
     private void SetDefaultValuesOnVolumeSliders()
     {
         var mainVolume = PlayerPrefs.GetFloat("MainVolume");
@@ -124,17 +130,20 @@ public class SettingsMenuScript : MonoBehaviour
         GameObject.Find("MusicVolumeSlider").GetComponent<Slider>().value = musicVolume;
     }
 
+    // Funcion para la pantalla completa.
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
     }
 
+    // Funcion para poner el valor por defecto en el Toogle.
     private void SetDefaultValueFullScreen()
     {
         if(Screen.fullScreen) GameObject.Find("FullScreenToogle").GetComponent<Toggle>().isOn = true;
         else GameObject.Find("FullScreenToogle").GetComponent<Toggle>().isOn = false;
     }
 
+    // Funcion para cambiar la resolucion del juego.
     public void SetResolution(int resolutionIndex)
     {
         var selectedResolution = resolutions[resolutionIndex];
@@ -142,6 +151,7 @@ public class SettingsMenuScript : MonoBehaviour
         Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
     }
 
+    // Funcion para esconder la vista de ajustes.
     public void HideSettingsView()
     {
         GetComponent<Canvas>().enabled = false;

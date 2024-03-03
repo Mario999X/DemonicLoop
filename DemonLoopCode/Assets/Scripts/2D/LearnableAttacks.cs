@@ -1,8 +1,9 @@
 using UnityEngine;
 
+// Clase encargada de mantener la informacion de los ataques que puede aprender un personaje segun su nivel.
 public class LearnableAttacks : MonoBehaviour
 {
-    [SerializeField] AttackData[] ownLearnableAttacks;
+    [SerializeField] private AttackData[] ownLearnableAttacks;
 
     public bool CanILearnAttack(int level)
     {

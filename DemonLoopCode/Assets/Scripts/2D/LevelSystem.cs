@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Clase encargada de manejar los niveles de los personajes.
 public class LevelSystem : MonoBehaviour
 {
     private Stats characterST;
@@ -11,17 +12,21 @@ public class LevelSystem : MonoBehaviour
     [SerializeField][Range(2f, 4f)] private float powerMultiplier = 2;
     [SerializeField][Range(7f, 14f)] private float divisionMultiplier = 7;
 
+    // --- STAT NUMBER UPGRADE ---
     private const float NormalStatUpgrade = 2;
 
     private const float EffectiveStatUpgrade = 4;
 
     private const float CriticalStatUpgrade = 3;
 
+    // --- XP AND MONEY DROP ENEMY
+    private const int EnemyDropXP = 30;
+    private const int EnemyDropMoney = 30;
+
     private void Awake()
     {
         characterST = GetComponent<Stats>();
         
-
         if (characterST.CompareTag("Player"))
         {
             characterLearneableAttacks = GetComponent<LearnableAttacks>();
@@ -30,22 +35,17 @@ public class LevelSystem : MonoBehaviour
         }
     }
 
+    // Funcion para obtener experiencia. Si se da la condicion, se sube de nivel.
     public void GainExperienceFlatRate(float xpGained)
     {
         characterST.CurrentXP += xpGained;
 
-        Debug.Log("Personaje: " + characterST.name + " obtiene experiencia " + xpGained);
-
-        if (characterST.CurrentXP > requiredXP)
-        {
-            LevelUp();
-        }
+        if (characterST.CurrentXP > requiredXP) LevelUp();
     }
 
+    // Funcion para subir de nivel. Se actualiza la informacion necesaria y se calcula la nueva experiencia requerida.
     private void LevelUp()
     {
-        //Debug.Log("Personaje: " + characterST.name + " subio de nivel");
-
         characterST.Level++;
 
         characterST.SetLevelText(characterST.Level);
@@ -57,8 +57,8 @@ public class LevelSystem : MonoBehaviour
         requiredXP = CalculateRequireXp();
     }
 
-
-
+    // Funcion para subir de nivel al enemigo. No se tiene en cuenta la experiencia requerida y 
+    // se tiene en cuenta la experiencia y el dinero que pueden soltar al subir de nivel.
     public void SetLevelEnemy(int setLevel)
     {
         if (characterST.GetComponent<Stats>().Level < setLevel)
@@ -68,17 +68,15 @@ public class LevelSystem : MonoBehaviour
                 characterST.GetComponent<Stats>().Level++;
                 IncrementStats();
 
-                characterST.GetComponent<Stats>().DropXP += 30;
-                characterST.GetComponent<Stats>().MoneyDrop += 30;
-
-                //Debug.Log("Enemigo: " + characterST.GetComponent<Stats>().name + " subio de nivel: " + characterST.GetComponent<Stats>().Level);
+                characterST.GetComponent<Stats>().DropXP += EnemyDropXP;
+                characterST.GetComponent<Stats>().MoneyDrop += EnemyDropMoney;
             }
         }
     }
 
+    // Funcion para incrementar las estadisticas segun el rol del personaje.
     private void IncrementStats()
     {
-        
         switch (characterST.Rol)
         {
             case CharacterRol.Tank:
@@ -120,7 +118,6 @@ public class LevelSystem : MonoBehaviour
                 characterST.MagicDef += NormalStatUpgrade;
                 characterST.CriticalChance += CriticalStatUpgrade;
                 break;
-
         }
 
         characterST.Health = characterST.MaxHealth;
@@ -147,8 +144,6 @@ public class LevelSystem : MonoBehaviour
         }
 
         return solveForRequireXp / 4;
-
     }
-
 
 }

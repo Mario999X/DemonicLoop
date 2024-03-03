@@ -2,8 +2,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
+// Clase encargada de manejar el panel de post batalla.
 public class PostBattleTeam : MonoBehaviour
 {
     GameObject postBattleTeamPanel;
@@ -18,63 +18,63 @@ public class PostBattleTeam : MonoBehaviour
     private Scene scene;
     private bool done = false;
 
-    // Imagenes Team
+    // Sprites Team
     private GameObject unit1;
     private GameObject unit2;
     private GameObject unit3;
     private GameObject unit4;
 
-    // Texts about the new Stats unit1
+    // Texts about the Stats unit1
     private TextMeshProUGUI unit1Text;
     private TextMeshProUGUI lvL1Text;
     private TextMeshProUGUI hp1Text;
     private TextMeshProUGUI mana1Text;
     private TextMeshProUGUI sp1Text;
-    private TextMeshProUGUI strenght1Text; //fuerza
+    private TextMeshProUGUI strenght1Text;
     private TextMeshProUGUI physicalDefense1Text;
     private TextMeshProUGUI magicAtk1Text;
     private TextMeshProUGUI magicDef1Text;
     private TextMeshProUGUI criticalChance1Text;
 
 
-    // Texts about the new Stats unit2
+    // Texts about the Stats unit2
     private TextMeshProUGUI unit2Text;
     private TextMeshProUGUI lvL2Text;
     private TextMeshProUGUI hp2Text;
     private TextMeshProUGUI mana2Text;
     private TextMeshProUGUI sp2Text;
-    private TextMeshProUGUI strenght2Text; //fuerza
+    private TextMeshProUGUI strenght2Text;
     private TextMeshProUGUI physicalDefense2Text;
     private TextMeshProUGUI magicAtk2Text;
     private TextMeshProUGUI magicDef2Text;
     private TextMeshProUGUI criticalChance2Text;
 
-    // Texts about the new Stats unit3
+    // Texts about the Stats unit3
     private TextMeshProUGUI unit3Text;
     private TextMeshProUGUI lvL3Text;
     private TextMeshProUGUI hp3Text;
     private TextMeshProUGUI mana3Text;
     private TextMeshProUGUI sp3Text;
-    private TextMeshProUGUI strenght3Text; //fuerza
+    private TextMeshProUGUI strenght3Text;
     private TextMeshProUGUI physicalDefense3Text;
     private TextMeshProUGUI magicAtk3Text;
     private TextMeshProUGUI magicDef3Text;
     private TextMeshProUGUI criticalChance3Text;
 
-    // Texts about the new Stats unit4
+    // Texts about the Stats unit4
     private TextMeshProUGUI unit4Text;
     private TextMeshProUGUI lvL4Text;
     private TextMeshProUGUI hp4Text;
     private TextMeshProUGUI mana4Text;
     private TextMeshProUGUI sp4Text;
-    private TextMeshProUGUI strenght4Text; //fuerza
+    private TextMeshProUGUI strenght4Text;
     private TextMeshProUGUI physicalDefense4Text;
     private TextMeshProUGUI magicAtk4Text;
     private TextMeshProUGUI magicDef4Text;
     private TextMeshProUGUI criticalChance4Text;
 
-
     GameObject alliesBattleZone;
+
     private void Update()
     {
         if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
@@ -94,8 +94,6 @@ public class PostBattleTeam : MonoBehaviour
         {
             done = false;
         }
-
-
     }
 
     private void LocateInterface()
@@ -103,7 +101,7 @@ public class PostBattleTeam : MonoBehaviour
         postBattleTeamPanel = GameObject.Find("PostBattleTeamPanel");
         alliesBattleZone = GameObject.Find("AlliesBattleZone");
 
-        // Imagenes Team
+        // Sprites Team
         unit1 = GameObject.Find("Unit1");
         unit2 = GameObject.Find("Unit2");
         unit3 = GameObject.Find("Unit3");
@@ -116,7 +114,6 @@ public class PostBattleTeam : MonoBehaviour
         infoNewStatsPanel4 = postBattleTeamPanel.transform.GetChild(7).gameObject;
 
         // Unidad 1
-
         unit1Text = infoNewStatsPanel1.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         lvL1Text = infoNewStatsPanel1.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         hp1Text = infoNewStatsPanel1.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
@@ -128,9 +125,7 @@ public class PostBattleTeam : MonoBehaviour
         magicDef1Text = infoNewStatsPanel1.transform.GetChild(8).gameObject.GetComponent<TextMeshProUGUI>();
         criticalChance1Text = infoNewStatsPanel1.transform.GetChild(9).gameObject.GetComponent<TextMeshProUGUI>();
 
-
         // Unidad 2
-
         unit2Text = infoNewStatsPanel2.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         lvL2Text = infoNewStatsPanel2.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         hp2Text = infoNewStatsPanel2.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
@@ -144,7 +139,6 @@ public class PostBattleTeam : MonoBehaviour
 
 
         // Unidad 3
-
         unit3Text = infoNewStatsPanel3.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         lvL3Text = infoNewStatsPanel3.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         hp3Text = infoNewStatsPanel3.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
@@ -157,7 +151,6 @@ public class PostBattleTeam : MonoBehaviour
         criticalChance3Text = infoNewStatsPanel3.transform.GetChild(9).gameObject.GetComponent<TextMeshProUGUI>();
 
         // Unidad 4
-
         unit4Text = infoNewStatsPanel4.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         lvL4Text = infoNewStatsPanel4.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
         hp4Text = infoNewStatsPanel4.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>();
@@ -168,19 +161,15 @@ public class PostBattleTeam : MonoBehaviour
         magicAtk4Text = infoNewStatsPanel4.transform.GetChild(7).gameObject.GetComponent<TextMeshProUGUI>();
         magicDef4Text = infoNewStatsPanel4.transform.GetChild(8).gameObject.GetComponent<TextMeshProUGUI>();
         criticalChance4Text = infoNewStatsPanel4.transform.GetChild(9).gameObject.GetComponent<TextMeshProUGUI>();
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
-
+    // Funcion encargada de preparar la informacion en el panel. Luego esconde y borra la informacion para la proxima aparicion.
     public IEnumerator InfoPanelTeam(GameObject[] players)
     {
-
         for (int i = 0; i < players.Length; i++)
         {
-            GameObject playerPrefab=alliesBattleZone.transform.GetChild(i).gameObject.transform.GetChild(3).gameObject;
+            GameObject playerPrefab = alliesBattleZone.transform.GetChild(i).gameObject.transform.GetChild(3).gameObject;
 
-            Debug.Log("id: " + i+" nombre: " + players[i].name);
             switch (i)
             {
                 case 0:
@@ -271,19 +260,16 @@ public class PostBattleTeam : MonoBehaviour
 
     public void HideInterfacePostBattle()
     {
-
         postBattleTeamPanel.SetActive(false);
         infoNewStatsPanel1.SetActive(false);
         infoNewStatsPanel2.SetActive(false);
         infoNewStatsPanel3.SetActive(false);
         infoNewStatsPanel4.SetActive(false);
-        unit1.gameObject.SetActive(false);
-        unit2.gameObject.SetActive(false);
-        unit3.gameObject.SetActive(false);
-        unit4.gameObject.SetActive(false);
-
+        unit1.SetActive(false);
+        unit2.SetActive(false);
+        unit3.SetActive(false);
+        unit4.SetActive(false);
     }
-
 
     public void ActivatePanel()
     {
@@ -293,6 +279,4 @@ public class PostBattleTeam : MonoBehaviour
         infoNewStatsPanel3.SetActive(true);
         infoNewStatsPanel4.SetActive(true);
     }
-
-
 }

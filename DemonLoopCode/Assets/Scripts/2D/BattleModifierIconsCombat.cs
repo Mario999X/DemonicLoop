@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Clase encargada de instanciar y eliminar los iconos de los modificadores de combate.
 public class BattleModifierIconsCombat : MonoBehaviour
 {
-
+    // Funcion para mostrar un icono de modificador de batalla.
     public void ShowBattleModifierIcon(GameObject character, BattleModifiers battleModifier)
     {
         GameObject iconObject = new(character.name + battleModifier.Icon.name);
@@ -17,6 +18,7 @@ public class BattleModifierIconsCombat : MonoBehaviour
         iconObject.transform.SetParent(character.GetComponent<Stats>().CharFloatingBattleModifierIconSpace.transform);
     }
 
+    // Funcion para eliminar un icono de modificador de batalla.
     public void DeleteBattleModifierIcon(GameObject character, BattleModifiers battleModifier)
     {
         var name = character.name + battleModifier.Icon.name;

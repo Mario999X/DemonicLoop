@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Clase principal para almacenamiento de datos y manejo de juego. Singleton.
 public class Data : MonoBehaviour
 {
     static Data instance;
@@ -14,6 +15,7 @@ public class Data : MonoBehaviour
     bool onRun = false;
     string sceneName;
 
+    // -- PLAYER TEAM LISTS
     [SerializeField] private List<StatsPersistenceData> charactersTeamStats = new();
 
     [SerializeField] private List<StatsPersistenceData> charactersBackupStats = new();
@@ -35,7 +37,6 @@ public class Data : MonoBehaviour
     LibraryStates libraryStates;
     DamageVisualEffect visualEffect;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance == null) { instance = this; }
@@ -47,10 +48,10 @@ public class Data : MonoBehaviour
         enterBattle = GetComponent<EnterBattle>();
         libraryStates = GetComponent<LibraryStates>();
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         foreach (StatsPersistenceData data in charactersTeamStats)
             data.Health = data.MaxHealth;
-#endif
+        #endif
     }
 
     void FixedUpdate()
@@ -67,11 +68,10 @@ public class Data : MonoBehaviour
             {
                 foreach (StatsPersistenceData data in charactersTeamStats)
                 {
-                    //Debug.Log(data.name);
 
                     if (data.ActualStates.Count > 0)
                     {
-                        List<ActualStateData> statesToRemove = new List<ActualStateData>();
+                        List<ActualStateData> statesToRemove = new();
 
                         visualEffect.Auch();
 
@@ -108,6 +108,7 @@ public class Data : MonoBehaviour
         }
     }
 
+    // Funcion para buscar a un personaje en especifico.
     public StatsPersistenceData SearchCharacterTeamStats(string characterName)
     {
         StatsPersistenceData charStats = null;
@@ -115,7 +116,6 @@ public class Data : MonoBehaviour
         charactersTeamStats.ForEach(x => {
             if (x.CharacterPB.name + "(Clone)" == characterName)
             {
-                //Debug.Log("x.CharacterPB.name(Clone)");
                 charStats = x;
             }
         });
@@ -123,54 +123,43 @@ public class Data : MonoBehaviour
         return charStats;
     }
 
+    // Funcion para intercambiar posiciones dentro del equipo activo.
     public void SwitchActiveTeamPositions(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
     {
         var firstIndex = charactersTeamStats.IndexOf(firstCharacter);
         var secondIndex = charactersTeamStats.IndexOf(secondCharacter);
 
-        //Debug.Log(firstIndex);
-        //Debug.Log(secondIndex);
-
         charactersTeamStats[firstIndex] = secondCharacter;
         charactersTeamStats[secondIndex] = firstCharacter;
     }
 
+    // Funcion para intercambiar posiciones dentro del equipo secundario.
     public void SwitchBackupTeamPositions(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
     {
         var firstIndex = charactersBackupStats.IndexOf(firstCharacter);
         var secondIndex = charactersBackupStats.IndexOf(secondCharacter);
 
-        //Debug.Log(firstIndex);
-        //Debug.Log(secondIndex);
-
         charactersBackupStats[firstIndex] = secondCharacter;
         charactersBackupStats[secondIndex] = firstCharacter;
     }
 
+    // Funcion para intercambiar posiciones entre el equipo activo y el secundario. Primer personaje siendo del Activo.
     public void SwitchBetweenTeamPositionsFirstCharActiveTeam(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
     {
         var firstIndex = charactersTeamStats.IndexOf(firstCharacter);
         var secondIndex = charactersBackupStats.IndexOf(secondCharacter);
 
-        //Debug.Log(firstIndex);
-        //Debug.Log(secondIndex);
-
         charactersTeamStats[firstIndex] = secondCharacter;
         charactersBackupStats[secondIndex] = firstCharacter;
     }
 
+    // Funcion para intercambiar posiciones entre el equipo activo y el secundario. Primer personaje del Secundario.
     public void SwitchBetweenTeamPositionsFirstCharBackupTeam(StatsPersistenceData firstCharacter, StatsPersistenceData secondCharacter)
     {
         var firstIndex = charactersBackupStats.IndexOf(firstCharacter);
         var secondIndex = charactersTeamStats.IndexOf(secondCharacter);
 
-        //Debug.Log(firstIndex);
-        //Debug.Log(secondIndex);
-
         charactersBackupStats[firstIndex] = secondCharacter;
         charactersTeamStats[secondIndex] = firstCharacter;
     }
-
-
-    
 }

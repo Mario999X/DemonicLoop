@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,20 +6,21 @@ using UnityEngine.UI;
 
 public class SpecialMiniGame : MonoBehaviour
 {
-    public Image barSpecial;
+    private Image barSpecial;
 
-    int countPress;
-    int totalPress;
+    private int countPress;
+    private int totalPress;
 
     [SerializeField] int timeInitial;
-    int timeLeft;
-    float increaseBar = 0f;
+    private int timeLeft;
+    private float increaseBar = 0f;
 
     TextMeshProUGUI textTime;
-    TextMeshProUGUI textInf;
     Scene scene;
     bool done = false;
+    
     public float IncreaseBar { get { return increaseBar; } set { increaseBar = value; } }
+    public int TotalPress { get { return totalPress; }}
 
 
     private void Update()
@@ -34,11 +33,8 @@ public class SpecialMiniGame : MonoBehaviour
 
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
         {
-            Debug.Log("Vuelta a cargar los componentes.");
-
             barSpecial = GameObject.Find("PanelMiniGame").transform.GetChild(0).GetComponent<Image>();
             textTime = GameObject.Find("PanelMiniGame").transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            textInf = GameObject.Find("PanelMiniGame").transform.GetChild(2).GetComponent<TextMeshProUGUI>();
             timeLeft = timeInitial;
             countPress = 0;
 
@@ -58,14 +54,15 @@ public class SpecialMiniGame : MonoBehaviour
         while (timeLeft > 0)
         {
             timeLeft -= Mathf.CeilToInt(Time.deltaTime);
-            ShowTime();
+            if (textTime != null) textTime.text = string.Format("{00:00}:{01:00}", timeLeft / 60, timeLeft % 60);
+
             yield return null;
 
             // Se ira subiendo la barra por cada vez que pulsemos la tecla
             if (Input.GetKeyDown(KeyCode.N))
             {
                 totalPress = ++countPress;
-                Debug.Log("countPress " + countPress);
+
                 if (barSpecial != null)
                 {
                     increaseBar += 0.01f;
@@ -82,7 +79,6 @@ public class SpecialMiniGame : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void Clear()
@@ -93,16 +89,4 @@ public class SpecialMiniGame : MonoBehaviour
         barSpecial.fillAmount = 0f;
         Mathf.Clamp01(barSpecial.fillAmount);
     }
-
-
-    //Mostramos el tiempo que le queda en un formato mas "bonito"
-    private void ShowTime()
-    {
-        if (textTime != null)
-        {
-            textTime.text = string.Format("{00:00}:{01:00}", timeLeft / 60, timeLeft % 60);
-        }
-    }
-
-
 }

@@ -16,7 +16,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private EnemyManagerGenerator enemyManagerGenerator;
     private const int MinNumEnemies = 1;
-    private const int MaxNumEnemies = 4;
+    private const int MaxNumEnemies = 4; // El maximo son en realidad 3
 
     void Start()
     {
@@ -30,11 +30,9 @@ public class EnemyGenerator : MonoBehaviour
     {
         int enemiesGenerated;
 
-        if (disasterLevel == 0 || disasterLevel > 3)
-        {
-            enemiesGenerated = 1;
-
-        } else
+        // En estos casos, los enemigos son unicos y solo se instancia 1.
+        if (disasterLevel == 0 || disasterLevel > 3) enemiesGenerated = 1;
+        else
         {
             enemiesGenerated = Random.Range(MinNumEnemies, MaxNumEnemies);
             GameObject gameObjectBody = transform.GetChild(2).gameObject;
@@ -60,13 +58,10 @@ public class EnemyGenerator : MonoBehaviour
                     demon3.transform.localPosition = Vector3.zero;
                 break;
             }
-        } 
+        }
 
         for(int i = 1; i <= enemiesGenerated; i++ ){
-
-            var enemy = enemyManagerGenerator.GenerateDemon(disasterLevel);
-            
-            listEnemies.Add(enemy);
+            listEnemies.Add(enemyManagerGenerator.GenerateDemon(disasterLevel));
         }
     }
 }

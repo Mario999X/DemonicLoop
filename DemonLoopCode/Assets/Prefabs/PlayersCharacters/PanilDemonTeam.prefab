@@ -703,7 +703,7 @@ MonoBehaviour:
   maxMana: 175
   sp: 30
   maxSP: 100
-  canYouLaunchAnSpecialAtk: 1
+  canYouLaunchAnSpecialAtk: 0
   strength: 35
   physicalDef: 52
   magicAtk: 35
@@ -720,6 +720,7 @@ MonoBehaviour:
   dropXP: 100
   moneyRefinedDrop: 0
   boss: 0
+  actualStates: []
 --- !u!114 &4000500002178715039
 MonoBehaviour:
   m_ObjectHideFlags: 0

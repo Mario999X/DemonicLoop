@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Clase encargada de manejar las animaciones de los enemigos en 3D.
 public class EnemyAnimationController : MonoBehaviour
 {
     private EnemyMechanics enemyMechanics;

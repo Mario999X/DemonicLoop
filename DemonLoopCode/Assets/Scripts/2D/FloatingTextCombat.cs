@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
 
+// Clase encargada de instanciar y eliminar informacion durante un combate, como daños aplicados o textos.
 public class FloatingTextCombat : MonoBehaviour
 {
-    [SerializeField] GameObject floatingTextPF;
-    [SerializeField] float destroyTime;
+    [SerializeField] private GameObject floatingTextPF;
+    [SerializeField] private float destroyTime;
 
     public void ShowFloatingTextNumbers(GameObject character, float number, Color color)
     {

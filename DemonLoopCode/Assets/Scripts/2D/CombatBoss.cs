@@ -1,15 +1,16 @@
 using System.Linq;
 using UnityEngine;
 
+// Clase encargada de manejar el comportamiento de los jefes finales en un combate.
 public class CombatBoss : MonoBehaviour
 {
-    [SerializeField] int bossNumber = 0;
+    [SerializeField] private int bossNumber = 0;
     private FloatingTextCombat floatingText;
-    [SerializeField] GameObject[] enemyPrefabsLevel;
-    [SerializeField] BattleModifiers[] battleModifiersDebuffs;
-    [SerializeField] BattleModifiers[] battleModifiersBuffs;
+    [SerializeField] private GameObject[] enemyPrefabsLevel;
+    [SerializeField] private BattleModifiers[] battleModifiersDebuffs;
+    [SerializeField] private BattleModifiers[] battleModifiersBuffs;
 
-    const int numHealth = 50;
+    private const int numHealth = 50;
     private CombatFlow combatFlow;
     private bool actionDone = false;
 
@@ -20,33 +21,31 @@ public class CombatBoss : MonoBehaviour
         combatFlow = GameObject.Find("System").GetComponent<CombatFlow>();
     }
 
+    // Funcion para aplicar el comportamiento de un jefe final.
     public void CheckAtkEnemyBoss(GameObject targetSelected, LibraryBattleModifiers libraryBattleModifiers)
     {
         switch(bossNumber)
         {
             case 1:
-                // Si el turno actual es divisible por 2 y de 0 se curara
                 if (combatFlow.ActualTurn % 2 == 0)
                 {
                     floatingText.ShowFloatingTextNumbers(gameObject, numHealth, Color.green);
 
                     GetComponent<Stats>().Health += numHealth;
                 }
-                // Si el turno actual es divisible por 5 y de 0 generara un enemigo
-                // aleatorio pero si son 4 enemigos ya en el combate no lo hara
-                else if (combatFlow.ActualTurn % 5 == 0)
+                
+                if (combatFlow.ActualTurn % 5 == 0)
                 {
                     int newEnemy = Random.Range(0, enemyPrefabsLevel.Length);
-                    if (combatFlow.NumEnemy() < 4)
+                    if (combatFlow.NumEnemy() < 3)
                     {
                         floatingText.ShowFloatingText(gameObject, "Invader summoned", Color.magenta);
                         Instantiate(enemyPrefabsLevel[newEnemy], GameObject.Find("EnemyBattleZone").transform);
-                        StartCoroutine(combatFlow.CreateButtons());
+                        StartCoroutine(combatFlow.FindEnemiesAndCreateAlliesButtons());
                     }
                 }
                 else
                 {
-                    // Se le aumentara el da�o critico de forma aleatoria
                     int c = Random.Range(0, 50);
                     GetComponent<Stats>().CriticalChance += c;
                 }
@@ -56,11 +55,9 @@ public class CombatBoss : MonoBehaviour
 
                 if(combatFlow.ActualTurn % 2 == 0)
                 {
-
                     floatingText.ShowFloatingText(gameObject, "Plague released", Color.yellow);
 
                     AddBattleModifierToRandomPlayer(libraryBattleModifiers);
-
                 }
                 
                 if(combatFlow.ActualTurn % 4 == 0)
@@ -114,8 +111,9 @@ public class CombatBoss : MonoBehaviour
 
            break;
         }
-    }//Fin de CheckAtkEnemyBoos
+    }
 
+    // Funcion usada para un comportamiento comun entre jefes finales. Se encarga de poner un modificador de batalla a un aliado.
     private void AddBattleModifierToRandomPlayer(LibraryBattleModifiers libraryBattleModifiers)
     {
         var players = combatFlow.Players;

@@ -327,8 +327,8 @@ MonoBehaviour:
   criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: 4c5ea8b2c908543dca34e4176a36f8d2, type: 2}
-  - {fileID: 11400000, guid: 116afbc48b1b2434ea1957ba9a54c0a4, type: 2}
   - {fileID: 11400000, guid: 39dca8f5444414b05ab06d213e8605b5, type: 2}
+  - {fileID: 11400000, guid: 39b7e227fbd6746b8b7e9b9c0ec6c104, type: 2}
   absorbsDamageOfSameType: 1
   type: 2
   typeIcon: {fileID: 0}

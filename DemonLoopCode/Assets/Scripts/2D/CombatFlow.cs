@@ -844,7 +844,7 @@ public class CombatFlow : MonoBehaviour
     // Funcion para comprobar el estado de la batalla.
     private void CheckBattleStatus()
     {
-        if (enemys.Count == 0)
+        if (GameObject.FindGameObjectsWithTag("Enemy").ToArray().Length == 0)
         {
             var experience = totalEXP / players.LongLength; // Reparto de experiencia
 

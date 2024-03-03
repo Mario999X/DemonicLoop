@@ -14,8 +14,6 @@ public class RandomMap : MonoBehaviour
     [Header("The last map of the list must be 100")]
     [SerializeField] int[] rarity;
 
-    [SerializeField] int actualroom;
-
     bool done = false;
 
     int room = 0;
@@ -28,16 +26,13 @@ public class RandomMap : MonoBehaviour
     {
         if (!done)
         {
+            // Carga los datos del mapa.
             room = Data.Instance.Room;
             saveRoom = Data.Instance.SaveRoom;
             floor = Data.Instance.Floor;
             bossRoom = Data.Instance.BossRoom;
 
-            actualroom = room;
-
-            Debug.Log(bossRoom);
-
-            if (room == bossRoom)
+            if (room == bossRoom) // Si el numero de la habitacion coincide con la sala del jefe este pondra la sala del jefe.
             {
                 Instantiate(bossRooms[floor], transform.position, Quaternion.identity);
 
@@ -47,14 +42,14 @@ public class RandomMap : MonoBehaviour
                 saveRoom = 0;
                 room = 0;
             }
-            else
+            else // En caso contrario...
             {
-                if (saveRoom == 4)
+                if (saveRoom == 4) // Si coincide con una sala de guardado pondra una.
                 {
                     Instantiate(oblMaps[0], transform.position, Quaternion.identity);
                     saveRoom = 0;
                 }
-                else
+                else // Sino pondra una sala normal de la lista de forma aleatoria.
                 {
                     bool finish = false;
 
@@ -73,6 +68,7 @@ public class RandomMap : MonoBehaviour
                 room++;
             }
 
+            // Guarda los datos de la sala.
             Data.Instance.SaveRoom = saveRoom;
             Data.Instance.Room = room;
             Data.Instance.Floor = floor;

@@ -16,20 +16,24 @@ public class DamageVisualEffect : MonoBehaviour
     void Start()
     {
         Vignette vig;
+        // Intentamos coger una parte en especifico de la camara.
         if (GetComponent<Volume>().profile.TryGet<Vignette>(out vig))
             vignette = vig;
     }
 
+    // Esta funcion se encarga de iniciar una animacion de palpitacion.
     public void Auch()
     {
         if (!wait)
-            StartCoroutine(palpitacion());
+            StartCoroutine(palpition());
     }
 
-    IEnumerator palpitacion()
+    // La animacion de palpitacion.
+    IEnumerator palpition()
     {
         wait = true;
 
+        // Se encargan de aumentar la intensidad del reborde.
         while (vignette.smoothness.value != smothnessEffect)
         {
             yield return new WaitForSeconds(0.0001f);
@@ -38,6 +42,7 @@ public class DamageVisualEffect : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        // Se encargan de disminuir la intensidad del reborde.
         while (vignette.smoothness.value != 0.01f)
         {
             yield return new WaitForSeconds(0.0001f);

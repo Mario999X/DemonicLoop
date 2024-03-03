@@ -15,15 +15,14 @@ public class SceneManager : MonoBehaviour
 
     void Awake()
     {
+        // Genera una instancia.
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     void Start()
@@ -35,7 +34,7 @@ public class SceneManager : MonoBehaviour
     // Carga la escena por el numero de posicion.
     public async void LoadScene(int scene)
     {
-        if (slider.value != 0)
+        if (slider.value != 0) // Si el valor del slider no es 0 lo pone a 0.
             slider.value = 0;
 
         AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
@@ -46,6 +45,7 @@ public class SceneManager : MonoBehaviour
         float progressValue;
 
         // Muestra por pantalla el progreso de carga de escena.
+        // En el caso que ya se ha cargado completamente se dara una falsa sensacion de carga.
         do
         {
             progressValue = Mathf.Clamp01(operation.progress / 0.9f);
@@ -67,7 +67,7 @@ public class SceneManager : MonoBehaviour
     // Carga la escena por su nombre.
     public async void LoadSceneName(string scene)
     {
-        if (slider.value != 0)
+        if (slider.value != 0) // Si el valor del slider no es 0 lo pone a 0.
             slider.value = 0;
 
         AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
@@ -78,6 +78,7 @@ public class SceneManager : MonoBehaviour
         float progressValue;
 
         // Muestra por pantalla el progreso de carga de escena.
+        // En el caso que ya se ha cargado completamente se dara una falsa sensacion de carga.
         do
         {
             progressValue = Mathf.Clamp01(operation.progress / 0.9f);
@@ -102,6 +103,7 @@ public class SceneManager : MonoBehaviour
         Application.Quit();
     }
 
+    // Muestra la pantalla de ajustes del juego.
     public void ShowSettingsView()
     {
         GameObject.Find("SettingsView").GetComponent<Canvas>().enabled = true;
@@ -115,12 +117,12 @@ public class SceneManager : MonoBehaviour
             SaveSystem.LoadData();
             GameObject play = GameObject.Find("Start");
 
-            if (!Data.Instance.OnRun)
+            if (!Data.Instance.OnRun) // Si no hay datos de una partida ya empezada se empezara una nueva.
             {
                 play.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "New Game";
                 play.GetComponent<Button>().onClick.AddListener(() => { LoadSceneName("Shop"); });
             }
-            else
+            else // En el caso contrario se continuara donde se dejo.
             {
                 play.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Continue";
                 play.GetComponent<Button>().onClick.AddListener(() => { LoadSceneName(Data.Instance.SceneName); });
@@ -129,7 +131,6 @@ public class SceneManager : MonoBehaviour
             GameObject.Find("Exit").GetComponent<Button>().onClick.AddListener(() => { ExitGame(); });
             GameObject.Find("Settings").GetComponent<Button>().onClick.AddListener(() => { ShowSettingsView(); });
             GameObject.Find("AppVerText").GetComponent<TextMeshProUGUI>().text = "App ver. " + Application.version;
-            Debug.Log("Done");
 
             done = true;
         }

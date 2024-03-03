@@ -12,26 +12,24 @@ public class LeverWithoutOrderData : MonoBehaviour
         manager = transform.parent.GetComponent<LeversManagerWithoutOrder>();
     }
 
+    // Activa y desactiva la palanca.
     public void ActivateDesactivateLever()
     {
         if(!isPuzzleDone)
         {
             isActivated = !isActivated;
 
-            if(isActivated)
-            {
-                Debug.Log("manager.gameObject.name" + manager.gameObject.name);
+            // Cambia su estado a activado.
+            if (isActivated)
                 manager.AddActivatedLever(); Debug.Log("Lever Activated");
-            } 
 
-            if(!isActivated)
-            {
+            // Cambia su estado a desactivado.
+            if (!isActivated)
                 manager.TakeInactiveLever(); Debug.Log("Lever Desactivated");
-            } 
-
-        } else Debug.Log("Puzzle finished");
+        }
     }
 
+    // Cambia el estado del puzle a completado.
     public void PuzzleDone()
     {
         isPuzzleDone = true;

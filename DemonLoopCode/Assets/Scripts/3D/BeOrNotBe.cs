@@ -9,8 +9,9 @@ public class BeOrNotBe : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float precent = (float) rarity / 100;
+        float precent = (float) rarity / 100; // 
 
+        // Si el valor obtenido del random es mayor al porcentaje, este destruye el objeto.
         if (Random.value >= precent)
             Destroy(gameObject);
     }

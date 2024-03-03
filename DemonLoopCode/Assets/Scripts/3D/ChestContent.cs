@@ -1,8 +1,10 @@
 using UnityEngine;
+
 public class Content
 {
     float money;
     int count;
+
     ScriptableObject data;
 
     public float Money { get { return money; } }
@@ -16,6 +18,7 @@ public class Content
         this.data = data;
     }
 }
+
 public class ChestContent : MonoBehaviour
 {
     [Header("Rango de dinero dado")]
@@ -26,6 +29,7 @@ public class ChestContent : MonoBehaviour
     [SerializeField] private int maxCount;
     [SerializeField] private int minCount;
 
+    // Establece los objetos, cantidad y dinero que otorgara el cofre de forma aleatoria.
     public Content chest()
     {
         ObjectData[] objectDatas = Resources.LoadAll<ObjectData>("Data/Objects"); // Busca todos loas assets que empiezan con "OBJ_".

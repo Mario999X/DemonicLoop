@@ -98,16 +98,5 @@ public class PlayerMove : MonoBehaviour
             speedV.y = 0;
         }
         else this.onFloor = false;
-
-        // Prueba para ver que no haya ningun error en el script 'Enter_Battle' al volver a la pantalla de titulo.
-        if (Input.GetKeyDown(KeyCode.M)) { SceneManager.Instance.LoadSceneName("Title"); }
-        if (Input.GetKeyDown(KeyCode.R)) { SceneManager.Instance.LoadSceneName("Scene 2"); }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector3 spherePosition = new Vector3(transform.position.x, (transform.position.y - altitude), transform.position.z);
-        Gizmos.DrawSphere(spherePosition, radius);
     }
 }

@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class LoadTips : MonoBehaviour
 {
-    GameObject loadingScreen;
-    private TextMeshProUGUI tipsLoad;
     private bool done;
+    
+    GameObject loadingScreen;
+    
+    private TextMeshProUGUI tipsLoad;
+    
     List<string> tipsList = new();
 
     void Awake()
@@ -31,14 +34,12 @@ public class LoadTips : MonoBehaviour
         string[] lines = File.ReadAllLines(filePath);
 
         foreach (string line in lines)
-        {
-            //Debug.Log(line);
             tipsList.Add(line);
-        }
     }
 
     private void FixedUpdate()
     {
+        // Si el canvas de pantalla de cargado a sido activada este mostrara un tip aleatorio.
         if(loadingScreen.GetComponent<Canvas>().enabled && done == false)
         {
             UpdateTextTips();
@@ -49,12 +50,10 @@ public class LoadTips : MonoBehaviour
         }
     }
 
-    // Pillara una de las lineas del tipsList de forma aleatoria y lo muestra
+    // Pillara una de las lineas del tipsList de forma aleatoria y lo muestra en el canvas de carga.
     private void UpdateTextTips()
     {
         if (tipsList.Count > 0)
-        {
             tipsLoad.text = tipsList[Random.Range(0, tipsList.Count)];
-        }
     }
 }

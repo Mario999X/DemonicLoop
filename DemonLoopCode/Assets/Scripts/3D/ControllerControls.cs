@@ -19,7 +19,7 @@ public class ControllerControls : MonoBehaviour
     {
         Vector3 speedV = player_move.SpeedV;
 
-        // Cuando se pulsa la "A" en el mando el jugador salta.
+        // Cuando se pulsa la "A" en el controller el jugador salta.
         if (Input.GetButton("A") && player_move.OnFloor)
         {
             speedV.y = 0; speedV.y = Jspeed;

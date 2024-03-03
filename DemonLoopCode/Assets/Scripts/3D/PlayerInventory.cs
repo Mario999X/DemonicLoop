@@ -32,8 +32,6 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] GameObject inventoryUI3D;
     [SerializeField] GameObject inventoryUI2D;
 
-    [SerializeField] ObjectData[] data;
-
     bool inventoryState = false;
     bool done = false;
     bool dontOpenInventory = false;
@@ -55,16 +53,14 @@ public class PlayerInventory : MonoBehaviour
             done = false;
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
-
+        
+        // Guarda los componentes y los configura.
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "VideoScene")
         {
             inventoryUI3D = GameObject.Find("Inventory").transform.GetChild(0).GetChild(0).gameObject;
             inventoryUI2D = GameObject.Find("MoveButtons");
 
             enterBattle = GetComponent<EnterBattle>();
-
-            foreach (ObjectData data in data)
-                AddObjectToInventory(data.name, data, 1);
 
             GameObject.Find("Inventory").transform.GetChild(2).GetChild(0).gameObject.GetComponent<Button>().onClick.AddListener(() => HideCharacterAndObjectPanel());
             GameObject.Find("Inventory").transform.GetChild(0).GetChild(1).gameObject.GetComponent<Button>().onClick.AddListener(() => OpenCloseInventory());
@@ -85,10 +81,8 @@ public class PlayerInventory : MonoBehaviour
                 {
                     GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = true;
 
-                    foreach (ObjectStock item in inventory.Values)
-                    {
+                    foreach (ObjectStock item in inventory.Values) // Crea los botones de los objetos que tiene el jugador.
                         item.ButtonINV3D = CreateButtonINV3D(item);
-                    }
 
                     Time.timeScale = 0f;
 
@@ -97,9 +91,7 @@ public class PlayerInventory : MonoBehaviour
                 else // En el caso contrario los elimina.
                 {
                     foreach (ObjectStock item in inventory.Values)
-                    {
                         Destroy(item.ButtonINV3D);
-                    }
 
                     GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = false;
 
@@ -127,7 +119,6 @@ public class PlayerInventory : MonoBehaviour
                     foreach (ObjectStock item in inventory.Values)
                     {
                         item.ButtonINV2D = CreateButtonINV2D(item);
-
                         item.ButtonINV2D.transform.localScale = new Vector3(1f, 1f, 1f);
                     }
 
@@ -136,17 +127,16 @@ public class PlayerInventory : MonoBehaviour
                 else // En el caso contrario los elimina.
                 {
                     EliminateINVButtons();
-
                     inventoryState = false;
                 }
             }
         }
     }
 
+    // Esconde los paneles del grupo y el objeto.
     public void HideCharacterAndObjectPanel()
     {
         GameObject.Find("Inventory").transform.GetChild(2).gameObject.SetActive(false);
-
         GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
     }
 
@@ -159,14 +149,10 @@ public class PlayerInventory : MonoBehaviour
         {
             if (inventory[name.ToUpper()].Count > 1) // Si objeto es mayor a uno disminuye su cantidad
             {
-
-                Debug.Log("Counter of '" + name.ToUpper() + "' went down");
                 inventory[name.ToUpper()].Count--;
 
                 if (!enterBattle.OneTime)// En caso de no estar en batalla modifica el texto.
-                {
                     EditButtonINVText(inventory[name.ToUpper()]);
-                }
                 else
                 {
                     EliminateINVButtons();
@@ -175,8 +161,6 @@ public class PlayerInventory : MonoBehaviour
             }
             else // En el caso contrario se remueve del diccionario.
             {
-                Debug.Log(name.ToUpper() + " was eliminated from dictionary");
-
                 if (!enterBattle.OneTime) // En caso de no estar en batalla elimina solo un boton.
                 {
                     Destroy(inventory[name.ToUpper()].ButtonINV3D);
@@ -194,24 +178,15 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // A�ade un objeto al inventario.
+    // Anade un objeto al inventario.
     public void AddObjectToInventory(string name, ScriptableObject scriptableObject, int count)
     {
-        Debug.Log("data name" + name);
-        Debug.Log("data Cost" + count);
-        var realName = name.Substring(4, name.Length - 4).ToUpper();
+        string realName = name.Substring(4, name.Length - 4).ToUpper();
 
         if (!inventory.ContainsKey(realName)) // Cuando es un objeto nuevo se incluye al diccionario
-        {
-            Debug.Log("Add object to inventory " + name.ToUpper());
             inventory.Add(realName, new ObjectStock(scriptableObject as ObjectData, count));
-
-        }
         else // Cuando el objeto ya existe aumenta su cantidad
-        {
-            Debug.Log("Object exist. Incrementing count of that object" + name.ToUpper());
             inventory[realName].Count += count;
-        }
     }
 
 
@@ -244,7 +219,6 @@ public class PlayerInventory : MonoBehaviour
         AudioManager.Instance.PlaySoundButtons();
 
         buttonCMP.onClick.AddListener(() => { stock.Data.Click(this); });
-        //Debug.Log("buttonCMP "+ buttonCMP.name);
         button.GetComponentInChildren<TextMeshProUGUI>().text = stock.Data.name.Substring(4, stock.Data.name.Length - 4) + " x" + stock.Count;
 
         return button;
@@ -260,34 +234,27 @@ public class PlayerInventory : MonoBehaviour
     public void EliminateINVButtons()
     {
         foreach (ObjectStock stock in inventory.Values)
-        {
             Destroy(stock.ButtonINV2D);
-        }
     }
 
+    // Vacia completamente el inventario del jugador.
     public void ResetInventario()
     {
 
         foreach (ObjectStock item in inventory.Values)
         {
-            var realName = item.Data.name.Substring(4, item.Data.name.Length - 4).ToUpper();
-            Debug.Log("realName " + realName);
+            string realName = item.Data.name.Substring(4, item.Data.name.Length - 4).ToUpper();
             Destroy(item.ButtonINV3D);
             inventory.Remove(item.Data.name.ToUpper());
-            //inventory[realName].Count = 0;
             EliminateINVButtons();
         }
 
         GameObject.Find("Inventory").GetComponentInParent<Canvas>().enabled = false;
-
         GameObject.Find("Inventory").transform.GetChild(1).gameObject.SetActive(false);
 
         Time.timeScale = 1f;
 
         inventoryState = false;
         inventory.Clear();
-        Debug.Log("Limpio " + inventory.Values.Count);
-        Debug.Log("Limpio inventory " + inventory.Values);
     }
-
 }

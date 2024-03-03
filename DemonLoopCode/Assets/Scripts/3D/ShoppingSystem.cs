@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class ShoppingSystem : MonoBehaviour
 {
+    [Header("Prefabricado del botón")]
     [SerializeField] GameObject button;
 
     bool done = false;
@@ -37,7 +38,6 @@ public class ShoppingSystem : MonoBehaviour
         inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
         party = GameObject.Find("System").GetComponent<Data>();
 
-
         // Dependiendo de que tipo de tienda guarda y modifica lo que tiene que utilizar
         switch (gameObject.tag)
         {
@@ -46,9 +46,7 @@ public class ShoppingSystem : MonoBehaviour
                 foreach (ObjectData obj in objects)
                 {
                     string objName = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
-
                     stock.Add(objName, obj);
-                    // Debug.Log("Normal Shop stock " + objName+ " obj "+obj );
                 }
 
                 displayzone = GameObject.Find("Object display");
@@ -63,10 +61,10 @@ public class ShoppingSystem : MonoBehaviour
 
             case "Slave Shop": // En el caso de la tienda de esclavos este tiene que cargar todos los aliados y guardar los componentes que se van a utilizar.
                 List<StatsPersistenceData> slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance").ToList();
-
                 List<StatsPersistenceData> group = party.CharactersTeamStats;
                 List<StatsPersistenceData> backup = party.CharactersBackupStats;
 
+                // Remueve todos los aliados ya obtenidos de la tienda.
                 group.ForEach(g => { if (slaves.Contains(g)) slaves.Remove(g); });
                 backup.ForEach(b => { if (slaves.Contains(b)) slaves.Remove(b); });
 
@@ -85,14 +83,11 @@ public class ShoppingSystem : MonoBehaviour
 
             case "Special Shop": // En el caso de la tienda especial este tiene que cargar todos los objetos de mejora permanente.
                 ImprovementsData[] mejoras = Resources.LoadAll<ImprovementsData>("Data/Improvements");
-
                 foreach (ImprovementsData obj in mejoras)
                 {
                     string objNamePWD = obj.name.Substring(4, obj.name.Length - 4).Replace("^", " ").ToUpper();
-
                     stock.Add(objNamePWD, obj);
                 }
-
 
                 displayzone = GameObject.Find("Special display");
 
@@ -101,7 +96,6 @@ public class ShoppingSystem : MonoBehaviour
 
                 displayzone.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => Buy());
                 displayzone.SetActive(false);
-
                 break;
         }
     }
@@ -115,10 +109,10 @@ public class ShoppingSystem : MonoBehaviour
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         }
 
+        // Busca y guarda el canvas de la tienda.
         if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Shop")
         {
             canvas = GameObject.Find("Shop").GetComponent<Canvas>();
-
             done = true;
         }
     }
@@ -126,12 +120,9 @@ public class ShoppingSystem : MonoBehaviour
     private bool HasPurchased()
     {
         foreach (var improvement_ in stockImprovements)
-        {
             if (improvement_.isVersion)
-            {
                 return true;
-            }
-        }
+
         return false;
     }
 
@@ -150,12 +141,13 @@ public class ShoppingSystem : MonoBehaviour
             foreach (Transform child in GameObject.Find("Objects List").transform.GetChild(0).transform)
                 Destroy(child.gameObject);
 
-            var iconSlaveGO = GameObject.Find("IconSlave");
+            GameObject iconSlaveGO = GameObject.Find("IconSlave");
             if(iconSlaveGO) Destroy(iconSlaveGO);
             
-            if (displayzone.activeSelf)
+            if (displayzone.activeSelf) // Desactiva la zona de esposicion de los objetos, compañeros o mejoras.
                 displayzone.SetActive(false);
 
+            // Destruye y desactiva el grupo de compañeros de reserva.
             if (GameObject.Find("GroupOrGulab").GetComponent<Image>().enabled)
             {
                 foreach (Transform child in GameObject.Find("GroupOrGulab").transform)
@@ -298,9 +290,7 @@ public class ShoppingSystem : MonoBehaviour
                         displayzone.SetActive(false);
                     }
                     else
-                    {
                         ChooseGG(slave, money);
-                    }
                 }
                 break;
             case "Special Shop":
@@ -311,9 +301,7 @@ public class ShoppingSystem : MonoBehaviour
                 ObjectData objdata = this.data as ObjectData;
 
                 if (!improv.isVersion && !HasPurchased())
-                {
                     return;
-                }
                 if ((money.MoneyRefined - improv.CostRefined) >= 0)
                 {
                     money.MoneyRefined -= improv.CostRefined;
@@ -321,7 +309,6 @@ public class ShoppingSystem : MonoBehaviour
                     {
                         if (x.Protagonist == true)
                         {
-
                             nombrePWR = improv.BuyImprovement(x);
 
                             UpdateImprovementsId(nombrePWR);
@@ -334,20 +321,21 @@ public class ShoppingSystem : MonoBehaviour
         }
     }
 
+    // Incorpora las mejoras permanentes.
     public void UpdateImprovementsId(string nombrePWR)
     {
         ImprovementsData[] mejoras = Resources.LoadAll<ImprovementsData>("Data/Improvements");
         ObjectData[] objects = Resources.LoadAll<ObjectData>("Data/Objects");
         StatsPersistenceData[] slaves = Resources.LoadAll<StatsPersistenceData>("Data/CharactersStatsPersistance");
         ImprovementsData improv = this.data as ImprovementsData;
+
         for (int i = 0; i < mejoras.Length; i++)
         {
-
             if (mejoras[i].name == nombrePWR)
             {
                 string objName = mejoras[i].name.Substring(4, mejoras[i].name.Length - 4).Replace("^", " ").ToUpper();
                 AudioManager.Instance.PlaySoundButtons();
-                OcultarButtons(objName);
+                HideButtons(objName);
 
                 switch (mejoras[i].ImprovementsType)
                 {
@@ -357,28 +345,23 @@ public class ShoppingSystem : MonoBehaviour
                         stock.Remove(objName);
                         mejoras[i + 1].idHealth = mejoras[i].idHealth;
                         break;
-
                     case ImprovementsTypes.Mana:
                         mejoras[i + 1].isVersion = true;
                         mejoras[i].isVersion = false;
                         stock.Remove(objName);
                         mejoras[i + 1].idMana = mejoras[i].idMana;
                         break;
-
                     case ImprovementsTypes.CriticalChance:
                         mejoras[i + 1].isVersion = true;
                         mejoras[i].isVersion = false;
                         stock.Remove(objName);
                         mejoras[i + 1].idCriticalChance = mejoras[i].idCriticalChance;
                         break;
-
                     case ImprovementsTypes.Discount:
-
                         mejoras[i + 1].isVersion = true;
                         mejoras[i].isVersion = false;
 
                         stock.Remove(objName);
-
 
                         for (int z = 0; z < 1; z++)
                         {
@@ -392,27 +375,22 @@ public class ShoppingSystem : MonoBehaviour
                         break;
                 }
             }
-            else
-            {
-                Debug.Log("sssssssssssss");
-            }
         }
 
         displayzone.SetActive(false);
     }
 
-    void OcultarButtons(string mejoraName)
+    // Oculta los botones de las mejoras permanentes ya obtenidas.
+    void HideButtons(string mejoraName)
     {
         Transform button = canvas.transform.GetChild(0).GetChild(0).GetChild(0).Find(mejoraName);
-        // Debug.Log("button "+ button);
+
         if (button != null)
-        {
             button.gameObject.SetActive(false);
-        }
     }
 
 
-    // Las opciones de que se quiere hacer con el esclavo obtenido
+    // Las opciones de que se quiere hacer con el esclavo obtenido.
     void ChooseGG(StatsPersistenceData slave, MoneyPlayer money)
     {
         GameObject choose = GameObject.Find("GroupOrGulab");

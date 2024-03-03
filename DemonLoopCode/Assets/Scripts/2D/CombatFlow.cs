@@ -906,7 +906,7 @@ public class CombatFlow : MonoBehaviour
     // Funcion para terminar la batalla.
     public IEnumerator FinishBattle()
     {
-        if (enemys.Count == 0)
+        if (GameObject.FindGameObjectsWithTag("Enemy").ToArray().Length == 0)
         {
             AudioManager.Instance.StopSoundCombat();
           

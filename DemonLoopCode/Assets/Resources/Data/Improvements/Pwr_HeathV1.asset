@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Pwr_HeathV1
   m_EditorClassIdentifier: 
   icon: {fileID: -7929779680174771499, guid: 75386da3816034ced9f7f29535f677d7, type: 3}
-  hola: 1
-  hola2: 1
-  hola3: 1
-  description: Aumento de vida Base +100 v1
+  discountV: 0.02
+  idHealth: 1
+  idMana: 1
+  idCriticalChance: 1
+  idDiscount: 1
+  description: Base Max Health Increase +100
   costRefined: 10
   improvementsType: 0
   isVersion: 1

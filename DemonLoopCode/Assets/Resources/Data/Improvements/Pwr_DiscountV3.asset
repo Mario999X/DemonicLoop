@@ -18,10 +18,7 @@ MonoBehaviour:
   idMana: 1
   idCriticalChance: 1
   idDiscount: 1
-  description: 'Te da un 7% de descuento en la tienda Version 3
-
-    Original Price:
-    35'
+  description: 7% discounts in all stores.
   costRefined: 35
   improvementsType: 3
   isVersion: 0

@@ -226,6 +226,13 @@ public class CombatFlow : MonoBehaviour
             button.transform.localScale = new Vector3(1f, 1f, 1f); // Al cambiar de resolucion, el boton aparecia con una escala distinta (?) asi que asi nos aseguramos que se mantenga.
             playerBT.Add(button);//Listado de botones generados
         }
+
+        // Solucion al problema de actualizacion visual de vida y mana
+        foreach(GameObject pl in players)
+        {
+            pl.GetComponent<Stats>().Health = pl.GetComponent<Stats>().Health;
+            pl.GetComponent<Stats>().Mana = pl.GetComponent<Stats>().Mana;
+        }
     }
 
     // Funcion usada para generar los botones de los objetivos. Si la variable itemOrAtk es nula, significa que es un ataque.

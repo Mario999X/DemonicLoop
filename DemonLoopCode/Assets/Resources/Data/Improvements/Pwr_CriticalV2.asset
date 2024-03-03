@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Pwr_CriticalV2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: a14aa6c5e74234ff08d3c23c23e1cd38, type: 3}
-  hola: 1
-  hola2: 1
-  hola3: 1
-  description: Aumento del critico Base + 10 V2
+  discountV: 0.02
+  idHealth: 1
+  idMana: 1
+  idCriticalChance: 1
+  idDiscount: 1
+  description: Base Critical Chance Increase +10
   costRefined: 25
   improvementsType: 2
   isVersion: 0

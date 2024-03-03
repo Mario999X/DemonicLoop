@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Pwr_HeathV2
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f6c51ff22aae63f458654a8f5cbabaf8, type: 3}
-  description: Aumento de vida Base +200 V2
+  discountV: 0.02
+  idHealth: 1
+  idMana: 1
+  idCriticalChance: 1
+  idDiscount: 1
+  description: Base Max Health Increase +200
   costRefined: 25
   improvementsType: 0
-  alliesTargets: 0
-  obtained: 0
+  isVersion: 0
   buttonPrefab: {fileID: 1104305521249994070, guid: 24300a8b323682b4d85af6d5a8f3441a,
     type: 3}

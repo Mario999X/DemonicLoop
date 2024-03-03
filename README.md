@@ -16,7 +16,7 @@ Videojuego desarrollado por estudiantes del Curso de Especialización de Videoju
 ## Autores
 
 - [Mario Resa](https://github.com/Mario999X)
-- [Ivan San Jose](https://github.com/ivansanjose1)
+- [Iván San José](https://github.com/ivansanjose1)
 - [Daniel Carlos](https://github.com/Loy-Angel)
 
 ## Atribuciones

@@ -735,16 +735,12 @@ public class CombatFlow : MonoBehaviour
 
         if (targetST.Health == 0)
         {
-            Debug.Log(target.name + " is dead" + " | IsEnemy?: " + enemy);
-
             if (enemy)
             {
-                Debug.Log("Enemy dead " + target);
                 DeleteEnemyFromList(target);
             }
             else
             {
-                Debug.Log("Ally dead " + target);
                 DeleteAllieFromArray(target);
                 moves--;
             }

@@ -53,7 +53,9 @@ public class SettingsMenuScript : MonoBehaviour
             returnToTitleBtn.gameObject.SetActive(false); // Si estamos en el titulo, este boton no se muestra.
 
             done = true;
-        } else if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
+        }
+        
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Title")
         {
             returnToTitleBtn.gameObject.SetActive(true);
 

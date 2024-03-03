@@ -129,7 +129,9 @@ public class LevelSystem : MonoBehaviour
 
             if (possibleAttackToLearn)
             {
-                characterST.SetAttack(characterLearneableAttacks.ReturnAttack(characterST.Level));
+                var iKnowThatAttackAlready = characterST.CheckIfIHaveThatAttack(characterLearneableAttacks.ReturnAttack(characterST.Level));
+                
+                if(!iKnowThatAttackAlready) characterST.SetAttack(characterLearneableAttacks.ReturnAttack(characterST.Level));
             }
         }
     }

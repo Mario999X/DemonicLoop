@@ -846,11 +846,11 @@ public class CombatFlow : MonoBehaviour
 
             postBattleTeam.ActivatePanel();
 
-            int[] LevelTemp = new int[players.Length];
+            int[] levelTemp = new int[players.Length];
 
             for (int i = 0; i < players.Length; i++)
             {
-                LevelTemp[i] = players[i].GetComponent<Stats>().Level;
+                levelTemp[i] = players[i].GetComponent<Stats>().Level;
             }
 
             players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
@@ -863,16 +863,19 @@ public class CombatFlow : MonoBehaviour
 
                 AttackData possibleAttack = null;
                 
-                if (p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
+                if(p.GetComponent<Stats>().Level > levelTemp[i])
                 {
-                    possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
-
-                    if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax())
+                    if (p.GetComponent<LearnableAttacks>().CanILearnAttack(p.GetComponent<Stats>().Level))
                     {
-                        charactersWhoCanLearnAnAttack.Add(new(p, possibleAttack));
+                        possibleAttack = p.GetComponent<LearnableAttacks>().ReturnAttack(p.GetComponent<Stats>().Level);
+
+                        if (!p.GetComponent<Stats>().CheckIfIHaveThatAttack(possibleAttack) && !p.GetComponent<Stats>().CheckListAtkMax())
+                        {
+                            charactersWhoCanLearnAnAttack.Add(new(p, possibleAttack));
+                        }
                     }
                 }
-
+                
                 i++;
             });
 

@@ -857,11 +857,11 @@ public class CombatFlow : MonoBehaviour
                 levelTemp[i] = players[i].GetComponent<Stats>().Level;
             }
 
-            GameObject.FindGameObjectsWithTag("Player").ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
+            players.ToList().ForEach(p => p.GetComponent<LevelSystem>().GainExperienceFlatRate(experience));
 
             StartCoroutine(postBattleTeam.InfoPanelTeam(players));
 
-            GameObject.FindGameObjectsWithTag("Player").ToList().ForEach(p =>
+            players.ToList().ForEach(p =>
             {
                 var i = 0;
 

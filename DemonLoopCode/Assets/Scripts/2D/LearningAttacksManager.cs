@@ -200,6 +200,9 @@ public class LearningAttacksManager : MonoBehaviour
         character = characterAsociated;
         newAttack = newAttackAsociated;
 
+        if(actualAttacksPanel.transform.childCount > 0)
+            foreach(Transform button in actualAttacksPanel.transform) Destroy(button.gameObject);
+
         unitNameText.text = character.name.Remove(character.name.IndexOf("("));;
         newAttackNameText.text = newAttackAsociated.name.Substring(4, newAttackAsociated.name.Length - 4).Replace("^", " ").ToUpper();
 
@@ -226,6 +229,7 @@ public class LearningAttacksManager : MonoBehaviour
 
         } else berserkerAttackTextNA.text = "Is NOT Berserker";
 
+        // Texto de estados en el ataque
         switch (newAttackAsociated.GenerateAState)
         {
             case ActionStates.None:

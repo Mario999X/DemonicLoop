@@ -337,6 +337,7 @@ MonoBehaviour:
   dropXP: 100
   moneyRefinedDrop: 0
   boss: 0
+  actualStates: []
 --- !u!114 &-3269186299774471425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +358,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 02fc870f9e9a14f849422f5e3fa3c863, type: 2}
   - {fileID: 11400000, guid: 91944c9346b5d402cb40517fb54ba7f4, type: 2}
   - {fileID: 11400000, guid: b81e639b386914a30a52a1a1a95ec058, type: 2}
+  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
 --- !u!114 &1034579314653077739
 MonoBehaviour:
   m_ObjectHideFlags: 0

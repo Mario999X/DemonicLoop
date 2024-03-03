@@ -256,7 +256,6 @@ public class LearningAttacksManager : MonoBehaviour
         });
 
         dontLearnAttackBtn.GetComponent<Button>().onClick.AddListener(delegate { FinishOperationNoNewAttack(); });
-
     }
 
 }

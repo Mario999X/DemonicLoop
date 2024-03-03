@@ -29,9 +29,10 @@ public class CombatBoss : MonoBehaviour
             case 1:
                 if (combatFlow.ActualTurn % 3 == 0)
                 {
-                    int newEnemy = Random.Range(0, enemyPrefabsLevel.Length);
                     if (combatFlow.NumEnemy() < 3)
                     {
+                        int newEnemy = Random.Range(0, enemyPrefabsLevel.Length);
+                        
                         floatingText.ShowFloatingText(gameObject, "Invader summoned", Color.magenta);
                         Instantiate(enemyPrefabsLevel[newEnemy], GameObject.Find("EnemyBattleZone").transform);
                         StartCoroutine(combatFlow.FindEnemiesAndCreateAlliesButtons());

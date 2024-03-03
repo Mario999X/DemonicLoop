@@ -23,13 +23,21 @@ public class EnterBattle : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Si la escena ha cambiado resetea los valores.
         if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene())
         {
             done = false;
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+
+            player = null;
+            fight = null;
+            crossfadeTransition = null;
+            oneTime = false;
+            done = false;
         }
 
-        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2") // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
+        // Cuando se inicia una escena espera que sea la correcta donde pueda encontrar los objetos "Player" y "Fight".
+        if (!done && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2") 
         {
             crossfadeTransition = GameObject.Find("Crossfade").GetComponent<Animator>();
 
@@ -41,28 +49,14 @@ public class EnterBattle : MonoBehaviour
 
             done = true;
         }
-        else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Scene 2") // Cuando no se encuentre en las escenas correspondientes las vuelven null. 
-        {
-            player = null;
-            fight = null;
-            crossfadeTransition = null;
-            oneTime = false;
-            done = false;
-        }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && enemy != null) // Atajo para terminar la batalla.
-        {
-            FinishBattleAndEnterOverworld();
-        }
-    }
-
+    // Spawnea los aliados dentro del canvas de combate.
     public IEnumerator RespawnAlliesInBattle()
     {
-        var alliesBattleZone = GameObject.Find("AlliesBattleZone");
+        GameObject alliesBattleZone = GameObject.Find("AlliesBattleZone");
 
+        // Si ya hay alguno spawneado se destruyen.
         if (alliesBattleZone.transform.childCount > 0)
         {
             GetComponent<CombatFlow>().ResetPlayersInCombat();
@@ -72,18 +66,14 @@ public class EnterBattle : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-        Debug.Log(alliesBattleZone.transform.childCount);
-
+        // Se spawnean de nuevo con los datos nuevos.
         if (alliesBattleZone.transform.childCount == 0)
         {
-            Debug.Log("Respawn de aliados");
             Data.Instance.CharactersTeamStats.ForEach(x =>
             {
-                var go = Instantiate(x.CharacterPB, alliesBattleZone.transform);
+                GameObject go = Instantiate(x.CharacterPB, alliesBattleZone.transform);
 
-                Debug.Log("Character: " + x.name);
-
-                var statsChar = go.GetComponent<Stats>();
+                Stats statsChar = go.GetComponent<Stats>();
 
                 statsChar.Level = x.Level;
                 statsChar.CurrentXP = x.CurrentXP;
@@ -98,7 +88,6 @@ public class EnterBattle : MonoBehaviour
                 statsChar.MagicDef = x.MagicDef;
                 statsChar.CriticalChance = x.CriticalChance;
                 statsChar.ActualStates = x.ActualStates;
-
                 statsChar.ListAtk = x.ListAtk;
             });
         }
@@ -106,6 +95,7 @@ public class EnterBattle : MonoBehaviour
         GetComponent<CombatFlow>().SetPlayersInCombat(); // Para la persistencia de los que estan muertos.
     }
 
+    // Devuelve el aliado de mayor nivel del grupo del jugador.
     private int ObtainMaxLevelPlayer()
     {
         int maxLevelDetected = 0;
@@ -115,9 +105,7 @@ public class EnterBattle : MonoBehaviour
         if (GameObject.Find("AlliesBattleZone").transform.childCount > 0)
         {
             foreach (Transform child in GameObject.Find("AlliesBattleZone").transform)
-            {
                 playerlevels.Add(child.GetComponent<Stats>().Level);
-            }
 
             maxLevelDetected = playerlevels.Max();
         }
@@ -125,6 +113,8 @@ public class EnterBattle : MonoBehaviour
         return maxLevelDetected;
     }
 
+    // Pone el nivel de los enemigos teniendo en cuenta el mayor nivel que haya en todo el grupo del jugador.
+    // El radio del nivel del enemigo es entre dos niveles por abajo a dos niveles por encima del mayor nivel que haya en todo el grupo del jugador.
     private int SetEnemyLevel(int levelDetected)
     {
         int levelRandom = Random.Range(levelDetected - 2, levelDetected + 2 + 1);
@@ -147,16 +137,15 @@ public class EnterBattle : MonoBehaviour
 
             StartCoroutine(CrossfadeAnimation());
 
-            StartCoroutine(GetComponent<CombatFlow>().CreateButtons());
+            StartCoroutine(GetComponent<CombatFlow>().CreateButtons()); // Genera los botones.
 
             //Cuando entremos en combate suena la musica
             AudioManager.Instance.PlaySoundCombat();
 
+            // Elimina cualquier enemigo que quedara de la anterior pelea.
             if (GameObject.Find("EnemyBattleZone").transform.childCount > 0)
-            {
                 foreach (Transform child in GameObject.Find("EnemyBattleZone").transform)
                     Destroy(child.gameObject);
-            }
 
             this.enemy.GetComponent<EnemyGenerator>().ListEnemies.ForEach(x =>
             {
@@ -165,11 +154,10 @@ public class EnterBattle : MonoBehaviour
                 go.GetComponent<LevelSystem>().SetLevelEnemy(SetEnemyLevel(playerMaxLevel)); // Subida de nivel del enemigo
             });
 
+            // Recuenta la cantidad de experiencia que daran los enemigos.
             if (GameObject.Find("EnemyBattleZone").transform.childCount > 0)
-            {
                 foreach (Transform child in GameObject.Find("EnemyBattleZone").transform)
                     totalExperience += child.GetComponent<Stats>().DropXP;
-            }
 
             GetComponent<CombatFlow>().TotalEXP = totalExperience;
             oneTime = true;
@@ -179,14 +167,13 @@ public class EnterBattle : MonoBehaviour
 
             GameObject.Find("Fight").GetComponent<Canvas>().enabled = true;
 
+            // Si era un ataque sigiloso se les quitara algo de vida a los enemigos al principio del combate.
             if (sneak)
             {
                 Stats[] stats = GameObject.Find("EnemyBattleZone").GetComponentsInChildren<Stats>();
 
                 foreach (Stats stat in stats)
-                {
                     stat.Health -= stat.Health * 0.15f;
-                }
             }
         }
     }
@@ -196,6 +183,7 @@ public class EnterBattle : MonoBehaviour
     {
         StartCoroutine(CrossfadeAnimation());
 
+        // Si el enemigo era un mimico este soltara objetos ademas de dinero y experiencia.
         if (enemy.CompareTag("Mimic"))
         {
             Content content = enemy.GetComponent<ChestContent>().chest();
@@ -203,9 +191,7 @@ public class EnterBattle : MonoBehaviour
             PlayerInventory inventory = GetComponent<PlayerInventory>();
 
             if (content.Count > 0)
-            {
                 inventory.AddObjectToInventory(content.Data.name.Substring(4, content.Data.name.Length - 4), content.Data, content.Count);
-            }
         }
 
         SavePlayerCharacterStats();
@@ -225,6 +211,7 @@ public class EnterBattle : MonoBehaviour
         fight.enabled = false;
     }
 
+    // Animacion de inicio y fin de pelea.
     private IEnumerator CrossfadeAnimation()
     {
         crossfadeTransition.SetBool("StartBattle", true);
@@ -234,6 +221,7 @@ public class EnterBattle : MonoBehaviour
         crossfadeTransition.SetBool("StartBattle", false);
     }
 
+    // Guarda las estadisticas y datos de cada personaje del grupo.
     private void SavePlayerCharacterStats()
     {
         foreach (Transform child in GameObject.Find("AlliesBattleZone").transform)
@@ -255,10 +243,7 @@ public class EnterBattle : MonoBehaviour
             savedStats.MagicDef = statsChar.MagicDef;
             savedStats.CriticalChance = statsChar.CriticalChance;
             savedStats.ActualStates = statsChar.ActualStates;
-
             savedStats.ListAtk = statsChar.ListAtk;
-
-            Debug.Log("Character Saved after battle " + child.name);
         }
 
         GetComponent<TeamViewManager>().SetActiveTeamData();

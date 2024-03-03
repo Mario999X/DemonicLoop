@@ -6,6 +6,7 @@ public class CubePuzzleManager : MonoBehaviour
 
     public bool LeversPuzzleDone { get { return leversPuzzleDone;} }
 
+    // Actua como una placa de presion que solo reacciona al cubo que hay que poner encima.
     void OnTriggerEnter(Collider other)
     {
         if(other.name == "CubeToMove")

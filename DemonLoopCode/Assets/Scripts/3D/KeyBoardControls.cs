@@ -7,7 +7,8 @@ public class KeyBoardControls : MonoBehaviour
     PlayerMove player_move;
     PlayerInventory player_inventory;
     EnterBattle enterBattle;
-    [SerializeField] ShoppingSystem shopping;
+    ShoppingSystem shopping;
+    TeamViewManager teamViewManager;
 
     public ShoppingSystem Shopping { set { shopping = value; } }
 
@@ -17,6 +18,7 @@ public class KeyBoardControls : MonoBehaviour
         player_move = GetComponent<PlayerMove>();
         player_inventory = GameObject.Find("System").GetComponent<PlayerInventory>();
         enterBattle = GameObject.Find("System").GetComponent<EnterBattle>();
+        teamViewManager = GameObject.Find("System").GetComponent<TeamViewManager>();
 
         Jspeed = player_move.JSpeed;
     }
@@ -38,14 +40,18 @@ public class KeyBoardControls : MonoBehaviour
 
         // Abrir y cerrar el inventario solo cuando el jugador no se encuentre en batalla.
         if (Input.GetKeyDown(KeyCode.Escape) && !enterBattle.OneTime && !player_inventory.DontOpenInventory)
-        {
             player_inventory.OpenCloseInventory();
-            Debug.Log("Inventario");
-        }
         else if (Input.GetKeyDown(KeyCode.Escape) && player_inventory.DontOpenInventory)
             shopping.OpenCloseShop();
 
+        // Permite interactuar con cosas en el mundo 3D que tengan interacion.
         if (Input.GetKeyDown(KeyCode.Mouse0) && !player_inventory.InventoryState)
-            transform.GetComponentInChildren<PlayerInteract>().Click = true; 
+            transform.GetComponentInChildren<PlayerInteract>().Click = true;
+
+        // Permite abrir y cerrar el la formacion del equipo.
+        if (Input.GetKeyDown(KeyCode.E) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2" && !enterBattle.OneTime)
+            teamViewManager.ShowOnlyActiveTeamView();
+        if (Input.GetKeyDown(KeyCode.E) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Shop")
+            teamViewManager.ShowCompleteTeamView();
     }
 }

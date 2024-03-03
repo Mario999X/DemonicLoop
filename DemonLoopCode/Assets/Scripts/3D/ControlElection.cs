@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 public class ControlElection : MonoBehaviour
 {
-    [SerializeField] bool mando = false;
+    [SerializeField] bool controller = false;
     [SerializeField] bool pc = false;
 
     [SerializeField] TextMeshProUGUI log;
@@ -16,14 +16,9 @@ public class ControlElection : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Identifica donde se esta corriendo el juego.
         if (!done)
         {
-            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Title")
-            {
-                log = GameObject.Find("Running").GetComponent<TextMeshProUGUI>();
-            }
-
-
             #if UNITY_EDITOR // Si unity es iniciado en el editor.
                         if (log != null) log.text = "Running in editor";
                         pc = true;
@@ -54,24 +49,20 @@ public class ControlElection : MonoBehaviour
 
             List<string> controllers = Input.GetJoystickNames().ToList(); // Lista de mandos conectados.
 
-            controllers.RemoveAll(controller => !Regex.IsMatch(controller, @"^[a-zA-Z]") || controller == null); // Elimina las variables vac�as generadas por un error de unity.
+            controllers.RemoveAll(controller => !Regex.IsMatch(controller, @"^[a-zA-Z]") || controller == null); // Elimina las variables vacias generadas por un error de unity.
 
-            //Debug.Log(controllers.Count);
-
-            // Si hay un mando conectado le a�ade al jugador el componente "Controller_Controls", si no se hab�a a�adido con anterioridad.
-            if (!mando && controllers.Count > 0)
+            // Si hay un controller conectado le a�ade al jugador el componente "Controller_Controls", si no se habia anadido con anterioridad.
+            if (!controller && controllers.Count > 0)
             {
-                mando = true;
-                Debug.Log("Connected");
+                controller = true;
 
-                // En caso de desconectar el mando destruye el componente "Controller_Controls".
+                // En caso de desconectar el controller destruye el componente "Controller_Controls".
                 if (!player.GetComponent<ControllerControls>())
                     player.AddComponent<ControllerControls>();
             }
-            else if (mando && controllers.Count == 0)
+            else if (controller && controllers.Count == 0)
             {
-                mando = false;
-                Debug.Log("Disconnected");
+                controller = false;
 
                 Destroy(player.GetComponent<ControllerControls>());
             }
@@ -81,7 +72,7 @@ public class ControlElection : MonoBehaviour
         {
             GameObject player = GameObject.Find("Player");
 
-            // En el caso de que jugador no contenga el componente "Controller_Controls" se le a�ade.
+            // En el caso de que jugador no contenga el componente "Controller_Controls" se le anade.
             if (!player.GetComponent<ControllerControls>())
                 player.AddComponent<ControllerControls>();
         }

@@ -27,15 +27,13 @@ public class ShaderAjustment : MonoBehaviour
 
         RaycastHit hit;
 
-        // Traza una linea entre el jugador y la c�mara, cual quier objeto que se encuentre en la capa asignada se guardara y se le modificada el marametro tama�o de su material.
+        // Traza una linea entre el jugador y la camara, cualquier objeto que se encuentre en la capa asignada se guardara y se le modificada el parametro tamano de su material.
         // Guarda hasta dos materiales de objetos distintos.
-        // Si en la line no se encuantra en colision con ning�n objeto pero estuvo con en contacto con alguno este modificara el tama�o del circulo a 0.
+        // Si en la line no se encuantra en colision con ningun objeto pero estuvo con en contacto con alguno este modificara el tamano del circulo a 0.
         if (Physics.Raycast(ray, out hit, distance, layer))
         {
-            Debug.DrawRay(transform.position, dir.normalized * distance, Color.green);
-
-            // Si el objeto que esta en colisi�n sigue siendo el mismo este seguira guardando su material como el actual y modificando sus valores.
-            // En el caso contrario este se guadara como el material que hab�a antes.
+            // Si el objeto que esta en colision sigue siendo el mismo este seguira guardando su material como el actual y modificando sus valores.
+            // En el caso contrario este se guadara como el material que habia antes.
             if (@object == hit.transform.gameObject)
             {
                 wallMatirial_Actual = hit.transform.GetComponent<Renderer>().material;
@@ -60,8 +58,6 @@ public class ShaderAjustment : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, dir.normalized * distance, Color.red);
-
             // En caso de que los materiales no esten vacios y no haya algun objeto en colision esto modifican el tama�o del circulo a 0 y los vuelve null.
             if (wallMatirial_Actual != null)
             {

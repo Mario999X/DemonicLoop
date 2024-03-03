@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LeverWithOrderData : MonoBehaviour
@@ -14,27 +12,24 @@ public class LeverWithOrderData : MonoBehaviour
         manager = transform.parent.GetComponent<LeversManagerWithOrder>();
     }
 
+    // Se encarga de establecer el estado actual de la palanca.
     public void ActivateDesactivateLever()
     {
         if (!isPuzzleDone)
         {
             isActivated = !isActivated;
 
+            // Cambia su estado a activado.
             if (isActivated)
-            {
-                Debug.Log("Nombre del hijo tocado " + gameObject.name);
-                manager.AddActivatedLever(gameObject.name); Debug.Log("Lever Activated");
-            }
+                manager.AddActivatedLever(gameObject.name);
 
+            // Cambia su estado a desactivado.
             if (!isActivated)
-            {
-                manager.TakeInactiveLever(); Debug.Log("Lever Desactivated");
-            }
-
+                manager.TakeInactiveLever();
         }
-        else Debug.Log("Puzzle finished");
     }
-
+    
+    // Se da por finalizado el puzle
     public void PuzzleDone()
     {
         isPuzzleDone = true;

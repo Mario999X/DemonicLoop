@@ -20,10 +20,11 @@ public class EnemyMechanics : MonoBehaviour
 
     EnterBattle _Battle;
 
-    public bool Patrol { get { return patrol; }}
+    public bool Patrol { get { return patrol; } }
 
     private void Start()
     {
+        // Si el modo patrullar esta activo este cogera los dos puntos a los que tiene que moverse continuamente.
         if(patrol)
         {
             pointA = transform.parent.GetChild(1).gameObject;
@@ -42,9 +43,7 @@ public class EnemyMechanics : MonoBehaviour
 
             // Inicia el modo patrulla si esta activado.
             if (patrol)
-            {
                 StartCoroutine(Enemy_patrol());
-            }
         }
         else
         {
@@ -72,20 +71,14 @@ public class EnemyMechanics : MonoBehaviour
 
                     // Antes de activar la pelea el enemigo se acerca al jugador.
                     if (Vector3.Distance(transform.position, hit.transform.position) < 1.5f) // Inicia el combate.
-                    {
                         _Battle.StartBattle(transform.parent.gameObject, false);
-                    }
                     else
-                    {
                         transform.position = Vector3.MoveTowards(transform.position, hit.transform.position, speed * Time.deltaTime);
-                    }
                 }
             }
             else
-            { 
                 // Si por alguna razon detecto al jugado pero lo perdio de repente este activara al instante la pelea.
-                if (yietError) { _Battle.StartBattle(transform.parent.gameObject, false); }
-            }
+                if (yietError) _Battle.StartBattle(transform.parent.gameObject, false);
         }
     }
 
@@ -98,13 +91,9 @@ public class EnemyMechanics : MonoBehaviour
             {
                 // Recorrido de la patrulla.
                 if (change)
-                {
                     transform.position = Vector3.MoveTowards(transform.position, pointB.transform.position, speed * Time.deltaTime);
-                }
                 else
-                {
                     transform.position = Vector3.MoveTowards(transform.position, pointA.transform.position, speed * Time.deltaTime);
-                }
 
                 // Rotacion del enemigo.
                 if (Vector3.Distance(transform.position, pointA.transform.position) < 0.0001f)

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DoorMechanic : MonoBehaviour
 {
+    [Header("Condiciones de la puerta")]
     [SerializeField] bool goToShop = false;
     [SerializeField] bool killAll = false;
     [SerializeField] bool theEnd = false;

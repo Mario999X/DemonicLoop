@@ -42,13 +42,12 @@ public class CombatBoss : MonoBehaviour
                         floatingText.ShowFloatingText(gameObject, "Invader summoned", Color.magenta);
                         Instantiate(enemyPrefabsLevel[newEnemy], GameObject.Find("EnemyBattleZone").transform);
                         StartCoroutine(combatFlow.FindEnemiesAndCreateAlliesButtons());
-                    }
+                        
+                    } else floatingText.ShowFloatingText(gameObject, "Hahaha", Color.magenta);
                 }
-                else
-                {
-                    int c = Random.Range(0, 50);
-                    GetComponent<Stats>().CriticalChance += c;
-                }
+
+                int c = Random.Range(0, 50);
+                GetComponent<Stats>().CriticalChance += c;
                 break;
             
             case 2:
@@ -68,15 +67,6 @@ public class CombatBoss : MonoBehaviour
                     int numPlayerRandom = Random.Range(0, players.Count);
 
                     var randomCharacter = players[numPlayerRandom];
-
-                    if(randomCharacter == targetSelected)
-                    {
-                        players.Remove(randomCharacter);
-
-                        numPlayerRandom = Random.Range(0, players.Count);
-
-                        randomCharacter = players[numPlayerRandom];
-                    }
 
                     randomCharacter.GetComponent<Stats>().Health = 1;
                 }

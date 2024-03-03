@@ -796,7 +796,9 @@ public class CombatFlow : MonoBehaviour
     private void CheckIfIsEnemyTurn()
     {
         SetAllyActionBarInactive();
-        CheckBattleStatus();
+
+        if (GameObject.FindGameObjectsWithTag("Enemy").ToArray().Length <= 0)
+            CheckBattleStatus();
 
         // Espera a que todos los jugadores hagan sus movimientos.
         if (moves >= players.Length && !wait)
@@ -806,20 +808,22 @@ public class CombatFlow : MonoBehaviour
     // Funcion para pasar al siguiente turno. Se comprueba el estado de los modificadores de batalla y de los estados.
     private void NextTurn()
     {
+        ActualTurn++;
+
+        GameObject[] allCharacters = GameObject.FindGameObjectsWithTag("Player").ToArray().Concat(GameObject.FindGameObjectsWithTag("Enemy").ToArray()).ToArray();
+        statesLibrary.CheckStates(allCharacters);
+        
         if (players.Length == 0)
             CheckBattleStatus();
         else
         {
             SetEnemyActionBarInactive();
 
-            ActualTurn++;
-
             // Paso de turno para los estados
-            GameObject[] allCharacters = GameObject.FindGameObjectsWithTag("Player").ToArray().Concat(GameObject.FindGameObjectsWithTag("Enemy").ToArray()).ToArray();
-
-            statesLibrary.CheckStates(allCharacters);
-
             battleModifiersLibrary.PassTurnOfModifiers();
+
+            if (GameObject.FindGameObjectsWithTag("Enemy").ToArray().Length <= 0)
+                CheckBattleStatus();
         }
     }//fin de NextTurn
 

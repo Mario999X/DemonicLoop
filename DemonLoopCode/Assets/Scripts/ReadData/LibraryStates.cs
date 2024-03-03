@@ -8,10 +8,8 @@ public class ActualStateData
 {
     public string state;
     public int turn = 0;
-
     public string State { get { return state; } }
     public int Turn { get { return turn; } set { turn = value; Debug.Log(turn); } }
-
     public ActualStateData(string state)
     {
         this.state = state;

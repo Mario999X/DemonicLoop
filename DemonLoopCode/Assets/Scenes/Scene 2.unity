@@ -3366,7 +3366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1764.8845}
+  m_AnchoredPosition: {x: 0, y: -1768.686}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &698224850
@@ -6681,7 +6681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maps:
-  - {fileID: 4503541210712415587, guid: 3d7dcf39ac52f544ea0fcc2d9f0f54b8, type: 3}
+  - {fileID: 4503541210712415587, guid: f28d421c9b62dde4bad8cf48ff196eb9, type: 3}
   - {fileID: 4503541210712415587, guid: b6f87e68c3ec9ea46a35e331a01306d0, type: 3}
   - {fileID: 4503541210712415587, guid: 5da7d105e4108554d99c7b6b44708fbe, type: 3}
   - {fileID: 4503541210712415587, guid: 90b85b870a73e464fbb5b0c264d90ae5, type: 3}

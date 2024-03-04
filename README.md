@@ -4,6 +4,15 @@
 
 Videojuego desarrollado por estudiantes del Curso de Especialización de Videojuegos y Realidad Virtual, en el centro ***IES La Arboleda*** de ***Alcorcón***, en el curso **2023 / 2024**.
 
+## Descarga Oficial
+
+Si se quiere descargar el videojuego en formato de ejecutable, deberá hacerlo desde la respectiva página de **itch.io**, 
+pulsa sobre el icono de la aplicación para navegar hasta ella:
+
+<p align="center">
+	<a href="[https://mario999x.itch.io/sp4ce-survival](https://demonicloopdev.itch.io/demonic-loop)"><img src="art/DemonicLoopLogo.png" height="200px"/></a>
+</p>
+
 ---
 
 ## Índice

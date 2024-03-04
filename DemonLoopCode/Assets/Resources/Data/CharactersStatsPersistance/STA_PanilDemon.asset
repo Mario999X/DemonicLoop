@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
+  m_Name: STA_PanilDemon
+  m_EditorClassIdentifier: 
+  characterPB: {fileID: 9014782617563343838, guid: 35f7815fd92c53b4bb167f7624e14642,
+    type: 3}
+  description: It is the demon most similar to human beings in terms of its physical
+    characteristics. They love to torture their enemies when they are incapacitated
+    in combat.
+  level: 1
+  currentXP: 0
+  health: 200
+  maxHealth: 200
+  mana: 150
+  maxMana: 150
+  sp: 0
+  strength: 20
+  physicalDef: 20
+  magicAtk: 20
+  magicDef: 20
+  criticalChance: 20
+  listAtk:
+  - {fileID: 11400000, guid: af7a6f60c02e740018fc899403742db4, type: 2}
+  cost: 2000
+  protagonist: 0

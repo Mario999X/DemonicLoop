@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6974b2030eb914b59b59e49d8520a3d8, type: 3}
+  m_Name: ATK_Strain^Punch
+  m_EditorClassIdentifier: 
+  baseDamage: 50
+  phyAttack: 1
+  magicAttack: 0
+  isAoeAttack: 0
+  manaCost: -30
+  berserker: 0
+  generateAState: 2
+  stateAsociated: {fileID: 11400000, guid: ac1f8b668c0d0264e8029f8d9fde2681, type: 2}
+  probabilityOfState: 50
+  type: 2
+  lifeTheft: 1
+  manaTheft: 0
+  levelRequired: 3
+  battleModifierAsociated: {fileID: 11400000, guid: a1d2147e3b7984fda8c9b7c6d71e04bb,
+    type: 2}
+  isSpecial: 0
+  pointSpecial: 0

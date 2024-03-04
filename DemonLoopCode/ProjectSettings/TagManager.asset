@@ -6,6 +6,17 @@ TagManager:
   tags:
   - Enemy
   - Buttons
+  - Chest
+  - Enemy3D
+  - Normal Shop
+  - Slave Shop
+  - Money
+  - LeverWithoutOrder
+  - LeverWithOrder
+  - Sprite
+  - MoneyRefined
+  - Special Shop
+  - Mimic
   layers:
   - Default
   - TransparentFX
@@ -14,9 +25,9 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
-  - 
-  - 
+  - Floor
+  - Interact
+  - Boss
   - 
   - 
   - 

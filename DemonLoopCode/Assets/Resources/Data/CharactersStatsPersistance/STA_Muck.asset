@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
+  m_Name: STA_Muck
+  m_EditorClassIdentifier: 
+  characterPB: {fileID: 7486560601053180396, guid: 2087ebe9c3855844bb67295812fe4a0a,
+    type: 3}
+  description: It is the most basic way of life in hell. They only care about feeding
+    themselves at all costs.
+  level: 1
+  currentXP: 0
+  health: 250
+  maxHealth: 250
+  mana: 200
+  maxMana: 200
+  sp: 0
+  strength: 20
+  physicalDef: 20
+  magicAtk: 20
+  magicDef: 20
+  criticalChance: 20
+  listAtk:
+  - {fileID: 11400000, guid: 5010e5fe204d1451790b554b2611313a, type: 2}
+  cost: 1000
+  protagonist: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277369d77962348f3abe3b1af38dd3b2, type: 3}
+  m_Name: STA_Liebt
+  m_EditorClassIdentifier: 
+  characterPB: {fileID: 7486560601053180396, guid: 152f02c6fd5ee0f4da9269a0ff11bf27,
+    type: 3}
+  description: He has the strength of a gorilla and his belly doesn't stop growling.
+    A stench of blood emanates. In the rare moments when they are not fighting, they
+    can be heard crying and screaming desperately.
+  level: 1
+  currentXP: 0
+  health: 250
+  maxHealth: 250
+  mana: 150
+  maxMana: 150
+  sp: 0
+  strength: 20
+  physicalDef: 20
+  magicAtk: 20
+  magicDef: 20
+  criticalChance: 10
+  listAtk:
+  - {fileID: 11400000, guid: 116afbc48b1b2434ea1957ba9a54c0a4, type: 2}
+  cost: 5000
+  protagonist: 0

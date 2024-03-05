@@ -18,18 +18,19 @@ MonoBehaviour:
     characteristics. They love to torture their enemies when they are incapacitated
     in combat.
   level: 1
-  currentXP: 0
-  health: 200
-  maxHealth: 200
-  mana: 150
-  maxMana: 150
+  currentXP: 206.5
+  health: 208
+  maxHealth: 208
+  mana: 154
+  maxMana: 154
   sp: 0
-  strength: 20
-  physicalDef: 20
-  magicAtk: 20
-  magicDef: 20
-  criticalChance: 20
+  strength: 24
+  physicalDef: 28
+  magicAtk: 24
+  magicDef: 28
+  criticalChance: 26
   listAtk:
   - {fileID: 11400000, guid: af7a6f60c02e740018fc899403742db4, type: 2}
+  - {fileID: 11400000, guid: 01308935cd98346e8a552d97513ef003, type: 2}
   cost: 2000
   protagonist: 0

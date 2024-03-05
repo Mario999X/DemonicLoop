@@ -3366,7 +3366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1768.686}
+  m_AnchoredPosition: {x: 0, y: -1802.6046}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &698224850
@@ -6692,7 +6692,7 @@ MonoBehaviour:
   - {fileID: 1378641251075338131, guid: 8865c8b0442744426a386a0eb1ef07c4, type: 3}
   oblMaps:
   - {fileID: 2393160550813801538, guid: b225c443054d8de4f902164a7d166c7d, type: 3}
-  rarity: 3c00000037000000320000002d00000064000000
+  rarity: 3200000037000000310000003a00000064000000
 --- !u!4 &1525719001
 Transform:
   m_ObjectHideFlags: 0

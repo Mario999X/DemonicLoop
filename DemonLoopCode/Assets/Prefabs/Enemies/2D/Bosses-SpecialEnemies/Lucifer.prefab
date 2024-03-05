@@ -469,17 +469,17 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   health: 0
-  maxHealth: 1000
+  maxHealth: 1500
   mana: 0
   maxMana: 400
   sp: 0
   maxSP: 100
   canYouLaunchAnSpecialAtk: 0
-  strength: 20
-  physicalDef: 20
-  magicAtk: 20
-  magicDef: 20
-  criticalChance: 20
+  strength: 25
+  physicalDef: 25
+  magicAtk: 25
+  magicDef: 25
+  criticalChance: 25
   listAtk:
   - {fileID: 11400000, guid: 0f969b8ebe7dc40f9a8ee7f4d3997a4c, type: 2}
   - {fileID: 11400000, guid: fa93b067f10d043a39a2bfb5005a6e03, type: 2}

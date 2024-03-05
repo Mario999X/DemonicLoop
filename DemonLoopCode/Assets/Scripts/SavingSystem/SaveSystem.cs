@@ -310,7 +310,7 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
-            Data.Instance.CharactersTeamStats.ForEach(c => { c.ActualStates.Clear(); });
+            Data.Instance.CharactersTeamStats.ForEach(x => { x.ActualStates.Clear(); x.Level = 1; });
         }
     }
 }

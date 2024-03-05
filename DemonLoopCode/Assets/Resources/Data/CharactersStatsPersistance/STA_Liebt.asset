@@ -18,17 +18,17 @@ MonoBehaviour:
     A stench of blood emanates. In the rare moments when they are not fighting, they
     can be heard crying and screaming desperately.
   level: 1
-  currentXP: 206.5
-  health: 258
-  maxHealth: 258
-  mana: 154
-  maxMana: 154
+  currentXP: 0
+  health: 200
+  maxHealth: 200
+  mana: 150
+  maxMana: 150
   sp: 0
-  strength: 28
-  physicalDef: 28
-  magicAtk: 24
-  magicDef: 24
-  criticalChance: 16
+  strength: 20
+  physicalDef: 20
+  magicAtk: 20
+  magicDef: 20
+  criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: 116afbc48b1b2434ea1957ba9a54c0a4, type: 2}
   cost: 5000

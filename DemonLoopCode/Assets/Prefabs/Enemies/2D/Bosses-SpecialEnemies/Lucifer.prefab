@@ -475,11 +475,11 @@ MonoBehaviour:
   sp: 0
   maxSP: 100
   canYouLaunchAnSpecialAtk: 0
-  strength: 25
-  physicalDef: 25
-  magicAtk: 25
-  magicDef: 25
-  criticalChance: 25
+  strength: 27
+  physicalDef: 27
+  magicAtk: 27
+  magicDef: 27
+  criticalChance: 27
   listAtk:
   - {fileID: 11400000, guid: 0f969b8ebe7dc40f9a8ee7f4d3997a4c, type: 2}
   - {fileID: 11400000, guid: fa93b067f10d043a39a2bfb5005a6e03, type: 2}

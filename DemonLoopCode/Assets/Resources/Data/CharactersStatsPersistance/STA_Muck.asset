@@ -17,19 +17,18 @@ MonoBehaviour:
   description: It is the most basic way of life in hell. They only care about feeding
     themselves at all costs.
   level: 1
-  currentXP: 206.5
-  health: 258
-  maxHealth: 258
-  mana: 208
-  maxMana: 208
+  currentXP: 0
+  health: 200
+  maxHealth: 200
+  mana: 200
+  maxMana: 200
   sp: 0
-  strength: 24
-  physicalDef: 24
-  magicAtk: 24
-  magicDef: 28
-  criticalChance: 26
+  strength: 20
+  physicalDef: 20
+  magicAtk: 20
+  magicDef: 20
+  criticalChance: 10
   listAtk:
   - {fileID: 11400000, guid: 5010e5fe204d1451790b554b2611313a, type: 2}
-  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
   cost: 1000
   protagonist: 0

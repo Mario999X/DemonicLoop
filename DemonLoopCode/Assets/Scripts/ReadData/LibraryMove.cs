@@ -198,17 +198,17 @@ public class LibraryMove : MonoBehaviour
         // El objetivo es que robe vida con el ataque
         if (attack.LifeTheft)
         {
-            character_ST.Health += damage;
-            floatingText.ShowFloatingTextNumbers(character, damage, Color.green);
+            character_ST.Health += attack.BaseDamage;
+            floatingText.ShowFloatingTextNumbers(character, attack.BaseDamage, Color.green);
         }
 
         // El objetivo es que robe mana con el ataque
         if (attack.ManaTheft)
         {
-            character_ST.Mana += damage;
-            target_ST.Mana -= damage;
-            floatingText.ShowFloatingTextNumbers(character, damage, Color.blue);
-            floatingText.ShowFloatingTextNumbers(target, -damage, Color.blue);
+            character_ST.Mana += attack.BaseDamage;
+            target_ST.Mana -= attack.BaseDamage;
+            floatingText.ShowFloatingTextNumbers(character, attack.BaseDamage, Color.blue);
+            floatingText.ShowFloatingTextNumbers(target, -attack.BaseDamage, Color.blue);
         }
 
         // Se consumen los puntos de los ataques especiales del personaje y implementa un bono de daño

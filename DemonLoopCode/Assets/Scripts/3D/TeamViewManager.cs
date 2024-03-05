@@ -173,7 +173,8 @@ public class TeamViewManager : MonoBehaviour
                 secondCharacterSelected = character;
                 secondCharacterListCheck = activeTeam;
             } 
-        } else
+        } 
+        else
         {
             firstCharacterSelected = character;
             firstCharacterListCheck = activeTeam;
@@ -193,7 +194,7 @@ public class TeamViewManager : MonoBehaviour
             SetActiveTeamData();
             switchPositionsInBattle = true;
 
-            if(switchPositionsInBattle && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SceneName 2")
+            if(switchPositionsInBattle && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
             {
                 StartCoroutine(GetComponent<EnterBattle>().RespawnAlliesInBattle());
                 switchPositionsInBattle = false;

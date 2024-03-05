@@ -18,19 +18,21 @@ MonoBehaviour:
     that runs across half his body due to the initial event of the story. And his
     eyes are yellowish.
   level: 1
-  currentXP: 0
-  health: 300
-  maxHealth: 300
-  mana: 150
-  maxMana: 150
-  sp: 0
-  strength: 25
-  physicalDef: 25
-  magicAtk: 25
-  magicDef: 25
-  criticalChance: 10
+  currentXP: 250.5
+  health: 324
+  maxHealth: 324
+  mana: 154
+  maxMana: 174
+  sp: 90
+  strength: 37
+  physicalDef: 37
+  magicAtk: 37
+  magicDef: 49
+  criticalChance: 28
   listAtk:
   - {fileID: 11400000, guid: 8650a099b9cb04ea8ae048e1380cad52, type: 2}
   - {fileID: 11400000, guid: 01308935cd98346e8a552d97513ef003, type: 2}
+  - {fileID: 11400000, guid: a0fcd1062ef6b48af88cf506ecb16089, type: 2}
+  - {fileID: 11400000, guid: 39dca8f5444414b05ab06d213e8605b5, type: 2}
   cost: 0
   protagonist: 1

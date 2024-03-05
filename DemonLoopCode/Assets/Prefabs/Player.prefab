@@ -616,14 +616,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6320754, g: 0.30709326, b: 0.30709326, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: daea83471dd5e44b982457b71e725ff6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c34c52c6301beeb44bec4233d83e8201, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1166,7 +1166,6 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
-  click: 0
 --- !u!1 &3087427721605689645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,14 +1459,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6320754, g: 0.30709326, b: 0.30709326, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd8303acc2c8d4714a60271ff21be827, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8052417a2c922fd4180ff5bf6880c90e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2870,14 +2869,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6320754, g: 0.30709326, b: 0.30709326, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e1d5c1af7a2bf4f05a8f54f30cda08ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc8ad8bf4ea252247ade3ff9de5eacd0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

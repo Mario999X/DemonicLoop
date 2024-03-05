@@ -168,11 +168,14 @@ public class PostBattleTeam : MonoBehaviour
     {
         for (int i = 0; i < players.Length; i++)
         {
-            GameObject playerPrefab = alliesBattleZone.transform.GetChild(i).gameObject.transform.GetChild(3).gameObject;
+            GameObject playerPrefab = players[i].transform.GetChild(3).gameObject;
 
             switch (i)
             {
                 case 0:
+                    if (unit1.transform.childCount > 0)
+                        Destroy(unit1.transform.GetChild(0).gameObject);
+                    
                     infoNewStatsPanel1.SetActive(true);
                     unit1.SetActive(true);
                    
@@ -193,6 +196,9 @@ public class PostBattleTeam : MonoBehaviour
                     break;
 
                 case 1:
+                    if (unit2.transform.childCount > 0)
+                        Destroy(unit2.transform.GetChild(0).gameObject);
+
                     infoNewStatsPanel2.SetActive(true);
                     unit2.SetActive(true);
 
@@ -213,6 +219,9 @@ public class PostBattleTeam : MonoBehaviour
                     break;
 
                 case 2:
+                    if (unit3.transform.childCount > 0)
+                        Destroy(unit3.transform.GetChild(0).gameObject);
+
                     infoNewStatsPanel3.SetActive(true);
                     unit3.SetActive(true);
 
@@ -233,6 +242,9 @@ public class PostBattleTeam : MonoBehaviour
                     break;
 
                 case 3:
+                    if (unit4.transform.childCount > 0)
+                        Destroy(unit4.transform.GetChild(0).gameObject);
+
                     infoNewStatsPanel4.SetActive(true);
                     unit4.SetActive(true);
 

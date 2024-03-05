@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722638, a: 1}
+  m_IndirectSpecularColor: {r: 2.1102574, g: 0.008063663, b: 0.00030722632, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2957,6 +2957,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c90015b9740ee429797b2889d1ac4aa3,
         type: 2}
+    - target: {fileID: 8012680095458680360, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: Burnt
+      value: 
+      objectReference: {fileID: 3317794614282000017, guid: 37fd75c5a77ed4847b4a3fd2b73aa66b,
+        type: 3}
+    - target: {fileID: 8012680095458680360, guid: a54c850099ea2d1489ffe38bcb5fb07f,
+        type: 3}
+      propertyPath: Poison
+      value: 
+      objectReference: {fileID: 7903268249920425255, guid: 7effb43ef6b5ef846b012c6c918717d9,
+        type: 3}
     - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
       propertyPath: charactersTeamStats.Array.size
@@ -2971,7 +2983,7 @@ PrefabInstance:
         type: 3}
       propertyPath: charactersTeamStats.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 0e607b310541846449cd1cf91526fc75,
+      objectReference: {fileID: 11400000, guid: c90d52baa69744107982e91dddc47bf8,
         type: 2}
     - target: {fileID: 8020943997931809745, guid: a54c850099ea2d1489ffe38bcb5fb07f,
         type: 3}
@@ -35819,7 +35831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -505.9486}
+  m_AnchoredPosition: {x: 0, y: -510.16815}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!23 &1377124704024392409

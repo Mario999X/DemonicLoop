@@ -20,8 +20,8 @@ MonoBehaviour:
   currentXP: 0
   health: 200
   maxHealth: 200
-  mana: 200
-  maxMana: 200
+  mana: 150
+  maxMana: 150
   sp: 0
   strength: 20
   physicalDef: 20

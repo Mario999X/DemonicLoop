@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public enum ObjectTypes { Health, Mana, HealState, Throwable, Revive }
 
@@ -79,7 +80,7 @@ public class ObjectData : ScriptableObject
         }
     }
 
-    // Se usara para configurar el información del panel
+    // Se usara para configurar el informaciï¿½n del panel
     private void SetObjectInfoInPanel()
     {
         // Panel del inventario
@@ -136,15 +137,18 @@ public class ObjectData : ScriptableObject
     // Crea los botones de los aliados que estan muertos
     private void CreateButtonsPlayersDefeated(GameObject spawnMoveBT)
     {
-        List<GameObject> playersDefeated = GameObject.Find("System").GetComponent<CombatFlow>().PlayersDefeated;
+        List<StatsPersistenceData> playersDefeated = Data.Instance.CharactersTeamStats;
 
-        foreach (GameObject pl in playersDefeated)
+        foreach(StatsPersistenceData pl in playersDefeated)
         {
-            GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
-            bt.transform.SetParent(spawnMoveBT.transform);
-            bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
-            bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(pl.name.IndexOf("_") + 1);
-            bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectInBattle(pl); });
+            if(pl.Health == 0)
+            {
+                GameObject bt = Instantiate(buttonPrefab, spawnMoveBT.transform.position, Quaternion.identity);
+                bt.transform.SetParent(spawnMoveBT.transform);
+                bt.name = "Ally " + pl.name;//Nombre de los botones que se van a generar
+                bt.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = pl.name.Substring(pl.name.IndexOf("_") + 1);
+                bt.GetComponent<Button>().onClick.AddListener(delegate { UserObjectInOverworld(pl); });
+            }
         }
     }
 
@@ -165,11 +169,29 @@ public class ObjectData : ScriptableObject
                 break;
 
             case ObjectTypes.HealState:
-                GameObject.Find("System").GetComponent<LibraryStates>().RemoveCharacterWithState(target.CharacterPB, ObtainStateName());
+                GameObject.Find("System").GetComponent<LibraryStates>().RemoveCharacterWithState(target.CharacterPB, ObtainObjectName());
                 break;
 
             case ObjectTypes.Revive:
                 target.Health = baseNum;
+                GameObject.Find("Inventory").transform.GetChild(2).gameObject.SetActive(false);
+                GameObject.Find("PartyPanel").SetActive(false);
+
+                GameObject.Find("System").GetComponent<TeamViewManager>().SetActiveTeamData();
+                GameObject.Find("System").GetComponent<TeamViewManager>().SetBackupTeamData();
+
+                if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Scene 2")
+                    foreach(Transform child in GameObject.Find("AlliesBattleZone").transform)
+                    {
+                        if(child.name == target.CharacterPB.name + "(Clone)")
+                        {
+                            child.gameObject.SetActive(true);
+                            child.GetComponent<Stats>().Health = baseNum;
+
+                            GameObject.Find("System").GetComponent<CombatFlow>().SetPlayersInCombat();
+                            child.SetAsLastSibling();
+                        }
+                    }
                 break;
         }
 
@@ -216,7 +238,7 @@ public class ObjectData : ScriptableObject
                 break;
 
             case ObjectTypes.HealState:
-                GameObject.Find("System").GetComponent<LibraryStates>().RemoveCharacterWithState(@character, ObtainStateName());
+                GameObject.Find("System").GetComponent<LibraryStates>().RemoveCharacterWithState(@character, ObtainObjectName());
                 break;
             
             case ObjectTypes.Revive:
@@ -276,8 +298,8 @@ public class ObjectData : ScriptableObject
         inventory.RemoveObjectFromInventory(name.Substring(4, name.Length - 4));
     }
 
-    // Obtenemos el nombre limpio del estado ejemplo  de estar asi OBJ_ManaPotionV3 a ManaPotionV3
-    private string ObtainStateName()
+    // Obtenemos el nombre limpio del estado ejemplo de estar asi OBJ_ManaPotionV3 a ManaPotionV3
+    private string ObtainObjectName()
     {
         return stateAsociated.name.Substring(4, stateAsociated.name.Length - 4).ToUpper();
     }

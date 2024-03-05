@@ -321,6 +321,8 @@ public class CombatFlow : MonoBehaviour
     // Funcion para preparar a los aliados en el Array de players. se tiene en cuenta quienes se encuentra derrotados si se encuentran desactivados.
     public void SetPlayersInCombat()
     {
+        if(playersDefeated.Count != 0) playersDefeated.Clear();
+        
         players = GameObject.FindGameObjectsWithTag("Player").ToArray();
 
         foreach (Transform child in GameObject.Find("AlliesBattleZone").transform)
@@ -928,6 +930,8 @@ public class CombatFlow : MonoBehaviour
         // Se resetea la información del combate para el proximo encuentro
         battleModifiersLibrary.RemoveAllBattleModifiers();
         
+        playersDefeated.Clear();
+
         actualTurn = 0;
         moves = 0;
     }
